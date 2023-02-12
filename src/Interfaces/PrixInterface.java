@@ -16,7 +16,13 @@ public interface PrixInterface {
     public List<Prix> afficherPrixType(String PrixType);
     public List<Prix> afficherPrixFilm(int PrixFilm);
     
-    //4: Suppression par film
-    public void suppressionPrix(int PrixFilm);
+    //4: modifier donnee
+    public void modifierPrixFilm(int prixId , int prixFilm );
+    public void modifierPrixType(int prixId , String prixType );
+    public void modifierPrixFilmType(int prixId , int prixFilm , String prixType);
+    
+    //5: Suppression par film
+    public void suppressionPrixFilm(int PrixFilm);
+    public void suppressionPrixType(String PrixType);
     
 }

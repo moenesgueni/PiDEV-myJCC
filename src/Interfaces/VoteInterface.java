@@ -24,8 +24,14 @@ public interface VoteInterface {
     public List<Vote> afficherVoteUser(int VoteUser);
     public List<Vote> afficherVoteFilm(int VoteFilm);
     
-    //4: Suppression par film
-    public void suppressionVote(int VoteFilm);
+    //4: modifier donnee
+    public void modifierVoteFilm(int voteId , int voteFilm );
+    public void modifierVoteType(int voteId , int voteUser );
+    public void modifierVoteFilmType(int voteId , int voteUser , int voteFilm);
+    
+    //5: Suppression par film
+    public void suppressionVoteFilm(int VoteFilm);
+    public void suppressionVoteUser(int VoteUser);
     
     
 }

@@ -7,7 +7,6 @@ package Services;
 
 import Interfaces.PrixInterface;
 import Models.Prix;
-import Models.Vote;
 import Utils.MaConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -115,9 +114,57 @@ public class PrixService implements PrixInterface{
         }
         return prixs;
     }
+    
+    
+    @Override
+    public void modifierPrixFilm(int prixId , int prixFilm) {
+        String request = "UPDATE prix SET ID_Film = ?"
+                +" WHERE ID_Prix = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(request);
+            ps.setInt(2, prixId);
+            ps.setInt(1, prixFilm);
+            ps.executeUpdate();
+            System.out.println("ID_Film modifié avec success via prepared Statement!!!");
+        } catch (SQLException ex) {
+            Logger.getLogger(PrixService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Override
+    public void modifierPrixType(int prixId, String prixType) {
+        String request = "UPDATE prix SET TypePrix = ?"
+                +" WHERE ID_Prix = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(request);
+            ps.setInt(2, prixId);
+            ps.setString(1, prixType);
+            ps.executeUpdate();
+            System.out.println("TypePrix modifié avec success via prepared Statement!!!");
+        } catch (SQLException ex) {
+            Logger.getLogger(PrixService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
-    public void suppressionPrix(int PrixFilm) {
+    public void modifierPrixFilmType(int prixId, int prixFilm, String prixType) {
+        String request = "UPDATE prix SET ID_Film = ? ,TypePrix = ?"
+                +" WHERE ID_Prix = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(request);
+            ps.setInt(3, prixId);
+            ps.setInt(1, prixFilm);
+            ps.setString(2, prixType);
+            ps.executeUpdate();
+            System.out.println("TypePrix et ID_Film modifiés avec success via prepared Statement!!!");
+        } catch (SQLException ex) {
+            Logger.getLogger(PrixService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+
+    @Override
+    public void suppressionPrixFilm(int PrixFilm) {
         String request = "DELETE FROM prix WHERE ID_Film = ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(request);
@@ -128,6 +175,22 @@ public class PrixService implements PrixInterface{
             Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Override
+    public void suppressionPrixType(String PrixType) {
+        String request = "DELETE FROM prix WHERE TypePrix = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(request);
+            ps.setString(1, PrixType);
+            ps.executeUpdate();
+            System.out.println("prix supprimé avec success via prepared Statement!!!");
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
+    
     
     
 }

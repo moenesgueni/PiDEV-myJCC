@@ -21,7 +21,13 @@ public class Myjcc {
         //ps.afficherPrix().forEach(System.out::println);
         //ps.afficherPrixType("Bronze").forEach(System.out::println);
         //ps.afficherPrixFilm(15).forEach(System.out::println);
-        //ps.suppressionPrix(15);
+        //ps.modifierPrix(15, 7);
+        //ps.modifierPrixType(15, "Argent");
+        //ps.modifierPrixFilmType(15, 100, "Or");
+        //ps.suppressionPrixFilm(15);
+        //ps.suppressionPrixType("Bronze");
+        
+        
         
         
         
@@ -32,7 +38,11 @@ public class Myjcc {
         //vs.afficherVote().forEach(System.out::println);
         //vs.afficherVoteUser(777).forEach(System.out::println);
         //vs.afficherVoteFilm(19).forEach(System.out::println);
-        //vs.suppressionVote(19);
+        //vs.modifierVoteFilm(10 , 11111);
+        //vs.modifierVoteType(2, 15);
+        //vs.modifierVoteFilmType(3, 5, 87);
+        //vs.suppressionVoteFilm(53);
+        
         
     
     }

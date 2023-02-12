@@ -37,12 +37,12 @@ public class VoteService implements VoteInterface{
         Date today = (Date) calendar.getTime(); ///////// condition de date pour terminer le vote
         
     
-        String req = "INSERT INTO `vote`(`ID_Film`, `ID_User`) VALUES (?,?)";
+        String req = "INSERT INTO `vote`(`ID_User`, `ID_Film`) VALUES (?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             //ps.setInt(1, v.getID_Vote());
-            ps.setInt(1, v.getID_Film());
-            ps.setInt(2, v.getID_User());
+            ps.setInt(1, v.getID_User());
+            ps.setInt(2, v.getID_Film());
             ps.executeUpdate();
             System.out.println("Vote ajouté avec success via prepared Statement!!!");
         } catch (SQLException ex) {
@@ -64,8 +64,8 @@ public class VoteService implements VoteInterface{
             while(rs.next()){
                 Vote v = new Vote();
                 v.setID_Vote(rs.getInt(1));
-                v.setID_Film(rs.getInt(2));
-                v.setID_User(rs.getInt(3));
+                v.setID_User(rs.getInt(2));
+                v.setID_Film(rs.getInt(3));
                 //
                 votes.add(v);
             }
@@ -79,7 +79,7 @@ public class VoteService implements VoteInterface{
     //affichage par user
     @Override
     public List<Vote> afficherVoteUser(int VoteUser) {
-        List<Vote> prixs = new ArrayList<>();
+        List<Vote> votes = new ArrayList<>();
         Vote p = new Vote();
         String request = "SELECT * FROM vote WHERE ID_User = ? ;";
         try {
@@ -91,20 +91,20 @@ public class VoteService implements VoteInterface{
                 p.setID_User(rs.getInt(2));
                 p.setID_Film(rs.getInt(3));
                 
-                prixs.add(p);
+                votes.add(p);
                 
             }
         } catch (SQLException ex) {
             Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return prixs;
+        return votes;
     }
 
     
     //affichage par film
     @Override
     public List<Vote> afficherVoteFilm(int VoteFilm) {
-        List<Vote> prixs = new ArrayList<>();
+        List<Vote> votes = new ArrayList<>();
         Vote p = new Vote();
         String request = "SELECT * FROM vote WHERE ID_Film = ? ;";
         try {
@@ -116,27 +116,91 @@ public class VoteService implements VoteInterface{
                 p.setID_User(rs.getInt(2));
                 p.setID_Film(rs.getInt(3));
                 
-                prixs.add(p);
+                votes.add(p);
                 
             }
         } catch (SQLException ex) {
             Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return prixs;
+        return votes;
+    }
+    
+    
+    @Override
+    public void modifierVoteFilm(int voteId, int voteFilm) {
+        String request = "UPDATE vote SET ID_Film = ?"
+                +" WHERE ID_Vote = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(request);
+            ps.setInt(2, voteId);
+            ps.setInt(1, voteFilm);
+            ps.executeUpdate();
+            System.out.println("ID_Film modifié avec success via prepared Statement!!!");
+        } catch (SQLException ex) {
+            Logger.getLogger(PrixService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
-    public void suppressionVote(int VoteFilm) {
+    public void modifierVoteType(int voteId, int voteUser) {
+        String request = "UPDATE vote SET ID_User = ?"
+                +" WHERE ID_Vote = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(request);
+            ps.setInt(2, voteId);
+            ps.setInt(1, voteUser);
+            ps.executeUpdate();
+            System.out.println("ID_User modifié avec success via prepared Statement!!!");
+        } catch (SQLException ex) {
+            Logger.getLogger(PrixService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void modifierVoteFilmType(int voteId, int voteUser, int voteFilm) {
+        String request = "UPDATE vote SET ID_User = ? , ID_Film = ?"
+                +" WHERE ID_Vote = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(request);
+            ps.setInt(3, voteId);
+            ps.setInt(2, voteFilm);
+            ps.setInt(1, voteUser);
+            ps.executeUpdate();
+            System.out.println("ID_User et ID_Film modifié avec success via prepared Statement!!!");
+        } catch (SQLException ex) {
+            Logger.getLogger(PrixService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
+
+    @Override
+    public void suppressionVoteFilm(int VoteFilm) {
         String request = "DELETE FROM vote WHERE ID_Film = ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(request);
             ps.setInt(1, VoteFilm);
             ps.executeUpdate();
-            System.out.println("Vote supprimé avec success via prepared Statement!!!");
+            System.out.println("Film supprimé avec success via prepared Statement!!!");
         } catch (SQLException ex) {
             Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @Override
+    public void suppressionVoteUser(int VoteUser) {
+        String request = "DELETE FROM vote WHERE ID_User = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(request);
+            ps.setInt(1, VoteUser);
+            ps.executeUpdate();
+            System.out.println("User supprimé avec success via prepared Statement!!!");
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
 
     
 
