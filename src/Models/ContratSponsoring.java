@@ -1,5 +1,6 @@
 package Models;
 
+import Utils.EnumEtatContrat;
 import Utils.EnumTypeContrat;
 import java.sql.Date;
 
@@ -9,38 +10,40 @@ public class ContratSponsoring {
     private Date DateDebut;
     private Date DateFin;
     private EnumTypeContrat Type;
+    private EnumEtatContrat Etat;
     private float SalaireDt;
     private String TermesPDF;
     private int ID_Sponsor;    //de type Object user
     private int ID_Photoraphe; //de type Object user
-    
+
     //Constructeurs
     public ContratSponsoring() {
     }
-    
-    public ContratSponsoring(Date DateDebut, Date DateFin, EnumTypeContrat Type, float SalaireDt, String TermesPDF, int ID_Sponsor, int ID_Photoraphe) {
+
+    public ContratSponsoring(Date DateDebut, Date DateFin, EnumTypeContrat Type, EnumEtatContrat Etat, float SalaireDt, String TermesPDF, int ID_Sponsor, int ID_Photoraphe) {
         this.DateDebut = DateDebut;
         this.DateFin = DateFin;
         this.Type = Type;
+        this.Etat = Etat;
         this.SalaireDt = SalaireDt;
         this.TermesPDF = TermesPDF;
         this.ID_Sponsor = ID_Sponsor;
         this.ID_Photoraphe = ID_Photoraphe;
     }
 
-    public ContratSponsoring(int ID_Contrat, Date DateDebut, Date DateFin, EnumTypeContrat Type, float SalaireDt, String TermesPDF, int ID_Sponsor, int ID_Photoraphe) {
+    public ContratSponsoring(int ID_Contrat, Date DateDebut, Date DateFin, EnumTypeContrat Type, EnumEtatContrat Etat, float SalaireDt, String TermesPDF, int ID_Sponsor, int ID_Photoraphe) {
         this.ID_Contrat = ID_Contrat;
         this.DateDebut = DateDebut;
         this.DateFin = DateFin;
         this.Type = Type;
+        this.Etat = Etat;
         this.SalaireDt = SalaireDt;
         this.TermesPDF = TermesPDF;
         this.ID_Sponsor = ID_Sponsor;
         this.ID_Photoraphe = ID_Photoraphe;
     }
-    
-    //Getters & Setters
 
+    //Getters & Setters
     public int getID_Contrat() {
         return ID_Contrat;
     }
@@ -71,6 +74,14 @@ public class ContratSponsoring {
 
     public void setType(EnumTypeContrat Type) {
         this.Type = Type;
+    }
+
+    public EnumEtatContrat getEtat() {
+        return Etat;
+    }
+
+    public void setEtat(EnumEtatContrat Etat) {
+        this.Etat = Etat;
     }
 
     public float getSalaireDt() {
@@ -104,13 +115,12 @@ public class ContratSponsoring {
     public void setID_Photoraphe(int ID_Photoraphe) {
         this.ID_Photoraphe = ID_Photoraphe;
     }
-    
+
     //toString
     @Override
     public String toString() {
-        return "--------------------\nContratSponsoring :" + "\nID_Contrat : " + ID_Contrat + "\nDateDebut : " + DateDebut + "\nDateFin : " + DateFin + "\nType : " 
-                + Type + "\nSalaireDt : " + SalaireDt + "\nTermesPDF : " + TermesPDF + "\nID_Sponsor : " + ID_Sponsor + "\nID_Photoraphe : " + ID_Photoraphe;
+        return "--------------------\nContratSponsoring :" + "\nID_Contrat : " + ID_Contrat + "\nDateDebut : " + DateDebut + "\nDateFin : " + DateFin + "\nType : " + Type
+                + "\nEtat Contart : " + Etat + "\nSalaireDt : " + SalaireDt + "\nTermesPDF : " + TermesPDF + "\nID_Sponsor : " + ID_Sponsor + "\nID_Photoraphe : " + ID_Photoraphe;
     }
-    
 
 }

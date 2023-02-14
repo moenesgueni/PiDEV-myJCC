@@ -16,18 +16,21 @@ import java.util.logging.Logger;
 public class PhotographieService implements PhotographieInterface{
     //Connection a la db
     Connection cnx = MaConnection.getInstance().getCnx();
+    
+    //Creation service galerie
+    GalerieService gs = new GalerieService();
 
     //Create
     @Override
     public void ajouterPhotographie(Photographie p) {
         String req = "INSERT INTO `photographie`(`Nom`, `Description`, "
-                + "`PhotographieB64`, `ID_Galerie`) VALUES (?,?,?,?)";
+                + "`PhotographiePath`, `ID_Galerie`) VALUES (?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, p.getNom());
             ps.setString(2, p.getDescription());
-            ps.setString(3, p.getPhotographieB64());
-            ps.setInt(4, p.getID_Galerie());
+            ps.setString(3, p.getPhotographiePath());
+            ps.setInt(4, p.getGalerie().getID_Galerie());
             //
             ps.executeUpdate();
             System.out.println("Nouvelle Photographie Ajoute avec success via prepared Statement!!!");
@@ -49,8 +52,8 @@ public class PhotographieService implements PhotographieInterface{
                 p.setID_Photographie(rs.getInt(1));
                 p.setNom(rs.getString(2));
                 p.setDescription(rs.getString(3));
-                p.setPhotographieB64(rs.getString(4));
-                p.setID_Galerie(rs.getInt(5));
+                p.setPhotographiePath(rs.getString(4));
+                p.setGalerie(gs.afficherGalerie(rs.getInt(5)));
                 //
                 photographies.add(p);
             }
@@ -72,8 +75,8 @@ public class PhotographieService implements PhotographieInterface{
                 p.setID_Photographie(rs.getInt(1));
                 p.setNom(rs.getString(2));
                 p.setDescription(rs.getString(3));
-                p.setPhotographieB64(rs.getString(4));
-                p.setID_Galerie(rs.getInt(5));
+                p.setPhotographiePath(rs.getString(4));
+                p.setGalerie(gs.afficherGalerie(rs.getInt(5)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ContratSponsorinService.class.getName()).log(Level.SEVERE, null, ex);
@@ -94,8 +97,8 @@ public class PhotographieService implements PhotographieInterface{
                 p.setID_Photographie(rs.getInt(1));
                 p.setNom(rs.getString(2));
                 p.setDescription(rs.getString(3));
-                p.setPhotographieB64(rs.getString(4));
-                p.setID_Galerie(rs.getInt(5));
+                p.setPhotographiePath(rs.getString(4));
+                p.setGalerie(gs.afficherGalerie(rs.getInt(5)));
                 //
                 photographies.add(p);
             }
@@ -109,13 +112,13 @@ public class PhotographieService implements PhotographieInterface{
     @Override
     public void modifierPhotographie(Photographie p) {
         String request = "UPDATE `photographie` SET `Nom`= ?,`Description`= ?"
-                + ",`PhotographieB64`= ?,`ID_Galerie`= ? WHERE `ID_Photographie`= ?";
+                + ",`PhotographiePath`= ?,`ID_Galerie`= ? WHERE `ID_Photographie`= ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(request);
             ps.setString(1, p.getNom());
             ps.setString(2, p.getDescription());
-            ps.setString(3, p.getPhotographieB64());
-            ps.setInt(4, p.getID_Galerie());
+            ps.setString(3, p.getPhotographiePath());
+            ps.setInt(4, p.getGalerie().getID_Galerie());
             ps.setInt(5, p.getID_Photographie());
             //
             ps.executeUpdate();

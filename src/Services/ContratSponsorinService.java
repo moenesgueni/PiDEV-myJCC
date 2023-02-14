@@ -3,6 +3,7 @@ package Services;
 import Interfaces.SponsoringInterface;
 import Models.ContratSponsoring;
 import Utils.EnumTypeContrat;
+import Utils.EnumEtatContrat;
 import Utils.MaConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,16 +22,17 @@ public class ContratSponsorinService implements SponsoringInterface{
     //Create : creation d'une proposition de contrat
     @Override
     public void ajouterContratSponsorin(ContratSponsoring c) {
-        String req = "INSERT INTO `contratsponsoring`(`DateDebut`, `DateFin`, `Type`, `SalaireDt`, `TermesPDF`, `ID_Sponsor`, `ID_Photographe`) VALUES (?,?,?,?,?,?,?)";
+        String req = "INSERT INTO `contratsponsoring`(`DateDebut`, `DateFin`, `Type`, `Etat`, `SalaireDt`, `TermesPDF`, `ID_Sponsor`, `ID_Photographe`) VALUES (?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setDate(1, c.getDateDebut());
             ps.setDate(2, c.getDateFin());
             ps.setString(3, c.getType().toString());
-            ps.setFloat(4, c.getSalaireDt());
-            ps.setString(5, c.getTermesPDF());
-            ps.setInt(6, c.getID_Sponsor());
-            ps.setInt(7, c.getID_Photoraphe());
+            ps.setString(4, c.getEtat().toString());
+            ps.setFloat(5, c.getSalaireDt());
+            ps.setString(6, c.getTermesPDF());
+            ps.setInt(7, c.getID_Sponsor());
+            ps.setInt(8, c.getID_Photoraphe());
             //
             ps.executeUpdate();
             System.out.println("Nouveau Contrat Ajoute avec success via prepared Statement!!!");
@@ -53,10 +55,11 @@ public class ContratSponsorinService implements SponsoringInterface{
                 c.setDateDebut(rs.getDate(2));
                 c.setDateFin(rs.getDate(3));
                 c.setType(EnumTypeContrat.valueOf(rs.getString(4)));
-                c.setSalaireDt(rs.getFloat(5));
-                c.setTermesPDF(rs.getString(6));
-                c.setID_Sponsor(rs.getInt(7));
-                c.setID_Photoraphe(rs.getInt(8));
+                c.setEtat(EnumEtatContrat.valueOf(rs.getString(5)));
+                c.setSalaireDt(rs.getFloat(6));
+                c.setTermesPDF(rs.getString(7));
+                c.setID_Sponsor(rs.getInt(8));
+                c.setID_Photoraphe(rs.getInt(9));
                 //
                 contratsSponsoring.add(c);
             }
@@ -79,10 +82,11 @@ public class ContratSponsorinService implements SponsoringInterface{
                 c.setDateDebut(rs.getDate(2));
                 c.setDateFin(rs.getDate(3));
                 c.setType(EnumTypeContrat.valueOf(rs.getString(4)));
-                c.setSalaireDt(rs.getFloat(5));
-                c.setTermesPDF(rs.getString(6));
-                c.setID_Sponsor(rs.getInt(7));
-                c.setID_Photoraphe(rs.getInt(8));
+                c.setEtat(EnumEtatContrat.valueOf(rs.getString(5)));
+                c.setSalaireDt(rs.getFloat(6));
+                c.setTermesPDF(rs.getString(7));
+                c.setID_Sponsor(rs.getInt(8));
+                c.setID_Photoraphe(rs.getInt(9));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ContratSponsorinService.class.getName()).log(Level.SEVERE, null, ex);
@@ -104,10 +108,11 @@ public class ContratSponsorinService implements SponsoringInterface{
                 c.setDateDebut(rs.getDate(2));
                 c.setDateFin(rs.getDate(3));
                 c.setType(EnumTypeContrat.valueOf(rs.getString(4)));
-                c.setSalaireDt(rs.getFloat(5));
-                c.setTermesPDF(rs.getString(6));
-                c.setID_Sponsor(rs.getInt(7));
-                c.setID_Photoraphe(rs.getInt(8));
+                c.setEtat(EnumEtatContrat.valueOf(rs.getString(5)));
+                c.setSalaireDt(rs.getFloat(6));
+                c.setTermesPDF(rs.getString(7));
+                c.setID_Sponsor(rs.getInt(8));
+                c.setID_Photoraphe(rs.getInt(9));
                 //
                 contratsSponsoring.add(c);
             }
@@ -131,10 +136,11 @@ public class ContratSponsorinService implements SponsoringInterface{
                 c.setDateDebut(rs.getDate(2));
                 c.setDateFin(rs.getDate(3));
                 c.setType(EnumTypeContrat.valueOf(rs.getString(4)));
-                c.setSalaireDt(rs.getFloat(5));
-                c.setTermesPDF(rs.getString(6));
-                c.setID_Sponsor(rs.getInt(7));
-                c.setID_Photoraphe(rs.getInt(8));
+                c.setEtat(EnumEtatContrat.valueOf(rs.getString(5)));
+                c.setSalaireDt(rs.getFloat(6));
+                c.setTermesPDF(rs.getString(7));
+                c.setID_Sponsor(rs.getInt(8));
+                c.setID_Photoraphe(rs.getInt(9));
                 //
                 contratsSponsoring.add(c);
             }
@@ -148,18 +154,19 @@ public class ContratSponsorinService implements SponsoringInterface{
     //Update : Changer les details du contrat
     @Override
     public void modifierContratSponsoring(ContratSponsoring c) {
-        String request = "UPDATE contratsponsoring SET DateDebut = ?, DateFin = ?, Type = ?, SalaireDt = ?, TermesPDF = ?, ID_Sponsor = ?, ID_Photographe = ?"
+        String request = "UPDATE contratsponsoring SET DateDebut = ?, DateFin = ?, Type = ?, Etat = ?, SalaireDt = ?, TermesPDF = ?, ID_Sponsor = ?, ID_Photographe = ?"
                 +" WHERE ID_Contrat = ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(request);
             ps.setDate(1, c.getDateDebut());
             ps.setDate(2, c.getDateFin());
             ps.setString(3, c.getType().toString());
-            ps.setFloat(4, c.getSalaireDt());
-            ps.setString(5, c.getTermesPDF());
-            ps.setInt(6, c.getID_Sponsor());
-            ps.setInt(7, c.getID_Photoraphe());
-            ps.setInt(8, c.getID_Contrat());
+            ps.setString(4, c.getEtat().toString());
+            ps.setFloat(5, c.getSalaireDt());
+            ps.setString(6, c.getTermesPDF());
+            ps.setInt(7, c.getID_Sponsor());
+            ps.setInt(8, c.getID_Photoraphe());
+            ps.setInt(9, c.getID_Contrat());
             //
             ps.executeUpdate();
             System.out.println("Contrat modifié avec success via prepared Statement!!!");

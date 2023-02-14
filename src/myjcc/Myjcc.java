@@ -6,6 +6,7 @@ import Models.Photographie;
 import Services.ContratSponsorinService;
 import Services.GalerieService;
 import Services.PhotographieService;
+import Utils.EnumEtatContrat;
 import Utils.EnumTypeContrat;
 import java.sql.Date;
 import java.util.Calendar;
@@ -14,35 +15,6 @@ import java.util.Calendar;
 public class Myjcc {
 
     public static void main(String[] args) {
-        /*GRUD Photographie *********************************************************************
-        //creation service Photographie
-        PhotographieService ps = new PhotographieService();
-        
-        //creation objet photographie
-        Photographie p1 = new Photographie("Photo7", "Description photo", "C/Path/photo7.PNG", 13);
-        Photographie p2 = new Photographie(1,"Photo5", "Description photo", "C/Path/photo5.PNG", 3);
-        
-        //ajout Photographie
-        ps.ajouterPhotographie(p1);
-        
-        //Read : Afficher toutes les Photographies
-        ps.afficherPhotographies().forEach(System.out::println);
-    
-        //GetById : Afficher une photographie
-        System.out.println("Photo id 2---------");
-        System.out.println(ps.afficherPhotographie(2));
-    
-        //Filter : Afficher les Photographies d'un Photographe
-        System.out.println("Les phtotos du photographe ayant la galerie id = 4");
-        ps.afficherPhotographiesDunPhotographe(4).forEach(System.out::println);
-    
-        //Update
-        ps.modifierPhotographie(p2);
-    
-        //Delete
-        ps.SupprimerPhotographie(6);
-        */
-        
         /*CRUD Galerie *********************************************************************
         //Creation service galerie
         GalerieService gs = new GalerieService();
@@ -68,6 +40,39 @@ public class Myjcc {
         gs.supprimerGalerie(5);
         */
         
+        /*GRUD Photographie *********************************************************************
+        //creation service Photographie & Galerie
+        PhotographieService ps = new PhotographieService();
+        GalerieService gs = new GalerieService();
+        
+        //Get Galerie
+        Galerie g1 = gs.afficherGalerie(2);
+        
+        //creation objet photographie
+        Photographie p1 = new Photographie("NewPhoto", "Description New method photo", "C/Path/photoNew.PNG", g1);
+        Photographie p2 = new Photographie(1,"Photo5", "Description photo", "C/Path/photo5.PNG", g1);
+        
+        //ajout Photographie
+        ps.ajouterPhotographie(p1);
+        
+        //Read : Afficher toutes les Photographies
+        ps.afficherPhotographies().forEach(System.out::println);
+    
+        //GetById : Afficher une photographie
+        System.out.println("Photo id 3---------");
+        System.out.println(ps.afficherPhotographie(3));
+    
+        //Filter : Afficher les Photographies d'un Photographe
+        System.out.println("Les phtotos du photographe ayant la galerie id = 2");
+        ps.afficherPhotographiesDunPhotographe(2).forEach(System.out::println);
+    
+        //Update
+        ps.modifierPhotographie(p2);
+    
+        //Delete
+        ps.SupprimerPhotographie(1);
+        */
+        
         /* CRUD ContratSponsoring *********************************************************************
         //creation de date
         Calendar calendar = Calendar.getInstance();
@@ -80,13 +85,13 @@ public class Myjcc {
         ContratSponsorinService css = new ContratSponsorinService();
         
         //creation de contrat
-        ContratSponsoring cs1 = new ContratSponsoring(DateDebut, DateFin, EnumTypeContrat.ParPhoto, 0, "TermesPDF", 2, 3);
-        ContratSponsoring cs2 = new ContratSponsoring(1,DateDebut, DateFin, EnumTypeContrat.ParPhoto, 30.2f, "TermesPDF", 0, 0);
+        ContratSponsoring cs1 = new ContratSponsoring(DateDebut, DateFin, EnumTypeContrat.ParPhoto, EnumEtatContrat.Proposition, 20f, "TermesPDF", 8, 9);
+        ContratSponsoring cs2 = new ContratSponsoring(1,DateDebut, DateFin, EnumTypeContrat.ParPhoto, EnumEtatContrat.Proposition, 30.2f, "TermesPDF", 5, 7);
         
         //ajout contrat
-        //css.ajouterContratSponsorin(cs1);
+        css.ajouterContratSponsorin(cs1);
         
-        //afficher contrat
+        //afficher les contrats
         css.afficherContratsSponsorin().forEach(System.out::println);
         
         System.out.println("Contrat de ID = 2-----------");
@@ -96,16 +101,17 @@ public class Myjcc {
         css.modifierContratSponsoring(cs2);
         
         //supprimer contrat
-        //css.supprimerContratSponsoring(2);
+        css.supprimerContratSponsoring(5);
         
-        //afficher les contrats d'un sponsor ID_Sponsor = 0
-        System.out.println("les contrats d'un sponsor ID_Sponsor = 0");
-        css.afficherContratsDeSponsor(0).forEach(System.out::println);
+        //afficher les contrats d'un sponsor ID_Sponsor = 2
+        System.out.println("les contrats d'un sponsor ID_Sponsor = 2");
+        css.afficherContratsDeSponsor(2).forEach(System.out::println);
         
-        //afficher les contrats d'un sponsor ID_Photographe = 0
-        System.out.println(" les contrats d'un sponsor ID_Photographe = 0");
-        css.afficherContratsDephotographe(0).forEach(System.out::println);
+        //afficher les contrats d'un sponsor ID_Photographe = 3
+        System.out.println(" les contrats d'un sponsor ID_Photographe = 3");
+        css.afficherContratsDephotographe(3).forEach(System.out::println);
         */
+        
     }
     
 }

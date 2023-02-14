@@ -1,35 +1,34 @@
 package Models;
 
 public class Photographie {
+
     //var
     private int ID_Photographie;
     private String Nom;
     private String Description;
-    private String PhotographieB64;
-    private int ID_Galerie;
-    
-    //Constructeurs
+    private String PhotographiePath;
+    private Galerie Galerie;
 
+    //Constructeurs
     public Photographie() {
     }
 
-    public Photographie(String Nom, String Description, String PhotographieB64, int ID_Galerie) {
+    public Photographie(String Nom, String Description, String PhotographiePath, Galerie Galerie) {
         this.Nom = Nom;
         this.Description = Description;
-        this.PhotographieB64 = PhotographieB64;
-        this.ID_Galerie = ID_Galerie;
+        this.PhotographiePath = PhotographiePath;
+        this.Galerie = Galerie;
     }
 
-    public Photographie(int ID_Photographie, String Nom, String Description, String PhotographieB64, int ID_Galerie) {
+    public Photographie(int ID_Photographie, String Nom, String Description, String PhotographiePath, Galerie Galerie) {
         this.ID_Photographie = ID_Photographie;
         this.Nom = Nom;
         this.Description = Description;
-        this.PhotographieB64 = PhotographieB64;
-        this.ID_Galerie = ID_Galerie;
+        this.PhotographiePath = PhotographiePath;
+        this.Galerie = Galerie;
     }
-    
-    //Getters & Setters
 
+    //Getters & Setters
     public int getID_Photographie() {
         return ID_Photographie;
     }
@@ -54,26 +53,26 @@ public class Photographie {
         this.Description = Description;
     }
 
-    public String getPhotographieB64() {
-        return PhotographieB64;
+    public String getPhotographiePath() {
+        return PhotographiePath;
     }
 
-    public void setPhotographieB64(String PhotographieB64) {
-        this.PhotographieB64 = PhotographieB64;
+    public void setPhotographiePath(String PhotographiePath) {
+        this.PhotographiePath = PhotographiePath;
     }
 
-    public int getID_Galerie() {
-        return ID_Galerie;
+    public Galerie getGalerie() {
+        return Galerie;
     }
 
-    public void setID_Galerie(int ID_Galerie) {
-        this.ID_Galerie = ID_Galerie;
+    public void setGalerie(Galerie Galerie) {
+        this.Galerie = Galerie;
     }
-    
+
     //toString
     @Override
     public String toString() {
-        return "Photographie{" + "ID_Photographie=" + ID_Photographie + ", Nom=" + Nom + ", Description=" + Description + ", PhotographieB64=" + PhotographieB64 + ", ID_Galerie=" + ID_Galerie + '}';
+        return "Photographie{" + "ID_Photographie=" + ID_Photographie + ", Nom=" + Nom + ", Description=" + Description + ", PhotographiePath=" + PhotographiePath + "\n Galerie=" + Galerie + '}';
     }
     
 
