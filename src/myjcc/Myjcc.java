@@ -15,6 +15,7 @@ import java.util.Calendar;
 public class Myjcc {
 
     public static void main(String[] args) {
+        
         /*CRUD Galerie *********************************************************************
         //Creation service galerie
         GalerieService gs = new GalerieService();
