@@ -114,7 +114,7 @@ public class UserService implements UserInterface {
             st.executeUpdate(request);
 
         } catch (SQLException ex) {
-            Logger.getLogger(afficherUserbyID.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }    }
 
     @Override
@@ -135,7 +135,7 @@ public class UserService implements UserInterface {
                 p.setPhotoB64(rs.getString("PhotoB64"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(afficherUserbyID.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return p;
     }
