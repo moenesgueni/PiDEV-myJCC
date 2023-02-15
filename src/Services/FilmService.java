@@ -45,7 +45,7 @@ public class FilmService implements FilmInterface{
             ft.executeUpdate();
             System.out.println("Film ajouté avec success!!");
         } catch (SQLException ex) {
-            Logger.getLogger(SalleService.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -71,7 +71,7 @@ public class FilmService implements FilmInterface{
                 Films.add(f);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Films;
     }
@@ -94,7 +94,7 @@ public class FilmService implements FilmInterface{
              
             System.out.println("Film modifiée avec success!!!");
 }catch (SQLException ex) {
-            Logger.getLogger(Film.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
     @Override
@@ -106,7 +106,7 @@ public class FilmService implements FilmInterface{
             ps.executeUpdate();
             System.out.println("Film supprimé avec success via prepared Statement!!!");
         } catch (SQLException ex) {
-            Logger.getLogger(Film.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
    @Override
@@ -131,7 +131,7 @@ public class FilmService implements FilmInterface{
              
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Film.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return f;
     
@@ -162,7 +162,7 @@ public class FilmService implements FilmInterface{
              
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Film.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return f;
@@ -190,7 +190,7 @@ public class FilmService implements FilmInterface{
              
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Film.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Films;
     
@@ -219,7 +219,7 @@ public class FilmService implements FilmInterface{
               Films.add(f);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Film.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Films;
     

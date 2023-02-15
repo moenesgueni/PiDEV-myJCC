@@ -28,7 +28,7 @@ public class SalleService implements SalleInterface {
 
     @Override
     public void ajouterSalle(Salle s) {
-        String req = "INSERT INTO `salle`(`NomSalle`, `Adresse`, `Capacite`) VALUES (?,?,?)";
+        String req = "INSERT INTO `salle`(`NomSalle`, `Adresse`, `Capacite`, `NumTel_salle`, `Email_Salle`, `Temps_Ouverture`, `Temps_Fermuture`, `Avis`) VALUES (?,?,?,?,?,?,?,?)";
                 
                 
     try {
@@ -36,6 +36,11 @@ public class SalleService implements SalleInterface {
             st.setString(1, s.getNomSalle());
             st.setString(2, s.getAdresse());
             st.setInt(3, s.getCapacite());
+            st.setString(4, s.getNumTel_salle());
+            st.setString(5, s.getEmail_Salle());
+            st.setString(6, s.getTemps_Ouverture());
+            st.setString(7, s.getTemps_Fermuture());
+            st.setFloat(8, s.getAvis());
             st.executeUpdate();
             System.out.println("Salle ajoutée avec success!!");
         } catch (SQLException ex) {
@@ -56,11 +61,17 @@ public class SalleService implements SalleInterface {
                 s.setNomSalle(rs.getString(2));
                 s.setAdresse(rs.getString(3));
                 s.setCapacite(rs.getInt(4));
+                s.setNumTel_salle(rs.getString(5));
+                s.setEmail_Salle(rs.getString(6));
+                s.setTemps_Ouverture(rs.getString(7));
+                s.setTemps_Fermuture(rs.getString(8));
+                s.setAvis(rs.getFloat(9));
+                
                 //
                 Salles.add(s);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SalleService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Salles;
     }
@@ -69,20 +80,23 @@ public class SalleService implements SalleInterface {
 
     @Override
     public void updateSalle(Salle s) {
-        String request = "UPDATE Salle SET NomSalle = ?, Adresse = ?, Capacite = ?"
+        String request = "UPDATE Salle SET NomSalle = ?, Adresse = ?, Capacite = ?, NumTel_salle = ?, Email_Salle = ?, Temps_Ouverture = ?, Temps_Fermuture = ?, Avis = ?  "
                 +" WHERE NomSalle = ?";
 try {
             PreparedStatement ps = cnx.prepareStatement(request);
             ps.setString(1, s.getNomSalle());
             ps.setString(2, s.getAdresse());
-           
             ps.setInt(3, s.getCapacite());
-             ps.setString(4, s.getNomSalle());
-            
+            ps.setString(4, s.getNumTel_salle());
+            ps.setString(5, s.getEmail_Salle());
+            ps.setString(6, s.getTemps_Ouverture());
+            ps.setString(7, s.getTemps_Fermuture());
+            ps.setFloat(8, s.getAvis());
+            ps.setString(9, s.getNomSalle());
             ps.executeUpdate();
             System.out.println("Salle modifiée avec success!!!");
 }catch (SQLException ex) {
-            Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SalleService.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 
@@ -97,7 +111,7 @@ try {
             ps.executeUpdate();
             System.out.println("Salle supprimée avec success via prepared Statement!!!");
         } catch (SQLException ex) {
-            Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SalleService.class.getName()).log(Level.SEVERE, null, ex);
         }
     
     
@@ -116,10 +130,14 @@ try {
                 s.setNomSalle(rs.getString(2));
                 s.setAdresse(rs.getString(3));
                 s.setCapacite(rs.getInt(4));
-             
+                s.setNumTel_salle(rs.getString(5));
+                s.setEmail_Salle(rs.getString(6));
+                s.setTemps_Ouverture(rs.getString(7));
+                s.setTemps_Fermuture(rs.getString(8));
+                s.setAvis(rs.getFloat(9));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SalleService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return s;
         
@@ -140,10 +158,14 @@ try {
                 s.setNomSalle(rs.getString(2));
                 s.setAdresse(rs.getString(3));
                 s.setCapacite(rs.getInt(4));
-             
+                s.setNumTel_salle(rs.getString(5));
+                s.setEmail_Salle(rs.getString(6));
+                s.setTemps_Ouverture(rs.getString(7));
+                s.setTemps_Fermuture(rs.getString(8));
+                s.setAvis(rs.getFloat(9));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SalleService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return s;
         
@@ -163,10 +185,15 @@ try {
                 s.setNomSalle(rs.getString(2));
                 s.setAdresse(rs.getString(3));
                 s.setCapacite(rs.getInt(4));
+                s.setNumTel_salle(rs.getString(5));
+                s.setEmail_Salle(rs.getString(6));
+                s.setTemps_Ouverture(rs.getString(7));
+                s.setTemps_Fermuture(rs.getString(8));
+                s.setAvis(rs.getFloat(9));
              
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Salle.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SalleService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return s;
         
