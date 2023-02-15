@@ -68,9 +68,9 @@ public class LogsService implements LogsInterface {
         return logs;    }
 
     @Override
-    public List<LOGS> FiltrerParID(int idlog) {
+    public List<LOGS> FiltrerParID(int iduser) {
     List<LOGS> logs = new ArrayList<>();
-        String request = "SELECT * FROM logs WHERE ID_Logs = '"+idlog+"';";
+        String request = "SELECT * FROM logs WHERE ID_User = '"+iduser+"';";
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(request);

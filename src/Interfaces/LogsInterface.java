@@ -17,7 +17,7 @@ import java.util.List;
 public interface LogsInterface {
    public void AjouterLogs(LOGS L);       
    public List<LOGS> afficherLogs();
-   public List<LOGS> FiltrerParID(int idlog);
+   public List<LOGS> FiltrerParID(int iduser);
    public List<LOGS> FiltrerParDate(Date DateLog);
    public List<LOGS> FiltrerParAction(String Action);
    public void Supprimer(int idlog);
