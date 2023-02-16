@@ -83,6 +83,7 @@ public class PlanningService implements PlanningInterface {
             ps.setInt(2, p.getSalle().getID_salle());
             ps.setDate(3, p.getDatediffusion());
             ps.setString(4, p.getHeurediffusion());
+            ps.setInt(5, p.getID_planning());
             //
             ps.executeUpdate();
             System.out.println("Planning modifié avec success via prepared Statement!!!");

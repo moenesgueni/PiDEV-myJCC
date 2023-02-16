@@ -81,7 +81,7 @@ public class SalleService implements SalleInterface {
     @Override
     public void updateSalle(Salle s) {
         String request = "UPDATE Salle SET NomSalle = ?, Adresse = ?, Capacite = ?, NumTel_salle = ?, Email_Salle = ?, Temps_Ouverture = ?, Temps_Fermuture = ?, Avis = ?  "
-                +" WHERE NomSalle = ?";
+                +" WHERE ID_salle = ?";
 try {
             PreparedStatement ps = cnx.prepareStatement(request);
             ps.setString(1, s.getNomSalle());
@@ -92,7 +92,7 @@ try {
             ps.setString(6, s.getTemps_Ouverture());
             ps.setString(7, s.getTemps_Fermuture());
             ps.setFloat(8, s.getAvis());
-            ps.setString(9, s.getNomSalle());
+            ps.setInt(9, s.getID_salle());
             ps.executeUpdate();
             System.out.println("Salle modifiée avec success!!!");
 }catch (SQLException ex) {

@@ -78,20 +78,23 @@ public class FilmService implements FilmInterface{
 
     @Override
     public void updateFilm(Film f) {
-        String request = "UPDATE `film` SET `ID_film`=?,`Titre`= ?,`DateRealisation`= ?,`Genre`= ?,`Resume`= ?,"
-                + "`Duree`= ?,`Prix`= ?,`ID_producteur`= ?,`Acteur`= ? WHERE Titre = ?";
+        String request = "UPDATE film SET Titre = ? , DateRealisation = ? , Genre = ? , Resume = ? , Duree = ? , Prix = ? , ID_producteur = ? , Acteur = ? WHERE ID_film = ?";
+        
+        //UPDATE `film` SET`Titre`= ? ,`DateRealisation`= ?,`Genre`= ? ,`Resume`= ? ,`Duree`= ? ,`Prix`= ? ,`ID_producteur`= ? ,`Acteur`= ? WHERE `ID_film`= ?
         try {
             PreparedStatement ps = cnx.prepareStatement(request);
-            ps.setInt(1,f.getID_film());
-            ps.setString(2, f.getTitre());
-            ps.setString(3, f.getDateRealisation());
-            ps.setString(4, f.getGenre());
-            ps.setString(5, f.getResume());
-            ps.setString(6, f.getDuree());
-            ps.setFloat(7, f.getPrix());
-            ps.setString(8, f.getID_producteur());
-            ps.setString(9, f.getActeur());
-             
+           
+            ps.setString(1, f.getTitre());
+            ps.setString(2, f.getDateRealisation());
+            ps.setString(3, f.getGenre());
+            ps.setString(4, f.getResume());
+            ps.setString(5, f.getDuree());
+            ps.setFloat(6, f.getPrix());
+            ps.setString(7, f.getID_producteur());
+            ps.setString(8, f.getActeur());
+            ps.setInt(9, f.getID_film());
+            
+             ps.executeUpdate();
             System.out.println("Film modifiée avec success!!!");
 }catch (SQLException ex) {
             Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
