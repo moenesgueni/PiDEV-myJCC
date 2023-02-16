@@ -12,6 +12,9 @@ public interface PrixInterface {
     //2: Read
     public List<Prix> afficherPrix();
     
+    //3: getById
+    public Prix afficherPrix(int PrixID);
+    
     //3: Filter par type/Film/
     public List<Prix> afficherPrixType(String PrixType);
     public List<Prix> afficherPrixFilm(int PrixFilm);

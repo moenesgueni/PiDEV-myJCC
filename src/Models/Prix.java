@@ -13,19 +13,23 @@ public class Prix {
     private int ID_Prix;
     private int ID_Film;
     private String TypePrix;
+    private Vote vote;
+   
 
     public Prix() {
     }
 
-    public Prix(int ID_Film, String TypePrix) {
+    public Prix(int ID_Film, String TypePrix, Vote vote) {
         this.ID_Film = ID_Film;
         this.TypePrix = TypePrix;
+        this.vote = vote;
     }
 
-    public Prix(int ID_Prix, int ID_Film, String TypePrix) {
+    public Prix(int ID_Prix, int ID_Film, String TypePrix, Vote vote) {
         this.ID_Prix = ID_Prix;
         this.ID_Film = ID_Film;
         this.TypePrix = TypePrix;
+        this.vote = vote;
     }
 
     public int getID_Prix() {
@@ -51,11 +55,21 @@ public class Prix {
     public void setTypePrix(String TypePrix) {
         this.TypePrix = TypePrix;
     }
+    
+    public Vote getVote() {
+        return vote;
+    }
+
+    public void setVote(Vote vote) {
+        this.vote = vote;
+    }
 
     @Override
     public String toString() {
-        return "Prix{" + "ID_Prix=" + ID_Prix + ", ID_Film=" + ID_Film + ", TypePrix=" + TypePrix + '}';
+        return "Prix{" + "ID_Prix=" + ID_Prix + ", ID_Film=" + ID_Film + ", TypePrix=" + TypePrix + "\n ID_Vote=" + vote + '}';
     }
+
+    
     
     
 }

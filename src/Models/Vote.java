@@ -5,6 +5,8 @@
  */
 package Models;
 
+import java.sql.Date;
+
 /**
  *
  * @author wael
@@ -13,19 +15,25 @@ public class Vote {
     private int ID_Vote;
     private int ID_Film;
     private int ID_User;
+    private Date Date_Debut; 
+    private Date Date_Fin; 
 
     public Vote() {
     }
 
-    public Vote(int ID_Film, int ID_User) {
+    public Vote(int ID_Film, int ID_User, Date Date_Debut, Date Date_Fin) {
         this.ID_Film = ID_Film;
         this.ID_User = ID_User;
+        this.Date_Debut = Date_Debut;
+        this.Date_Fin = Date_Fin;
     }
 
-    public Vote(int ID_Vote, int ID_Film, int ID_User) {
+    public Vote(int ID_Vote, int ID_Film, int ID_User, Date Date_Debut, Date Date_Fin) {
         this.ID_Vote = ID_Vote;
         this.ID_Film = ID_Film;
         this.ID_User = ID_User;
+        this.Date_Debut = Date_Debut;
+        this.Date_Fin = Date_Fin;
     }
 
     public int getID_Vote() {
@@ -52,10 +60,28 @@ public class Vote {
         this.ID_User = ID_User;
     }
 
+    public Date getDate_Debut() {
+        return Date_Debut;
+    }
+
+    public void setDate_Debut(Date Date_Debut) {
+        this.Date_Debut = Date_Debut;
+    }
+
+    public Date getDate_Fin() {
+        return Date_Fin;
+    }
+
+    public void setDate_Fin(Date Date_Fin) {
+        this.Date_Fin = Date_Fin;
+    }
+
     @Override
     public String toString() {
-        return "Vote{" + "ID_Vote=" + ID_Vote + ", ID_User=" + ID_User + ", ID_Film=" + ID_Film + '}';
+        return "Vote{" + "ID_Vote=" + ID_Vote + ", ID_Film=" + ID_Film + ", ID_User=" + ID_User + ", Date_Debut=" + Date_Debut + ", Date_Fin=" + Date_Fin + '}';
     }
+
+    
     
     
     

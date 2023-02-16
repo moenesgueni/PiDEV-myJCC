@@ -18,7 +18,9 @@ public interface VoteInterface {
     public void ajouterVote(Vote v);
     
     //2: Read
-    public List<Vote> afficherVote();
+    public List<Vote> afficherVotes();
+    
+    public Vote afficherVote(int VoteID);
     
     //3: Filter par type/Film/
     public List<Vote> afficherVoteUser(int VoteUser);

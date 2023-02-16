@@ -25,16 +25,18 @@ import java.util.logging.Logger;
 public class PrixService implements PrixInterface{
 
     Connection cnx = MaConnection.getInstance().getCnx();
+    VoteService vs = new VoteService();
     
     @Override
     //ajout Prix
     public void ajouterPrix(Prix p) {
-        String req = "INSERT INTO `prix`(`ID_Film`, `TypePrix`) VALUES (?,?)";
+        String req = "INSERT INTO `prix`(`ID_Film`, `TypePrix`, `ID_Vote`) VALUES (?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             //ps.setInt(1, p.getID_Prix());
             ps.setInt(1, p.getID_Film());
             ps.setString(2, p.getTypePrix());
+            ps.setInt(3, p.getVote().getID_Vote());
             ps.executeUpdate();
             System.out.println("Prix ajouté avec success via prepared Statement!!!");
         } catch (SQLException ex) {
@@ -42,6 +44,27 @@ public class PrixService implements PrixInterface{
         }
     }
 
+    
+    @Override
+    public Prix afficherPrix(int PrixID) {
+        Prix p = new Prix();
+        String request = "SELECT * FROM prix WHERE ID_Prix ="+PrixID;
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            while(rs.next()){
+                
+                p.setID_Prix(rs.getInt(1));
+                p.setID_Film(rs.getInt(2));
+                p.setTypePrix(rs.getString("TypePrix"));
+                p.setVote(vs.afficherVote(rs.getInt(4)));
+                //
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PrixService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
+    }
     
     //affiche tout
     @Override
@@ -188,6 +211,8 @@ public class PrixService implements PrixInterface{
             Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    
 
 
     
