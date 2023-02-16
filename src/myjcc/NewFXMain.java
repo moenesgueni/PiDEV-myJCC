@@ -17,10 +17,9 @@ public class NewFXMain extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
         
         try {
-            Parent s = FXMLLoader.load(getClass().getResource("./GUI/testFXML.fxml"));
+            Parent s = FXMLLoader.load(getClass().getResource("../GUI/testFXML.fxml"));
 
             Scene scene = new Scene(s);
 
@@ -30,9 +29,8 @@ public class NewFXMain extends Application {
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-
     }
+
 
     public static void main(String[] args) {
         launch(args);
