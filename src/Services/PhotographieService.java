@@ -19,6 +19,21 @@ public class PhotographieService implements PhotographieInterface{
     
     //Creation service galerie
     GalerieService gs = new GalerieService();
+    
+    //Méthode création photographie p utilisé lors des méthodes afficher
+    private Photographie addPhotographie(ResultSet rs){
+        Photographie p = new Photographie();
+        try {
+            p.setID_Photographie(rs.getInt(1));
+            p.setNom(rs.getString(2));
+            p.setDescription(rs.getString(3));
+            p.setPhotographiePath(rs.getString(4));
+            p.setGalerie(gs.afficherGalerie(rs.getInt(5)));
+        } catch (SQLException ex) {
+            Logger.getLogger(PhotographieService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
+    }
 
     //Create
     @Override
@@ -38,7 +53,7 @@ public class PhotographieService implements PhotographieInterface{
             Logger.getLogger(ContratSponsorinService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     //Read : Afficher toutes les Photographies
     @Override
     public List<Photographie> afficherPhotographies() {
@@ -48,12 +63,7 @@ public class PhotographieService implements PhotographieInterface{
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(request);
             while(rs.next()){
-                Photographie p = new Photographie();
-                p.setID_Photographie(rs.getInt(1));
-                p.setNom(rs.getString(2));
-                p.setDescription(rs.getString(3));
-                p.setPhotographiePath(rs.getString(4));
-                p.setGalerie(gs.afficherGalerie(rs.getInt(5)));
+                Photographie p = addPhotographie(rs);
                 //
                 photographies.add(p);
             }
@@ -72,11 +82,7 @@ public class PhotographieService implements PhotographieInterface{
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(request);
             while(rs.next()){
-                p.setID_Photographie(rs.getInt(1));
-                p.setNom(rs.getString(2));
-                p.setDescription(rs.getString(3));
-                p.setPhotographiePath(rs.getString(4));
-                p.setGalerie(gs.afficherGalerie(rs.getInt(5)));
+                p = addPhotographie(rs);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ContratSponsorinService.class.getName()).log(Level.SEVERE, null, ex);
@@ -93,12 +99,7 @@ public class PhotographieService implements PhotographieInterface{
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(request);
             while(rs.next()){
-                Photographie p = new Photographie();
-                p.setID_Photographie(rs.getInt(1));
-                p.setNom(rs.getString(2));
-                p.setDescription(rs.getString(3));
-                p.setPhotographiePath(rs.getString(4));
-                p.setGalerie(gs.afficherGalerie(rs.getInt(5)));
+                Photographie p = addPhotographie(rs);
                 //
                 photographies.add(p);
             }

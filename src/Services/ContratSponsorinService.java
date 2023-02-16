@@ -15,9 +15,29 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ContratSponsorinService implements SponsoringInterface{
+public class ContratSponsorinService implements SponsoringInterface {
+
     //Connection a la db
     Connection cnx = MaConnection.getInstance().getCnx();
+
+    //Méthode création ContratSponsoring c utilisé lors des méthodes afficher
+    private ContratSponsoring addContratSponsoring(ResultSet rs) {
+        ContratSponsoring c = new ContratSponsoring();
+        try {
+            c.setID_Contrat(rs.getInt(1));
+            c.setDateDebut(rs.getDate(2));
+            c.setDateFin(rs.getDate(3));
+            c.setType(EnumTypeContrat.valueOf(rs.getString(4)));
+            c.setEtat(EnumEtatContrat.valueOf(rs.getString(5)));
+            c.setSalaireDt(rs.getFloat(6));
+            c.setTermesPDF(rs.getString(7));
+            c.setID_Sponsor(rs.getInt(8));
+            c.setID_Photoraphe(rs.getInt(9));
+        } catch (SQLException ex) {
+            Logger.getLogger(PhotographieService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
+    }
 
     //Create : creation d'une proposition de contrat
     @Override
@@ -44,22 +64,13 @@ public class ContratSponsorinService implements SponsoringInterface{
     //Read : Affichage de tout les contrats
     @Override
     public List<ContratSponsoring> afficherContratsSponsorin() {
-       List<ContratSponsoring> contratsSponsoring = new ArrayList<>();
+        List<ContratSponsoring> contratsSponsoring = new ArrayList<>();
         String request = "SELECT * FROM contratsponsoring";
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(request);
-            while(rs.next()){
-                ContratSponsoring c = new ContratSponsoring();
-                c.setID_Contrat(rs.getInt(1));
-                c.setDateDebut(rs.getDate(2));
-                c.setDateFin(rs.getDate(3));
-                c.setType(EnumTypeContrat.valueOf(rs.getString(4)));
-                c.setEtat(EnumEtatContrat.valueOf(rs.getString(5)));
-                c.setSalaireDt(rs.getFloat(6));
-                c.setTermesPDF(rs.getString(7));
-                c.setID_Sponsor(rs.getInt(8));
-                c.setID_Photoraphe(rs.getInt(9));
+            while (rs.next()) {
+                ContratSponsoring c = addContratSponsoring(rs);
                 //
                 contratsSponsoring.add(c);
             }
@@ -73,46 +84,29 @@ public class ContratSponsorinService implements SponsoringInterface{
     @Override
     public ContratSponsoring afficherContratSponsoring(int id) {
         ContratSponsoring c = new ContratSponsoring();
-        String request = "SELECT * FROM contratsponsoring WHERE `ID_Contrat` ="+id+";";
+        String request = "SELECT * FROM contratsponsoring WHERE `ID_Contrat` =" + id + ";";
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(request);
-            while(rs.next()){
-                c.setID_Contrat(rs.getInt(1));
-                c.setDateDebut(rs.getDate(2));
-                c.setDateFin(rs.getDate(3));
-                c.setType(EnumTypeContrat.valueOf(rs.getString(4)));
-                c.setEtat(EnumEtatContrat.valueOf(rs.getString(5)));
-                c.setSalaireDt(rs.getFloat(6));
-                c.setTermesPDF(rs.getString(7));
-                c.setID_Sponsor(rs.getInt(8));
-                c.setID_Photoraphe(rs.getInt(9));
+            while (rs.next()) {
+                c = addContratSponsoring(rs);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ContratSponsorinService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return c;
     }
-    
+
     //Filter : Affichage les Contrats d'un sponsor
     @Override
     public List<ContratSponsoring> afficherContratsDeSponsor(int id) {
         List<ContratSponsoring> contratsSponsoring = new ArrayList<>();
-        String request = "SELECT * FROM contratsponsoring WHERE ID_Sponsor = "+id;
+        String request = "SELECT * FROM contratsponsoring WHERE ID_Sponsor = " + id;
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(request);
-            while(rs.next()){
-                ContratSponsoring c = new ContratSponsoring();
-                c.setID_Contrat(rs.getInt(1));
-                c.setDateDebut(rs.getDate(2));
-                c.setDateFin(rs.getDate(3));
-                c.setType(EnumTypeContrat.valueOf(rs.getString(4)));
-                c.setEtat(EnumEtatContrat.valueOf(rs.getString(5)));
-                c.setSalaireDt(rs.getFloat(6));
-                c.setTermesPDF(rs.getString(7));
-                c.setID_Sponsor(rs.getInt(8));
-                c.setID_Photoraphe(rs.getInt(9));
+            while (rs.next()) {
+                ContratSponsoring c = addContratSponsoring(rs);
                 //
                 contratsSponsoring.add(c);
             }
@@ -126,21 +120,12 @@ public class ContratSponsorinService implements SponsoringInterface{
     @Override
     public List<ContratSponsoring> afficherContratsDephotographe(int id) {
         List<ContratSponsoring> contratsSponsoring = new ArrayList<>();
-        String request = "SELECT * FROM contratsponsoring WHERE ID_Photographe = "+id;
+        String request = "SELECT * FROM contratsponsoring WHERE ID_Photographe = " + id;
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(request);
-            while(rs.next()){
-                ContratSponsoring c = new ContratSponsoring();
-                c.setID_Contrat(rs.getInt(1));
-                c.setDateDebut(rs.getDate(2));
-                c.setDateFin(rs.getDate(3));
-                c.setType(EnumTypeContrat.valueOf(rs.getString(4)));
-                c.setEtat(EnumEtatContrat.valueOf(rs.getString(5)));
-                c.setSalaireDt(rs.getFloat(6));
-                c.setTermesPDF(rs.getString(7));
-                c.setID_Sponsor(rs.getInt(8));
-                c.setID_Photoraphe(rs.getInt(9));
+            while (rs.next()) {
+                ContratSponsoring c = addContratSponsoring(rs);
                 //
                 contratsSponsoring.add(c);
             }
@@ -149,13 +134,12 @@ public class ContratSponsorinService implements SponsoringInterface{
         }
         return contratsSponsoring;
     }
-    
 
     //Update : Changer les details du contrat
     @Override
     public void modifierContratSponsoring(ContratSponsoring c) {
         String request = "UPDATE contratsponsoring SET DateDebut = ?, DateFin = ?, Type = ?, Etat = ?, SalaireDt = ?, TermesPDF = ?, ID_Sponsor = ?, ID_Photographe = ?"
-                +" WHERE ID_Contrat = ?";
+                + " WHERE ID_Contrat = ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(request);
             ps.setDate(1, c.getDateDebut());
@@ -178,7 +162,7 @@ public class ContratSponsorinService implements SponsoringInterface{
     //Delete : Supprimer un contrat
     @Override
     public void supprimerContratSponsoring(int id) {
-       String request = "DELETE FROM contratsponsoring WHERE ID_Contrat = ?";
+        String request = "DELETE FROM contratsponsoring WHERE ID_Contrat = ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(request);
             ps.setInt(1, id);

@@ -17,11 +17,14 @@ public class Myjcc {
     public static void main(String[] args) {
         
         /*CRUD Galerie *********************************************************************
+        System.out.println("---------************-----------");
+        System.out.println("---------CRUD Galerie-----------");
+        System.out.println("---------************-----------");
         //Creation service galerie
         GalerieService gs = new GalerieService();
         
         //Creation Galerie
-        Galerie g1 = new Galerie("GalerieNum6", "Description de la 6ème galerie", 22);
+        Galerie g1 = new Galerie("GalerieNew", "Galerie De la seance Validation 23 16/02", 23);
         Galerie g2 = new Galerie(4,"Galerie4", "Description modifié de la 4ème galerie", 19);
         
         //ajout galerie
@@ -38,20 +41,25 @@ public class Myjcc {
         gs.modifierGalerie(g2);
 
         //Delete
-        gs.supprimerGalerie(5);
+        gs.supprimerGalerie(3);
         */
         
+        
+        
         /*GRUD Photographie *********************************************************************
+        System.out.println("---------************-----------");
+        System.out.println("---------CRUD Photographie-----------");
+        System.out.println("---------************-----------");
         //creation service Photographie & Galerie
         PhotographieService ps = new PhotographieService();
         GalerieService gs = new GalerieService();
         
         //Get Galerie
-        Galerie g1 = gs.afficherGalerie(2);
+        Galerie g1 = gs.afficherGalerie(3);
         
         //creation objet photographie
-        Photographie p1 = new Photographie("NewPhoto", "Description New method photo", "C/Path/photoNew.PNG", g1);
-        Photographie p2 = new Photographie(1,"Photo5", "Description photo", "C/Path/photo5.PNG", g1);
+        Photographie p1 = new Photographie("Billy", "New photo De la seance Validation 16/02", "C/Path/photoNew.PNG", g1);
+        Photographie p2 = new Photographie(4,"TITRE46", "Description photo", "C/Path/photo5.PNG", g1);
         
         //ajout Photographie
         ps.ajouterPhotographie(p1);
@@ -71,23 +79,28 @@ public class Myjcc {
         ps.modifierPhotographie(p2);
     
         //Delete
-        ps.SupprimerPhotographie(1);
+        ps.SupprimerPhotographie(7);
         */
         
+        
+        
         /* CRUD ContratSponsoring *********************************************************************
+        System.out.println("---------************-----------");
+        System.out.println("---------CRUD Contrat Sponsoring-----------");
+        System.out.println("---------************-----------");
         //creation de date
         Calendar calendar = Calendar.getInstance();
-        calendar.set(2023, Calendar.JANUARY, 12);
+        calendar.set(2023, Calendar.JANUARY, 16);
         Date DateDebut = new Date(calendar.getTimeInMillis());
-        calendar.set(2023, Calendar.JULY, 24);
+        calendar.set(2023, Calendar.JULY, 16);
         Date DateFin = new Date(calendar.getTimeInMillis());
         
         //creation de service contratSponsoring
         ContratSponsorinService css = new ContratSponsorinService();
         
         //creation de contrat
-        ContratSponsoring cs1 = new ContratSponsoring(DateDebut, DateFin, EnumTypeContrat.ParPhoto, EnumEtatContrat.Proposition, 20f, "TermesPDF", 8, 9);
-        ContratSponsoring cs2 = new ContratSponsoring(1,DateDebut, DateFin, EnumTypeContrat.ParPhoto, EnumEtatContrat.Proposition, 30.2f, "TermesPDF", 5, 7);
+        ContratSponsoring cs1 = new ContratSponsoring(DateDebut, DateFin, EnumTypeContrat.ParHeure, EnumEtatContrat.EnCours, 50f, "C/Path/Termes.PDF", 2, 2);
+        ContratSponsoring cs2 = new ContratSponsoring(2,DateDebut, DateFin, EnumTypeContrat.ParPhoto, EnumEtatContrat.Proposition, 30.3f, "C/Path/Termes..PDF", 3, 3);
         
         //ajout contrat
         css.ajouterContratSponsorin(cs1);
@@ -102,7 +115,7 @@ public class Myjcc {
         css.modifierContratSponsoring(cs2);
         
         //supprimer contrat
-        css.supprimerContratSponsoring(5);
+        css.supprimerContratSponsoring(6);
         
         //afficher les contrats d'un sponsor ID_Sponsor = 2
         System.out.println("les contrats d'un sponsor ID_Sponsor = 2");
@@ -112,6 +125,7 @@ public class Myjcc {
         System.out.println(" les contrats d'un sponsor ID_Photographe = 3");
         css.afficherContratsDephotographe(3).forEach(System.out::println);
         */
+        
         
     }
     
