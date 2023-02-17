@@ -19,6 +19,8 @@ public class ContratSponsorinService implements SponsoringInterface {
 
     //Connection a la db
     Connection cnx = MaConnection.getInstance().getCnx();
+    //creation service user
+    UserService ps = new UserService();
 
     //Méthode création ContratSponsoring c utilisé lors des méthodes afficher
     private ContratSponsoring addContratSponsoring(ResultSet rs) {
@@ -31,8 +33,8 @@ public class ContratSponsorinService implements SponsoringInterface {
             c.setEtat(EnumEtatContrat.valueOf(rs.getString(5)));
             c.setSalaireDt(rs.getFloat(6));
             c.setTermesPDF(rs.getString(7));
-            c.setID_Sponsor(rs.getInt(8));
-            c.setID_Photoraphe(rs.getInt(9));
+            c.setSponsor(ps.afficherUserbyID(rs.getInt(8)));
+            c.setPhotoraphe(ps.afficherUserbyID(rs.getInt(9)));
         } catch (SQLException ex) {
             Logger.getLogger(PhotographieService.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,8 +53,8 @@ public class ContratSponsorinService implements SponsoringInterface {
             ps.setString(4, c.getEtat().toString());
             ps.setFloat(5, c.getSalaireDt());
             ps.setString(6, c.getTermesPDF());
-            ps.setInt(7, c.getID_Sponsor());
-            ps.setInt(8, c.getID_Photoraphe());
+            ps.setInt(7, c.getSponsor().getID_User());
+            ps.setInt(8, c.getPhotoraphe().getID_User());
             //
             ps.executeUpdate();
             System.out.println("Nouveau Contrat Ajoute avec success via prepared Statement!!!");
@@ -148,8 +150,8 @@ public class ContratSponsorinService implements SponsoringInterface {
             ps.setString(4, c.getEtat().toString());
             ps.setFloat(5, c.getSalaireDt());
             ps.setString(6, c.getTermesPDF());
-            ps.setInt(7, c.getID_Sponsor());
-            ps.setInt(8, c.getID_Photoraphe());
+            ps.setInt(7, c.getSponsor().getID_User());
+            ps.setInt(8, c.getPhotoraphe().getID_User());
             ps.setInt(9, c.getID_Contrat());
             //
             ps.executeUpdate();

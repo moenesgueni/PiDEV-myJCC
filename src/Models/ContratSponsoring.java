@@ -13,25 +13,25 @@ public class ContratSponsoring {
     private EnumEtatContrat Etat;
     private float SalaireDt;
     private String TermesPDF;
-    private int ID_Sponsor;    //de type Object user
-    private int ID_Photoraphe; //de type Object user
+    private User Sponsor;
+    private User Photoraphe;
 
     //Constructeurs
     public ContratSponsoring() {
     }
 
-    public ContratSponsoring(Date DateDebut, Date DateFin, EnumTypeContrat Type, EnumEtatContrat Etat, float SalaireDt, String TermesPDF, int ID_Sponsor, int ID_Photoraphe) {
+    public ContratSponsoring(Date DateDebut, Date DateFin, EnumTypeContrat Type, EnumEtatContrat Etat, float SalaireDt, String TermesPDF, User Sponsor, User Photoraphe) {
         this.DateDebut = DateDebut;
         this.DateFin = DateFin;
         this.Type = Type;
         this.Etat = Etat;
         this.SalaireDt = SalaireDt;
         this.TermesPDF = TermesPDF;
-        this.ID_Sponsor = ID_Sponsor;
-        this.ID_Photoraphe = ID_Photoraphe;
+        this.Sponsor = Sponsor;
+        this.Photoraphe = Photoraphe;
     }
 
-    public ContratSponsoring(int ID_Contrat, Date DateDebut, Date DateFin, EnumTypeContrat Type, EnumEtatContrat Etat, float SalaireDt, String TermesPDF, int ID_Sponsor, int ID_Photoraphe) {
+    public ContratSponsoring(int ID_Contrat, Date DateDebut, Date DateFin, EnumTypeContrat Type, EnumEtatContrat Etat, float SalaireDt, String TermesPDF, User Sponsor, User Photoraphe) {
         this.ID_Contrat = ID_Contrat;
         this.DateDebut = DateDebut;
         this.DateFin = DateFin;
@@ -39,9 +39,11 @@ public class ContratSponsoring {
         this.Etat = Etat;
         this.SalaireDt = SalaireDt;
         this.TermesPDF = TermesPDF;
-        this.ID_Sponsor = ID_Sponsor;
-        this.ID_Photoraphe = ID_Photoraphe;
+        this.Sponsor = Sponsor;
+        this.Photoraphe = Photoraphe;
     }
+
+
 
     //Getters & Setters
     public int getID_Contrat() {
@@ -100,27 +102,31 @@ public class ContratSponsoring {
         this.TermesPDF = TermesPDF;
     }
 
-    public int getID_Sponsor() {
-        return ID_Sponsor;
+    public User getSponsor() {
+        return Sponsor;
     }
 
-    public void setID_Sponsor(int ID_Sponsor) {
-        this.ID_Sponsor = ID_Sponsor;
+    public void setSponsor(User Sponsor) {
+        this.Sponsor = Sponsor;
     }
 
-    public int getID_Photoraphe() {
-        return ID_Photoraphe;
+    public User getPhotoraphe() {
+        return Photoraphe;
     }
 
-    public void setID_Photoraphe(int ID_Photoraphe) {
-        this.ID_Photoraphe = ID_Photoraphe;
+    public void setPhotoraphe(User Photoraphe) {
+        this.Photoraphe = Photoraphe;
     }
+
+    
 
     //toString
+
     @Override
     public String toString() {
-        return "--------------------\nContratSponsoring :" + "\nID_Contrat : " + ID_Contrat + "\nDateDebut : " + DateDebut + "\nDateFin : " + DateFin + "\nType : " + Type
-                + "\nEtat Contart : " + Etat + "\nSalaireDt : " + SalaireDt + "\nTermesPDF : " + TermesPDF + "\nID_Sponsor : " + ID_Sponsor + "\nID_Photoraphe : " + ID_Photoraphe;
+        return "ContratSponsoring{" + "ID_Contrat=" + ID_Contrat + ", DateDebut=" + DateDebut + ", DateFin=" + DateFin + ", Type=" + Type + ", Etat=" 
+                + Etat + ", SalaireDt=" + SalaireDt + ", TermesPDF=" + TermesPDF + "\n Sponsor=" + Sponsor + "\n Photoraphe=" + Photoraphe + '}';
     }
+   
 
 }

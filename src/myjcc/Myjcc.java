@@ -3,11 +3,14 @@ package myjcc;
 import Models.ContratSponsoring;
 import Models.Galerie;
 import Models.Photographie;
+import Models.User;
 import Services.ContratSponsorinService;
 import Services.GalerieService;
 import Services.PhotographieService;
+import Services.UserService;
 import Utils.EnumEtatContrat;
 import Utils.EnumTypeContrat;
+import Utils.Type;
 import java.sql.Date;
 import java.util.Calendar;
 
@@ -22,29 +25,32 @@ public class Myjcc {
         System.out.println("---------************-----------");
         //Creation service galerie
         GalerieService gs = new GalerieService();
+        //creation service user
+        UserService ps = new UserService();
+        //instance user
+        User p1 = new User(1,"Khaled","Tounsi","Male","khaled.tounsi@esprit.tn","azertyuiop123",Type.ADMINSTRATEUR,"C/Path/photo.png");
+        User p2 = new User(5,"Marwen","Hammami","Male","marwen.hammami@esprit.tn","azertyuiop123",Type.ADMINSTRATEUR,"C/Path/photo.png");
         
         //Creation Galerie
-        Galerie g1 = new Galerie("GalerieNew", "Galerie De la seance Validation 23 16/02", 23);
-        Galerie g2 = new Galerie(4,"Galerie4", "Description modifié de la 4ème galerie", 19);
+        Galerie g1 = new Galerie("GalerieNew", "Galerie De la seance Validation 23 16/02", p1);
+        Galerie g2 = new Galerie(4,"Galerie4", "Description modifié de la 4ème galerie", p2);
         
         //ajout galerie
-        gs.ajouterGalerie(g1);
+        //gs.ajouterGalerie(g1);
         
         //Read : Afficher toutes les galeries
-        gs.afficherGaleries().forEach(System.out::println);
+        //gs.afficherGaleries().forEach(System.out::println);
     
         //GetById : Afficher une Galerie
-        System.out.println("Affichage de la deuxieme galerie---------");
-        System.out.println(gs.afficherGalerie(2));
+        //System.out.println("Affichage de la deuxieme galerie---------");
+        //System.out.println(gs.afficherGalerie(2));
 
         //Update
-        gs.modifierGalerie(g2);
+        //gs.modifierGalerie(g2);
 
         //Delete
-        gs.supprimerGalerie(3);
+        //gs.supprimerGalerie(3);
         */
-        
-        
         
         /*GRUD Photographie *********************************************************************
         System.out.println("---------************-----------");
@@ -55,34 +61,32 @@ public class Myjcc {
         GalerieService gs = new GalerieService();
         
         //Get Galerie
-        Galerie g1 = gs.afficherGalerie(3);
-        
+        Galerie g1 = gs.afficherGalerie(4);
+        Galerie g2 = gs.afficherGalerie(5);
         //creation objet photographie
         Photographie p1 = new Photographie("Billy", "New photo De la seance Validation 16/02", "C/Path/photoNew.PNG", g1);
-        Photographie p2 = new Photographie(4,"TITRE46", "Description photo", "C/Path/photo5.PNG", g1);
+        Photographie p2 = new Photographie(4,"TITRE46", "Description photo", "C/Path/photo5.PNG", g2);
         
         //ajout Photographie
-        ps.ajouterPhotographie(p1);
+        //ps.ajouterPhotographie(p1);
         
         //Read : Afficher toutes les Photographies
-        ps.afficherPhotographies().forEach(System.out::println);
+        //ps.afficherPhotographies().forEach(System.out::println);
     
         //GetById : Afficher une photographie
-        System.out.println("Photo id 3---------");
-        System.out.println(ps.afficherPhotographie(3));
+        //System.out.println("Photo id 3---------");
+        //System.out.println(ps.afficherPhotographie(3));
     
         //Filter : Afficher les Photographies d'un Photographe
-        System.out.println("Les phtotos du photographe ayant la galerie id = 2");
-        ps.afficherPhotographiesDunPhotographe(2).forEach(System.out::println);
+        //System.out.println("Les phtotos du photographe ayant la galerie id = 2");
+        //ps.afficherPhotographiesDunPhotographe(5).forEach(System.out::println);
     
         //Update
-        ps.modifierPhotographie(p2);
+        //ps.modifierPhotographie(p2);
     
         //Delete
-        ps.SupprimerPhotographie(7);
+        //ps.SupprimerPhotographie(7);
         */
-        
-        
         
         /* CRUD ContratSponsoring *********************************************************************
         System.out.println("---------************-----------");
@@ -97,33 +101,38 @@ public class Myjcc {
         
         //creation de service contratSponsoring
         ContratSponsorinService css = new ContratSponsorinService();
+        //creation service user
+        UserService ps = new UserService();
+        //instance user
+        User p1 = new User(1,"Khaled","Tounsi","Male","khaled.tounsi@esprit.tn","azertyuiop123",Type.ADMINSTRATEUR,"C/Path/photo.png");
+        User p2 = new User(5,"Marwen","Hammami","Male","marwen.hammami@esprit.tn","azertyuiop123",Type.ADMINSTRATEUR,"C/Path/photo.png");
         
         //creation de contrat
-        ContratSponsoring cs1 = new ContratSponsoring(DateDebut, DateFin, EnumTypeContrat.ParHeure, EnumEtatContrat.EnCours, 50f, "C/Path/Termes.PDF", 2, 2);
-        ContratSponsoring cs2 = new ContratSponsoring(2,DateDebut, DateFin, EnumTypeContrat.ParPhoto, EnumEtatContrat.Proposition, 30.3f, "C/Path/Termes..PDF", 3, 3);
+        ContratSponsoring cs1 = new ContratSponsoring(DateDebut, DateFin, EnumTypeContrat.ParHeure, EnumEtatContrat.EnCours, 50f, "C/Path/Termes.PDF", p1, p2);
+        ContratSponsoring cs2 = new ContratSponsoring(3,DateDebut, DateFin, EnumTypeContrat.ParPhoto, EnumEtatContrat.Proposition, 30.3f, "C/Path/Termes..PDF", p2, p1);
         
         //ajout contrat
-        css.ajouterContratSponsorin(cs1);
+        //css.ajouterContratSponsorin(cs1);
         
         //afficher les contrats
-        css.afficherContratsSponsorin().forEach(System.out::println);
+        //css.afficherContratsSponsorin().forEach(System.out::println);
         
-        System.out.println("Contrat de ID = 2-----------");
-        System.out.println(css.afficherContratSponsoring(2));
+        //System.out.println("Contrat de ID = 2-----------");
+        //System.out.println(css.afficherContratSponsoring(2));
         
         //modifier contrat
-        css.modifierContratSponsoring(cs2);
+        //css.modifierContratSponsoring(cs2);
         
         //supprimer contrat
-        css.supprimerContratSponsoring(6);
+        //css.supprimerContratSponsoring(6);
         
         //afficher les contrats d'un sponsor ID_Sponsor = 2
-        System.out.println("les contrats d'un sponsor ID_Sponsor = 2");
-        css.afficherContratsDeSponsor(2).forEach(System.out::println);
+        //System.out.println("les contrats d'un sponsor ID_Sponsor = 2");
+        //css.afficherContratsDeSponsor(1).forEach(System.out::println);
         
         //afficher les contrats d'un sponsor ID_Photographe = 3
-        System.out.println(" les contrats d'un sponsor ID_Photographe = 3");
-        css.afficherContratsDephotographe(3).forEach(System.out::println);
+        //System.out.println(" les contrats d'un sponsor ID_Photographe = 3");
+        //css.afficherContratsDephotographe(1).forEach(System.out::println);
         */
         
         

@@ -1,32 +1,31 @@
 package Models;
 
 public class Galerie {
+
     //var
     private int ID_Galerie;
     private String Nom;
     private String Description;
-    private int ID_Photographe;
-    
-    //Constructeurs
+    private User Photographe;
 
+    //Constructeurs
     public Galerie() {
     }
 
-    public Galerie(String Nom, String Description, int ID_Photographe) {
+    public Galerie(String Nom, String Description, User Photographe) {
         this.Nom = Nom;
         this.Description = Description;
-        this.ID_Photographe = ID_Photographe;
+        this.Photographe = Photographe;
     }
 
-    public Galerie(int ID_Galerie, String Nom, String Description, int ID_Photographe) {
+    public Galerie(int ID_Galerie, String Nom, String Description, User Photographe) {
         this.ID_Galerie = ID_Galerie;
         this.Nom = Nom;
         this.Description = Description;
-        this.ID_Photographe = ID_Photographe;
+        this.Photographe = Photographe;
     }
-    
-    //Getters & Setters
 
+    //Getters & Setters
     public int getID_Galerie() {
         return ID_Galerie;
     }
@@ -42,7 +41,6 @@ public class Galerie {
     public void setNom(String Nom) {
         this.Nom = Nom;
     }
-    
 
     public String getDescription() {
         return Description;
@@ -52,21 +50,18 @@ public class Galerie {
         this.Description = Description;
     }
 
-    public int getID_Photographe() {
-        return ID_Photographe;
+    public User getPhotographe() {
+        return Photographe;
     }
 
-    public void setID_Photographe(int ID_Photographe) {
-        this.ID_Photographe = ID_Photographe;
+    public void setPhotographe(User Photographe) {
+        this.Photographe = Photographe;
     }
-    
+
     //toString
-
     @Override
     public String toString() {
-        return "Galerie{" + "ID_Galerie=" + ID_Galerie + ", Nom=" + Nom + ", Description=" + Description + ", ID_Photographe=" + ID_Photographe + '}';
+        return "Galerie{" + "ID_Galerie=" + ID_Galerie + ", Nom=" + Nom + ", Description=" + Description + "\n Photographe=" + Photographe + '}';
     }
-    
-    
 
 }

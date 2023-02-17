@@ -1,0 +1,10 @@
+#Gestion des utilisateurs -> partie Moenes
+##########################################
+build/classes/Models/User.class
+build/classes/Services/UserService.class
+build/classes/Utils/Type.class
+build/classes/Interfaces/UserInterface.class
+src/Interfaces/UserInterface.java
+src/Models/User.java
+src/Services/UserService.java
+src/Utils/Type.java

@@ -17,6 +17,9 @@ public class GalerieService implements GalerieInterface {
 
     //Connection a la db
     Connection cnx = MaConnection.getInstance().getCnx();
+    
+    //creation service user
+    UserService ps = new UserService();
 
     //Méthode création Galerie g utilisé lors des méthodes afficher
     private Galerie addGalerie(ResultSet rs) {
@@ -25,7 +28,7 @@ public class GalerieService implements GalerieInterface {
             g.setID_Galerie(rs.getInt(1));
             g.setNom(rs.getString(2));
             g.setDescription(rs.getString(3));
-            g.setID_Photographe(rs.getInt(4));
+            g.setPhotographe(ps.afficherUserbyID(rs.getInt(4)));
         } catch (SQLException ex) {
             Logger.getLogger(PhotographieService.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -40,7 +43,7 @@ public class GalerieService implements GalerieInterface {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setString(1, g.getNom());
             ps.setString(2, g.getDescription());
-            ps.setInt(3, g.getID_Photographe());
+            ps.setInt(3, g.getPhotographe().getID_User());
             //
             ps.executeUpdate();
             System.out.println("Nouvelle Galerie Ajoute avec success via prepared Statement!!!");
@@ -94,7 +97,7 @@ public class GalerieService implements GalerieInterface {
             PreparedStatement ps = cnx.prepareStatement(request);
             ps.setString(1, g.getNom());
             ps.setString(2, g.getDescription());
-            ps.setInt(3, g.getID_Photographe());
+            ps.setInt(3, g.getPhotographe().getID_User());
             ps.setInt(4, g.getID_Galerie());
             //
             ps.executeUpdate();
