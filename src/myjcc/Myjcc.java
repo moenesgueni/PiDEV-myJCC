@@ -26,16 +26,15 @@ public class Myjcc {
         
         PrixService ps = new PrixService();
         VoteService vs = new VoteService();
-        Vote v = new Vote(19,8,Date_Debut,Date_Fin);
-        Prix p = new Prix(1231, "or",v);
+        Vote v = new Vote(4,2,8888,Date_Debut,Date_Fin);
+        Prix p = new Prix(121, "xxxr",v);
         //vs.ajouterVote(v);
-        //ps.ajouterPrix(p);
+        ps.ajouterPrix(p);
         
-        ps.afficherPrix().forEach(System.out::println);
-        //ps.afficherPrixType("Bronze").forEach(System.out::println);
-        //ps.afficherPrixFilm(15).forEach(System.out::println);
-        //ps.modifierPrix(15, 7);
-        //ps.modifierPrixType(15, "Argent");
+        //ps.afficherPrix().forEach(System.out::println);
+        //ps.afficherPrixType("or").forEach(System.out::println);
+        //ps.afficherPrixFilm(1231).forEach(System.out::println);
+        //ps.modifierPrixType(10, "Or");
         //ps.modifierPrixFilmType(15, 100, "Or");
         //ps.suppressionPrixFilm(15);
         //ps.suppressionPrixType("Bronze");

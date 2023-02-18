@@ -27,6 +27,19 @@ public class PrixService implements PrixInterface{
     Connection cnx = MaConnection.getInstance().getCnx();
     VoteService vs = new VoteService();
     
+    private Prix addPrix(ResultSet rs){
+        Prix p = new Prix();
+        try {
+            p.setID_Prix(rs.getInt(1));
+            p.setID_Film(rs.getInt(2));
+            p.setTypePrix(rs.getString(3));
+            p.setVote(vs.afficherVote(rs.getInt(4)));
+        } catch (SQLException ex) {
+            Logger.getLogger(PrixService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
+    }
+    
     @Override
     //ajout Prix
     public void ajouterPrix(Prix p) {
