@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="Controllers.TestController">
+   <children>
+      <TableView fx:id="tvEvent" layoutX="33.0" layoutY="63.0" prefHeight="200.0" prefWidth="502.0">
+        <columns>
+          <TableColumn fx:id="colonne_id" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="colonne_nom" prefWidth="75.0" text="nom_event" />
+            <TableColumn fx:id="colonne_date" prefWidth="103.20001220703125" text="date_et_heure" />
+            <TableColumn fx:id="colonne_lieu" text="lieu" />
+            <TableColumn fx:id="colonne_type" prefWidth="72.7999267578125" text="type_event" />
+            <TableColumn fx:id="colonne_description" prefWidth="87.20001220703125" text="description" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

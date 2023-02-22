@@ -54,7 +54,7 @@ public class EventService implements IEventController {  Connection conn = Conne
 
     @Override
     public void SupprimerEvent(Evenement object) {
-        String req = "DELETE FROM evenement WHERE id='" + object.getId() + "'";
+        String req = "DELETE FROM evenement WHERE nom='" + object.getNom_event() + "'";
         try {
             ste = conn.createStatement();
             ste.executeUpdate(req);

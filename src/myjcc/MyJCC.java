@@ -8,10 +8,13 @@ package myjcc;
 
 import java.sql.Date;
 import Models.Blog;
+import Models.Evenement;
 import Models.User;
 import Services.BlogService;
+import Services.EventService;
 import Services.UserService;
 import Utils.Type;
+import java.util.List;
 
 
 
@@ -22,7 +25,7 @@ import Utils.Type;
 public class MyJCC {
 
     public static void main(String[] args) {
-            Date date = new Date(2022, 23, 2);
+           /* Date date = new Date(2022, 23, 2);
 
           //Creation service galerie
         BlogService bs = new BlogService();
@@ -51,6 +54,23 @@ public class MyJCC {
         //bs.ModifierBlog(b2);
         //Delete
         //bs.SupprimerBlog(7);
+        */
+             EventService eventController = new EventService();
+     Date date = new Date(2022, 23, 2);
+           Evenement e1 = new Evenement("jcc1", date, "ariana", "test", "helloimanevent");
+        Evenement e2 = new Evenement("jcc2", date, "ariana", "test", "hello im an event");
+        Evenement e3 = new Evenement("jcc3", date, "ariana", "test", "hello im an event");
+        Evenement e4 = new Evenement("jcc4", date, "ariana", "test", "hello im an event");
+        Evenement e5 = new Evenement("jcc5", date, "ariana", "test", "hello im an event");
+
+        eventController.AjouterEvent(e1);
+        eventController.AjouterEvent(e2);
+        eventController.AjouterEvent(e3);
+        eventController.AjouterEvent(e4);
+        eventController.AjouterEvent(e5);
         
+       List<Evenement> list =  eventController.AfficherEvents();
+       
+        System.out.println(list);
     }
 }
