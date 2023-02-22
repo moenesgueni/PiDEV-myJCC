@@ -64,7 +64,7 @@ public class Myjcc {
           
           
           //delete film
-          //fs.supprimerFilm("12 angry men");
+          fs.supprimerFilm("a");
           
           //update film
           
