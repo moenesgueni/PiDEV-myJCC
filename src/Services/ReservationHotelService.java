@@ -65,11 +65,11 @@ public class ReservationHotelService implements ReservationHotelInterface {
               r.setDate_fin(rs.getDate(4));
               r.setTarifTotal(rs.getFloat(5));
               int UserlId = rs.getInt(6);
-              System.out.println(UserlId);
+             
               User user = us.afficherUserbyID(UserlId);
               r.setUser(user);
               int hotelId = rs.getInt(7);
-              System.out.println(hotelId);
+              
               Hotel hotel = hs.GetHotelById(hotelId);
               r.setHotel(hotel);
               Reservations.add(r);
@@ -155,6 +155,7 @@ public class ReservationHotelService implements ReservationHotelInterface {
                 r.setDate_fin(rs.getDate(4));
                 r.setTarifTotal(rs.getFloat(5));
                  int UserlId = rs.getInt(6);
+                 
                 System.out.println(UserlId);
                 User user = us.afficherUserbyID(UserlId);
                 r.setUser(user);

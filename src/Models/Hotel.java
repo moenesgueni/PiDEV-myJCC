@@ -12,7 +12,7 @@ package Models;
 public class Hotel {
     // att
     private int id ;
-    private String lebelle ;
+    private String libelle ;
     private String adresse ;
     private int nbre_chambres ;
     private int telephone ;
@@ -23,7 +23,7 @@ public class Hotel {
 
     public Hotel(int id, String lebelle, String adresse, int nbre_chambres, int telephone, String description) {
         this.id = id;
-        this.lebelle = lebelle;
+        this.libelle = lebelle;
         this.adresse = adresse;
         this.nbre_chambres = nbre_chambres;
         this.telephone = telephone;
@@ -31,12 +31,14 @@ public class Hotel {
     }
 
     public Hotel(String lebelle, String adresse, int nbre_chambres, int telephone, String description) {
-        this.lebelle = lebelle;
+        this.libelle = lebelle;
         this.adresse = adresse;
         this.nbre_chambres = nbre_chambres;
         this.telephone = telephone;
         this.description = description;
     }
+
+
     //getters and setters   
     public int getId() {
         return id;
@@ -46,12 +48,12 @@ public class Hotel {
         this.id = id;
     }
 
-    public String getLebelle() {
-        return lebelle;
+    public String getLibelle() {
+        return libelle;
     }
 
-    public void setLebelle(String lebelle) {
-        this.lebelle = lebelle;
+    public void setLibelle(String lebelle) {
+        this.libelle = lebelle;
     }
 
     public String getAdresse() {
@@ -88,8 +90,8 @@ public class Hotel {
     //display 
     @Override
     public String toString() {
-        return "hotel{" + "id=" + id + ", lebelle=" + lebelle + ", adresse=" + adresse + ", nbre_chambres=" + nbre_chambres + ", telephone=" + telephone + ", description=" + description + '}';
+        return "hotel{" + "id=" + id + ", lebelle=" + libelle + ", adresse=" + adresse + ", nbre_chambres=" + nbre_chambres + ", telephone=" + telephone + ", description=" + description + '}';
     }
-    
-    
+
+ 
 }

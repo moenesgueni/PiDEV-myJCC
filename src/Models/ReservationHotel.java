@@ -109,7 +109,7 @@ public class ReservationHotel {
 
     @Override
     public String toString() {
-        return "ReservationHotel{" + "idReservationH=" + idReservationH + ", dateReservation=" + dateReservation + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", tarifTotal=" + tarifTotal + ", hotel=" + hotel + ", user=" + user + '}';
+        return "ReservationHotel{" + "idReservationH=" + idReservationH + ", dateReservation=" + dateReservation + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", tarifTotal=" + tarifTotal +'\n' +", hotel=" + hotel +'\n'+ ", user=" + user+'\n' + '}'+'\n';
     }
     
     

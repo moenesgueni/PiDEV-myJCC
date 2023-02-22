@@ -1,0 +1,81 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package GUI;
+
+import Models.Hotel;
+import Services.HotelService;
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+/**
+ * FXML Controller class
+ *
+ * @author youssef
+ */
+public class AjouterHotelController implements Initializable {
+
+    @FXML
+    private TextField nomh;
+    @FXML
+    private TextField adrh;
+    @FXML
+    private TextField nbr_chmbre;
+    @FXML
+    private TextField telh;
+    @FXML
+    private TextArea desch;
+    @FXML
+    private Button ajth;
+    @FXML
+    private Button annuler;
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+    
+    @FXML
+    private void ajouterHotel(ActionEvent event) {
+        Hotel h =new Hotel();
+        HotelService hs = new HotelService();
+        h.setLibelle(nomh.getText());
+        h.setAdresse(adrh.getText());
+        h.setNbre_chambres(Integer.parseInt(nbr_chmbre.getText()));
+        h.setTelephone( Integer.parseInt(telh.getText()));
+        h.setDescription(desch.getText());
+        hs.addHotel(h);
+        /************Banner ******************/
+        Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
+        confirmation.setContentText("Hotel " + nomh.getText() + " est effectuee avec succes");
+        confirmation.show();
+        /*******Vider les texteFiled********/
+             nomh.setText("");
+             adrh.setText("");
+             nbr_chmbre.setText("");
+             telh.setText("");
+             desch.setText("");
+
+    }
+
+    @FXML
+    private void AnnulerH(ActionEvent event) {
+       
+    }
+    
+}

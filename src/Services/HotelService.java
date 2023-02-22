@@ -32,7 +32,7 @@ public class HotelService implements HotelInterface {
                 + "VALUES (?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(1, h.getLebelle());
+            ps.setString(1, h.getLibelle());
             ps.setString(2, h.getAdresse());
             ps.setInt(3, h.getNbre_chambres());
             ps.setInt(4, h.getTelephone());
@@ -55,7 +55,7 @@ public class HotelService implements HotelInterface {
            while(rs.next()){
               Hotel h = new Hotel() ; 
               h.setId(rs.getInt(1));
-              h.setLebelle(rs.getString(2));
+              h.setLibelle(rs.getString(2));
               h.setAdresse(rs.getString(3));
               h.setNbre_chambres(rs.getInt(4));
               h.setTelephone(rs.getInt(5));
@@ -78,7 +78,7 @@ public class HotelService implements HotelInterface {
        ResultSet rs = st.executeQuery(req); 
        while(rs.next()){
              h.setId(rs.getInt(1));
-             h.setLebelle(rs.getString(2));
+             h.setLibelle(rs.getString(2));
              h.setAdresse(rs.getString(3));
              h.setNbre_chambres(rs.getInt(4));
              h.setTelephone(rs.getInt(5));
@@ -96,7 +96,7 @@ public class HotelService implements HotelInterface {
                  +" WHERE ID_Hotel = ?";
        try {
            PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(1, h.getLebelle());
+            ps.setString(1, h.getLibelle());
             ps.setString(2, h.getAdresse());
             ps.setInt(3, h.getNbre_chambres());
             ps.setInt(4, h.getTelephone());
@@ -132,7 +132,7 @@ public class HotelService implements HotelInterface {
            ResultSet rs = st.executeQuery(req); 
              while(rs.next()){
              h.setId(rs.getInt(1));
-             h.setLebelle(rs.getString(2));
+             h.setLibelle(rs.getString(2));
              h.setAdresse(rs.getString(3));
              h.setNbre_chambres(rs.getInt(4));
              h.setTelephone(rs.getInt(5));
@@ -154,7 +154,7 @@ public class HotelService implements HotelInterface {
            ResultSet rs = st.executeQuery(req); 
              while(rs.next()){
              h.setId(rs.getInt(1));
-             h.setLebelle(rs.getString(2));
+             h.setLibelle(rs.getString(2));
              h.setAdresse(rs.getString(3));
              h.setNbre_chambres(rs.getInt(4));
              h.setTelephone(rs.getInt(5));

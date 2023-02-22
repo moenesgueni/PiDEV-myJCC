@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjouterHotelController">
+   <children>
+      <Label layoutX="148.0" layoutY="109.0" text="Nom de l'hotel" AnchorPane.bottomAnchor="424.0" AnchorPane.topAnchor="109.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="148.0" layoutY="149.0" text="Adresse" AnchorPane.topAnchor="149.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="148.0" layoutY="189.0" text="Nombre de chambres" AnchorPane.topAnchor="189.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="148.0" layoutY="229.0" text="Numero de Telephone" AnchorPane.topAnchor="229.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="148.0" layoutY="288.0" text="Description" AnchorPane.topAnchor="288.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nomh" layoutX="338.0" layoutY="107.0" />
+      <TextField fx:id="adrh" layoutX="338.0" layoutY="147.0" />
+      <TextField fx:id="nbr_chmbre" layoutX="338.0" layoutY="187.0" />
+      <TextField fx:id="telh" layoutX="338.0" layoutY="227.0" />
+      <TextArea fx:id="desch" layoutX="338.0" layoutY="269.0" prefHeight="59.0" prefWidth="149.0" />
+      <Button fx:id="ajth" layoutX="388.0" layoutY="368.0" mnemonicParsing="false" onAction="#ajouterHotel" prefHeight="35.0" prefWidth="99.0" text="Ajouter" />
+      <Button fx:id="annuler" layoutX="186.0" layoutY="368.0" mnemonicParsing="false" onAction="#AnnulerH" prefHeight="35.0" prefWidth="99.0" text="Annuler" />
+   </children>
+</AnchorPane>
