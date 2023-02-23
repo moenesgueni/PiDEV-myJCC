@@ -25,7 +25,10 @@ import Models.User;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import java.util.List;
+import javafx.animation.FadeTransition;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 public class AjouterContratFXMLController implements Initializable {
     //instance des services**************************
@@ -55,6 +58,10 @@ public class AjouterContratFXMLController implements Initializable {
     private ListView<String> listContrats;
     @FXML
     private Label Titre;
+    @FXML
+    private AnchorPane confirmersuppression, blackpane;
+    @FXML
+    private Button supprimercontrat, confirmer_supression, annuler_supression;
 
     public static Date datePickerToSQLDate(DatePicker datePicker) {
         LocalDate localDate = datePicker.getValue();
@@ -69,6 +76,8 @@ public class AjouterContratFXMLController implements Initializable {
         salaire.setText("");
         messageErr.setVisible(false);
         confirmemodifiercontrat.setVisible(false);
+        supprimercontrat.setVisible(false);
+        confirmersuppression.setVisible(false);
         Titre.setText("Ajouter un Contrat");
     }
 
@@ -82,7 +91,8 @@ public class AjouterContratFXMLController implements Initializable {
         for (ContratSponsoring c : contrats) {
 
             String item = c.getDateDebut() + " - " + c.getDateFin() + " - " + c.getType().toString()
-                    + " - " + c.getEtat().toString() + " - " + c.getSalaireDt() + " - " + c.getTermesPDF();
+                    + " - " + c.getEtat().toString() + " - " + c.getSalaireDt() + " - " + c.getTermesPDF()
+                    + " - " + c.getPhotoraphe().getNom() + " " + c.getPhotoraphe().getPrenom() + " " + c.getPhotoraphe().getEmail();
             items.add(item);
         }
         listContrats.setItems(items);
@@ -92,6 +102,9 @@ public class AjouterContratFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         messageErr.setVisible(false);
         confirmemodifiercontrat.setVisible(false);
+        supprimercontrat.setVisible(false);
+        confirmersuppression.setVisible(false);
+        blackpane.setVisible(false);
         LoadContrats(1);
 
         //Remplir la liste des contrats du sponsor à l'id 1
@@ -150,12 +163,39 @@ public class AjouterContratFXMLController implements Initializable {
 
         });
         //**********************************************
+
+        //Supprimer un contrat**************************
+        supprimercontrat.setOnMouseClicked(event -> {
+            blackpane.setVisible(true);
+            confirmersuppression.setVisible(true);
+            blackpane.toFront();
+            confirmersuppression.toFront();
+            FadeTransition fadeTransition1 = new FadeTransition(Duration.seconds(0.5), blackpane);
+            fadeTransition1.setFromValue(0);
+            fadeTransition1.setToValue(0.3);
+            fadeTransition1.play();
+        });
+        confirmer_supression.setOnMouseClicked(event -> {
+            css.supprimerContratSponsoring(contratAModifier.getID_Contrat());
+            blackpane.setVisible(false);
+            confirmersuppression.setVisible(false);
+            clearFiels();
+            LoadContrats(1);
+            populateListContrats(contrats);
+        });
+        annuler_supression.setOnMouseClicked(event -> {
+            blackpane.setVisible(false);
+            confirmersuppression.setVisible(false);
+            clearFiels();
+        });
+        //**********************************************
     }
 
     @FXML
     private void modifierContrat(MouseEvent event) {
         Titre.setText("Modifier un Contrat");
         confirmemodifiercontrat.setVisible(true);
+        supprimercontrat.setVisible(true);
         confirmemodifiercontrat.toFront();
         //String selectedContrat = listContrats.getSelectionModel().getSelectedItem();
         int selectedint = listContrats.getSelectionModel().getSelectedIndices().get(0);
@@ -169,5 +209,4 @@ public class AjouterContratFXMLController implements Initializable {
         ContratSponsoring c1 = new ContratSponsoring();
         //System.out.println(selectedContrat);
     }
-
 }

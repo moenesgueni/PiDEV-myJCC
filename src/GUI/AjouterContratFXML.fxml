@@ -11,6 +11,26 @@
 
 <AnchorPane id="AnchorPane" prefHeight="910.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AjouterContratFXMLController">
    <children>
+      <AnchorPane fx:id="confirmersuppression" layoutX="247.0" layoutY="203.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="347.0" AnchorPane.leftAnchor="247.0" AnchorPane.rightAnchor="853.0" AnchorPane.topAnchor="203.0">
+         <children>
+            <Label text="Etes-vous sur de vouloir supprimer ce contrat ?" textAlignment="CENTER" textFill="RED" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="50.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="confirmer_supression" mnemonicParsing="false" text="Confirmer" textFill="RED" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="70.0">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="annuler_supression" mnemonicParsing="false" text="Annuler" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="70.0">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="blackpane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Label fx:id="Titre" layoutX="28.0" layoutY="23.0" text="Ajouter un contrat" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
          <font>
             <Font size="48.0" />
@@ -72,6 +92,11 @@
          </font>
       </Button>
       <Button fx:id="confirmerajoutcontrat" mnemonicParsing="false" text="Ajouter" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="600.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="supprimercontrat" mnemonicParsing="false" text="Supprimer" textFill="RED" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="600.0">
          <font>
             <Font size="18.0" />
          </font>
