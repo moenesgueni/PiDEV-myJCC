@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -137,7 +138,7 @@
                         <Image url="http://localhost/myjcc/logos/prix_medails.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iconGererGalerie" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <VBox.margin>
                         <Insets left="40.0" top="15.0" />
                      </VBox.margin>
@@ -145,7 +146,7 @@
                         <Image url="http://localhost/myjcc/logos/photo_pelicule.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iconAjouerContrat" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <VBox.margin>
                         <Insets left="40.0" top="15.0" />
                      </VBox.margin>
@@ -155,7 +156,7 @@
                   </ImageView>
                </children>
             </VBox>
-            <ImageView fx:id="menu" fitHeight="37.0" fitWidth="90.0" layoutX="49.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0">
+            <ImageView fx:id="menu2" fitHeight="37.0" fitWidth="90.0" layoutX="49.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0">
                <image>
                   <Image url="http://localhost/myjcc/logos/3slash.png" />
                </image>
@@ -195,7 +196,7 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Gérer Ma Galerie">
+                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#handleMaGalerie" prefHeight="50.0" prefWidth="255.0" text="Gérer Ma Galerie">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
@@ -203,7 +204,7 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Voir Mes Contrats">
+                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#handleAjouterContrat" prefHeight="50.0" prefWidth="255.0" text="Ajouter Un Contrat">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
@@ -230,6 +231,6 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="workPlace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+      <BorderPane fx:id="workPlace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
     </children>
 </AnchorPane>

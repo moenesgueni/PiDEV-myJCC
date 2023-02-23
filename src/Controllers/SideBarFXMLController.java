@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -14,6 +15,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 public class SideBarFXMLController implements Initializable {
 
@@ -22,10 +25,13 @@ public class SideBarFXMLController implements Initializable {
     private Stage primaryStage;
 
     @FXML
-    private ImageView fullScreen, settings, logout, menu, userPhoto, userPhoto2;
+    private ImageView fullScreen, settings, logout, menu, menu2, userPhoto, userPhoto2, iconGererGalerie, iconAjouerContrat;
 
     @FXML
     private AnchorPane pane1, pane2, pane3;
+    
+    @FXML
+    private BorderPane workPlace;
 
     @FXML
     private Label nomPrenom, role;
@@ -38,7 +44,7 @@ public class SideBarFXMLController implements Initializable {
         pane1.setVisible(true);
         FadeTransition fadeTransition1 = new FadeTransition(Duration.seconds(0.5), pane1);
         fadeTransition1.setFromValue(0);
-        fadeTransition1.setToValue(0.15);
+        fadeTransition1.setToValue(0.3);
         fadeTransition1.play();
 
         TranslateTransition translateTransition1 = new TranslateTransition(Duration.seconds(0.5), pane2);
@@ -121,10 +127,50 @@ public class SideBarFXMLController implements Initializable {
                 unTranslate();
             }
         });
+        menu2.setOnMouseClicked(event -> {
+            if (!isAlreadyTranslated) {
+                translate();
+            } else {
+                unTranslate();
+            }
+        });
 
         pane1.setOnMouseClicked(event -> {
             unTranslate();
         });
+        
+        //Icon Routes*******************************
+        //call gerer photographies in pane frrom icon
+            iconGererGalerie.setOnMouseClicked(event -> {
+            FxmlLoader fl = new FxmlLoader();
+            Pane view = fl.getPage("GererPhotographiesFXML");
+            workPlace.setCenter(view);
+        });
+        //ajouter un contrat
+        iconAjouerContrat.setOnMouseClicked(event -> {
+            FxmlLoader fl = new FxmlLoader();
+            Pane view = fl.getPage("AjouterContratFXML");
+            workPlace.setCenter(view);
+        });
+
+    
+    }
+    //Routes*******************************
+    //call gerer photographies in pane
+    @FXML
+    private void handleMaGalerie(ActionEvent  event) {
+        FxmlLoader fl = new FxmlLoader();
+        Pane view = fl.getPage("GererPhotographiesFXML");
+        workPlace.setCenter(view);
+        unTranslate();
+    }
+
+    @FXML
+    private void handleAjouterContrat(ActionEvent event) {
+        FxmlLoader fl = new FxmlLoader();
+            Pane view = fl.getPage("AjouterContratFXML");
+            workPlace.setCenter(view);
+            unTranslate();
     }
 
 }
