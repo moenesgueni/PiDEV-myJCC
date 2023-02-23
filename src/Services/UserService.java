@@ -27,6 +27,7 @@ public class UserService implements UserInterface {
 
     @Override
     public void ajouterUser(User p) {
+       while(TestUser(p)){
         String req = "INSERT INTO `user`(`Nom`, `Prenom`, `Sexe`, `Email` ,`MotDePasse`,`Role`,`PhotoB64`) VALUES ('"
                 +p.getNom()+"','"+p.getPrenom()+"','"+p.getSexe()+"','"+p.getEmail()+"','"+p.getMotDePasse()+"','"+p.getRole().toString()+"','"+p.getPhotoB64()+"')";
         try {
@@ -36,10 +37,13 @@ public class UserService implements UserInterface {
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
+    break;    
+    }
     }
 
     @Override
     public void ajouterUser2(User p) {
+        while(TestUser(p)){
         String req = "INSERT INTO `user`(`Nom`, `Prenom`, `Sexe`, `Email` ,`MotDePasse`,`Role`,`PhotoB64`) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
@@ -56,7 +60,8 @@ public class UserService implements UserInterface {
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        break;
+        }
     }
     
     
@@ -88,17 +93,26 @@ public class UserService implements UserInterface {
     }
 
     @Override
-   public void modifierUser(int id, String nom) {
-            try{
-             String req ="UPDATE `user` SET `Nom`= ? WHERE ID_User= ?";
+   public void modifierUser(Integer id,User p) {
+            
+             String req ="UPDATE `user` SET `Nom`= ?, `Prenom`=?, `Sexe`=?, `Email`=? ,`MotDePasse`=?,`Role`=?,`PhotoB64`=? WHERE ID_User= ?";
+        try {
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(1, nom);
-            ps.setInt(2, id);
+//          ps.setInt(1, p.getID_User());
+            ps.setString(1, p.getNom());
+            ps.setString(2, p.getPrenom());
+            ps.setString(3, p.getSexe());
+            ps.setString(4, p.getEmail());
+            ps.setString(5, p.getMotDePasse());
+            ps.setString(6, p.getRole().toString());
+            ps.setString(7, p.getPhotoB64());
+            ps.setInt(8, id);
             ps.executeUpdate();
-
+            System.out.println("Personne modifié avec success via prepared Statement!!!");
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
+
 
     };
 
@@ -165,7 +179,12 @@ public class UserService implements UserInterface {
         }
         return personnes;
     }
+public boolean TestUser(User u){
+    boolean x=false;
+    if((u.getNom()!="")&&(u.getPrenom()!="")&&(u.getMotDePasse().length()>8)&&(u.getEmail().matches("\\w{3,}@\\S+")))    
+    {x=true;}
+        return x;
 
-
+        }
 
 }

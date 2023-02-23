@@ -23,7 +23,7 @@ public interface UserInterface {
     //1.1:Create methode2
     public void ajouterUser2(User p);
     //2: Read
-    public void modifierUser(int id, String nom);
+     public void modifierUser(Integer id, User u);
     //3:Update
     public void supprimerUser(int id);
     //4:Delete

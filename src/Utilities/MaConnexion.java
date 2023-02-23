@@ -21,7 +21,7 @@ public class MaConnexion {
 
     public static MaConnexion instance;
     
-    public MaConnexion(){
+    private MaConnexion(){
         try {
            cnx = DriverManager.getConnection(url ,login ,pwd);
            System.out.println("Connexion etablie avec succes!");

@@ -24,7 +24,7 @@ import java.sql.Date;
  *
  * @author moene
  */
-public class LogsService implements LogsInterface {
+/**/public class LogsService implements LogsInterface {
     Connection cnx = MaConnexion.getInstance().getCnx();
     
     @Override
