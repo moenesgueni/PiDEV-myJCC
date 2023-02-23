@@ -5,16 +5,14 @@
  */
 package Controllers;
 
-import Interfaces.FilmInterface;
-import Models.Film;
-import Services.FilmService;
+import Models.PlanningFilmSalle;
+import Services.PlanningService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.prefs.Preferences;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,11 +21,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import myjcc.NewFXMain;
 
@@ -36,58 +31,40 @@ import myjcc.NewFXMain;
  *
  * @author dhia
  */
-public class AffichageController implements Initializable {
+public class AffplanningController implements Initializable {
 
     @FXML
-    private ListView<String> ListF;
+    private ListView<String> ListP;
     @FXML
-    private Button redmodifF;
+    private Button redajoutpla;
     @FXML
-    private Button redajouterf;
+    private Button redmodifpla;
     @FXML
-    private Button redsupf;
-    
-   
+    private Button redsuppla;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         FilmService fs = new FilmService();
-        List<Film> films = fs.afficherFilm();
+        // TODO
+         PlanningService ps = new PlanningService();
+        List<PlanningFilmSalle> plannings = ps.afficherPlanning();
         
-        ObservableList<String> items = FXCollections.observableArrayList();
-    for (Film film : films) {
-        String item = film.getTitre() + " - " + film.getDateRealisation() + " - " + film.getGenre() + " - " + film.getResume() + " - " + film.getDuree() + " - " + film.getPrix() + " - " + film.getID_producteur() + " - " + film.getActeur();
+          ObservableList<String> items = FXCollections.observableArrayList();
+    for (PlanningFilmSalle planning : plannings ) {
+        String item = planning.getFilm()+ " - " + planning.getSalle()+ " - " + planning.getSalle()+ " - " + planning.getHeurediffusion();
+        
         items.add(item);
     }    
-    ListF.setItems(items);
+    ListP.setItems(items);
     
-    
-        
-     
-             }
-    
+    }    
 
     @FXML
-    private void RedModifF(ActionEvent event) {
-        
-    try {
-    
-    Parent root = FXMLLoader.load(getClass().getResource("../GUI/updatef.fxml"));
-        Scene scene = new Scene(root);
-         Stage newStage = new Stage();
-          newStage.setScene(scene);
-          newStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    @FXML
-    private void RedAjouterF(ActionEvent event) {
+    private void RedAjoutPl(ActionEvent event) {
         try {
-        Parent root = FXMLLoader.load(getClass().getResource("../GUI/ajouterfilm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../GUI/ajoutpla.fxml"));
         Scene scene = new Scene(root);
          Stage newStage = new Stage();
           newStage.setScene(scene);
@@ -96,12 +73,11 @@ public class AffichageController implements Initializable {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 
     @FXML
-    private void RedSupF(ActionEvent event) {
-        try {
-        Parent root = FXMLLoader.load(getClass().getResource("../GUI/supprimerf.fxml"));
+    private void RedModifPla(ActionEvent event) {
+         try {
+        Parent root = FXMLLoader.load(getClass().getResource("../GUI/updatepla.fxml"));
         Scene scene = new Scene(root);
          Stage newStage = new Stage();
           newStage.setScene(scene);
@@ -109,6 +85,21 @@ public class AffichageController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
+    
     }
+
+    @FXML
+    private void RedSuppPla(ActionEvent event) {
+        try {
+        Parent root = FXMLLoader.load(getClass().getResource("../GUI/suppplanning.fxml"));
+        Scene scene = new Scene(root);
+         Stage newStage = new Stage();
+          newStage.setScene(scene);
+          newStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    
 }
-

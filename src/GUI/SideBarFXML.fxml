@@ -137,6 +137,14 @@
                         <Image url="http://localhost/myjcc/logos/prix_medails.png" />
                      </image>
                   </ImageView>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets left="40.0" top="15.0" />
+                     </VBox.margin>
+                     <image>
+                        <Image url="http://localhost/myjcc/logos/contrat.png" />
+                     </image>
+                  </ImageView>
                </children>
             </VBox>
             <ImageView fx:id="menu2" fitHeight="37.0" fitWidth="90.0" layoutX="49.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0">
@@ -174,6 +182,14 @@
                   </Button>
                   <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Prix">
                      <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="afficherpla" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#AfficherPla" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Plannings">
+                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
                      <font>

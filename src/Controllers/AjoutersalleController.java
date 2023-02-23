@@ -8,6 +8,7 @@ package Controllers;
 import Models.Salle;
 import Services.SalleService;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,6 +56,42 @@ public class AjoutersalleController implements Initializable {
     private void AjouterS(ActionEvent event) {
         Salle s = new Salle();
         SalleService ss = new SalleService();
+        if (NomS.getText().isEmpty() || adresse.getText().isEmpty() || cap.getText().isEmpty() || numtel.getText().isEmpty() || email.getText().isEmpty() || tempsouv.getText().isEmpty() || tempsfer.getText().isEmpty() || avis.getText().isEmpty()) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setContentText("Tous les champs doivent être remplis");
+    alert.show();
+    return;
+}
+
+        
+        List<Salle> salles = ss.afficherSalle();
+    String nomSalle = NomS.getText();
+    for (Salle salle : salles) {
+        if (salle.getNomSalle().equals(nomSalle)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Le nom de la salle doit être unique");
+            alert.show();
+            return;
+        }
+    }
+    
+    String numTel = numtel.getText();
+    if (!numTel.matches("\\d+")) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText("Le numéro de téléphone ne doit contenir que des chiffres");
+        alert.show();
+        return;
+    }
+    
+    
+    String mail = this.email.getText();
+    if (!mail.contains("@")) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText("L'adresse e-mail doit contenir le caractère @");
+        alert.show();
+        return;
+    }
+    
         s.setNomSalle(NomS.getText());
        s.setAdresse(adresse.getText());
        s.setCapacite(Integer.parseInt(cap.getText()));

@@ -10,10 +10,12 @@ import Models.Film;
 import Services.FilmService;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
@@ -22,7 +24,7 @@ import javafx.scene.control.TextField;
  *
  * @author dhia
  */
-public class updatefController implements Initializable {
+public class UpdateFController implements Initializable {
 
     @FXML
     private TextField TitreTF;
@@ -42,29 +44,40 @@ public class updatefController implements Initializable {
     private TextField ActeurTF;
     @FXML
     private Button bmodifierf;
-
+    
+    private Film film;
+    @FXML
+    private TextField IDF;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+      
     }    
+    
 
     @FXML
     private void ModifierF(ActionEvent event) {
-         Film f = new Film();
-       //  ObservableList<String> otherList = AffichageController.getList();
+        if (IDF.getText().isEmpty() || TitreTF.getText().isEmpty() || DateRTF.getText().isEmpty() || GenreTF.getText().isEmpty()
+    || ResumeTF.getText().isEmpty() || DureeTF.getText().isEmpty() || PrixTF.getText().isEmpty()
+    || ProducteurTF.getText().isEmpty() || ActeurTF.getText().isEmpty()) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setContentText("Veuillez remplir tous les champs obligatoires.");
+    alert.show();
+    return;
+}
+         Film f = new Film(Integer.parseInt(IDF.getText()),TitreTF.getText(),DateRTF.getText(),GenreTF.getText(),ResumeTF.getText(),DureeTF.getText(),Float.parseFloat(PrixTF.getText()),ProducteurTF.getText(),ActeurTF.getText());
+      
         FilmInterface fs = new FilmService();
-        f.setTitre(TitreTF.getText());
-        f.setDateRealisation(DateRTF.getText());
-        f.setGenre(GenreTF.getText());
-        f.setResume(ResumeTF.getText());
-        f.setDuree(DureeTF.getText());
-        f.setPrix(Float.parseFloat(PrixTF.getText()));
-        f.setID_producteur(ProducteurTF.getText());
-        f.setActeur(ActeurTF.getText());
-        fs.updateFilm(f);
+        
+      fs.updateFilm(f);
+      Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
+        confirmation.setContentText("Film est modifié avec succes");
+        confirmation.show();
     }
-    
+      
+     
 }

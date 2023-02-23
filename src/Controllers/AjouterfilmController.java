@@ -64,6 +64,26 @@ public class AjouterfilmController implements Initializable {
         Film f = new Film();
         FilmInterface fs = new FilmService();
         
+        
+        List<Film> films = fs.afficherFilm();
+    String titre = TitreTF.getText();
+    for (Film film : films) {
+        if (film.getTitre().equals(titre)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Le titre du film doit être unique");
+            alert.show();
+            return;
+        }
+    }
+    if (TitreTF.getText().isEmpty() || DateRTF.getText().isEmpty() || GenreTF.getText().isEmpty()
+    || ResumeTF.getText().isEmpty() || DureeTF.getText().isEmpty() || PrixTF.getText().isEmpty()
+    || ProducteurTF.getText().isEmpty() || ActeurTF.getText().isEmpty()) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setContentText("Veuillez remplir tous les champs obligatoires.");
+    alert.show();
+    return;
+}
+        
         f.setTitre(TitreTF.getText());
         f.setDateRealisation(DateRTF.getText());
         f.setGenre(GenreTF.getText());

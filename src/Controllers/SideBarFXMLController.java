@@ -44,6 +44,8 @@ public class SideBarFXMLController implements Initializable {
     private Button redaffichF;
     @FXML
     private Button redaffichs;
+    @FXML
+    private Button afficherpla;
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -166,6 +168,19 @@ public class SideBarFXMLController implements Initializable {
     private void RedAffichS(ActionEvent event) {
         try {
         Parent root = FXMLLoader.load(getClass().getResource("../GUI/affichages.fxml"));
+        Scene scene = new Scene(root);
+         Stage newStage = new Stage();
+          newStage.setScene(scene);
+          newStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void AfficherPla(ActionEvent event) {
+        try {
+        Parent root = FXMLLoader.load(getClass().getResource("../GUI/affplanning.fxml"));
         Scene scene = new Scene(root);
          Stage newStage = new Stage();
           newStage.setScene(scene);

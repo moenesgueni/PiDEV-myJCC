@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.updateController">
+   <children>
+      <Label layoutX="37.0" layoutY="119.0" text="Film" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="119.0" />
+      <Label layoutX="36.0" layoutY="182.0" text="Salle cinéma" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="182.0" />
+      <Label layoutX="35.0" layoutY="246.0" text="Date Diffusion" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="246.0" />
+      <Label layoutX="39.0" layoutY="272.0" text="heure diffusion" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="300.0" />
+      <Button fx:id="modifpla" layoutX="274.0" layoutY="342.0" mnemonicParsing="false" onAction="#ModifierPla" text="Modifier" />
+      <ComboBox fx:id="combfilm" layoutX="199.0" layoutY="118.0" onAction="#selectFlm" prefHeight="26.0" prefWidth="288.0" />
+      <ComboBox fx:id="sallecomb" layoutX="199.0" layoutY="177.0" onAction="#selectSalle" prefHeight="26.0" prefWidth="288.0" />
+      <TextField fx:id="datedif" layoutX="199.0" layoutY="241.0" prefHeight="26.0" prefWidth="150.0" />
+      <TextField fx:id="heuredif" layoutX="199.0" layoutY="296.0" />
+      <Label layoutX="34.0" layoutY="61.0" text="ID" AnchorPane.leftAnchor="40.0" />
+      <TextField fx:id="IDtoup" layoutX="199.0" layoutY="57.0" />
+      <Label layoutX="253.0" layoutY="14.0" text="Modifier Planning" />
+   </children>
+</AnchorPane>
