@@ -10,22 +10,19 @@ public interface PrixInterface {
     public void ajouterPrix(Prix p);
     
     //2: Read
-    public List<Prix> afficherPrix();
+    public List<Prix> getAllPrix();
     
     //3: getById
     public Prix afficherPrix(int PrixID);
     
-    //3: Filter par type/Film/
+    //4: Filter par type/Film/
     public List<Prix> afficherPrixType(String PrixType);
-    public List<Prix> afficherPrixFilm(int PrixFilm);
+    public Prix afficherTitreFilm(String TitreFilm); //String // afficher film par titre
     
-    //4: modifier donnee
-    public void modifierPrixFilm(int prixId , int prixFilm );
-    public void modifierPrixType(int prixId , String prixType );
-    public void modifierPrixFilmType(int prixId , int prixFilm , String prixType);
+    //5: modifier donnee
+    public void modifierPrix(Prix p);
     
-    //5: Suppression par film
-    public void suppressionPrixFilm(int PrixFilm);
-    public void suppressionPrixType(String PrixType);
+    //6: Suppression par film
+    public void suppressionPrix(int ID);
     
 }

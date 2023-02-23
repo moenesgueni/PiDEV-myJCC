@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaces;
 
+import Models.Prix;
 import Models.Vote;
 import java.util.List;
 
@@ -23,17 +19,15 @@ public interface VoteInterface {
     public Vote afficherVote(int VoteID);
     
     //3: Filter par type/Film/
-    public List<Vote> afficherVoteUser(int VoteUser);
-    public List<Vote> afficherVoteFilm(int VoteFilm);
+    public List<Vote> afficherVoteUser(String RoleUser);
+    public List<Vote> afficherVoteFilm(String TitreFilm);
     
     //4: modifier donnee
-    public void modifierVoteFilm(int voteId , int voteFilm );
-    public void modifierVoteType(int voteId , int voteUser );
-    public void modifierVoteFilmType(int voteId , int voteUser , int voteFilm);
+    //public void modifierVoteFilm(Prix prix);
+    //public void modifierVoteType(int voteId , int voteUser );
     
     //5: Suppression par film
-    public void suppressionVoteFilm(int VoteFilm);
-    public void suppressionVoteUser(int VoteUser);
+    public void suppressionVoteFilm(int ID_Vote);
     
     
 }

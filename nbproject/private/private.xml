@@ -3,11 +3,37 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Services/VoteService.java</file>
-            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Models/Prix.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/GUI/SideBarFXML.fxml</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Controllers/ListVoteController.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/GUI/AjoutVote.fxml</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/GUI/SuppPrix.fxml</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/GUI/AjoutPrix.fxml</file>
             <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/myjcc/Myjcc.java</file>
-            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Services/PrixService.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Controllers/SuppPrixController.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Controllers/AjoutVoteController.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/GUI/SuppVote.fxml</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Interfaces/VoteInterface.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Controllers/ModifPrixController.java</file>
             <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Models/Vote.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Interfaces/UserInterface.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Services/VoteService.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/GUI/ListVote.fxml</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Controllers/SuppVoteController.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Models/Prix.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Controllers/AjoutPrixController.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Interfaces/FilmInterface.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Models/User.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Services/FilmService.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/GUI/AffichagePrix.fxml</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Controllers/AffichagePrixController.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/GUI/ModifPrix.fxml</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Interfaces/PrixInterface.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/myjcc/NewFXMain.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Models/Film.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Utils/Type.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Services/UserService.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Controllers/SideBarFXMLController.java</file>
+            <file>file:/C:/Users/wael/Desktop/pi/myjcc/src/Services/PrixService.java</file>
         </group>
     </open-files>
 </project-private>

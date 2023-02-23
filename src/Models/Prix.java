@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Models;
 
 /**
@@ -10,26 +5,24 @@ package Models;
  * @author wael
  */
 public class Prix {
+    
     private int ID_Prix;
-    private int ID_Film;
+    private Film Film;
     private String TypePrix;
-    private Vote vote;
    
 
     public Prix() {
     }
 
-    public Prix(int ID_Film, String TypePrix, Vote vote) {
-        this.ID_Film = ID_Film;
+    public Prix(Film Film, String TypePrix) {
+        this.Film = Film;
         this.TypePrix = TypePrix;
-        this.vote = vote;
     }
 
-    public Prix(int ID_Prix, int ID_Film, String TypePrix, Vote vote) {
+    public Prix(int ID_Prix, Film Film, String TypePrix) {
         this.ID_Prix = ID_Prix;
-        this.ID_Film = ID_Film;
+        this.Film = Film;
         this.TypePrix = TypePrix;
-        this.vote = vote;
     }
 
     public int getID_Prix() {
@@ -40,12 +33,12 @@ public class Prix {
         this.ID_Prix = ID_Prix;
     }
 
-    public int getID_Film() {
-        return ID_Film;
+    public Film getFilm() {
+        return Film;
     }
 
-    public void setID_Film(int ID_Film) {
-        this.ID_Film = ID_Film;
+    public void setFilm(Film Film) {
+        this.Film = Film;
     }
 
     public String getTypePrix() {
@@ -55,21 +48,11 @@ public class Prix {
     public void setTypePrix(String TypePrix) {
         this.TypePrix = TypePrix;
     }
-    
-    public Vote getVote() {
-        return vote;
-    }
-
-    public void setVote(Vote vote) {
-        this.vote = vote;
-    }
 
     @Override
     public String toString() {
-        return "Prix{" + "ID_Prix=" + ID_Prix + ", ID_Film=" + ID_Film + ", TypePrix=" + TypePrix + "\n ID_Vote=" + vote + '}';
+        return "Prix{" + "ID_Prix=" + ID_Prix + ", Film=" + Film + ", TypePrix=" + TypePrix + '}';
     }
 
-    
-    
-    
+   
 }
