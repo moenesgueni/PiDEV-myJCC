@@ -4,13 +4,14 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="910.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AjouterContratFXMLController">
    <children>
-      <Label layoutX="28.0" layoutY="23.0" text="Ajouter un contrat" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+      <Label fx:id="Titre" layoutX="28.0" layoutY="23.0" text="Ajouter un contrat" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
          <font>
             <Font size="48.0" />
          </font>
@@ -53,16 +54,27 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="confirmerajoutcontrat" mnemonicParsing="false" text="Confirmer" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="600.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
       <Button fx:id="annulerajoutcontrat" layoutX="160.0" layoutY="680.0" mnemonicParsing="false" text="Annuler" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="600.0">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
       <Label fx:id="messageErr" text="Veuillez vérifier les champs" textFill="#ff0202" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="550.0" />
+      <ListView fx:id="listContrats" layoutX="1408.0" layoutY="155.0" onMouseClicked="#modifierContrat" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="150.0" />
+      <Label layoutX="917.0" layoutY="28.0" text="Liste des contrats">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Button fx:id="confirmemodifiercontrat" mnemonicParsing="false" text="Modifier" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="600.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="confirmerajoutcontrat" mnemonicParsing="false" text="Ajouter" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="600.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -23,8 +23,23 @@ import java.sql.Date;
 import java.time.LocalDate;
 import Models.User;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import java.util.List;
+import javafx.scene.input.MouseEvent;
 
 public class AjouterContratFXMLController implements Initializable {
+    //instance des services**************************
+    //creation de service contratSponsoring
+
+    ContratSponsorinService css = new ContratSponsorinService();
+    //creation service user
+    UserService ps = new UserService();
+
+    User pSponsor = ps.afficherUserbyID(1);
+    User pPhotographe = ps.afficherUserbyID(5);
+    List<ContratSponsoring> contrats;
+    ContratSponsoring contratAModifier;
+    //***********************************************
 
     @FXML
     private DatePicker datedebut, datefin;
@@ -33,9 +48,13 @@ public class AjouterContratFXMLController implements Initializable {
     @FXML
     private TextField salaire;
     @FXML
-    private Button choisirtermespdf, confirmerajoutcontrat, annulerajoutcontrat;
+    private Button choisirtermespdf, confirmerajoutcontrat, annulerajoutcontrat, confirmemodifiercontrat;
     @FXML
     private Label messageErr;
+    @FXML
+    private ListView<String> listContrats;
+    @FXML
+    private Label Titre;
 
     public static Date datePickerToSQLDate(DatePicker datePicker) {
         LocalDate localDate = datePicker.getValue();
@@ -49,22 +68,35 @@ public class AjouterContratFXMLController implements Initializable {
         typecontrat.setValue(null);
         salaire.setText("");
         messageErr.setVisible(false);
+        confirmemodifiercontrat.setVisible(false);
+        Titre.setText("Ajouter un Contrat");
+    }
+
+    public void LoadContrats(int idSponsor) {
+        contrats = css.afficherContratsDeSponsor(idSponsor);
+    }
+
+    public void populateListContrats(List<ContratSponsoring> contrats) {
+        // Créer une liste d'éléments de ListView qui contiennent les propriétés des instances de la classe Hotel
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for (ContratSponsoring c : contrats) {
+
+            String item = c.getDateDebut() + " - " + c.getDateFin() + " - " + c.getType().toString()
+                    + " - " + c.getEtat().toString() + " - " + c.getSalaireDt() + " - " + c.getTermesPDF();
+            items.add(item);
+        }
+        listContrats.setItems(items);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         messageErr.setVisible(false);
+        confirmemodifiercontrat.setVisible(false);
+        LoadContrats(1);
 
-        //instance des services**************************
-        //creation de service contratSponsoring
-        ContratSponsorinService css = new ContratSponsorinService();
-        //creation service user
-        UserService ps = new UserService();
-
-        User pSponsor = ps.afficherUserbyID(1);
-        User pPhotographe = ps.afficherUserbyID(5);
+        //Remplir la liste des contrats du sponsor à l'id 1
+        populateListContrats(contrats);
         //***********************************************
-
         //controled de saisie sur salaire textfield pour n'accepter que les floats
         UnaryOperator<TextFormatter.Change> floatFilter = change -> {
             String newText = change.getControlNewText();
@@ -86,10 +118,10 @@ public class AjouterContratFXMLController implements Initializable {
         confirmerajoutcontrat.setOnMouseClicked(event -> {
             if (datedebut.getValue() != null && datefin.getValue() != null && typecontrat.getValue() != null && !salaire.getText().equals("")) {
                 ContratSponsoring cs = new ContratSponsoring(datePickerToSQLDate(datedebut), datePickerToSQLDate(datefin),
-                         typecontrat.getValue(), EnumEtatContrat.Proposition, Float.parseFloat(salaire.getText()), "", pSponsor, pPhotographe);
+                        typecontrat.getValue(), EnumEtatContrat.Proposition, Float.parseFloat(salaire.getText()), "", pSponsor, pPhotographe);
                 css.ajouterContratSponsorin(cs);
                 clearFiels();
-            }else{
+            } else {
                 messageErr.setVisible(true);
             }
         });
@@ -100,6 +132,42 @@ public class AjouterContratFXMLController implements Initializable {
             clearFiels();
         });
         //**********************************************
+
+        //Modifier un contrat***************************
+        confirmemodifiercontrat.setOnMouseClicked(event -> {
+            if (datedebut.getValue() != null && datefin.getValue() != null && typecontrat.getValue() != null && !salaire.getText().equals("")) {
+                contratAModifier.setDateDebut(datePickerToSQLDate(datedebut));
+                contratAModifier.setDateFin(datePickerToSQLDate(datefin));
+                contratAModifier.setType(typecontrat.getValue());
+                contratAModifier.setSalaireDt(Float.parseFloat(salaire.getText()));
+                css.modifierContratSponsoring(contratAModifier);
+                clearFiels();
+                LoadContrats(1);
+                populateListContrats(contrats);
+            } else {
+                messageErr.setVisible(true);
+            }
+
+        });
+        //**********************************************
+    }
+
+    @FXML
+    private void modifierContrat(MouseEvent event) {
+        Titre.setText("Modifier un Contrat");
+        confirmemodifiercontrat.setVisible(true);
+        confirmemodifiercontrat.toFront();
+        //String selectedContrat = listContrats.getSelectionModel().getSelectedItem();
+        int selectedint = listContrats.getSelectionModel().getSelectedIndices().get(0);
+        contratAModifier = contrats.get(selectedint);
+        //set les fields des contrats a modifier
+        datedebut.setValue(contratAModifier.getDateDebut().toLocalDate());
+        datefin.setValue(contratAModifier.getDateFin().toLocalDate());
+        typecontrat.setValue(contratAModifier.getType());
+        salaire.setText(Float.toString(contratAModifier.getSalaireDt()));
+
+        ContratSponsoring c1 = new ContratSponsoring();
+        //System.out.println(selectedContrat);
     }
 
 }
