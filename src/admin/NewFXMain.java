@@ -3,7 +3,7 @@ package admin;
 import Controllers.ModifierFXMLController;
 import Controllers.AjouterFXMLController;
 import Controllers.SupprimerFXMLController;
-import Controllers.GestionController;
+import Controllers.GestionFXMLController;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +29,7 @@ public class NewFXMain extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/GestionFXML.fxml"));
             Parent root = loader.load();
             
-            GestionController controller = loader.getController();
+            GestionFXMLController controller = loader.getController();
             controller.setPrimaryStage(primaryStage);
 
             Scene scene = new Scene(root);

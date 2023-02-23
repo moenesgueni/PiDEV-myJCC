@@ -145,7 +145,7 @@ public class SideBarFXMLController implements Initializable {
         
         
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Gestion.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/GestionFXML.fxml"));
             Pane autreInterface = loader.load();
             gestion.setCenter(autreInterface);
         } catch (IOException e) {
