@@ -3,21 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/LocationGUI/ListeVehicule.fxml</file>
-            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/LocationGUI/ModifierVehicule.fxml</file>
-            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/LocationGUI/ListeVehiculeController.java</file>
-            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/LocationGUI/ModifierVehiculeController.java</file>
-            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/ListeHotelController.java</file>
-            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/ListeHotel.fxml</file>
-            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/ModifierHotelController.java</file>
-            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/Services/HotelService.java</file>
-            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/SideBarFXML.fxml</file>
-            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/Interfaces/UserInterface.java</file>
-            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/myjcc/MyjccFXMain.java</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/ReservationHotel/AjouterReservationHotelController.java</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/VehiculeGUI/AjouterVehiculeController.java</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/LocationGUI/AjouterLocationController.java</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/Services/LocationVehiculeService.java</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/Models/User.java</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/LocationGUI/AjouterLocation.fxml</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/VehiculeGUI/AjouterVehicule.fxml</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/Controllers/FxmlLoader.java</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/VehiculeGUI/ModifierVehicule.fxml</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/VehiculeGUI/ListeVehiculeController.java</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/LocationGUI/AjouterVehiculeController.java</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/LocationGUI/ListeLocationController.java</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/LocationGUI/ModifierLocationController.java</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/ReservationHotel/ModifierReservationController.java</file>
             <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/AjouterHotelController.java</file>
-            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/Interfaces/HotelInterface.java</file>
-            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/ModifierHotel.fxml</file>
-            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/Models/Hotel.java</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/ReservationHotel/ListeReservationController.java</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/Services/UserService.java</file>
+            <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/VehiculeGUI/ModifierVehiculeController.java</file>
             <file>file:/C:/Users/youssef/Documents/NetBeansProjects/myjcc/src/GUI/SideBarFXMLController.java</file>
         </group>
     </open-files>

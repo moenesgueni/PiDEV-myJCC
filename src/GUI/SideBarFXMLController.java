@@ -146,6 +146,14 @@ public class SideBarFXMLController implements Initializable {
         pane1.setOnMouseClicked(event -> {
             unTranslate();
         });   
+        
+                   try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/ListeHotel.fxml"));
+            Pane autreInterface = loader.load();
+            workPlace.setCenter(autreInterface);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -162,42 +170,48 @@ public class SideBarFXMLController implements Initializable {
     }
 
     @FXML
-    private void SetHotelPage(MouseEvent event) {
-                   try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/ListeHotel.fxml"));
+    private void VehiculePage(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/VehiculeGUI/ListeVehicule.fxml"));
             Pane autreInterface = loader.load();
             workPlace.setCenter(autreInterface);
         } catch (IOException e) {
             e.printStackTrace();
         }
         unTranslate();
-        
+    }
+
+
+    @FXML
+    private void ReservationHPage(ActionEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/ReservationHotel/ListeReservation.fxml"));
+            Pane autreInterface = loader.load();
+            workPlace.setCenter(autreInterface);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        unTranslate();       
+    }
+
+    @FXML
+    private void SetHotelPage(MouseEvent event) {
     }
 
     @FXML
     private void VehiculePage(MouseEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/LocationGUI/ListeVehicule.fxml"));
-            Pane autreInterface = loader.load();
-            workPlace.setCenter(autreInterface);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        unTranslate();
-                
-        
     }
 
     @FXML
-    private void VehiculePage(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/LocationGUI/ListeVehicule.fxml"));
+    private void LocationPage(ActionEvent event) {
+                 try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/LocationGUI/ListeLocation.fxml"));
             Pane autreInterface = loader.load();
             workPlace.setCenter(autreInterface);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        unTranslate();
+        unTranslate();   
     }
 
 

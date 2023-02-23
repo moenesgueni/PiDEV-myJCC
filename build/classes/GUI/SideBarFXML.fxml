@@ -212,6 +212,16 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
+                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#ReservationHPage" prefHeight="30.0" prefWidth="225.0" text="Gerer Les Reservations Hotels">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#LocationPage" prefHeight="30.0" prefWidth="225.0" text="Gerer Les LocationVehicules">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
                </children>
             </VBox>
             <Label fx:id="nomPrenom" layoutX="14.0" layoutY="96.0" prefHeight="30.0" text="Nom Prénom" textFill="WHITE" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="0.0">

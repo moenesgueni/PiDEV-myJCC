@@ -115,7 +115,7 @@ public class LocationVehiculeService implements LocationInterface {
 
     @Override
     public void updateLocationVehicule(Location l) {
-     String req = "UPDATE location_vehicule SET dateReservation = ?, date_debut = ?, date_fin = ?, tarifTotale = ? "
+     String req = "UPDATE location_vehicule SET dateReservation = ?, date_debut = ?, date_fin = ?, tarifTotal = ? "
                  +" WHERE ID_location = ?";    
  try {
            PreparedStatement ps = cnx.prepareStatement(req);

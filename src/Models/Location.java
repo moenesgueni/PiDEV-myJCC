@@ -23,6 +23,14 @@ public class Location {
     public Location() {
     }
 
+    public Location(int idLocationV, Date dateReservation, Date date_debut, Date date_fin, float tarifTotal) {
+        this.idLocationV = idLocationV;
+        this.dateReservation = dateReservation;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.tarifTotal = tarifTotal;
+    }
+
     public Location(int idLocationV, Date dateReservation, Date date_debut, Date date_fin, float tarifTotal, Vehicule vehicule, User user) {
         this.idLocationV = idLocationV;
         this.dateReservation = dateReservation;

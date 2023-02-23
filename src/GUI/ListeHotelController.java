@@ -13,9 +13,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -56,7 +59,7 @@ public class ListeHotelController implements Initializable {
     }
     // Ajouter les éléments de la liste à la ListView
     listeH.setItems(items);
-       // 2. Créez une ArrayList de maps pour stocker les attributs de chaque hôtel
+    // 2. Créez une ArrayList de maps pour stocker les attributs de chaque hôtel
     listeH.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
     // Récupérer l'index de l'élément sélectionné
     int selectedIndex = newValue.intValue();   
@@ -98,12 +101,33 @@ public static Hotel fromString(String hotelString) {
     String nom = parts[0];
     String adresse = parts[1];
     int nbChambres = Integer.parseInt(parts[2]);
-    int telephone = Integer.parseInt(parts[3]);
-    
+    int telephone = Integer.parseInt(parts[3]);   
     String description = parts[4];
     
     return new Hotel(nom, adresse, telephone, nbChambres, description);
 }
+
+    @FXML
+    private void AjouterHotel(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/AjouterHotel.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);   
+            stage.showAndWait();
+        } catch (IOException ex) {
+            Logger.getLogger(ListeHotelController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
+
+    @FXML
+    private void actualiser(ActionEvent event) {
+
+        
+    }
 
 
 
