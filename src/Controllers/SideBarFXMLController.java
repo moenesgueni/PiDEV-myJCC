@@ -22,6 +22,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import myjcc.NewFXMain;
 
 public class SideBarFXMLController implements Initializable {
@@ -46,6 +48,8 @@ public class SideBarFXMLController implements Initializable {
     private Button redaffichs;
     @FXML
     private Button afficherpla;
+    @FXML
+    private BorderPane workplacem;
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -153,40 +157,39 @@ public class SideBarFXMLController implements Initializable {
 
     @FXML
     private void RedAffichF(ActionEvent event) {
+        
          try {
-        Parent root = FXMLLoader.load(getClass().getResource("../GUI/affichagef.fxml"));
-        Scene scene = new Scene(root);
-         Stage newStage = new Stage();
-          newStage.setScene(scene);
-          newStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/affichagef.fxml"));
+        Pane autreInterface = loader.load();
+        
+          workplacem.setCenter(autreInterface);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 }
 
     @FXML
     private void RedAffichS(ActionEvent event) {
         try {
-        Parent root = FXMLLoader.load(getClass().getResource("../GUI/affichages.fxml"));
-        Scene scene = new Scene(root);
-         Stage newStage = new Stage();
-          newStage.setScene(scene);
-          newStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/affichages.fxml"));
+        Pane autreInterface = loader.load();
+        
+          workplacem.setCenter(autreInterface);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     @FXML
     private void AfficherPla(ActionEvent event) {
         try {
-        Parent root = FXMLLoader.load(getClass().getResource("../GUI/affplanning.fxml"));
-        Scene scene = new Scene(root);
-         Stage newStage = new Stage();
-          newStage.setScene(scene);
-          newStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/affplanning.fxml"));
+        Pane autreInterface = loader.load();
+        
+          workplacem.setCenter(autreInterface);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     }

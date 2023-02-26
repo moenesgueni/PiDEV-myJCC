@@ -6,11 +6,72 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="980.0" prefWidth="1900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SideBarFXMLController">
     <children>
+      <AnchorPane fx:id="pane2" prefHeight="909.0" prefWidth="255.0" style="-fx-background-color: #501B1D;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="69.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
+               <children>
+                  <Button fx:id="redaffichF" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#RedAffichF" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Films">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="redaffichs" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#RedAffichS" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Salles">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Invités">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Prix">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="afficherpla" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#AfficherPla" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Plannings">
+                      <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <Label fx:id="nomPrenom" layoutX="14.0" layoutY="96.0" prefHeight="30.0" text="Nom Prénom" textFill="WHITE" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="role" layoutX="21.0" layoutY="146.0" text="Role" textFill="WHITE" underline="true" AnchorPane.leftAnchor="15.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="settings" fitHeight="50.0" fitWidth="63.0" layoutX="177.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0">
+               <image>
+                  <Image url="http://localhost/myjcc/logos/settings2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="pane1" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
         <AnchorPane prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #FAA307;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -154,66 +215,9 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="workPlace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
-      <AnchorPane fx:id="pane2" prefHeight="909.0" prefWidth="255.0" style="-fx-background-color: #501B1D;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="69.0">
+      <AnchorPane fx:id="workPlace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
-               <children>
-                  <Button fx:id="redaffichF" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#RedAffichF" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Films">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="redaffichs" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#RedAffichS" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Salles">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Invités">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Prix">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="afficherpla" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#AfficherPla" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Plannings">
-                      <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-            <Label fx:id="nomPrenom" layoutX="14.0" layoutY="96.0" prefHeight="30.0" text="Nom Prénom" textFill="WHITE" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="0.0">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="role" layoutX="21.0" layoutY="146.0" text="Role" textFill="WHITE" underline="true" AnchorPane.leftAnchor="15.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="settings" fitHeight="50.0" fitWidth="63.0" layoutX="177.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0">
-               <image>
-                  <Image url="http://localhost/myjcc/logos/settings2.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
+            <BorderPane fx:id="workplacem" layoutX="86.0" layoutY="55.0" prefHeight="806.0" prefWidth="1602.0" />
+         </children></AnchorPane>
     </children>
 </AnchorPane>

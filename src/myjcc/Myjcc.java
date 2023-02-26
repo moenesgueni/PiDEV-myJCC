@@ -64,7 +64,7 @@ public class Myjcc {
           
           
           //delete film
-          fs.supprimerFilm("a");
+         // fs.supprimerFilm("a");
           
           //update film
           
@@ -125,6 +125,7 @@ public class Myjcc {
           
           //getplanningbydate
           //ps.GetPlanningByDate(date).forEach(System.out::println);
+          
           
         
         

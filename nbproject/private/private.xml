@@ -4,13 +4,21 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Services/FilmService.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/SuppplanningController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/AjouterfilmController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/updatesController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Models/Film.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Utils/index.html</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/AffichageController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/GUI/Map.fxml</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/SideBarFXMLController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/myjcc/NewFXMain.java</file>
             <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/UpdateFController.java</file>
             <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/GUI/SideBarFXML.fxml</file>
-            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/AjouterfilmController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Utils/MaConnection.java</file>
             <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/AjoutersalleController.java</file>
-            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/updatesController.java</file>
-            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/AffichageController.java</file>
-            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/SideBarFXMLController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/GUI/MapController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/myjcc/Myjcc.java</file>
         </group>
     </open-files>
 </project-private>

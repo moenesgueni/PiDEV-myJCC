@@ -4,11 +4,11 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AffichageController">
+<AnchorPane id="AnchorPane" prefHeight="460.0" prefWidth="858.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AffichageController">
    <children>
-      <ListView fx:id="ListF" layoutX="18.0" layoutY="14.0" prefHeight="332.0" prefWidth="566.0" />
-      <Button fx:id="redsupf" layoutX="345.0" layoutY="353.0" mnemonicParsing="false" onAction="#RedSupF" text="supprimer" AnchorPane.rightAnchor="150.0" />
-      <Button fx:id="redmodifF" layoutX="270.0" layoutY="353.0" mnemonicParsing="false" onAction="#RedModifF" text="modifier" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="270.0" />
-      <Button fx:id="redajouterf" layoutX="165.0" layoutY="353.0" mnemonicParsing="false" onAction="#RedAjouterF" text="Ajouter" AnchorPane.leftAnchor="150.0" />
+      <ListView fx:id="ListF" layoutX="18.0" layoutY="14.0" prefHeight="328.0" prefWidth="808.0" />
+      <Button fx:id="redsupf" layoutX="632.0" layoutY="408.0" mnemonicParsing="false" onAction="#RedSupF" text="supprimer" />
+      <Button fx:id="redmodifF" layoutX="394.0" layoutY="407.0" mnemonicParsing="false" onAction="#RedModifF" prefHeight="26.0" prefWidth="70.0" text="modifier" />
+      <Button fx:id="redajouterf" layoutX="147.0" layoutY="408.0" mnemonicParsing="false" onAction="#RedAjouterF" text="Ajouter" />
    </children>
 </AnchorPane>
