@@ -25,11 +25,11 @@ public class SideBarFXMLController implements Initializable {
     private Stage primaryStage;
 
     @FXML
-    private ImageView fullScreen, settings, logout, menu, menu2, userPhoto, userPhoto2, iconGererGalerie, iconAjouerContrat;
+    private ImageView fullScreen, settings, logout, menu, menu2, userPhoto, userPhoto2, iconGererGalerie, iconAjouerContrat, iconPaletteCouleurs;
 
     @FXML
     private AnchorPane pane1, pane2, pane3;
-    
+
     @FXML
     private BorderPane workPlace;
 
@@ -138,10 +138,10 @@ public class SideBarFXMLController implements Initializable {
         pane1.setOnMouseClicked(event -> {
             unTranslate();
         });
-        
+
         //Icon Routes*******************************
         //call gerer photographies in pane frrom icon
-            iconGererGalerie.setOnMouseClicked(event -> {
+        iconGererGalerie.setOnMouseClicked(event -> {
             FxmlLoader fl = new FxmlLoader();
             Pane view = fl.getPage("GererPhotographiesFXML");
             workPlace.setCenter(view);
@@ -152,13 +152,19 @@ public class SideBarFXMLController implements Initializable {
             Pane view = fl.getPage("AjouterContratFXML");
             workPlace.setCenter(view);
         });
+        //Palette de couleurs
+        iconPaletteCouleurs.setOnMouseClicked(event -> {
+            FxmlLoader fl = new FxmlLoader();
+            Pane view = fl.getPage("PhotographePalette");
+            workPlace.setCenter(view);
+        });
 
-    
     }
+
     //Routes*******************************
     //call gerer photographies in pane
     @FXML
-    private void handleMaGalerie(ActionEvent  event) {
+    private void handleMaGalerie(ActionEvent event) {
         FxmlLoader fl = new FxmlLoader();
         Pane view = fl.getPage("GererPhotographiesFXML");
         workPlace.setCenter(view);
@@ -168,9 +174,17 @@ public class SideBarFXMLController implements Initializable {
     @FXML
     private void handleAjouterContrat(ActionEvent event) {
         FxmlLoader fl = new FxmlLoader();
-            Pane view = fl.getPage("AjouterContratFXML");
-            workPlace.setCenter(view);
-            unTranslate();
+        Pane view = fl.getPage("AjouterContratFXML");
+        workPlace.setCenter(view);
+        unTranslate();
+    }
+
+    @FXML
+    private void handlePaletteCouleurs(ActionEvent event) {
+        FxmlLoader fl = new FxmlLoader();
+        Pane view = fl.getPage("PhotographePalette");
+        workPlace.setCenter(view);
+        unTranslate();
     }
 
 }
