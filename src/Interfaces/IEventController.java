@@ -17,7 +17,7 @@ public interface IEventController {
 
     public void ModifierEvent(Evenement object);
 
-    public void SupprimerEvent(Evenement object);
+   public void SupprimerEvent(Evenement object);
 
     public List<Evenement> RechercherEvent(String object);
 

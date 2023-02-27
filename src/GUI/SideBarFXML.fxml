@@ -16,93 +16,94 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="980.0" prefWidth="1900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SideBarFXMLController">
     <children>
-      <AnchorPane fx:id="pane2" prefHeight="909.0" prefWidth="255.0" style="-fx-background-color: #501B1D;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="69.0">
-         <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
-               <children>
-                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Films">
-                     <font>
+        <AnchorPane fx:id="pane2" prefHeight="909.0" prefWidth="255.0" style="-fx-background-color: #501B1D;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="69.0">
+            <children>
+                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
+                    <children>
+                        <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Films">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Button>
+                        <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Salles">
+                            <VBox.margin>
+                                <Insets top="15.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Button>
+                        <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Invités">
+                            <VBox.margin>
+                                <Insets top="15.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Button>
+                        <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Prix">
+                            <VBox.margin>
+                                <Insets top="15.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Button>
+                        <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Gérer mes événements ">
+                            <VBox.margin>
+                                <Insets top="15.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Button>
+                        <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Gérer mes articles ">
+                            <VBox.margin>
+                                <Insets top="15.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+                <Label fx:id="nomPrenom" layoutX="14.0" layoutY="96.0" prefHeight="30.0" text="Nom Prénom" textFill="WHITE" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="0.0">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="role" layoutX="21.0" layoutY="146.0" text="Role" textFill="WHITE" underline="true" AnchorPane.leftAnchor="15.0">
+                    <font>
                         <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Salles">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Invités">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Consulter Les Prix">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Gérer mes événements ">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Gérer mes articles ">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-            <Label fx:id="nomPrenom" layoutX="14.0" layoutY="96.0" prefHeight="30.0" text="Nom Prénom" textFill="WHITE" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="0.0">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="role" layoutX="21.0" layoutY="146.0" text="Role" textFill="WHITE" underline="true" AnchorPane.leftAnchor="15.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="settings" fitHeight="50.0" fitWidth="63.0" layoutX="177.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0">
-               <image>
-                  <Image url="http://localhost/myjcc/logos/settings2.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="pane1" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+                    </font>
+                </Label>
+                <ImageView fx:id="settings" fitHeight="50.0" fitWidth="63.0" layoutX="177.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0">
+                    <image>
+                        <Image url="http://localhost/myjcc/logos/settings2.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="pane1" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
         <AnchorPane prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #FAA307;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <ImageView fx:id="fullScreen" fitHeight="36.0" fitWidth="63.0" layoutX="1844.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="http://localhost/myjcc/logos/fullscreen.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="70.0" fitWidth="100.0" layoutX="25.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <image>
-                  <Image url="http://localhost/myjcc/logos/myjcc.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="logout" fitHeight="43.0" fitWidth="71.0" layoutX="1726.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="http://localhost/myjcc/logos/logout.png" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
+            <children>
+                <ImageView fx:id="fullScreen" fitHeight="36.0" fitWidth="63.0" layoutX="1844.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="http://localhost/myjcc/logos/fullscreen.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="70.0" fitWidth="100.0" layoutX="25.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <image>
+                        <Image url="http://localhost/myjcc/logos/myjcc.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="logout" fitHeight="43.0" fitWidth="71.0" layoutX="1726.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="http://localhost/myjcc/logos/logout.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
         <AnchorPane layoutX="-1.0" layoutY="69.0" prefHeight="912.0" prefWidth="130.0" style="-fx-background-color: #501B1D;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="69.0">
             <children>
                 <ImageView fx:id="userPhoto" fitHeight="150.0" fitWidth="100.0" layoutX="15.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="80.0">
@@ -111,183 +112,184 @@
                     </image>
                 </ImageView>
                 <VBox layoutX="16.0" layoutY="71.0" prefHeight="658.0" prefWidth="130.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="250.0">
-               <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="40.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="http://localhost/myjcc/logos/film.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="40.0" top="15.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="http://localhost/myjcc/logos/cinema_canape.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="40.0" top="15.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="http://localhost/myjcc/logos/invite_list.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="40.0" top="15.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="http://localhost/myjcc/logos/prix_medails.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="40.0" top="15.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="http://localhost/myjcc/logos/photo_pelicule.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="40.0" top="15.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="http://localhost/myjcc/logos/contrat.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </VBox>
-            <ImageView fx:id="menu" fitHeight="37.0" fitWidth="90.0" layoutX="49.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0">
-               <image>
-                  <Image url="http://localhost/myjcc/logos/3slash.png" />
-               </image>
-            </ImageView>
+                    <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <VBox.margin>
+                                <Insets left="40.0" />
+                            </VBox.margin>
+                            <image>
+                                <Image url="http://localhost/myjcc/logos/film.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <VBox.margin>
+                                <Insets left="40.0" top="15.0" />
+                            </VBox.margin>
+                            <image>
+                                <Image url="http://localhost/myjcc/logos/cinema_canape.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <VBox.margin>
+                                <Insets left="40.0" top="15.0" />
+                            </VBox.margin>
+                            <image>
+                                <Image url="http://localhost/myjcc/logos/invite_list.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <VBox.margin>
+                                <Insets left="40.0" top="15.0" />
+                            </VBox.margin>
+                            <image>
+                                <Image url="http://localhost/myjcc/logos/prix_medails.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <VBox.margin>
+                                <Insets left="40.0" top="15.0" />
+                            </VBox.margin>
+                            <image>
+                                <Image url="http://localhost/myjcc/logos/photo_pelicule.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <VBox.margin>
+                                <Insets left="40.0" top="15.0" />
+                            </VBox.margin>
+                            <image>
+                                <Image url="http://localhost/myjcc/logos/contrat.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </VBox>
+                <ImageView fx:id="menu" fitHeight="37.0" fitWidth="90.0" layoutX="49.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0">
+                    <image>
+                        <Image url="http://localhost/myjcc/logos/3slash.png" />
+                    </image>
+                </ImageView>
             </children>
         </AnchorPane>
-      <AnchorPane fx:id="pane3" prefHeight="912.0" prefWidth="130.0" style="-fx-background-color: #501B1D;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="69.0">
-         <children>
-            <ImageView fx:id="userPhoto2" fitHeight="150.0" fitWidth="100.0" layoutX="15.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="80.0">
-               <image>
-                  <Image url="http://localhost/myjcc/profile/0.jpg" />
-               </image>
-            </ImageView>
-            <VBox layoutX="16.0" layoutY="71.0" prefHeight="658.0" prefWidth="130.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="250.0">
-               <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="40.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="http://localhost/myjcc/logos/film.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="40.0" top="15.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="http://localhost/myjcc/logos/cinema_canape.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="40.0" top="15.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="http://localhost/myjcc/logos/invite_list.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="40.0" top="15.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="http://localhost/myjcc/logos/prix_medails.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="40.0" top="15.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="http://localhost/myjcc/logos/photo_pelicule.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="40.0" top="15.0" />
-                     </VBox.margin>
-                     <image>
-                        <Image url="http://localhost/myjcc/logos/contrat.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </VBox>
-            <ImageView fx:id="menu2" fitHeight="37.0" fitWidth="90.0" layoutX="49.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0">
-               <image>
-                  <Image url="http://localhost/myjcc/logos/3slash.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="workPlace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
-         <children>
-            <VBox layoutX="36.0" layoutY="110.0" prefHeight="838.0" prefWidth="174.0" spacing="15.0">
-               <children>
-                  <Label text="Nom">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </Label>
-                  <Label text="Date">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </Label>
-                  <Label text="Lieu">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </Label>
-                  <Label text="Type">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </Label>
-                  <Label text="Description">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox layoutX="242.0" layoutY="106.0" prefHeight="387.0" prefWidth="258.0" spacing="28.0">
-               <children>
-                  <TextField fx:id="tfnom_event" />
-                  <DatePicker fx:id="tfdate_et_heure" prefHeight="26.0" prefWidth="259.0" />
-                  <TextField fx:id="tflieu" />
-                  <TextField fx:id="tftype_event" />
-                  <TextField fx:id="tfdescription" />
-               </children>
-            </VBox>
-            <Button fx:id="insert_button" layoutX="148.0" layoutY="552.0" mnemonicParsing="false" onAction="#insert_button" prefHeight="65.0" prefWidth="129.0" text="insérer" />
-            <Button fx:id="update_button" layoutX="339.0" layoutY="553.0" mnemonicParsing="false" onAction="#update_button" prefHeight="65.0" prefWidth="129.0" text="modifier" />
-            <Button fx:id="delete_button" layoutX="520.0" layoutY="550.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="129.0" text="supprimer" />
-            <TableView fx:id="tvEvent" layoutX="753.0" layoutY="41.0" prefHeight="353.0" prefWidth="649.0">
-               <columns>
-                  <TableColumn fx:id="colonne_nom" prefWidth="127.4666748046875" text="nom_event" />
-                  <TableColumn fx:id="colonne_date" prefWidth="114.13330078125" text="date_et_heure" />
-                  <TableColumn fx:id="colonne_lieu" prefWidth="73.3333740234375" text="lieu" />
-                  <TableColumn fx:id="colonne_type" prefWidth="119.9998779296875" text="type_event" />
-                  <TableColumn fx:id="colonne_description" prefWidth="140.2666015625" text="description" />
-               </columns>
-            </TableView>
-            <ListView fx:id="listview" layoutX="751.0" layoutY="453.0" prefHeight="330.0" prefWidth="651.0" />
-         </children></AnchorPane>
+        <AnchorPane fx:id="pane3" prefHeight="912.0" prefWidth="130.0" style="-fx-background-color: #501B1D;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="69.0">
+            <children>
+                <ImageView fx:id="userPhoto2" fitHeight="150.0" fitWidth="100.0" layoutX="15.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="80.0">
+                    <image>
+                        <Image url="http://localhost/myjcc/profile/0.jpg" />
+                    </image>
+                </ImageView>
+                <VBox layoutX="16.0" layoutY="71.0" prefHeight="658.0" prefWidth="130.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="250.0">
+                    <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <VBox.margin>
+                                <Insets left="40.0" />
+                            </VBox.margin>
+                            <image>
+                                <Image url="http://localhost/myjcc/logos/film.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <VBox.margin>
+                                <Insets left="40.0" top="15.0" />
+                            </VBox.margin>
+                            <image>
+                                <Image url="http://localhost/myjcc/logos/cinema_canape.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <VBox.margin>
+                                <Insets left="40.0" top="15.0" />
+                            </VBox.margin>
+                            <image>
+                                <Image url="http://localhost/myjcc/logos/invite_list.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <VBox.margin>
+                                <Insets left="40.0" top="15.0" />
+                            </VBox.margin>
+                            <image>
+                                <Image url="http://localhost/myjcc/logos/prix_medails.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <VBox.margin>
+                                <Insets left="40.0" top="15.0" />
+                            </VBox.margin>
+                            <image>
+                                <Image url="http://localhost/myjcc/logos/photo_pelicule.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                            <VBox.margin>
+                                <Insets left="40.0" top="15.0" />
+                            </VBox.margin>
+                            <image>
+                                <Image url="http://localhost/myjcc/logos/contrat.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </VBox>
+                <ImageView fx:id="menu2" fitHeight="37.0" fitWidth="90.0" layoutX="49.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0">
+                    <image>
+                        <Image url="http://localhost/myjcc/logos/3slash.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="workPlace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+            <children>
+                <VBox layoutX="36.0" layoutY="110.0" prefHeight="838.0" prefWidth="174.0" spacing="15.0">
+                    <children>
+                        <Label text="Nom">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                        </Label>
+                        <Label text="Date">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                        </Label>
+                        <Label text="Lieu">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                        </Label>
+                        <Label text="Type">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                        </Label>
+                        <Label text="Description">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox layoutX="242.0" layoutY="106.0" prefHeight="387.0" prefWidth="258.0" spacing="28.0">
+                    <children>
+                        <TextField fx:id="tfnom_event" />
+                        <DatePicker fx:id="tfdate_et_heure" prefHeight="26.0" prefWidth="259.0" />
+                        <TextField fx:id="tflieu" />
+                        <TextField fx:id="tftype_event" />
+                        <TextField fx:id="tfdescription" />
+                    </children>
+                </VBox>
+                <Button fx:id="insert_button" layoutX="148.0" layoutY="552.0" mnemonicParsing="false" onAction="#insert_button" prefHeight="65.0" prefWidth="129.0" text="insérer" />
+                <Button fx:id="update_button" layoutX="339.0" layoutY="553.0" mnemonicParsing="false" onAction="#update_button" prefHeight="65.0" prefWidth="129.0" text="modifier" />
+                <Button fx:id="delete_button" layoutX="520.0" layoutY="550.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="129.0" text="supprimer" />
+                <TableView fx:id="tvEvent" layoutX="753.0" layoutY="41.0" prefHeight="353.0" prefWidth="649.0">
+                    <columns>
+                        <TableColumn fx:id="colonne_nom" prefWidth="127.4666748046875" text="nom_event" />
+                        <TableColumn fx:id="colonne_date" prefWidth="114.13330078125" text="date_et_heure" />
+                        <TableColumn fx:id="colonne_lieu" prefWidth="73.3333740234375" text="lieu" />
+                        <TableColumn fx:id="colonne_type" prefWidth="119.9998779296875" text="type_event" />
+                        <TableColumn fx:id="colonne_description" prefWidth="140.2666015625" text="description" />
+                    </columns>
+                </TableView>
+                <ListView fx:id="listview" layoutX="751.0" layoutY="453.0" prefHeight="330.0" prefWidth="651.0" />
+            </children>
+        </AnchorPane>
     </children>
 </AnchorPane>

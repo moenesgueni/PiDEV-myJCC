@@ -25,7 +25,7 @@ import java.util.List;
 public class MyJCC {
 
     public static void main(String[] args) {
-           /* Date date = new Date(2022, 23, 2);
+       Date date = new Date(2022, 23, 2);
 
           //Creation service galerie
         BlogService bs = new BlogService();
@@ -49,12 +49,13 @@ public class MyJCC {
         bs.AfficherBlogs().forEach(System.out::println);
         //GetById : Afficher une Galerie
         System.out.println("Affichage de le deuxieme blog---------");
+    }}
         //System.out.println(bs.getBlogById(2));
         //Update
         //bs.ModifierBlog(b2);
         //Delete
         //bs.SupprimerBlog(7);
-        */
+        /*
              EventService eventController = new EventService();
      Date date = new Date(2022, 23, 2);
            Evenement e1 = new Evenement("jcc1", date, "ariana", "test", "helloimanevent");
@@ -72,5 +73,5 @@ public class MyJCC {
        List<Evenement> list =  eventController.AfficherEvents();
        
         System.out.println(list);
-    }
-}
+    }*/
+

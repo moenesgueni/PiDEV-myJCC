@@ -21,13 +21,14 @@ import javafx.stage.Stage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
+import sample.Controller;
 
 public class NewFXMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
         // Charge le fichier FXML
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/SideBarFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../sample/sample.fxml"));
         AnchorPane root = loader.load();
 
         // Crée une nouvelle scène avec le layout chargé depuis le FXML
@@ -36,8 +37,8 @@ public class NewFXMain extends Application {
         // Définit la scène sur la fenêtre principale
         primaryStage.setScene(scene);
 
-        // Obtient une référence sur le contrôleur FXML et définit la fenêtre principale sur le contrôleur
-        SideBarFXMLController controller = loader.getController();
+        // Obtient une référecnce sur le contrôleur FXML et définit la fenêtre principale sur le contrôleur
+        Controller controller = loader.getController();
         controller.setPrimaryStage(primaryStage);
 
         // Affiche la fenêtre principale

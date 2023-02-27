@@ -3,11 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/myjcc/MyJCC.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/myjcc/NewFXMain.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/sample/SongController.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/Utils/Connexion.java</file>
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/Models/Evenement.java</file>
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/Services/EventService.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/Controllers/AffichageEventController.java</file>
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/Controllers/SideBarFXMLController.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/sample/Controller.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/myjcc/MyJCC.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/myjcc/NewFXMain.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/Services/BlogService.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/Interfaces/IEventController.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/GUI/SideBarFXML.fxml</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/Services/UserService.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/GUI/affichageEvent.fxml</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/GUI/myListener.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/MyJCC/src/sample/test.java</file>
         </group>
     </open-files>
 </project-private>
