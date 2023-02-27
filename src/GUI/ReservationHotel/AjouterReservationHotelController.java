@@ -11,17 +11,36 @@ import Models.User;
 import Services.HotelService;
 import Services.ReservationHotelService;
 import Services.UserService;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import static com.google.zxing.client.result.ParsedResultType.SMS;
+import com.google.zxing.common.ByteMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javax.imageio.ImageIO;
+import util.QRCodeUtil;
+import util.SMSUtil;
+
 
 /**
  * FXML Controller class
@@ -53,7 +72,7 @@ public class AjouterReservationHotelController implements Initializable {
     }    
 
     @FXML
-    private void ajouterReservation(ActionEvent event) {
+    private void ajouterReservation(ActionEvent event) throws IOException, WriterException {
          if (nomH.getText().isEmpty() || iduser.getText().isEmpty() || 
             date_debut.getValue() == null || date_fin.getValue() == null ||
             tarifT_H.getText().isEmpty()) {
@@ -90,9 +109,54 @@ public class AjouterReservationHotelController implements Initializable {
     nomH.setText("");
     date_debut.setValue(null);
     date_fin.setValue(null);
+    /*--------------------------------------------------------------------------------------------*/
+        String reservationInfo = "Nom de l'hôtel : " + nomH.getText() + "\n" +
+                          "ID de l'utilisateur : " + iduser.getText() + "\n" +
+ //                        "Date de début : " + date_debut.getValue().toString() + "\n" +
+                       //  "Date de fin : " + date_fin.getValue().toString() + "\n" +
+                          "Tarif total : " + tarifT_H.getText() + "\n"; // Construire la chaîne de texte pour le code QR
+ /*generer le qr code */
+         QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        String myWeb = reservationInfo;
+        int width = 300;
+        int height = 300;
+        String fileType = "png";
+        
+        BufferedImage bufferedImage = null;
+        try {
+            ByteMatrix byteMatrix = qrCodeWriter.encode(reservationInfo, BarcodeFormat.QR_CODE, width, height);
+            bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            bufferedImage.createGraphics();
+            
+            Graphics2D graphics = (Graphics2D) bufferedImage.getGraphics();
+            graphics.setColor(Color.WHITE);
+            graphics.fillRect(0, 0, width, height);
+            graphics.setColor(Color.BLACK);
+            
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++) {
+                    if (byteMatrix.get(i, j)==0) {
+                        graphics.fillRect(i, j, 1, 1);
+                    } else {
+                    }
+                }
+            }
+                 
+       System.out.println("Success...");        
+        } catch (WriterException ex) {
+            Logger.getLogger(AjouterReservationHotelController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ImageView qrView = new ImageView();
+        qrView.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
 
- 
-    }
+/**********************************************************/
+        String phoneNumber ="+21626360693"; // Remplacer par le numéro de téléphone du client
+  //  SMSUtil.sendSMS(reservationInfo, phoneNumber);
+   // SMSUtil.sendQRCodeMMS(phoneNumber, reservationInfo, 250, 250);
+
+    
+  }
 
     @FXML
     private void AnnulerR(ActionEvent event) {

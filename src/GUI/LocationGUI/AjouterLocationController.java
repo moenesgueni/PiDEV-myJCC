@@ -54,7 +54,7 @@ public class AjouterLocationController implements Initializable {
 
     @FXML
     private void ajouterLocation(ActionEvent event) {
-   /*     if (tarifT_H.getText().isEmpty() || iduser.getText().isEmpty() || matricule.getText().isEmpty() || date_debut.getValue() == null || date_fin.getValue() == null) {
+     if (tarifT_H.getText().isEmpty() || iduser.getText().isEmpty() || matricule.getText().isEmpty() || date_debut.getValue() == null || date_fin.getValue() == null) {
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Erreur");
     alert.setHeaderText(null);
@@ -62,7 +62,7 @@ public class AjouterLocationController implements Initializable {
     alert.showAndWait();
     return;
 }
-*/
+
      Vehicule v=new Vehicule();
      v=vs.GetVehiculeBymatricule(matricule.getText());
      User u =new User();

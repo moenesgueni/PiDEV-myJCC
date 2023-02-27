@@ -17,6 +17,15 @@ public class User {
     private String Email;
     private String MotDePasse;
     private Type Role;
+    private String Telephone;
+
+    public String getTelephone() {
+        return Telephone;
+    }
+
+    public void setTelephone(String Telephone) {
+        this.Telephone = Telephone;
+    }
     private String PhotoB64;
 
     public User() {

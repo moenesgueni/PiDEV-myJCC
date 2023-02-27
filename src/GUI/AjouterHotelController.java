@@ -53,7 +53,7 @@ public class AjouterHotelController implements Initializable {
     
     @FXML
     private void ajouterHotel(ActionEvent event) {
-           /* String nom = nomh.getText();
+     String nom = nomh.getText();
     String adresse = adrh.getText();
     String nbr_chambres_str = nbr_chmbre.getText();
     String tel_str = telh.getText();
@@ -64,7 +64,7 @@ public class AjouterHotelController implements Initializable {
         alert.setContentText("Veuillez remplir tous les champs");
         alert.show();
         return;
-    }*/
+    }
         Hotel h =new Hotel();
         HotelService hs = new HotelService();
         h.setLibelle(nomh.getText());

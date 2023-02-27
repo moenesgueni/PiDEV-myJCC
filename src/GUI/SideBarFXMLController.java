@@ -147,12 +147,12 @@ public class SideBarFXMLController implements Initializable {
             unTranslate();
         });   
         
-                   try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/ListeHotel.fxml"));
-            Pane autreInterface = loader.load();
-            workPlace.setCenter(autreInterface);
+         try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/ListeHotel.fxml"));
+        Pane autreInterface = loader.load();
+        workPlace.setCenter(autreInterface);
         } catch (IOException e) {
-            e.printStackTrace();
+          e.printStackTrace();
         }
     }
 

@@ -41,6 +41,13 @@ public class AjouterVehiculeController implements Initializable {
 
     @FXML
     private void ajouterVehicule(ActionEvent event) {
+       if (matriculeV.getText().isEmpty() || typeV.getText().isEmpty() ||
+            marqueV.getText().isEmpty() || couleurV.getText().isEmpty()) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setContentText("Please fill in all the fields.");
+        alert.show();
+        return;
+    }
         Vehicule v = new Vehicule();
         VehiculeService vs = new VehiculeService();
         v.setMaricule(matriculeV.getText());
