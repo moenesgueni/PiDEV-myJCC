@@ -9,6 +9,7 @@ import Interfaces.FilmInterface;
 import Models.Film;
 import Models.PlanningFilmSalle;
 import Models.Salle;
+import Utils.NotificationUtil;
 import Services.FilmService;
 import Services.PlanningService;
 import Services.SalleService;
@@ -29,6 +30,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+
 
 /**
  * FXML Controller class
@@ -73,6 +75,8 @@ public class AjoutplaController implements Initializable {
         itemsS.add(item);
      
     sallecomb.setItems(itemsS);
+    
+    
     };}
 
     @FXML
@@ -82,6 +86,7 @@ public class AjoutplaController implements Initializable {
        FilmService fs = new FilmService();
        SalleService sss = new SalleService();
        PlanningService ps = new PlanningService();
+       
        Film f = new Film();
        Salle s = new Salle();
        PlanningFilmSalle p = new PlanningFilmSalle();
@@ -95,6 +100,7 @@ public class AjoutplaController implements Initializable {
        p.setSalle(s);
        p.setHeurediffusion(heuredif.getText());
        ps.ajouterPlanning(p);
+       NotificationUtil.showNotification("New Planning Created", "A new planning has been created.");
        
        Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
         confirmation.setContentText("Planning ajouté avec succes");

@@ -42,6 +42,8 @@ public class AffichagesController implements Initializable {
     private Button redsupprimers;
     @FXML
     private Button redajouts;
+    @FXML
+    private Button MapB;
 
     /**
      * Initializes the controller class.
@@ -94,6 +96,19 @@ public class AffichagesController implements Initializable {
     private void RedAjouterS(ActionEvent event) {
         try{
         Parent root = FXMLLoader.load(getClass().getResource("../GUI/ajoutersalle.fxml"));
+        Scene scene = new Scene(root);
+         Stage newStage = new Stage();
+          newStage.setScene(scene);
+          newStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void ShowMap(ActionEvent event) {
+        try{
+        Parent root = FXMLLoader.load(getClass().getResource("../GUI/Map.fxml"));
         Scene scene = new Scene(root);
          Stage newStage = new Stage();
           newStage.setScene(scene);

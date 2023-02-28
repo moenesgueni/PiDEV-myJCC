@@ -74,7 +74,7 @@ public class AffichageController implements Initializable {
         
     try {
     
-    Parent root = FXMLLoader.load(getClass().getResource("../GUI/Map.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("../GUI/updatef.fxml"));
         Scene scene = new Scene(root);
          Stage newStage = new Stage();
           newStage.setScene(scene);
