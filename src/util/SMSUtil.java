@@ -24,13 +24,13 @@ import java.util.Map;
 
 public class SMSUtil {
     public static final String ACCOUNT_SID = "AC18f0474fed3312dea0aabb4161679485";
-    public static final String AUTH_TOKEN = "17d10e164b2e81269cd64d79c21c9541";
-/*
+    public static final String AUTH_TOKEN = "ca7fbdaf1fde42d991dfc52688921ebf";
+
     public static void sendSMS(String toPhoneNumber, String messageBody) {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
         Message message = Message.creator(
-                new PhoneNumber("+21626360693"),
+                new PhoneNumber("+216 26 360 693"),
                 new PhoneNumber("+12763303738"),
                 messageBody)
             .create();
@@ -41,11 +41,12 @@ public class SMSUtil {
     public static void sendMMS(String toPhoneNumber, BufferedImage image) throws IOException {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
-        Path tempFilePath = Files.createTempFile("temp", ".png");
+        Path tempFilePath = Paths.get(System.getProperty("user.home"), "Desktop", "temp.png");
+
         ImageIO.write(image, "png", tempFilePath.toFile());
 
         Message message = Message.creator(
-                new PhoneNumber("+21626360693"),
+                new PhoneNumber("+216 26 360 693"),
                 new PhoneNumber("+12763303738"),
                 "")
             .setMediaUrl(Paths.get(tempFilePath.toAbsolutePath().toString()).toUri())
@@ -81,8 +82,8 @@ public class SMSUtil {
         System.out.println(image);
         return image;
     }
-*/
-    public static void envoyerQRCodeParMMS(String toPhoneNumber, BufferedImage qrCodeImage) {
+
+ /*   public static void envoyerQRCodeParMMS(String toPhoneNumber, BufferedImage qrCodeImage) {
     Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
     ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -100,6 +101,6 @@ public class SMSUtil {
         .setMediaUrl(MediaCreator.uploader(new ByteArrayInputStream(qrCodeImageData)))
         .create();
 
-    System.out.println(message.getSid());
+    System.out.println(message.getSid());*/
     }
-    }
+    

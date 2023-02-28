@@ -103,12 +103,7 @@ public class AjouterReservationHotelController implements Initializable {
     Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
     confirmation.setContentText("Reservation est effectuee avec succes");
     confirmation.show();
-    /*******Vider les texteFiled********/
-    tarifT_H.setText("");
-    iduser.setText("");
-    nomH.setText("");
-    date_debut.setValue(null);
-    date_fin.setValue(null);
+
     /*--------------------------------------------------------------------------------------------*/
         String reservationInfo = "Nom de l'hôtel : " + nomH.getText() + "\n" +
                           "ID de l'utilisateur : " + iduser.getText() + "\n" +
@@ -152,9 +147,14 @@ public class AjouterReservationHotelController implements Initializable {
 
 /**********************************************************/
         String phoneNumber ="+21626360693"; // Remplacer par le numéro de téléphone du client
-  //  SMSUtil.sendSMS(reservationInfo, phoneNumber);
-   // SMSUtil.sendQRCodeMMS(phoneNumber, reservationInfo, 250, 250);
-
+    SMSUtil.sendSMS(reservationInfo, phoneNumber);
+    SMSUtil.sendQRCodeMMS(phoneNumber, reservationInfo, 250, 250);
+    /*******Vider les texteFiled********/
+    tarifT_H.setText("");
+    iduser.setText("");
+    nomH.setText("");
+    date_debut.setValue(null);
+    date_fin.setValue(null);
     
   }
 

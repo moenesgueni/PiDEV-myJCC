@@ -42,7 +42,7 @@ import javafx.stage.Stage;
 public class ListeReservationController implements Initializable {
 
     @FXML
-    private ListView<String> listR;
+    private ListView<ReservationHotel> listR;
 Preferences prefs = Preferences.userNodeForPackage(ListeReservationController.class);
     /**
      * Initializes the controller class.
@@ -50,14 +50,16 @@ Preferences prefs = Preferences.userNodeForPackage(ListeReservationController.cl
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     // TODO
+    
     ReservationHotelService rs = new ReservationHotelService();
-     List<ReservationHotel> reservations = rs.getAllReservationHotel();
-    // Créer une liste d'éléments de ListView qui contiennent les propriétés des instances de la classe Hotel
-    ObservableList<String> items = FXCollections.observableArrayList();
-    for (ReservationHotel reservation : reservations) {
-        String item =reservation.getDateReservation()+ " - " + reservation.getDate_debut()+ " - " + reservation.getDate_fin()+ " - " + reservation.getTarifTotal()+ " - " + reservation.getHotel().getLibelle()+ " - " + reservation.getUser().getID_User();
-        items.add(item);
-    }
+    
+    listR.setCellFactory(param -> new ReservationListCell());
+    ReservationHotelService reservationService = new ReservationHotelService();
+    List<ReservationHotel> reservations = reservationService.getAllReservationHotel();
+    ObservableList<ReservationHotel> items = FXCollections.observableArrayList(reservations);
+    listR.setItems(items);
+
+
     // Ajouter les éléments de la liste à la ListView
     listR.setItems(items);
     // 2. Créez une ArrayList de maps pour stocker les attributs de chaque hôtel
@@ -69,22 +71,22 @@ Preferences prefs = Preferences.userNodeForPackage(ListeReservationController.cl
     // Récupérer l'ID de la reservation
     int ReservationId = selectedReservation.getIdReservationH();
      prefs.putInt("selectedReservationId", ReservationId);
-     System.out.println(ReservationId); 
+     System.out.println(ReservationId);
     
-});    
+});     
     
  }   
 
     @FXML
     private void modifierReservation(MouseEvent event) {
-    String selectedreservation = listR.getSelectionModel().getSelectedItem();
+    ReservationHotel selectedreservation = listR.getSelectionModel().getSelectedItem();
     ReservationHotel r1 = new ReservationHotel();
     ReservationHotelService rs = new ReservationHotelService();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierReservation.fxml"));
             Parent root = loader.load();
             ModifierReservationController modifierReservationController = loader.getController();
-            r1=ListeReservationController.fromString(selectedreservation);
+            r1=selectedreservation;
             modifierReservationController.ModifyData(r1);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -94,7 +96,7 @@ Preferences prefs = Preferences.userNodeForPackage(ListeReservationController.cl
             e.printStackTrace();
         }}      
   
-    public static ReservationHotel fromString(String reservationString) {
+   public static ReservationHotel fromString(String reservationString) {
     String[] parts = reservationString.split(" - ");
     // Le format de la chaîne de caractères
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

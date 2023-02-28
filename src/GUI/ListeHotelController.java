@@ -40,7 +40,7 @@ import javafx.stage.Stage;
 public class ListeHotelController implements Initializable {
 
     @FXML
-    private ListView<String> listeH;
+    private ListView<Hotel> listeH;
     Preferences prefs = Preferences.userNodeForPackage(ListeHotelController.class);
     /**
      * Initializes the controller class.
@@ -49,14 +49,12 @@ public class ListeHotelController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
          HotelService hs = new HotelService();
-        List<Hotel> hotels = hs.getAllHotels();
-    // Créer une liste d'éléments de ListView qui contiennent les propriétés des instances de la classe Hotel
-    ObservableList<String> items = FXCollections.observableArrayList();
-    for (Hotel hotel : hotels) {
-        
-        String item =hotel.getLibelle() + " - " + hotel.getAdresse() + " - " + hotel.getNbre_chambres() + " - " + hotel.getTelephone() + " - " + hotel.getDescription();
-        items.add(item);
-    }
+    
+    listeH.setCellFactory(param -> new HotelListCell());
+    HotelService hotelService = new HotelService();
+    List<Hotel> hotels = hotelService.getAllHotels();
+    ObservableList<Hotel> items = FXCollections.observableArrayList(hotels);
+    listeH.setItems(items);
     // Ajouter les éléments de la liste à la ListView
     listeH.setItems(items);
     // 2. Créez une ArrayList de maps pour stocker les attributs de chaque hôtel
@@ -77,14 +75,14 @@ public class ListeHotelController implements Initializable {
 
    @FXML
     private void modifierHotel(MouseEvent event) {
-    String selectedHotel = listeH.getSelectionModel().getSelectedItem();
+    Hotel selectedHotel = listeH.getSelectionModel().getSelectedItem();
     Hotel h1 = new Hotel();
     HotelService hs = new HotelService();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/ModifierHotel.fxml"));
             Parent root = loader.load();
             ModifierHotelController modifierHotelController = loader.getController();
-            h1=ListeHotelController.fromString(selectedHotel);
+            h1=selectedHotel;
             modifierHotelController.ModifyData(h1);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
