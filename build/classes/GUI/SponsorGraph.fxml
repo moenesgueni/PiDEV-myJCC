@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="910.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SponsorGraphController">
+   <children>
+      <Label text="Statistiques sur mes Contrats :" underline="true" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <PieChart fx:id="typePieChart" prefHeight="400.0" prefWidth="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0" />
+      <PieChart fx:id="EtatPieChart" prefHeight="400.0" prefWidth="500.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" />
+   </children>
+</AnchorPane>

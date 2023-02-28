@@ -25,14 +25,12 @@ public class SideBarFXMLController implements Initializable {
     private Stage primaryStage;
 
     @FXML
-    private ImageView fullScreen, settings, logout, menu, menu2, userPhoto, userPhoto2, iconGererGalerie, iconAjouerContrat, iconPaletteCouleurs;
-
+    private ImageView fullScreen, settings, logout, menu, menu2, userPhoto, userPhoto2,
+            iconGererGalerie, iconAjouerContrat, iconPaletteCouleurs, iconListGaleries, iconGraph;
     @FXML
     private AnchorPane pane1, pane2, pane3;
-
     @FXML
     private BorderPane workPlace;
-
     @FXML
     private Label nomPrenom, role;
 
@@ -158,6 +156,18 @@ public class SideBarFXMLController implements Initializable {
             Pane view = fl.getPage("PhotographePalette");
             workPlace.setCenter(view);
         });
+        //Liste des Galeries
+        iconListGaleries.setOnMouseClicked(event -> {
+            FxmlLoader fl = new FxmlLoader();
+            Pane view = fl.getPage("SponsorListGaleries");
+            workPlace.setCenter(view);
+        });
+        //Statistiques
+        iconGraph.setOnMouseClicked(event -> {
+            FxmlLoader fl = new FxmlLoader();
+            Pane view = fl.getPage("SponsorGraph");
+            workPlace.setCenter(view);
+        });
 
     }
 
@@ -187,4 +197,25 @@ public class SideBarFXMLController implements Initializable {
         unTranslate();
     }
 
+    @FXML
+    private void handleListGaleries(ActionEvent event) {
+        FxmlLoader fl = new FxmlLoader();
+        Pane view = fl.getPage("SponsorListGaleries");
+        workPlace.setCenter(view);
+        unTranslate();
+    }
+
+    public void goToGalerie() {
+        FxmlLoader fl = new FxmlLoader();
+        Pane view = fl.getPage("AjouterContratFXML");
+        workPlace.setCenter(view);
+    }
+
+    @FXML
+    private void handleGraph(ActionEvent event) {
+        FxmlLoader fl = new FxmlLoader();
+        Pane view = fl.getPage("SponsorGraph");
+        workPlace.setCenter(view);
+        unTranslate();
+    }
 }

@@ -162,6 +162,22 @@
                         <Insets left="40.0" top="15.0" />
                      </VBox.margin>
                   </ImageView>
+                  <ImageView fx:id="iconListGaleries" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="http://localhost/myjcc/logos/photo.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="40.0" top="15.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="iconGraph" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="http://localhost/myjcc/logos/graph.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="40.0" top="15.0" />
+                     </VBox.margin>
+                  </ImageView>
                </children>
             </VBox>
             <ImageView fx:id="menu2" fitHeight="37.0" fitWidth="90.0" layoutX="49.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="45.0">
@@ -222,6 +238,22 @@
                      </font>
                   </Button>
                   <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#handlePaletteCouleurs" prefHeight="50.0" prefWidth="255.0" text="Palette De Couleurs">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#handleListGaleries" prefHeight="50.0" prefWidth="255.0" text="Liste des Galeries">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#handleGraph" prefHeight="50.0" prefWidth="255.0" text="Statistiques des Contrats">
                      <font>
                         <Font size="18.0" />
                      </font>
