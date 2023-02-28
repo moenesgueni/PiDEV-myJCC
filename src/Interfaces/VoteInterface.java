@@ -16,10 +16,10 @@ public interface VoteInterface {
     //2: Read
     public List<Vote> afficherVotes();
     
-    public Vote afficherVote(int VoteID);
+    public Vote afficherVote(int userID,int filmID);
     
     //3: Filter par type/Film/
-    public List<Vote> afficherVoteUser(String RoleUser);
+    public List<Vote> afficherVoteUser(String emailUser);
     public List<Vote> afficherVoteFilm(String TitreFilm);
     
     //4: modifier donnee
@@ -27,7 +27,7 @@ public interface VoteInterface {
     //public void modifierVoteType(int voteId , int voteUser );
     
     //5: Suppression par film
-    public void suppressionVoteFilm(int ID_Vote);
+    public void suppressionVoteTitreFilm(String Title);
     
     
 }

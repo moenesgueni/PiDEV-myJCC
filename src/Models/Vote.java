@@ -8,34 +8,29 @@ import java.sql.Date;
  */
 public class Vote {
 
-    private int ID_Vote;
     private Film film;
     private User user;
-
+    private int valeur;
+    private String commentaire;
     private Date Date_Vote;
 
     public Vote() {
     }
 
-    public Vote(Film film, User user, Date Date_Vote) {
+    public Vote(int valeur , Film film, User user, String commentaire, Date Date_Vote) {
         this.film = film;
         this.user = user;
+        this.valeur = valeur;
+        this.commentaire = commentaire;
         this.Date_Vote = Date_Vote;
     }
 
-    public Vote(int ID_Vote, Film film, User user, Date Date_Vote) {
-        this.ID_Vote = ID_Vote;
-        this.film = film;
-        this.user = user;
-        this.Date_Vote = Date_Vote;
+    public String getCommentaire() {
+        return commentaire;
     }
 
-    public int getID_Vote() {
-        return ID_Vote;
-    }
-
-    public void setID_Vote(int ID_Vote) {
-        this.ID_Vote = ID_Vote;
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
     }
 
     public Film getFilm() {
@@ -54,6 +49,14 @@ public class Vote {
         this.user = user;
     }
 
+    public int getValeur() {
+        return valeur;
+    }
+
+    public void setValeur(int valeur) {
+        this.valeur = valeur;
+    }
+
     public Date getDate_Vote() {
         return Date_Vote;
     }
@@ -64,7 +67,7 @@ public class Vote {
 
     @Override
     public String toString() {
-        return "Vote{" + "ID_Vote=" + ID_Vote + ", \n || film=" + film + "||, \n || user=" + user + ", || \n Date_Vote=" + Date_Vote + '}';
+        return "Vote{" + "film=" + film + ", user=" + user + ", valeur=" + valeur + ", commentaire=" + commentaire + ", Date_Vote=" + Date_Vote + '}';
     }
 
 }

@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -82,12 +83,11 @@ public class ModifPrixController implements Initializable {
     private void goVote(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../GUI/AjoutVote.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("MyFit - Mon Dashboard");
-            stage.setScene(new Scene(root));
-            stage.show();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            //scene.getStylesheets().add(css);
+            stage.setScene(scene);
+            stage.show();;
         } catch (Exception e) {
             System.out.println(e);
 
@@ -98,11 +98,10 @@ public class ModifPrixController implements Initializable {
     private void goPrix(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../GUI/AjoutPrix.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("MyFit - Mon Dashboard");
-            stage.setScene(new Scene(root));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            //scene.getStylesheets().add(css);
+            stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             System.out.println(e);
@@ -112,8 +111,8 @@ public class ModifPrixController implements Initializable {
 
     @FXML
     private void modifPrix(ActionEvent event) {
-        Film f = new Film(4, "The Shawshank Redemption 2", "1994", "action", "the best of all time", "2:03", (float) 50.00, "Frank Darabont", "Morgan Freeman");
-        Prix p = new Prix(7, f, modifff.getText());
+        Film f = new Film(11, "The Shawshank Redemption 2", "1994", "action", "the best of all time", "2:03", (float) 50.00, "Frank Darabont", "Morgan Freeman");
+        Prix p = new Prix(20, f, modifff.getText());
 
         PrixService ps = new PrixService();
         ps.modifierPrix(p);
@@ -125,12 +124,11 @@ public class ModifPrixController implements Initializable {
     @FXML
     private void retourMain(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../GUI/SideBarFXML.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("MyFit - Mon Dashboard");
-            stage.setScene(new Scene(root));
+            Parent root = FXMLLoader.load(getClass().getResource("../GUI/AjoutPrix.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            //scene.getStylesheets().add(css);
+            stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             System.out.println(e);

@@ -222,5 +222,23 @@ public class FilmService implements FilmInterface {
         return Films;
 
     }
+    
+    public boolean existFilm (String titre){
+        boolean t= false;
+        Film f = new Film();
+        String request = "SELECT Titre FROM `film` WHERE `Titre` ='" + titre + "';";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            while (rs.next()) {
+                t=true;
+               
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return t;
+    }
 
 }

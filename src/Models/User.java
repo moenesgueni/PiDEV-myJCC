@@ -49,7 +49,11 @@ public class User {
         this.PhotoB64 = PhotoB64;
     }
 
+    public User(int ID_User) {
+        this.ID_User = ID_User;
+    }
 
+    
     
 
     public int getID_User() {
@@ -116,15 +120,17 @@ public class User {
         this.PhotoB64 = PhotoB64;
     }
 
-    @Override
-    public String toString() {
-        return "User{" + "Nom=" + Nom + ", Prenom=" + Prenom + ", Role=" + Role + '}';
-    }
-
     /*@Override
     public String toString() {
-        return "User{Nom=" + Nom + ", Prenom=" + Prenom + ", Sexe=" + Sexe + ", Email=" + Email + ", MotDePasse=" + MotDePasse + ", Role=" + Role + ", PhotoB64=" + PhotoB64 + '}';
+        return "User{" + "Nom=" + Nom + ", Prenom=" + Prenom + ", Role=" + Role + '}';
     }*/
+
+    @Override
+    public String toString() {
+        return "User{" + "ID_User=" + ID_User + ", Nom=" + Nom + ", Prenom=" + Prenom + ", Sexe=" + Sexe + ", Email=" + Email + ", MotDePasse=" + MotDePasse + ", Role=" + Role + ", PhotoB64=" + PhotoB64 + '}';
+    }
+
+    
 
     
 }

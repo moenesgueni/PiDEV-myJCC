@@ -139,6 +139,29 @@ public class UserService implements UserInterface {
         }
         return p;
     }
+    
+    // li zedt'ha ena bch tmachili khedmti
+    public User afficherUserbyEmail(String Email) {
+        User p = new User();
+        String request = "SELECT * FROM user WHERE `Email` ="+Email+";";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            while(rs.next()){
+                p.setID_User(rs.getInt(1));
+                p.setNom(rs.getString(2));
+                p.setPrenom(rs.getString(3));
+                p.setSexe(rs.getString(4));
+                p.setEmail(rs.getString(5));
+                p.setMotDePasse(rs.getString(6));
+                p.setRole(Type.valueOf(rs.getString(7)));
+                p.setPhotoB64(rs.getString(8));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
+    }
 
     @Override
     public List<User> FiltrerParRole(Type role) {

@@ -236,7 +236,7 @@
          <children>
             <ListView fx:id="listV" layoutX="271.0" layoutY="54.0" prefHeight="382.0" prefWidth="909.0" />
          </children></AnchorPane>
-      <Button fx:id="delete" layoutX="848.0" layoutY="566.0" mnemonicParsing="false" onAction="#deleteButton" text="Supprimer" />
+      <Button id="sale" fx:id="delete" layoutX="848.0" layoutY="566.0" mnemonicParsing="false" onAction="#deleteButton" stylesheets="@Styles.css" text="Supprimer" />
       <TextField fx:id="nomFilmDel" layoutX="663.0" layoutY="566.0" />
       <Label layoutX="488.0" layoutY="570.0" text="Film a supprimé" />
     </children>

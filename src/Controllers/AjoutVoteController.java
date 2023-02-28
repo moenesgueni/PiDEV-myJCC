@@ -23,6 +23,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -78,6 +79,17 @@ public class AjoutVoteController implements Initializable {
     private Button retour;
     @FXML
     private Button LesVotes;
+    
+    static String filmname;
+    @FXML
+    private MenuItem aaaaa;
+    @FXML
+    private Label emmFilm;
+    
+    private static String nameFilm;
+    //String css = this.getClass().getResource("Controllers/Styles.css").toExternalForm();
+    @FXML
+    private Button voteFiveStars;
 
     /**
      * Initializes the controller class.
@@ -89,31 +101,41 @@ public class AjoutVoteController implements Initializable {
     
     private void initializeFilmsTitles() {
         List<String> films = getFilmsNames();
+        
+        
+        
         films.forEach(film -> {
             MenuItem item = new MenuItem(film);
             item.setOnAction(event -> handleSelectedFilm(item.getText()));
             menuButtonFilm.getItems().add(item);
+            // System.out.println(item.getText());
+             
         }
         );
 
     }
     
-    private void handleSelectedFilm(String filmName) {
-        System.out.println("selected film:" + filmName);
+    private String handleSelectedFilm(String filmName ) {
+        
+            
+        
         saveVote(filmName);
 
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("../GUI/ListeVote.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("MyFit - Mon Dashboard");
-            stage.setScene(new Scene(root));
-            stage.show();
+        Stage stage;
+System.out.println(nameFilm);
+        return nameFilm = filmName;
+        
+        
+        /*try {
+            Parent root = FXMLLoader.load(getClass().getResource("../GUI/FiveStars.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         } catch (Exception e) {
             System.out.println(e);
 
-        }
+        }*/
     }
     private List<String> getFilmsNames() {
         return new FilmService()
@@ -122,8 +144,10 @@ public class AjoutVoteController implements Initializable {
                 .collect(Collectors.toList());
     }
     private Film getFilmByTitre(String filmName) {
+        
         return new FilmService()
                 .GetFilmByTitre(filmName);
+        
     }
     
     private void saveVote(String filmName) {
@@ -133,10 +157,13 @@ public class AjoutVoteController implements Initializable {
         System.out.println(film.toString());
         Film film1 = new Film(4,"The Shawshank Redemption ", "1994","action","the best of all time", "2:03", (float) 50.00, "Frank Darabont", "Morgan Freeman");
         System.out.println(film1.toString());
+        emmFilm.setText(film.toString());
+        nameFilm = filmName;
+        //System.out.println(nameFilm);
         
-        Vote vote = new Vote(film,user,getCurrentDate());
+        Vote vote = new Vote(5,film,user,"hi world",getCurrentDate());
         //TODO insert vote into DB
-        new VoteService().ajouterVote(vote);
+        //new VoteService().ajouterVote(vote);
     }
 
     private Date getCurrentDate() {
@@ -147,11 +174,9 @@ public class AjoutVoteController implements Initializable {
     private void goVote(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../GUI/AjoutVote.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("MyFit - Mon Dashboard");
-            stage.setScene(new Scene(root));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             System.out.println(e);
@@ -163,11 +188,9 @@ public class AjoutVoteController implements Initializable {
     private void goPrix(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../GUI/AjoutPrix.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("MyFit - Mon Dashboard");
-            stage.setScene(new Scene(root));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             System.out.println(e);
@@ -183,11 +206,9 @@ public class AjoutVoteController implements Initializable {
     private void mainbar(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../GUI/SideBarFXML.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("MyFit - Mon Dashboard");
-            stage.setScene(new Scene(root));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             System.out.println(e);
@@ -198,17 +219,33 @@ public class AjoutVoteController implements Initializable {
     @FXML
     private void afficherVotttttttt(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../GUI/ListeVote.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("MyFit - Mon Dashboard");
-            stage.setScene(new Scene(root));
+            Parent root = FXMLLoader.load(getClass().getResource("../GUI/ListVote.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            //scene.getStylesheets().add(css);
+            stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             System.out.println(e);
 
         }
     }
+
+    @FXML
+    private void voteFiveStars(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../GUI/VoteFiveStars.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            //scene.getStylesheets().add(css);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            System.out.println(e);
+
+        }
+    }
+
+    
     
 }

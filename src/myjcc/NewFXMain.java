@@ -5,7 +5,7 @@ package myjcc;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+//import Controllers.FiveStarsController;
 import Controllers.SideBarFXMLController;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -16,71 +16,72 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.StackPane;
+
 
 /**
  *
  * @author wael
  */
 public class NewFXMain extends Application {
-    
-     //variables pour le menu déroulant
+
+    //String css = this.getClass().getResource("myjcc/Styles.css").toExternalForm();
+    Button button;
+    //variables pour le menu déroulant
     double x, y = 0;
-    
+
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage stage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../GUI/AjoutPrix.fxml"));
-             Scene scene = new Scene(root);
-              primaryStage.setTitle("afficher vote");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            
-            primaryStage.setOnCloseRequest(event -> closeWindow(primaryStage));
-        } catch (IOException ex) {
-            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        /*try {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/ListeVote.fxml"));
-            Parent root = loader.load();
-            
-            SideBarFXMLController controller = loader.getController();
-            controller.setPrimaryStage(primaryStage);
-
+            Parent root = FXMLLoader.load(getClass().getResource("../GUI_Vote/AjouterVote.fxml"));
             Scene scene = new Scene(root);
-            //for sidebar
-            root.setOnMousePressed(event -> {
-                x = event.getSceneX();
-                y = event.getSceneY();
-            });
-            root.setOnMouseDragged(event -> {
-                primaryStage.setX(event.getScreenX() - x);
-                primaryStage.setY(event.getScreenY() - y);
-            });
-            //-----------
+            scene.getStylesheets().add("myjcc/Styles.css");
+            stage.setScene(scene);
+            stage.show();
 
-            //for full screen
-            primaryStage.setMaximized(true);
-            primaryStage.setFullScreen(true);
-            scene.setOnKeyPressed(event -> {
-                if (event.getCode() == KeyCode.F11) {
-                    if (primaryStage.isFullScreen()) {
-                        primaryStage.setFullScreen(false);
-                    } else {
-                        primaryStage.setFullScreen(true);
-                    }
-                }
-            });
-            //--------------
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-            primaryStage.setTitle("MyJCC");
-            primaryStage.setScene(scene);
-            primaryStage.show();
+        /*try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/ListeVote.fxml"));
+        Parent root = loader.load();
+        SideBarFXMLController controller = loader.getController();
+        controller.setPrimaryStage(primaryStage);
+        Scene scene = new Scene(root);
+        //for sidebar
+        root.setOnMousePressed(event -> {
+        x = event.getSceneX();
+        y = event.getSceneY();
+        });
+        root.setOnMouseDragged(event -> {
+        primaryStage.setX(event.getScreenX() - x);
+        primaryStage.setY(event.getScreenY() - y);
+        });
+        //-----------
+        //for full screen
+        primaryStage.setMaximized(true);
+        primaryStage.setFullScreen(true);
+        scene.setOnKeyPressed(event -> {
+        if (event.getCode() == KeyCode.F11) {
+        if (primaryStage.isFullScreen()) {
+        primaryStage.setFullScreen(false);
+        } else {
+        primaryStage.setFullScreen(true);
+        }
+        }
+        });
+        //--------------
+        primaryStage.setTitle("MyJCC");
+        primaryStage.setScene(scene);
+        primaryStage.show();
         } catch (IOException ex) {
-            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }*/
     }
 
@@ -94,11 +95,12 @@ public class NewFXMain extends Application {
             stage.close();
         }
     }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

@@ -5,13 +5,18 @@
  */
 package Controllers;
 
+import Models.Prix;
 import Services.PrixService;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -63,7 +68,7 @@ public class SuppPrixController implements Initializable {
     @FXML
     private AnchorPane workPlace;
     @FXML
-    private ListView<?> listP;
+    private ListView<String> listP;
     @FXML
     private Button suppID;
     @FXML
@@ -76,18 +81,26 @@ public class SuppPrixController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        PrixService ps = new PrixService();
+        List<Prix> prixx = ps.getAllPrix();
+        // Créer une liste d'éléments de ListView qui contiennent les propriétés des instances de la classe Hotel
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for (Prix prix : prixx) {
+
+            String item = prix.getFilm() + " - \n Prix : " + prix.getTypePrix();
+            items.add(item);
+        }
+        listP.setItems(items);
     }    
 
     @FXML
     private void goVote(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../GUI/AjoutVote.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("MyFit - Mon Dashboard");
-            stage.setScene(new Scene(root));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            //scene.getStylesheets().add(css);
+            stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             System.out.println(e);
@@ -99,11 +112,10 @@ public class SuppPrixController implements Initializable {
     private void goPrix(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../GUI/AjoutPrix.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("MyFit - Mon Dashboard");
-            stage.setScene(new Scene(root));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            //scene.getStylesheets().add(css);
+            stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             System.out.println(e);
@@ -126,17 +138,17 @@ public class SuppPrixController implements Initializable {
     @FXML
     private void retourPrix(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../GUI/SideBarFXML.fxml"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("MyFit - Mon Dashboard");
-            stage.setScene(new Scene(root));
+            Parent root = FXMLLoader.load(getClass().getResource("../GUI/AffichagePrix.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            //scene.getStylesheets().add(css);
+            stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
             System.out.println(e);
 
         }
     }
+    
     
 }

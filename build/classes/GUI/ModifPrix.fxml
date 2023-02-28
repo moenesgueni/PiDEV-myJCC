@@ -235,8 +235,8 @@
          <children>
             <TextField fx:id="modifff" layoutX="439.0" layoutY="274.0" />
             <Label layoutX="308.0" layoutY="278.0" text="changer prix" />
-            <Button fx:id="modif" layoutX="674.0" layoutY="274.0" mnemonicParsing="false" onAction="#modifPrix" text="modif" />
-            <Button fx:id="retour" layoutX="672.0" layoutY="366.0" mnemonicParsing="false" onAction="#retourMain" text="Retour" />
+            <Button id="sale" fx:id="modif" layoutX="674.0" layoutY="274.0" mnemonicParsing="false" onAction="#modifPrix" stylesheets="@Styles.css" text="modifier" />
+            <Button id="sale" fx:id="retour" layoutX="672.0" layoutY="366.0" mnemonicParsing="false" onAction="#retourMain" stylesheets="@Styles.css" text="Retour" />
          </children></AnchorPane>
     </children>
 </AnchorPane>

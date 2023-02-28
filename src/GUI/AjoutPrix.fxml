@@ -237,8 +237,8 @@
             <TextField fx:id="titreFilm" layoutX="685.0" layoutY="262.0" />
             <Label layoutX="526.0" layoutY="266.0" text="Titre Film" />
             <Label layoutX="526.0" layoutY="351.0" text="Prix" />
-            <Button fx:id="ajoutprix" layoutX="706.0" layoutY="430.0" mnemonicParsing="false" onAction="#ajoutPrix" text="Ajouter Prix" />
-            <Button fx:id="ListPrix" layoutX="911.0" layoutY="566.0" mnemonicParsing="false" onAction="#ListPrix" text="Liste Prix" />
+            <Button id="sale" fx:id="ajoutprix" layoutX="706.0" layoutY="430.0" mnemonicParsing="false" onAction="#ajoutPrix" stylesheets="@Styles.css" text="Ajouter Prix" />
+            <Button id="sale" fx:id="ListPrix" layoutX="911.0" layoutY="566.0" mnemonicParsing="false" onAction="#ListPrix" stylesheets="@Styles.css" text="Liste Prix" />
          </children>
       </AnchorPane>
     </children>

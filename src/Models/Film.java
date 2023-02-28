@@ -38,6 +38,14 @@ public class Film {
     public Film() {
     }
 
+    public Film(int ID_film) {
+        this.ID_film = ID_film;
+    }
+    
+    
+    
+    
+
     public Film(String Titre, String DateRealisation, String Genre, String Resume, String Duree, float Prix, String ID_producteur, String Acteur) {
         this.Titre = Titre;
         this.DateRealisation = DateRealisation;

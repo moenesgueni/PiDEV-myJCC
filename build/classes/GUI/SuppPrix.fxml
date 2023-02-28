@@ -235,10 +235,10 @@
       <AnchorPane fx:id="workPlace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
             <ListView fx:id="listP" layoutX="443.0" layoutY="101.0" prefHeight="311.0" prefWidth="584.0" />
-            <Button fx:id="suppID" layoutX="785.0" layoutY="504.0" mnemonicParsing="false" onAction="#suppPrix" text="Supprimer" />
+            <Button id="sale" fx:id="suppID" layoutX="785.0" layoutY="504.0" mnemonicParsing="false" onAction="#suppPrix" stylesheets="@Styles.css" text="Supprimer" />
             <TextField fx:id="textFieldPrix" layoutX="607.0" layoutY="504.0" />
             <Label layoutX="474.0" layoutY="500.0" prefHeight="25.0" prefWidth="46.0" text="suppPrix" />
-            <Button fx:id="retour" layoutX="966.0" layoutY="508.0" mnemonicParsing="false" onAction="#retourPrix" text="Retour" />
+            <Button id="sale" fx:id="retour" layoutX="966.0" layoutY="508.0" mnemonicParsing="false" onAction="#retourPrix" stylesheets="@Styles.css" text="Retour" />
          </children></AnchorPane>
     </children>
 </AnchorPane>

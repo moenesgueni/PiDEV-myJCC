@@ -234,10 +234,9 @@
       <AnchorPane fx:id="workPlace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
             <ListView fx:id="listV" layoutX="258.0" layoutY="112.0" prefHeight="382.0" prefWidth="909.0" />
-            <Button fx:id="reload" layoutX="1062.0" layoutY="69.0" mnemonicParsing="false" onAction="#reloadAff" text="Reload" />
-            <Button fx:id="retour" layoutX="1063.0" layoutY="558.0" mnemonicParsing="false" onAction="#RetourMainBar" text="Retour" />
-            <Button fx:id="delete" layoutX="779.0" layoutY="558.0" mnemonicParsing="false" onAction="#deleteButton" text="Supprimer" />
-            <Button fx:id="close" layoutX="1061.0" layoutY="32.0" mnemonicParsing="false" onAction="#closeWindow" text="Fermer" />
+            <Button id="sale" fx:id="reload" layoutX="1062.0" layoutY="69.0" mnemonicParsing="false" onAction="#reloadAff" stylesheets="@Styles.css" text="Reload" />
+            <Button id="sale" fx:id="retour" layoutX="1063.0" layoutY="558.0" mnemonicParsing="false" onAction="#RetourMainBar" stylesheets="@Styles.css" text="Retour" />
+            <Button id="sale" fx:id="delete" layoutX="779.0" layoutY="558.0" mnemonicParsing="false" onAction="#deleteButton" stylesheets="@Styles.css" text="Supprimer" />
             <Label layoutX="592.0" layoutY="562.0" text="Voulez ous supprimer vote !" />
          </children></AnchorPane>
     </children>
