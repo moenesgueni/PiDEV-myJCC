@@ -56,19 +56,16 @@ public class FiveStarsController implements Initializable {
     public void SubmitBttn(ActionEvent event) throws IOException {
         String avis = AvisField.getText();
         
-        Parent root = FXMLLoader.load(getClass().getResource("AjouterVote.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../GUI/AjoutVote.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         VoteService vs = new VoteService();
         
-        User user1 = new User(1);
-        User user2 = new User(2);
+        
         User user3 = new User(3);
-        Film film1 = new Film(3);
-        Film film2 = new Film(4);
-        Film film3 = new Film(6);
+        Film film3 = new Film(13);
         
         
         double b = FiveStars.getRating();

@@ -38,7 +38,7 @@ public class NewFXMain extends Application {
     public void start(Stage stage) {
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("../GUI_Vote/AjouterVote.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../GUI/AjoutVote.fxml"));
             Scene scene = new Scene(root);
             scene.getStylesheets().add("myjcc/Styles.css");
             stage.setScene(scene);
