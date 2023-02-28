@@ -2,13 +2,12 @@ package Controllers;
 
 import Models.User;
 import Services.UserService;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,19 +25,16 @@ public class SideBarFXMLController implements Initializable {
     private Stage primaryStage;
 
     @FXML
-    private ImageView fullScreen, settings, logout, menu, userPhoto, userPhoto2,menu2;
+    private ImageView fullScreen, settings, logout, menu, menu2, userPhoto, userPhoto2, iconGererGalerie, iconAjouerContrat, iconPaletteCouleurs;
 
     @FXML
     private AnchorPane pane1, pane2, pane3;
 
     @FXML
+    private BorderPane workPlace;
+
+    @FXML
     private Label nomPrenom, role;
- //   @FXML
-   // private AnchorPane workPlace;
-    @FXML
-    private BorderPane gestion;
-    @FXML
-    private AnchorPane workPlace;
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -48,7 +44,7 @@ public class SideBarFXMLController implements Initializable {
         pane1.setVisible(true);
         FadeTransition fadeTransition1 = new FadeTransition(Duration.seconds(0.5), pane1);
         fadeTransition1.setFromValue(0);
-        fadeTransition1.setToValue(0.15);
+        fadeTransition1.setToValue(0.3);
         fadeTransition1.play();
 
         TranslateTransition translateTransition1 = new TranslateTransition(Duration.seconds(0.5), pane2);
@@ -103,7 +99,7 @@ public class SideBarFXMLController implements Initializable {
         //set user data
         //creation service user
         UserService ps = new UserService();
-        User u = ps.afficherUserbyID(1);
+        User u = ps.afficherUserbyID(690);
         if (!u.getPhotoB64().equals("")) {
             changeImage(u.getPhotoB64());
         }
@@ -131,7 +127,7 @@ public class SideBarFXMLController implements Initializable {
                 unTranslate();
             }
         });
-                menu2.setOnMouseClicked(event -> {
+        menu2.setOnMouseClicked(event -> {
             if (!isAlreadyTranslated) {
                 translate();
             } else {
@@ -142,15 +138,55 @@ public class SideBarFXMLController implements Initializable {
         pane1.setOnMouseClicked(event -> {
             unTranslate();
         });
-        
-        
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/GestionFXML.fxml"));
-            Pane autreInterface = loader.load();
-            gestion.setCenter(autreInterface);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        //Icon Routes*******************************
+        //call gerer photographies in pane frrom icon
+        iconGererGalerie.setOnMouseClicked(event -> {
+            FxmlLoader fl = new FxmlLoader();
+            Pane view = fl.getPage("GererPhotographiesFXML");
+            workPlace.setCenter(view);
+        });
+        //ajouter un contrat
+        iconAjouerContrat.setOnMouseClicked(event -> {
+            FxmlLoader fl = new FxmlLoader();
+            Pane view = fl.getPage("AjouterContratFXML");
+            workPlace.setCenter(view);
+        });
+        //Palette de couleurs
+        iconPaletteCouleurs.setOnMouseClicked(event -> {
+            FxmlLoader fl = new FxmlLoader();
+            Pane view = fl.getPage("PhotographePalette");
+            workPlace.setCenter(view);
+        });
+
     }
 
+    //Routes*******************************
+    //call gerer photographies in pane
+    @FXML
+    private void handleMaGalerie(ActionEvent event) {
+        FxmlLoader fl = new FxmlLoader();
+        Pane view = fl.getPage("GererPhotographiesFXML");
+        workPlace.setCenter(view);
+        unTranslate();
+    }
+
+    @FXML
+    private void handleAjouterContrat(ActionEvent event) {
+        FxmlLoader fl = new FxmlLoader();
+        Pane view = fl.getPage("AjouterContratFXML");
+        workPlace.setCenter(view);
+        unTranslate();
+    }
+
+    @FXML
+    private void handlePaletteCouleurs(ActionEvent event) {
+        FxmlLoader fl = new FxmlLoader();
+        Pane view = fl.getPage("PhotographePalette");
+        workPlace.setCenter(view);
+        unTranslate();
+    }
+
+
 }
+

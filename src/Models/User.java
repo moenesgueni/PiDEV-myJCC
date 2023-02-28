@@ -8,6 +8,7 @@ package Models;
 //import Utilities.Type;
 
 import Utilities.Type;
+import java.util.Objects;
 
 //import javax.management.relation.Role;
 
@@ -119,6 +120,28 @@ public class User {
     @Override
     public String toString() {
         return "User{Nom=" + Nom + ", Prenom=" + Prenom + ", Sexe=" + Sexe + ", Email=" + Email + ", MotDePasse=" + MotDePasse + ", Role=" + Role + ", PhotoB64=" + PhotoB64 + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.MotDePasse);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        return true;
     }
 
     

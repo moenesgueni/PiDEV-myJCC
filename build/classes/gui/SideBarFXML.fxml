@@ -138,7 +138,7 @@
                         <Image url="http://localhost/myjcc/logos/prix_medails.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iconGererGalerie" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <VBox.margin>
                         <Insets left="40.0" top="15.0" />
                      </VBox.margin>
@@ -146,13 +146,21 @@
                         <Image url="http://localhost/myjcc/logos/photo_pelicule.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iconAjouerContrat" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <VBox.margin>
                         <Insets left="40.0" top="15.0" />
                      </VBox.margin>
                      <image>
                         <Image url="http://localhost/myjcc/logos/contrat.png" />
                      </image>
+                  </ImageView>
+                  <ImageView fx:id="iconPaletteCouleurs" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="http://localhost/myjcc/logos/palette.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="40.0" top="15.0" />
+                     </VBox.margin>
                   </ImageView>
                </children>
             </VBox>
@@ -163,6 +171,7 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <BorderPane fx:id="workPlace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
       <AnchorPane fx:id="pane2" prefHeight="909.0" prefWidth="255.0" style="-fx-background-color: #501B1D;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="69.0">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="250.0">
@@ -196,7 +205,7 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Gérer Ma Galerie">
+                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#handleMaGalerie" prefHeight="50.0" prefWidth="255.0" text="Gérer Ma Galerie">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
@@ -204,13 +213,21 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" text="Voir Mes Contrats">
+                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#handleAjouterContrat" prefHeight="50.0" prefWidth="255.0" text="Ajouter Un Contrat">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>
                      <font>
                         <Font size="18.0" />
                      </font>
+                  </Button>
+                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#handlePaletteCouleurs" prefHeight="50.0" prefWidth="255.0" text="Palette De Couleurs">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
                   </Button>
                </children>
             </VBox>
@@ -231,9 +248,5 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="workPlace" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
-         <children>
-            <BorderPane fx:id="gestion" layoutX="24.0" layoutY="74.0" prefHeight="472.0" prefWidth="1542.0" />
-         </children></AnchorPane>
     </children>
 </AnchorPane>

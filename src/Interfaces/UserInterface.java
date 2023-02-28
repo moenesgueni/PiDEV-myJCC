@@ -29,6 +29,7 @@ public interface UserInterface {
     //4:Delete
     public List<User> afficherUser();
     public User afficherUserbyID(int id);
+    public User SearchByMail(String MAIL);
     
     public List<User> FiltrerParRole(Type role);
   

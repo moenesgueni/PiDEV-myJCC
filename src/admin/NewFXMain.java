@@ -1,9 +1,14 @@
 package admin;
 
+import Controllers.AjoutSpectateurFXMLController;
 import Controllers.ModifierFXMLController;
 import Controllers.AjouterFXMLController;
+import Controllers.ForgotPassword1FXMLController;
 import Controllers.SupprimerFXMLController;
 import Controllers.GestionFXMLController;
+import Controllers.LoginFXMLController;
+import Controllers.LogsFXMLController;
+import Controllers.SideBarFXMLController;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,14 +31,34 @@ public class NewFXMain extends Application {
 
         try {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/GestionFXML.fxml"));
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/ForgotPassword1FXML.fxml"));
             Parent root = loader.load();
             
-            GestionFXMLController controller = loader.getController();
+            ForgotPassword1FXMLController controller = loader.getController();
             controller.setPrimaryStage(primaryStage);
 
             Scene scene = new Scene(root);
-            //for sidebar
+            
+  
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//for sidebar
           /*  root.setOnMousePressed(event -> {
                 x = event.getSceneX();
                 y = event.getSceneY();
