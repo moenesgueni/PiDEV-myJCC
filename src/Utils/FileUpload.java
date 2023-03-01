@@ -14,8 +14,8 @@ import java.nio.file.Paths;
 public class FileUpload {
 
     //filePath = chemain du fichier su la machine cliente
-    //destinationFolder = dossier de destination dans htdocs/myjcc => exemple : contrats ou profile
-    public static void uploadFile(String filePath, String destinationFolder) throws Exception {
+    //destinationFolderAndNewName = dossier et nom de destination dans htdocs=> exemple : contrats\\mercedess.pdf ou profile\\351.png
+    public static void uploadFile(String filePath, String destinationFolderAndNewName) throws Exception {
         Socket soc;
         File file = null;
         soc = new Socket("localhost", 4000);
@@ -29,8 +29,7 @@ public class FileUpload {
 
             // Send file name and extension first
             DataOutputStream dos = new DataOutputStream(soc.getOutputStream());
-            dos.writeUTF(file.getName());
-            dos.writeUTF(destinationFolder);
+            dos.writeUTF(destinationFolderAndNewName);
 
             // Send file data
             byte[] bytes = Files.readAllBytes(Paths.get(filePath));
@@ -80,15 +79,14 @@ public class ServerMyJCC {
                 InputStream in = soc.getInputStream();
                 DataInputStream dis = new DataInputStream(in);
 
-                String fileName = dis.readUTF();
-                String destinationFolder = dis.readUTF();
+                String destinationFolderAndNewName = dis.readUTF();
                 int len = dis.readInt();
                 byte[] data = new byte[len];
                 dis.readFully(data);
 
                 System.out.println("Image received from client. ");
 
-                FileOutputStream fos = new FileOutputStream("C:\\xampp\\htdocs\\myjcc\\" + destinationFolder + "\\" + fileName);
+                FileOutputStream fos = new FileOutputStream("C:\\xampp\\htdocs\\myjcc\\" + destinationFolderAndNewName);
                 fos.write(data);
 
                 fos.close();

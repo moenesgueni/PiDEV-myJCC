@@ -22,13 +22,13 @@ public class Myjcc {
 
     public static void main(String[] args) {
         /*FileUpload
-                    try {
-            FileUpload.uploadFile("C:/Users/Marwen/Desktop/mercedess.pdf", "contrats");
+                  try {
+            FileUpload.uploadFile("C:/Users/Marwen/Desktop/mercedess.pdf", "contrats\\newMercedess.pdf");
         } catch (Exception ex) {
             Logger.getLogger(Myjcc.class.getName()).log(Level.SEVERE, null, ex);
         }
          */
- /*Get color palette
+        /*Get color palette
             try {
             //ColorPaletteCreator c = new ColorPaletteCreator("[44,43,44]");
             ColorPaletteCreator c = new ColorPaletteCreator("[43,42,45]","[116,84,78]","[184,169,163]","[226,236,232]");
