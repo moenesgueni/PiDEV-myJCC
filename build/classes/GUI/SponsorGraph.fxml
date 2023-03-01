@@ -12,7 +12,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <PieChart fx:id="typePieChart" prefHeight="400.0" prefWidth="500.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0" />
-      <PieChart fx:id="EtatPieChart" prefHeight="400.0" prefWidth="500.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" />
+      <PieChart fx:id="typePieChart" prefHeight="800.0" prefWidth="800.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="100.0" />
+      <PieChart fx:id="EtatPieChart" prefHeight="800.0" prefWidth="800.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="100.0" />
    </children>
 </AnchorPane>

@@ -12,7 +12,7 @@ import Services.UserService;
 import Utils.EnumEtatContrat;
 import Utils.EnumTypeContrat;
 import Utils.Type;
-import Utils.UploadFile;
+import Utils.FileUpload;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.logging.Level;
@@ -21,23 +21,22 @@ import java.util.logging.Logger;
 public class Myjcc {
 
     public static void main(String[] args) {
-
-        /*Get color palette 
-        try {
-            //ColorPaletteCreator c = new ColorPaletteCreator("[44,43,44]");
-            ColorPaletteCreator c = new ColorPaletteCreator("[43,42,45]","[116,84,78]","[184,169,163]","[226,236,232]");
-            int[][] colors = c.getColors();
-            System.out.println(colors[1][2]);
+        /*FileUpload
+                    try {
+            FileUpload.uploadFile("C:/Users/Marwen/Desktop/mercedess.pdf", "contrats");
         } catch (Exception ex) {
             Logger.getLogger(Myjcc.class.getName()).log(Level.SEVERE, null, ex);
         }
          */
- /*Upload Image ou pdf
-        try {
-            UploadFile img = new UploadFile("http://localhost/myjcc/contrats", "C:/Users/Marwen/Desktop/test.txt");
-        } catch (Exception ex) {
+ /*Get color palette
+            try {
+            //ColorPaletteCreator c = new ColorPaletteCreator("[44,43,44]");
+            ColorPaletteCreator c = new ColorPaletteCreator("[43,42,45]","[116,84,78]","[184,169,163]","[226,236,232]");
+            int[][] colors = c.getColors();
+            System.out.println(colors[1][2]);
+            } catch (Exception ex) {
             Logger.getLogger(Myjcc.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            }
          */
  /*CRUD Galerie *********************************************************************
             System.out.println("---------************-----------");

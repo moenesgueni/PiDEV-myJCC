@@ -26,7 +26,6 @@ public class SponsorGraphController implements Initializable {
 
     public void LoadContrats(int idSponsor) {
         contrats = css.afficherContratsDeSponsor(idSponsor);
-        System.out.println(contrats);
         for (int i = 0; i < contrats.size(); i++) {
             ContratSponsoring c = contrats.get(i);
             switch (c.getType().toString()) {
