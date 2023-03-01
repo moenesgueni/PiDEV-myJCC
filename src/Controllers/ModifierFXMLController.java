@@ -8,6 +8,7 @@ package Controllers;
 import Models.User;
 import Services.UserService;
 import Utilities.Type;
+import Utilities.UserSession;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.stream.Stream;
@@ -74,8 +75,9 @@ public class ModifierFXMLController implements Initializable {
     }
     @FXML
     private void Selectionner(ActionEvent event) {
-        Integer x = Integer.valueOf(IDfield.getText());
-        f=fs.afficherUserbyID(x);
+        String x =UserSession.getEmail();
+       // Integer x = Integer.valueOf(IDfield.getText());
+        f=fs.SearchByMail(x);
         NomU.setText(f.getNom());
         PrenomU.setText(f.getPrenom());
         //label.setText(f.getSexe());
@@ -93,17 +95,17 @@ public class ModifierFXMLController implements Initializable {
     @FXML
     private void getsexe(ActionEvent event) {
                    if(homme.isSelected()){
-       f.setSexe("Homme");
+       f.setGenre("Homme");
    }
    else if(femme.isSelected()){
-       f.setSexe("Femme");
+       f.setGenre("Femme");
    }
     }
 
     @FXML
     private void ModifierU(ActionEvent event) {
-                 String s="";
-         Integer x = Integer.valueOf(IDfield.getText());
+        String s="";
+        Integer x = Integer.valueOf(IDfield.getText());
         s=(String) comb.getValue();
         f.setNom(NomU.getText());
         f.setPrenom(PrenomU.getText());

@@ -11,6 +11,8 @@ import Models.User;
 import Services.LogsService;
 import Services.UserService;
 import Utilities.MaConnexion;
+import Utilities.PasswordHasher;
+import Utilities.TestUser;
 import Utilities.Type;
 import static Utilities.Type.ADMINSTRATEUR;
 import java.sql.PreparedStatement;
@@ -35,14 +37,29 @@ public class ADMIN {
   
         UserService ps = new UserService();
         LogsService Ls = new LogsService();
-        User p;
+        User f;
         User p2;
         LOGS LM;
        // LM = new LOGS ("CCCCCCCCCCC");
         
-       // p = new User("Mohamed","Ali","Male","medali@esprit.tn","azertyuiop123",Type.ADMINSTRATEUR,"cjckcfk");
+        f = new User("Gueni","Moenes","Homme","moenes.gueni@esprit.tn",PasswordHasher.hashPassword("azertyuiop123"),Type.ADMINSTRATEUR,"http://localhost/myjcc/profile/me.jpg",96498278);
        //p2 = new User("","Ali","Femme","asmaali@esprit.tn","azertyuiop123",Type.SPECTATEUR,"cjckcfk");
-        //ps.ajouterUser(p2);
+if (!TestUser.verifierNomPrenom("Gueni")) {
+    System.out.println("Le nom est invalide");
+}
+
+if (!TestUser.verifierNomPrenom("Moenes")) {
+    System.out.println("Le prénom est invalide");
+}
+
+if (!TestUser.verifierMotDePasse("azertyuiop123")) {
+    System.out.println("Le mot de passe est invalide");
+}
+
+if (!TestUser.verifierAdresseEmail("moenes.gueni@esprit.tn")) {
+    System.out.println("L'adresse e-mail est invalide");
+}
+        ps.ajouterUser(f);
        // ps.ajouterUser(p);
         //ps.ajouterUser2(p);
        // ps.modifierUser(689,p);
@@ -51,10 +68,10 @@ public class ADMIN {
         //System.out.println(ps.SearchByMail("moenesgueni@myjcc.com"));
         //ps.FiltrerParRole(Type.SPECTATEUR).forEach(System.out::println);
 
-        System.out.println("*************************************");
-        Random rand = new Random();
-        int randomCode = rand.nextInt(99999);
-        MailerAPI.sendMail("moenes.gueni.21@gmail.com",randomCode);
+        //System.out.println(PasswordHasher.hashPassword("azertyuiop123"));
+        //Random rand = new Random();
+        //int randomCode = rand.nextInt(99999);
+       // MailerAPI.sendMail("moenes.gueni.21@gmail.com",randomCode);
         
       //  java.sql.Date DateLog =new java.sql.Date(2023-02-15);
         

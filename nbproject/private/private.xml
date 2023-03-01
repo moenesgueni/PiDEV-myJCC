@@ -6,12 +6,15 @@
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/LogsFXMLController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Services/LogsService.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/gui/LoginFXML.fxml</file>
+            <file>file:/D:/ADMIN/ADMIN/src/Utilities/PasswordHasher.java</file>
+            <file>file:/D:/ADMIN/ADMIN/src/Utilities/TestUser.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/admin/NewFXMain.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/AjoutSpectateurFXMLController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Interfaces/LogsInterface.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/API/MailerAPI.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/SideBarFXMLController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Models/LOGS.java</file>
+            <file>file:/D:/ADMIN/ADMIN/src/Utilities/LocalCallbackHandler.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Utilities/Type.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/ModifierFXMLController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Models/User.java</file>
@@ -24,7 +27,10 @@
             <file>file:/D:/ADMIN/ADMIN/src/gui/SideBarFXML.fxml</file>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/SupprimerFXMLController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/LoginFXMLController.java</file>
+            <file>file:/D:/ADMIN/ADMIN/src/Controllers/ForgotPassword2FXMLController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/admin/Gestion.java</file>
+            <file>file:/D:/ADMIN/ADMIN/src/Utilities/UserSession.java</file>
+            <file>file:/D:/ADMIN/ADMIN/src/gui/ForgotPassword2FXML.fxml</file>
             <file>file:/D:/ADMIN/ADMIN/src/gui/AjoutSpectateurFXML.fxml</file>
             <file>file:/D:/ADMIN/ADMIN/src/Services/UserService.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/ForgotPassword1FXMLController.java</file>

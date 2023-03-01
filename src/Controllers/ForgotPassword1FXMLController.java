@@ -9,6 +9,7 @@ import API.MailerAPI;
 import Models.User;
 import Services.UserService;
 import Utilities.MaConnexion;
+import Utilities.UserSession;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -74,6 +75,7 @@ public class ForgotPassword1FXMLController implements Initializable {
     private void send(ActionEvent event) {
         String x = Email.getText();
         if(fs.SearchByMail(x)!=null){
+            UserSession.setEmail(x);
         MailerAPI.sendMail(x,randomCode);
         CodeEnvoye.setText("Code envoyé avec succées");
         }
@@ -92,22 +94,6 @@ public class ForgotPassword1FXMLController implements Initializable {
         }
     }
 
-    @FXML
-    private void SaveNewPassword(ActionEvent event) {
-                if(MDP1.getText().equals(MDP2.getText())){
-            Connection cnx = MaConnexion.getInstance().getCnx();
-             String req ="UPDATE `user` SET `MotDePasse`=? WHERE Email= ?";
-        try {
-            PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(1, MDP2.getText());
-            ps.setString(2, Email.getText());
-            ps.executeUpdate();
-            ChampsPassword.setText("Mot de passe changé !!");
-        } catch (SQLException ex) {
-            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);}
-        }else{
-        ChampsPassword.setText("Les mots de passe ne sont pas les mêmes"); 
-        }
-    }
+
     
 }

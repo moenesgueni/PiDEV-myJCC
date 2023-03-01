@@ -7,6 +7,7 @@ package Controllers;
 
 import Models.User;
 import Services.UserService;
+import Utilities.TestUser;
 import Utilities.Type;
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -66,6 +68,14 @@ public class AjouterFXMLController implements Initializable {
     private ToggleGroup sexe;
     @FXML
     private RadioButton femme;
+    @FXML
+    private Label labelnom;
+    @FXML
+    private Label labelprenom;
+    @FXML
+    private Label labelmail;
+    @FXML
+    private Label labelpass;
 
     /**
      * Initializes the controller class.
@@ -100,6 +110,32 @@ public class AjouterFXMLController implements Initializable {
         f.setMotDePasse(PasswordU.getText());
         f.setRole(Type.valueOf(s));
         f.setPhotoB64(Photo.getText());
+                if (!TestUser.verifierNomPrenom(f.getNom())) {
+                    labelnom.setText("Le nom est invalide");
+                }else{
+                labelnom.setText("");
+
+                }
+
+                if (!TestUser.verifierNomPrenom(f.getPrenom())) {
+                    labelprenom.setText("Le prénom est invalide");
+                }else{
+                    labelprenom.setText("");
+                }
+
+                if (!TestUser.verifierMotDePasse(PasswordU.getText())) {
+                    labelpass.setText("Le mot de passe est invalide");
+                }else{
+                    labelpass.setText("");
+  
+                }
+
+                if (!TestUser.verifierAdresseEmail(f.getEmail())) {
+                    labelmail.setText("L'adresse e-mail est invalide");
+                }else{
+                    labelmail.setText("");
+                }
+        
         fs.ajouterUser2(f);
         
         Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
@@ -127,10 +163,10 @@ public class AjouterFXMLController implements Initializable {
     @FXML
     private void getsexe(ActionEvent event) {
            if(homme.isSelected()){
-       f.setSexe("Homme");
+       f.setGenre("Homme");
    }
    else if(femme.isSelected()){
-       f.setSexe("Femme");
+       f.setGenre("Femme");
    }
     }
 

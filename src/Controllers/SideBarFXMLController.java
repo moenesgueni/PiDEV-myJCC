@@ -17,7 +17,7 @@ import javafx.util.Duration;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-
+import Utilities.UserSession;
 public class SideBarFXMLController implements Initializable {
 
     //var
@@ -93,6 +93,7 @@ public class SideBarFXMLController implements Initializable {
         });
         //log Out
         logout.setOnMouseClicked(event -> {
+            UserSession.EndSession();
             System.out.println("log out");
         });
 

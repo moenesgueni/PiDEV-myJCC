@@ -48,7 +48,7 @@ public class GestionFXMLController implements Initializable {
         this.primaryStage = primaryStage;
     }
             
-                     User f = new User();
+        User f = new User();
         UserService fs = new UserService();
         
     @Override
@@ -57,7 +57,7 @@ public class GestionFXMLController implements Initializable {
     List<User> U = fs.afficherUser();
     ObservableList<String> items = FXCollections.observableArrayList();
     for (User salle : U) {
-    String item = salle.getNom() + " - " + salle.getPrenom() + " - " + salle.getEmail() + " - " + salle.getMotDePasse() + " - " + salle.getRole().toString()+ " - " + salle.getSexe() ;
+    String item = salle.getNom() + " - " + salle.getPrenom() + " - " + salle.getEmail() + " - " + salle.getMotDePasse() + " - " + salle.getRole().toString()+ " - " + salle.getGenre();
     items.add(item);}    
     list.setItems(items);
     }    

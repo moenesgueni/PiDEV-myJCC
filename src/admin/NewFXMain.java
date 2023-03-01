@@ -31,10 +31,10 @@ public class NewFXMain extends Application {
 
         try {
 
-          FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/ForgotPassword1FXML.fxml"));
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/LoginFXML.fxml"));
             Parent root = loader.load();
             
-            ForgotPassword1FXMLController controller = loader.getController();
+            LoginFXMLController controller = loader.getController();
             controller.setPrimaryStage(primaryStage);
 
             Scene scene = new Scene(root);

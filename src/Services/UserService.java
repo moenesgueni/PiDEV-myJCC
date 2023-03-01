@@ -7,6 +7,7 @@ package Services;
 import Interfaces.UserInterface;
 import Models.User;
 import Utilities.MaConnexion;
+import Utilities.TestUser;
 import Utilities.Type;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,6 +19,8 @@ import java.util.List;
 //import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /**
  *
  * @author moene
@@ -27,9 +30,9 @@ public class UserService implements UserInterface {
 
     @Override
     public void ajouterUser(User p) {
-       while(TestUser(p)){
-        String req = "INSERT INTO `user`(`Nom`, `Prenom`, `Sexe`, `Email` ,`MotDePasse`,`Role`,`PhotoB64`) VALUES ('"
-                +p.getNom()+"','"+p.getPrenom()+"','"+p.getSexe()+"','"+p.getEmail()+"','"+p.getMotDePasse()+"','"+p.getRole().toString()+"','"+p.getPhotoB64()+"')";
+       while(TestUser.verifierNomPrenom(p.getNom())&&TestUser.verifierNomPrenom(p.getPrenom())&&TestUser.verifierAdresseEmail(p.getEmail())&&TestUser.verifierMotDePasse(p.getMotDePasse())){
+        String req = "INSERT INTO `user`(`Nom`, `Prenom`, `Genre`, `Email` ,`MotDePasse`,`Role`,`PhotoB64`) VALUES ('"
+                +p.getNom()+"','"+p.getPrenom()+"','"+p.getGenre()+"','"+p.getEmail()+"','"+p.getMotDePasse()+"','"+p.getRole().toString()+"','"+p.getPhotoB64()+"')";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
@@ -43,14 +46,14 @@ public class UserService implements UserInterface {
 
     @Override
     public void ajouterUser2(User p) {
-        while(TestUser(p)){
-        String req = "INSERT INTO `user`(`Nom`, `Prenom`, `Sexe`, `Email` ,`MotDePasse`,`Role`,`PhotoB64`) VALUES (?,?,?,?,?,?,?)";
+        while(TestUser.verifierNomPrenom(p.getNom())&&TestUser.verifierNomPrenom(p.getPrenom())&&TestUser.verifierAdresseEmail(p.getEmail())&&TestUser.verifierMotDePasse(p.getMotDePasse())){
+        String req = "INSERT INTO `user`(`Nom`, `Prenom`, `Genre`, `Email` ,`MotDePasse`,`Role`,`PhotoB64`) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
 //          ps.setInt(1, p.getID_User());
             ps.setString(1, p.getNom());
             ps.setString(2, p.getPrenom());
-            ps.setString(3, p.getSexe());
+            ps.setString(3, p.getGenre());
             ps.setString(4, p.getEmail());
             ps.setString(5, p.getMotDePasse());
             ps.setString(6, p.getRole().toString());
@@ -78,7 +81,7 @@ public class UserService implements UserInterface {
                 p.setID_User(rs.getInt(1));
                 p.setNom(rs.getString("Nom"));
                 p.setPrenom(rs.getString("Prenom"));
-                p.setSexe(rs.getString("Sexe"));
+                p.setGenre(rs.getString("Genre"));
                 p.setEmail(rs.getString("Email"));
                 p.setMotDePasse(rs.getString("MotDePasse"));
                 p.setRole(Type.valueOf(rs.getString("Role")));
@@ -95,13 +98,13 @@ public class UserService implements UserInterface {
     @Override
    public void modifierUser(Integer id,User p) {
             
-             String req ="UPDATE `user` SET `Nom`= ?, `Prenom`=?, `Sexe`=?, `Email`=? ,`MotDePasse`=?,`Role`=?,`PhotoB64`=? WHERE ID_User= ?";
+             String req ="UPDATE `user` SET `Nom`= ?, `Prenom`=?, `Genre`=?, `Email`=? ,`MotDePasse`=?,`Role`=?,`PhotoB64`=? WHERE ID_User= ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
 //          ps.setInt(1, p.getID_User());
             ps.setString(1, p.getNom());
             ps.setString(2, p.getPrenom());
-            ps.setString(3, p.getSexe());
+            ps.setString(3, p.getGenre());
             ps.setString(4, p.getEmail());
             ps.setString(5, p.getMotDePasse());
             ps.setString(6, p.getRole().toString());
@@ -142,7 +145,7 @@ public class UserService implements UserInterface {
                 p.setID_User(rs.getInt(1));
                 p.setNom(rs.getString("Nom"));
                 p.setPrenom(rs.getString("Prenom"));
-                p.setSexe(rs.getString("Sexe"));
+                p.setGenre(rs.getString("Genre"));
                 p.setEmail(rs.getString("Email"));
                 p.setMotDePasse(rs.getString("MotDePasse"));
                 p.setRole(Type.valueOf(rs.getString("Role")));
@@ -166,7 +169,7 @@ public class UserService implements UserInterface {
                 p.setID_User(rs.getInt(1));
                 p.setNom(rs.getString("Nom"));
                 p.setPrenom(rs.getString("Prenom"));
-                p.setSexe(rs.getString("Sexe"));
+                p.setGenre(rs.getString("Genre"));
                 p.setEmail(rs.getString("Email"));
                 p.setMotDePasse(rs.getString("MotDePasse"));
                 p.setRole(Type.valueOf(rs.getString("Role")));
@@ -180,13 +183,7 @@ public class UserService implements UserInterface {
         return personnes;
     }
     
-public boolean TestUser(User u){
-    boolean x=false;
-    if((u.getNom()!="")&&(u.getPrenom()!="")&&(u.getMotDePasse().length()>8)&&(u.getEmail().matches("\\w{3,}@\\S+")))    
-    {x=true;}
-        return x;
 
-        }
 
 
     @Override
@@ -200,7 +197,7 @@ public boolean TestUser(User u){
                 p.setID_User(rs.getInt(1));
                 p.setNom(rs.getString("Nom"));
                 p.setPrenom(rs.getString("Prenom"));
-                p.setSexe(rs.getString("Sexe"));
+                p.setGenre(rs.getString("Genre"));
                 p.setEmail(rs.getString("Email"));
                 p.setMotDePasse(rs.getString("MotDePasse"));
                 p.setRole(Type.valueOf(rs.getString("Role")));
@@ -211,6 +208,6 @@ public boolean TestUser(User u){
         }
         return p;
     }
-
+   
 
 }

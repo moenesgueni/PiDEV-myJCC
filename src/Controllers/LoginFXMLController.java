@@ -19,11 +19,13 @@ import javafx.scene.layout.AnchorPane;
 import Controllers.ForgotPassword1FXMLController;
 import Models.User;
 import Services.UserService;
+import Utilities.PasswordHasher;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.event.*;
 import Utilities.Type;
+import Utilities.UserSession;
 
 /**
  * FXML Controller class
@@ -65,11 +67,16 @@ public class LoginFXMLController implements Initializable {
         if(f==null){
         PassInvalide.setText("Email n'existe pas"); 
         }
-        if(Password.getText().equals(f.getMotDePasse())){
+        else if(f.getEmail()!=null){
+        if(PasswordHasher.checkPassword(Password.getText(),f.getMotDePasse())){
             
             switch(f.getRole()) {
             case ADMINSTRATEUR:
-    // code block
+            System.out.println("ADMIN ACTIF");
+            FxmlLoader fl = new FxmlLoader();
+            Pane view = fl.getPage("GestionFXML");
+            workPlace.setCenter(view);
+
              break;
              case SPECTATEUR:
     // code block
@@ -94,8 +101,11 @@ public class LoginFXMLController implements Initializable {
     // code block
               break;
             }
+                   UserSession.getInstance(f.getNom(),f.getPrenom(),f.getGenre(),f.getEmail(),f.getMotDePasse(),f.getRole(),f.getPhotoB64(),f.getNumTel());
+        }
         }else{
-        PassInvalide.setText("Mot de passe éronné");         }
+        PassInvalide.setText("Mot de passe éronné");   
+        }
     }     
  
 
@@ -111,6 +121,10 @@ public class LoginFXMLController implements Initializable {
 
     @FXML
     private void CreerCompte(ActionEvent event) {
+                    FxmlLoader fl = new FxmlLoader();
+            FxmlLoader f2 = new FxmlLoader();
+            Pane view = fl.getPage("AjouterSpectateurFXML");
+            workPlace.setCenter(view);
     }
 
         

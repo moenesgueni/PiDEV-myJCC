@@ -7,6 +7,7 @@ package Controllers;
 
 import Models.User;
 import Services.UserService;
+import Utilities.TestUser;
 import Utilities.Type;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -47,7 +49,6 @@ public class AjoutSpectateurFXMLController implements Initializable {
     @FXML
     private ImageView Background;
     private Stage primaryStage;
-    @FXML
     private ComboBox comb;
     @FXML
     private Button ButtonAjouterU;
@@ -57,6 +58,14 @@ public class AjoutSpectateurFXMLController implements Initializable {
     private ToggleGroup sexe;
     @FXML
     private RadioButton femme;
+    @FXML
+    private Label labelnom;
+    @FXML
+    private Label labelprenom;
+    @FXML
+    private Label labelmail;
+    @FXML
+    private Label labelpass;
 
     /**
      * Initializes the controller class.
@@ -82,17 +91,42 @@ public class AjoutSpectateurFXMLController implements Initializable {
 
     @FXML
     private void AjouterU(ActionEvent event) {
-    String s="";
-        s=(String) comb.getValue();
         f.setNom(NomU.getText());
         f.setPrenom(PrenomU.getText());
         getsexe(event);
         f.setEmail(EmailU.getText());
         f.setMotDePasse(PasswordU.getText());
-        f.setRole(Type.valueOf(s));
+        f.setRole(Type.SPECTATEUR);
         f.setPhotoB64(Photo.getText());
+                if (!TestUser.verifierNomPrenom(f.getNom())) {
+                    labelnom.setText("Le nom est invalide");
+                }else{
+                labelnom.setText("");
+
+                }
+
+                if (!TestUser.verifierNomPrenom(f.getPrenom())) {
+                    labelprenom.setText("Le prénom est invalide");
+                }else{
+                    labelprenom.setText("");
+                }
+
+                if (!TestUser.verifierMotDePasse(PasswordU.getText())) {
+                    labelpass.setText("Le mot de passe est invalide");
+                }else{
+                    labelpass.setText("");
+  
+                }
+
+                if (!TestUser.verifierAdresseEmail(f.getEmail())) {
+                    labelmail.setText("L'adresse e-mail est invalide");
+                }else{
+                    labelmail.setText("");
+                }
+             
         fs.ajouterUser2(f);
         
+
         Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
         confirmation.setContentText("User " + NomU.getText() + " est ajouté avec succes");
         confirmation.show();
@@ -108,7 +142,6 @@ public class AjoutSpectateurFXMLController implements Initializable {
     
     }
 
-    @FXML
     private void Select(ActionEvent event) {
         String s = comb.getSelectionModel().getSelectedItem().toString();
        // label.setText(s);
@@ -118,10 +151,10 @@ public class AjoutSpectateurFXMLController implements Initializable {
     @FXML
     private void getsexe(ActionEvent event) {
            if(homme.isSelected()){
-       f.setSexe("Homme");
+       f.setGenre("Homme");
    }
    else if(femme.isSelected()){
-       f.setSexe("Femme");
+       f.setGenre("Femme");
    }
     }
 
