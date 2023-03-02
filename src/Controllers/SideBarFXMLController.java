@@ -18,6 +18,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import Utilities.UserSession;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 public class SideBarFXMLController implements Initializable {
 
     //var
@@ -25,7 +33,7 @@ public class SideBarFXMLController implements Initializable {
     private Stage primaryStage;
 
     @FXML
-    private ImageView fullScreen, settings, logout, menu, menu2, userPhoto, userPhoto2, iconGererGalerie, iconAjouerContrat, iconPaletteCouleurs;
+    private ImageView fullScreen, settings, logout, menu, menu2, userPhoto, userPhoto2, iconGererGalerie, iconAjouerContrat, iconPaletteCouleurs,Home;
 
     @FXML
     private AnchorPane pane1, pane2, pane3;
@@ -35,6 +43,7 @@ public class SideBarFXMLController implements Initializable {
 
     @FXML
     private Label nomPrenom, role;
+
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -89,18 +98,39 @@ public class SideBarFXMLController implements Initializable {
 
         //go to settings fxml
         settings.setOnMouseClicked(event -> {
+            FxmlLoader fl = new FxmlLoader();
+            Pane view = fl.getPage("ModifierFXML");
+            workPlace.setCenter(view);
             System.out.println("go to settings");
+
+        });
+        // go home
+                Home.setOnMouseClicked(event -> {
+            FxmlLoader fl = new FxmlLoader();
+            Pane view = fl.getPage("AjouterFXML");
+            workPlace.setCenter(view);
+            System.out.println("go to home");
+
         });
         //log Out
         logout.setOnMouseClicked(event -> {
-            UserSession.EndSession();
-            System.out.println("log out");
+            try {
+                UserSession.EndSession();
+                Parent root = FXMLLoader.load(getClass().getResource("../gui/LoginFXML.fxml"));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                System.out.println("log out");
+            } catch (IOException ex) {
+                Logger.getLogger(SideBarFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
 
         //set user data
         //creation service user
         UserService ps = new UserService();
-        User u = ps.afficherUserbyID(690);
+        User u = ps.SearchByMail(UserSession.getEmail());
         if (!u.getPhotoB64().equals("")) {
             changeImage(u.getPhotoB64());
         }
@@ -159,7 +189,9 @@ public class SideBarFXMLController implements Initializable {
             Pane view = fl.getPage("PhotographePalette");
             workPlace.setCenter(view);
         });
-
+        FxmlLoader fl = new FxmlLoader();
+        Pane view = fl.getPage("../gui/AjouterFXML");
+        workPlace.setCenter(view);
     }
 
     //Routes*******************************
@@ -187,6 +219,12 @@ public class SideBarFXMLController implements Initializable {
         workPlace.setCenter(view);
         unTranslate();
     }
+
+    @FXML
+    private void HomeHandle(MouseEvent event) {
+    }
+
+
 
 
 }

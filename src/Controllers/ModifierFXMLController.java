@@ -7,6 +7,7 @@ package Controllers;
 
 import Models.User;
 import Services.UserService;
+import Utilities.PasswordHasher;
 import Utilities.Type;
 import Utilities.UserSession;
 import java.net.URL;
@@ -32,7 +33,6 @@ import javafx.stage.Stage;
  */
 public class ModifierFXMLController implements Initializable {
 
-    @FXML
     private TextField IDfield;
     @FXML
     private Button Selection;
@@ -76,14 +76,23 @@ public class ModifierFXMLController implements Initializable {
     @FXML
     private void Selectionner(ActionEvent event) {
         String x =UserSession.getEmail();
+                //String s="";
+               // s=(String) f.getRole().name();
+                //f.setRole(Type.valueOf(s));
+                comb.setValue(f.getRole());
        // Integer x = Integer.valueOf(IDfield.getText());
         f=fs.SearchByMail(x);
         NomU.setText(f.getNom());
         PrenomU.setText(f.getPrenom());
-        //label.setText(f.getSexe());
+        if(f.getGenre().equals("Homme")){
+            homme.isSelected();
+        }
+        if(f.getGenre().equals("Femme")){
+            femme.isSelected();
+        }
         EmailU.setText(f.getEmail());
         PasswordU.setText(f.getMotDePasse());
-       // label.setText(f.getRole());
+        f.getRole();
         Photo.setText(f.getPhotoB64());
     }
 
@@ -105,13 +114,16 @@ public class ModifierFXMLController implements Initializable {
     @FXML
     private void ModifierU(ActionEvent event) {
         String s="";
-        Integer x = Integer.valueOf(IDfield.getText());
+        String u =UserSession.getEmail();
+        f=fs.SearchByMail(u);
+        int x=f.getID_User();
+//        Integer x = Integer.valueOf(IDfield.getText());
         s=(String) comb.getValue();
         f.setNom(NomU.getText());
         f.setPrenom(PrenomU.getText());
         getsexe(event);
         f.setEmail(EmailU.getText());
-        f.setMotDePasse(PasswordU.getText());
+        f.setMotDePasse(PasswordHasher.hashPassword(PasswordU.getText()));
         f.setRole(Type.valueOf(s));
         f.setPhotoB64(Photo.getText());
         fs.modifierUser(x,f);
@@ -127,6 +139,7 @@ public class ModifierFXMLController implements Initializable {
         PasswordU.setText("");
         comb.setValue("");
         Photo.setText("");  
+
     }
     
 }

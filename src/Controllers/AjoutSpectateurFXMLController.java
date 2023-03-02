@@ -77,9 +77,7 @@ public class AjoutSpectateurFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
 
-        String[] U = Stream.of(Type.values()).map(Type::name).toArray(String[]::new);
-        ObservableList<String> list = FXCollections.observableArrayList(U[0]);
-        comb.setItems(list);
+
         
     }    
 
@@ -124,13 +122,12 @@ public class AjoutSpectateurFXMLController implements Initializable {
                     labelmail.setText("");
                 }
              
+                if(TestUser.verifierNomPrenom(f.getNom())&&TestUser.verifierNomPrenom(f.getPrenom())&&TestUser.verifierAdresseEmail(f.getEmail())&&TestUser.verifierMotDePasse(PasswordU.getText())){
         fs.ajouterUser2(f);
-        
-
         Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
         confirmation.setContentText("User " + NomU.getText() + " est ajouté avec succes");
         confirmation.show();
-        
+                }
         NomU.setText("");
         PrenomU.setText("");
        // Sexe1.setText("");
@@ -143,8 +140,7 @@ public class AjoutSpectateurFXMLController implements Initializable {
     }
 
     private void Select(ActionEvent event) {
-        String s = comb.getSelectionModel().getSelectedItem().toString();
-       // label.setText(s);
+
     }
 
 

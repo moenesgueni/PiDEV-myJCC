@@ -74,7 +74,7 @@ public class NewFXMain extends Application {
             primaryStage.setFullScreen(true);
             scene.setOnKeyPressed(event -> {
                 if (event.getCode() == KeyCode.F11) {
-                    if (primaryStage.isFullScreen()) {
+                    if (primaryStage.isFullScreen())  {
                         primaryStage.setFullScreen(false);
                     } else {
                         primaryStage.setFullScreen(true);

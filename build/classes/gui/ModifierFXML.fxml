@@ -23,7 +23,6 @@
             <Font name="Gill Sans Ultra Bold Condensed" size="40.0" />
          </font>
       </Label>
-      <Label layoutX="270.0" layoutY="179.0" text="ID d'utilisateur à modifier :" />
       <Label layoutX="270.0" layoutY="225.0" text="Nom :" />
       <Label layoutX="272.0" layoutY="263.0" text="Prenom :" />
       <Label layoutX="273.0" layoutY="293.0" text="Sexe :" />
@@ -31,8 +30,7 @@
       <Label layoutX="271.0" layoutY="368.0" text="Mot De Passe :" />
       <Label layoutX="273.0" layoutY="409.0" text="Role :" />
       <Label layoutX="274.0" layoutY="445.0" text="Photo :" />
-      <TextField fx:id="IDfield" layoutX="506.0" layoutY="175.0" />
-      <Button fx:id="Selection" layoutX="689.0" layoutY="175.0" mnemonicParsing="false" onAction="#Selectionner" text="Selectionner" />
+      <Button fx:id="Selection" layoutX="703.0" layoutY="221.0" mnemonicParsing="false" onAction="#Selectionner" text="Remplir les champs" />
       <TextField fx:id="NomU" layoutX="503.0" layoutY="221.0" />
       <TextField fx:id="PrenomU" layoutX="505.0" layoutY="259.0" />
       <TextField fx:id="EmailU" layoutX="506.0" layoutY="326.0" />

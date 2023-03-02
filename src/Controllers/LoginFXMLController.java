@@ -26,6 +26,13 @@ import javafx.stage.Stage;
 import javafx.event.*;
 import Utilities.Type;
 import Utilities.UserSession;
+import admin.NewFXMain;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 
 /**
  * FXML Controller class
@@ -62,7 +69,7 @@ public class LoginFXMLController implements Initializable {
     }    
 
     @FXML
-    private void Connexion(ActionEvent event) {
+    private void Connexion(ActionEvent event) throws IOException {
         f=fs.SearchByMail(Email.getText());
         if(f==null){
         PassInvalide.setText("Email n'existe pas"); 
@@ -73,9 +80,12 @@ public class LoginFXMLController implements Initializable {
             switch(f.getRole()) {
             case ADMINSTRATEUR:
             System.out.println("ADMIN ACTIF");
-            FxmlLoader fl = new FxmlLoader();
-            Pane view = fl.getPage("GestionFXML");
-            workPlace.setCenter(view);
+            UserSession.getInstance(f.getNom(),f.getPrenom(),f.getGenre(),f.getEmail(),f.getMotDePasse(),f.getRole(),f.getPhotoB64(),f.getNumTel());
+            Parent root = FXMLLoader.load(getClass().getResource("../gui/SideBarFXML.fxml"));            
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
 
              break;
              case SPECTATEUR:
@@ -112,19 +122,22 @@ public class LoginFXMLController implements Initializable {
 
 
     @FXML
-    private void ForgotPassword(ActionEvent event) {
-            FxmlLoader fl = new FxmlLoader();
-            FxmlLoader f2 = new FxmlLoader();
-            Pane view = fl.getPage("ForgotPassword1FXML");
-            workPlace.setCenter(view);
+    private void ForgotPassword(ActionEvent event) throws IOException {
+        
+            Parent root = FXMLLoader.load(getClass().getResource("../gui/ForgotPassword1FXML.fxml"));            
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
     }
 
     @FXML
-    private void CreerCompte(ActionEvent event) {
-                    FxmlLoader fl = new FxmlLoader();
-            FxmlLoader f2 = new FxmlLoader();
-            Pane view = fl.getPage("AjouterSpectateurFXML");
-            workPlace.setCenter(view);
+    private void CreerCompte(ActionEvent event) throws IOException {
+            Parent root = FXMLLoader.load(getClass().getResource("../gui/AjoutSpectateurFXML.fxml"));            
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
     }
 
         
