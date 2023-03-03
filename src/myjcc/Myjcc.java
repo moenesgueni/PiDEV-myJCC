@@ -6,11 +6,14 @@ import Models.Salle;
 import Services.FilmService;
 import Services.PlanningService;
 import Services.SalleService;
+import Utils.FileUpload;
 import Utils.MaConnection;
 import java.sql.Connection;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
     
 public class Myjcc {
 
@@ -32,9 +35,9 @@ public class Myjcc {
           
           //creation film
           //Film f = new Film("The dark knight", "2013","action","the best of all time", "2:03", (float) 50.00, "chris Nolan", "bruce wayne");
-          Film f2 = new Film(3,"The Shawshank Redemption ", "1994","action","the best of all time", "2:03", (float) 50.00, "Frank Darabont", "Morgan Freeman");
-          Film f3 = new Film(4,"The Godfather ", "1972","drama","the best of all time", "2:03", (float) 50.00, "Francis Ford Coppola", "Al Pacino");
-          Film f4 = new Film("12 Angry Men", "1957","crime","the best of all time1", "1:36", (float) 50.00, "Sidney Lumet", "Martin Balsam");
+         // Film f2 = new Film(3,"The Shawshank Redemption ", "1994","action","the best of all time", "2:03", (float) 50.00, "Frank Darabont", "Morgan Freeman");
+          //Film f3 = new Film(4,"The Godfather ", "1972","drama","the best of all time", "2:03", (float) 50.00, "Francis Ford Coppola", "Al Pacino");
+         // Film f4 = new Film("12 Angry Men", "1957","crime","the best of all time1", "1:36", (float) 50.00, "Sidney Lumet", "Martin Balsam");
           
           //creation salle
           //Salle s = new Salle(16,"Cinema la Palace", "1001, Tunis République، 54 Ave Habib Bourguiba, Tunis 1001", 1000, "71 344 755", "lapalace@gmail.com","09:00","20:00",(float) 3.5);
@@ -126,7 +129,12 @@ public class Myjcc {
           //getplanningbydate
           //ps.GetPlanningByDate(date).forEach(System.out::println);
           
-          
+           try {
+            FileUpload.uploadFile("C:/Users/dhia/Desktop/valverde.jpg", "films\\valverde.jpg");
+            //"C:/Users/Marwen/Desktop/mercedess.pdf"
+        } catch (Exception ex) {
+            Logger.getLogger(Myjcc.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }

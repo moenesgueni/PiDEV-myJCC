@@ -46,39 +46,63 @@ public class AffichageController implements Initializable {
     private Button redajouterf;
     @FXML
     private Button redsupf;
-    
+    private Film selectedFilm;
    
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-         FilmService fs = new FilmService();
-        List<Film> films = fs.afficherFilm();
-        
-        ObservableList<String> items = FXCollections.observableArrayList();
+   public void initialize(URL url, ResourceBundle rb) {
+    FilmService fs = new FilmService();
+    List<Film> films = fs.afficherFilm();
+    
+    ObservableList<String> items = FXCollections.observableArrayList();
     for (Film film : films) {
-        String item = film.getTitre() + " - " + film.getDateRealisation() + " - " + film.getGenre() + " - " + film.getResume() + " - " + film.getDuree() + " - " + film.getPrix() + " - " + film.getID_producteur() + " - " + film.getActeur();
+        String item = film.getTitre() + " - " + film.getDateRealisation() + " - " + film.getGenre() + " - " + film.getResume() + " - " + film.getDuree() + " - " + film.getPrix() + " - " + film.getID_producteur() + " - " + film.getActeur() + " - " + film.getImage();
         items.add(item);
     }    
     ListF.setItems(items);
-    
-    
-        
-     
-             }
+    ListF.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        if (newValue != null) {
+            selectedFilm = films.get(ListF.getSelectionModel().getSelectedIndex());
+        }
+    });
+}
+
     
 
     @FXML
     private void RedModifF(ActionEvent event) {
+        if (selectedFilm == null) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Aucun Film sélectionné");
+        alert.setContentText("Veuillez sélectionner un film à modifier.");
+        alert.showAndWait();
+        return;
+    }
         
     try {
     
-    Parent root = FXMLLoader.load(getClass().getResource("../GUI/updatef.fxml"));
-        Scene scene = new Scene(root);
-         Stage newStage = new Stage();
-          newStage.setScene(scene);
-          newStage.show();
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/updateF.fxml"));
+        Parent root = loader.load();
+        UpdateFController controller = loader.getController();
+        controller.initData(selectedFilm);
+         Scene scene = new Scene(root);
+        Stage newStage = new Stage();
+        newStage.setScene(scene);
+        newStage.showAndWait(); // Wait for the updates window to close
+        
+        // Update the ListView with the latest data
+       FilmService fs = new FilmService();
+        List<Film> films = fs.afficherFilm();
+        
+        ObservableList<String> items = FXCollections.observableArrayList();
+    for (Film film : films) {
+         String item = film.getTitre() + " - " + film.getDateRealisation() + " - " + film.getGenre() + " - " + film.getResume() + " - " + film.getDuree() + " - " + film.getPrix() + " - " + film.getID_producteur() + " - " + film.getActeur() + " - " + film.getImage();
+        items.add(item);
+    }    
+    ListF.setItems(items);
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -89,9 +113,20 @@ public class AffichageController implements Initializable {
         try {
         Parent root = FXMLLoader.load(getClass().getResource("../GUI/ajouterfilm.fxml"));
         Scene scene = new Scene(root);
-         Stage newStage = new Stage();
-          newStage.setScene(scene);
-          newStage.show();
+        Stage newStage = new Stage();
+        newStage.setScene(scene);
+        newStage.showAndWait(); // Wait for the updates window to close
+        
+        // Update the ListView with the latest data
+       FilmService fs = new FilmService();
+        List<Film> films = fs.afficherFilm();
+        
+        ObservableList<String> items = FXCollections.observableArrayList();
+    for (Film film : films) {
+         String item = film.getTitre() + " - " + film.getDateRealisation() + " - " + film.getGenre() + " - " + film.getResume() + " - " + film.getDuree() + " - " + film.getPrix() + " - " + film.getID_producteur() + " - " + film.getActeur() + " - " + film.getImage();
+        items.add(item);
+    }    
+    ListF.setItems(items);
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -103,9 +138,20 @@ public class AffichageController implements Initializable {
         try {
         Parent root = FXMLLoader.load(getClass().getResource("../GUI/supprimerf.fxml"));
         Scene scene = new Scene(root);
-         Stage newStage = new Stage();
-          newStage.setScene(scene);
-          newStage.show();
+        Stage newStage = new Stage();
+        newStage.setScene(scene);
+        newStage.showAndWait(); // Wait for the updates window to close
+        
+        // Update the ListView with the latest data
+       FilmService fs = new FilmService();
+        List<Film> films = fs.afficherFilm();
+        
+        ObservableList<String> items = FXCollections.observableArrayList();
+    for (Film film : films) {
+        String item = film.getTitre() + " - " + film.getDateRealisation() + " - " + film.getGenre() + " - " + film.getResume() + " - " + film.getDuree() + " - " + film.getPrix() + " - " + film.getID_producteur() + " - " + film.getActeur() + " - " + film.getImage();
+        items.add(item);
+    }    
+    ListF.setItems(items);
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }

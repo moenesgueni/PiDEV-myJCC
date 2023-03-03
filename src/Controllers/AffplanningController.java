@@ -21,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
@@ -41,6 +42,7 @@ public class AffplanningController implements Initializable {
     private Button redmodifpla;
     @FXML
     private Button redsuppla;
+    private PlanningFilmSalle selectedplan;
 
     /**
      * Initializes the controller class.
@@ -53,22 +55,37 @@ public class AffplanningController implements Initializable {
         
           ObservableList<String> items = FXCollections.observableArrayList();
     for (PlanningFilmSalle planning : plannings ) {
-        String item = planning.getFilm()+ " - " + planning.getSalle()+ " - " + planning.getSalle()+ " - " + planning.getHeurediffusion();
+        String item = planning.getFilm().getTitre()+ " - " + planning.getSalle().getNomSalle()+ " - " + planning.getDatediffusion()+ " - " + planning.getHeurediffusion();
         
         items.add(item);
     }    
     ListP.setItems(items);
+    ListP.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+    selectedplan = plannings.get(ListP.getSelectionModel().getSelectedIndex());
+});
     
-    }    
+   
+            }
 
     @FXML
     private void RedAjoutPl(ActionEvent event) {
         try {
-        Parent root = FXMLLoader.load(getClass().getResource("../GUI/ajoutpla.fxml"));
-        Scene scene = new Scene(root);
-         Stage newStage = new Stage();
-          newStage.setScene(scene);
-          newStage.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/ajoutpla.fxml"));
+        Parent root = loader.load();
+         Scene scene = new Scene(root);
+        Stage newStage = new Stage();
+        newStage.setScene(scene);
+        newStage.showAndWait(); // Wait for the updates window to close
+        PlanningService ps = new PlanningService();
+        List<PlanningFilmSalle> plannings = ps.afficherPlanning();
+        
+          ObservableList<String> items = FXCollections.observableArrayList();
+    for (PlanningFilmSalle planning : plannings ) {
+        String item = planning.getFilm().getTitre()+ " - " + planning.getSalle().getNomSalle()+ " - " + planning.getDatediffusion()+ " - " + planning.getHeurediffusion();
+        
+        items.add(item);
+    }    
+    ListP.setItems(items);
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,12 +93,34 @@ public class AffplanningController implements Initializable {
 
     @FXML
     private void RedModifPla(ActionEvent event) {
+        if (selectedplan == null) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Aucun planning sélectionné");
+        alert.setContentText("Veuillez sélectionner un planning à modifier.");
+        alert.showAndWait();
+        return;
+    }
          try {
-        Parent root = FXMLLoader.load(getClass().getResource("../GUI/updatepla.fxml"));
-        Scene scene = new Scene(root);
-         Stage newStage = new Stage();
-          newStage.setScene(scene);
-          newStage.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/updatepla.fxml"));
+        Parent root = loader.load();
+        updateController controller = loader.getController();
+        controller.initData(selectedplan);
+         Scene scene = new Scene(root);
+        Stage newStage = new Stage();
+        newStage.setScene(scene);
+        newStage.showAndWait(); // Wait for the updates window to close
+        PlanningService ps = new PlanningService();
+        List<PlanningFilmSalle> plannings = ps.afficherPlanning();
+        
+          ObservableList<String> items = FXCollections.observableArrayList();
+    for (PlanningFilmSalle planning : plannings ) {
+        String item = planning.getFilm().getTitre()+ " - " + planning.getSalle().getNomSalle()+ " - " + planning.getDatediffusion()+ " - " + planning.getHeurediffusion();
+        
+        items.add(item);
+    }    
+    ListP.setItems(items);
+        
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -90,12 +129,33 @@ public class AffplanningController implements Initializable {
 
     @FXML
     private void RedSuppPla(ActionEvent event) {
-        try {
-        Parent root = FXMLLoader.load(getClass().getResource("../GUI/suppplanning.fxml"));
-        Scene scene = new Scene(root);
-         Stage newStage = new Stage();
-          newStage.setScene(scene);
-          newStage.show();
+        if (selectedplan == null) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Aucun planning sélectionné");
+        alert.setContentText("Veuillez sélectionner un planning à supprimer.");
+        alert.showAndWait();
+        return;
+    }
+         try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/suppplanning.fxml"));
+        Parent root = loader.load();
+        SuppplanningController controller = loader.getController();
+        controller.initData(selectedplan);
+         Scene scene = new Scene(root);
+        Stage newStage = new Stage();
+        newStage.setScene(scene);
+        newStage.showAndWait(); // Wait for the updates window to close
+        PlanningService ps = new PlanningService();
+        List<PlanningFilmSalle> plannings = ps.afficherPlanning();
+        
+          ObservableList<String> items = FXCollections.observableArrayList();
+    for (PlanningFilmSalle planning : plannings ) {
+        String item = planning.getFilm().getTitre()+ " - " + planning.getSalle().getNomSalle()+ " - " + planning.getDatediffusion()+ " - " + planning.getHeurediffusion();
+        
+        items.add(item);
+    }    
+    ListP.setItems(items);
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }

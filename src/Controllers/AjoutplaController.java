@@ -17,6 +17,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -29,6 +30,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 
@@ -46,13 +48,16 @@ public class AjoutplaController implements Initializable {
     @FXML
     private ComboBox<String> sallecomb;
     @FXML
-    private TextField datedif;
+    private DatePicker datedif;
     @FXML
     private TextField heuredif;
 
     /**
      * Initializes the controller class.
      */
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         FilmService fs = new FilmService();
@@ -93,8 +98,9 @@ public class AjoutplaController implements Initializable {
        f = fs.GetFilmByTitre(sf);
        s = sss.GetSalleByName(ss);
        
-       String dateString = datedif.getText();
-       java.sql.Date sqlDate = java.sql.Date.valueOf(dateString);
+        LocalDate date = datedif.getValue();
+
+        java.sql.Date sqlDate = java.sql.Date.valueOf(date);
        p.setDatediffusion(sqlDate);
        p.setFilm(f);
        p.setSalle(s);

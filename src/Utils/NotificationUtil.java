@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 public class NotificationUtil {
 
     public static void showNotification(String title, String message) {
+        
 
         // load an image for the icon
         Image image = Toolkit.getDefaultToolkit().createImage("http://localhost/myjcc/logos/myjcc.png");

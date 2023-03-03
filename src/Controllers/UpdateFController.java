@@ -46,8 +46,10 @@ public class UpdateFController implements Initializable {
     private Button bmodifierf;
     
     private Film film;
-    @FXML
     private TextField IDF;
+    private Film selectedFilm;
+    @FXML
+    private TextField image;
     
     /**
      * Initializes the controller class.
@@ -57,11 +59,23 @@ public class UpdateFController implements Initializable {
         // TODO
       
     }    
+     public void initData(Film f) {
+        selectedFilm = f;
+        TitreTF.setText(f.getTitre());
+        DateRTF.setText(f.getDateRealisation());
+        GenreTF.setText(f.getGenre());
+        ResumeTF.setText(f.getResume());
+        DureeTF.setText(f.getDuree());
+        PrixTF.setText(Float.toString(f.getPrix()));
+        ProducteurTF.setText(f.getID_producteur());
+        ActeurTF.setText(f.getActeur());
+        image.setText(f.getImage());
+    }
     
 
     @FXML
     private void ModifierF(ActionEvent event) {
-        if (IDF.getText().isEmpty() || TitreTF.getText().isEmpty() || DateRTF.getText().isEmpty() || GenreTF.getText().isEmpty()
+        if (TitreTF.getText().isEmpty() || DateRTF.getText().isEmpty() || GenreTF.getText().isEmpty()
     || ResumeTF.getText().isEmpty() || DureeTF.getText().isEmpty() || PrixTF.getText().isEmpty()
     || ProducteurTF.getText().isEmpty() || ActeurTF.getText().isEmpty()) {
     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -69,7 +83,7 @@ public class UpdateFController implements Initializable {
     alert.show();
     return;
 }
-         Film f = new Film(Integer.parseInt(IDF.getText()),TitreTF.getText(),DateRTF.getText(),GenreTF.getText(),ResumeTF.getText(),DureeTF.getText(),Float.parseFloat(PrixTF.getText()),ProducteurTF.getText(),ActeurTF.getText());
+         Film f = new Film(selectedFilm.getID_film(),TitreTF.getText(),DateRTF.getText(),GenreTF.getText(),ResumeTF.getText(),DureeTF.getText(),Float.parseFloat(PrixTF.getText()),ProducteurTF.getText(),ActeurTF.getText(),image.getText());
       
         FilmInterface fs = new FilmService();
         
@@ -77,6 +91,8 @@ public class UpdateFController implements Initializable {
       Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
         confirmation.setContentText("Film est modifié avec succes");
         confirmation.show();
+        
+        
     }
       
      

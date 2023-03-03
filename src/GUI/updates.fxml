@@ -24,8 +24,6 @@
       <TextField fx:id="tempsfer" layoutX="200.0" layoutY="324.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="324.0" />
       <TextField fx:id="avis" layoutX="200.0" layoutY="364.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="364.0" />
       <Button fx:id="bmodifiers" layoutX="273.0" layoutY="402.0" mnemonicParsing="false" onAction="#ModifierS" text="modifier" AnchorPane.leftAnchor="273.0" AnchorPane.rightAnchor="273.4" />
-      <Label layoutX="34.0" layoutY="44.0" text="ID salle" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="44.0" />
-      <TextField fx:id="IDS" layoutX="198.0" layoutY="40.0" AnchorPane.leftAnchor="198.0" />
       <Label layoutX="295.0" layoutY="5.0" text="Modifier Salle" />
    </children>
 </AnchorPane>

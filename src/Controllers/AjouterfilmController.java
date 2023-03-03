@@ -48,6 +48,8 @@ public class AjouterfilmController implements Initializable {
     private TextField ActeurTF;
     @FXML
     private Button bajouterf;
+    @FXML
+    private TextField image;
     
   
    
@@ -92,6 +94,7 @@ public class AjouterfilmController implements Initializable {
         f.setPrix(Float.parseFloat(PrixTF.getText()));
         f.setID_producteur(ProducteurTF.getText());
         f.setActeur(ActeurTF.getText());
+        f.setImage(image.getText());
         fs.ajouterFilm(f);
         
         Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
@@ -106,6 +109,7 @@ public class AjouterfilmController implements Initializable {
         PrixTF.setText("");
         ProducteurTF.setText("");
         ActeurTF.setText("");
+        image.setText("");
         
     }
 

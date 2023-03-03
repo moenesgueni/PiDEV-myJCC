@@ -24,5 +24,6 @@
       <TextField fx:id="ProducteurTF" layoutX="197.0" layoutY="289.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="265.0" />
       <TextField fx:id="ActeurTF" layoutX="198.0" layoutY="329.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="305.0" />
       <Button fx:id="bajouterf" layoutX="273.0" layoutY="350.0" mnemonicParsing="false" onAction="#AjouterF" text="ajouter" AnchorPane.leftAnchor="273.0" AnchorPane.rightAnchor="273.4" />
+      <TextField fx:id="image" layoutX="409.0" layoutY="65.0" />
    </children>
 </AnchorPane>

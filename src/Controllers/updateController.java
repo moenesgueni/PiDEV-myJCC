@@ -12,6 +12,9 @@ import Services.FilmService;
 import Services.PlanningService;
 import Services.SalleService;
 import java.net.URL;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -22,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 /**
@@ -38,11 +42,11 @@ public class updateController implements Initializable {
     @FXML
     private ComboBox<String> sallecomb;
     @FXML
-    private TextField datedif;
+    private DatePicker datedif;
     @FXML
     private TextField heuredif;
-    @FXML
-    private TextField IDtoup;
+    private PlanningFilmSalle selectedplan;
+    
 
     /**
      * Initializes the controller class.
@@ -71,7 +75,16 @@ public class updateController implements Initializable {
      
     sallecomb.setItems(itemsS);
     };
-    }    
+    } 
+    
+    public void initData(PlanningFilmSalle p) {
+        selectedplan = p;
+        combfilm.setValue(p.getFilm().getTitre());
+        sallecomb.setValue(p.getSalle().getNomSalle());
+         LocalDate date = p.getDatediffusion().toLocalDate();
+         datedif.setValue(date);
+        heuredif.setText(p.getHeurediffusion());
+    }
 
     @FXML
     private void ModifierPla(ActionEvent event) {
@@ -85,9 +98,12 @@ public class updateController implements Initializable {
        
        f = fs.GetFilmByTitre(sf);
        s = sss.GetSalleByName(ss);
-       String dateString = datedif.getText();
-       java.sql.Date sqlDate = java.sql.Date.valueOf(dateString);
-       PlanningFilmSalle p = new PlanningFilmSalle(Integer.parseInt(IDtoup.getText()),s,f,sqlDate,heuredif.getText());
+       LocalDate date = datedif.getValue();
+
+        java.sql.Date sqlDate = java.sql.Date.valueOf(date);
+       
+      
+       PlanningFilmSalle p = new PlanningFilmSalle(selectedplan.getID_planning(),s,f,sqlDate,heuredif.getText());
        ps.updatePlanning(p);
        Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
         confirmation.setContentText("Planning modifié avec succes");

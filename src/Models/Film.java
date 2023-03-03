@@ -22,6 +22,7 @@ public class Film {
     private float Prix;
     private String ID_producteur;
     private String Acteur;
+    private String Image;
 
     public Film(int ID_film, String Titre, String DateRealisation, String Genre, String Resume, String Duree, float Prix, String ID_producteur, String Acteur) {
         this.ID_film = ID_film;
@@ -38,7 +39,7 @@ public class Film {
     public Film() {
     }
 
-    public Film(String Titre, String DateRealisation, String Genre, String Resume, String Duree, float Prix, String ID_producteur, String Acteur) {
+    public Film(String Titre, String DateRealisation, String Genre, String Resume, String Duree, float Prix, String ID_producteur, String Acteur, String Image) {
         this.Titre = Titre;
         this.DateRealisation = DateRealisation;
         this.Genre = Genre;
@@ -47,7 +48,23 @@ public class Film {
         this.Prix = Prix;
         this.ID_producteur = ID_producteur;
         this.Acteur = Acteur;
+        this.Image = Image;
     }
+
+    public Film(int ID_film, String Titre, String DateRealisation, String Genre, String Resume, String Duree, float Prix, String ID_producteur, String Acteur, String Image) {
+        this.ID_film = ID_film;
+        this.Titre = Titre;
+        this.DateRealisation = DateRealisation;
+        this.Genre = Genre;
+        this.Resume = Resume;
+        this.Duree = Duree;
+        this.Prix = Prix;
+        this.ID_producteur = ID_producteur;
+        this.Acteur = Acteur;
+        this.Image = Image;
+    }
+
+   
 
     public int getID_film() {
         return ID_film;
@@ -113,6 +130,14 @@ public class Film {
         this.ID_producteur = ID_producteur;
     }
 
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String Image) {
+        this.Image = Image;
+    }
+
     public String getActeur() {
         return Acteur;
     }
@@ -121,10 +146,13 @@ public class Film {
         this.Acteur = Acteur;
     }
 
+    
+
     @Override
     public String toString() {
-        return "film{Titre=" + Titre + ", DateRealisation=" + DateRealisation + ", Genre=" + Genre + ", Resume=" + Resume + ", Duree=" + Duree + ", Prix=" + Prix + ", ID_producteur=" + ID_producteur + ", Acteur=" + Acteur + '}';
+        return "Film{" + "ID_film=" + ID_film + ", Titre=" + Titre + ", DateRealisation=" + DateRealisation + ", Genre=" + Genre + ", Resume=" + Resume + ", Duree=" + Duree + ", Prix=" + Prix + ", ID_producteur=" + ID_producteur + ", Acteur=" + Acteur + ", Image=" + Image + '}';
     }
+    
     
     
     

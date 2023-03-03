@@ -22,6 +22,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
@@ -44,6 +46,7 @@ public class AffichagesController implements Initializable {
     private Button redajouts;
     @FXML
     private Button MapB;
+    private Salle selectedSalle;
 
     /**
      * Initializes the controller class.
@@ -52,6 +55,7 @@ public class AffichagesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         SalleService ss = new SalleService();
+        
         List<Salle> salles = ss.afficherSalle();
         
           ObservableList<String> items = FXCollections.observableArrayList();
@@ -60,23 +64,49 @@ public class AffichagesController implements Initializable {
         items.add(item);
     }    
     ListS.setItems(items);
-    
+    ListS.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+    selectedSalle = salles.get(ListS.getSelectionModel().getSelectedIndex());
+});
         
     }    
+    
 
 
     @FXML
-    private void RedModifS(ActionEvent event) {
-        try{
-        Parent root = FXMLLoader.load(getClass().getResource("../GUI/updates.fxml"));
-        Scene scene = new Scene(root);
-         Stage newStage = new Stage();
-          newStage.setScene(scene);
-          newStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
-        }
+private void RedModifS(ActionEvent event) {
+    if (selectedSalle == null) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Aucune salle sélectionnée");
+        alert.setContentText("Veuillez sélectionner une salle à modifier.");
+        alert.showAndWait();
+        return;
     }
+    try{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/updates.fxml"));
+        Parent root = loader.load();
+        updatesController controller = loader.getController();
+        controller.initData(selectedSalle);
+        Scene scene = new Scene(root);
+        Stage newStage = new Stage();
+        newStage.setScene(scene);
+        newStage.showAndWait(); // Wait for the updates window to close
+        
+        // Update the ListView with the latest data
+        SalleService ss = new SalleService();
+        List<Salle> salles = ss.afficherSalle();
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for (Salle salle : salles) {
+            String item = salle.getNomSalle() + " - " + salle.getAdresse() + " - " + salle.getCapacite() + " - " + salle.getNumTel_salle() + " - " + salle.getEmail_Salle() + " - " + salle.getTemps_Ouverture() + " - " + salle.getTemps_Fermuture() + " - " + salle.getAvis();
+            items.add(item);
+        }    
+        ListS.setItems(items);
+        
+    } catch (IOException ex) {
+        Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
+
 
     @FXML
     private void RedSupprimerS(ActionEvent event) {
@@ -85,7 +115,16 @@ public class AffichagesController implements Initializable {
         Scene scene = new Scene(root);
          Stage newStage = new Stage();
           newStage.setScene(scene);
-          newStage.show();
+          
+        newStage.showAndWait(); // Wait for the updates window to close
+        SalleService ss = new SalleService();
+        List<Salle> salles = ss.afficherSalle();
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for (Salle salle : salles) {
+            String item = salle.getNomSalle() + " - " + salle.getAdresse() + " - " + salle.getCapacite() + " - " + salle.getNumTel_salle() + " - " + salle.getEmail_Salle() + " - " + salle.getTemps_Ouverture() + " - " + salle.getTemps_Fermuture() + " - " + salle.getAvis();
+            items.add(item);
+        }    
+        ListS.setItems(items);
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }   
@@ -98,8 +137,17 @@ public class AffichagesController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("../GUI/ajoutersalle.fxml"));
         Scene scene = new Scene(root);
          Stage newStage = new Stage();
-          newStage.setScene(scene);
-          newStage.show();
+         newStage.setScene(scene);
+          
+        newStage.showAndWait(); // Wait for the updates window to close
+        SalleService ss = new SalleService();
+        List<Salle> salles = ss.afficherSalle();
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for (Salle salle : salles) {
+            String item = salle.getNomSalle() + " - " + salle.getAdresse() + " - " + salle.getCapacite() + " - " + salle.getNumTel_salle() + " - " + salle.getEmail_Salle() + " - " + salle.getTemps_Ouverture() + " - " + salle.getTemps_Fermuture() + " - " + salle.getAvis();
+            items.add(item);
+        }    
+        ListS.setItems(items);
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -30,7 +30,7 @@ public class FilmService implements FilmInterface{
 
     @Override
     public void ajouterFilm(Film f) {
-        String req = "INSERT INTO `film`(`Titre`, `DateRealisation`, `Genre`, `Resume`, `Duree`, `Prix`, `ID_producteur`, `Acteur`) VALUES (?,?,?,?,?,?,?,?)";
+        String req = "INSERT INTO `film`(`Titre`, `DateRealisation`, `Genre`, `Resume`, `Duree`, `Prix`, `ID_producteur`, `Acteur`, `FilmImage`) VALUES (?,?,?,?,?,?,?,?,?)";
         
          try {
             PreparedStatement ft = cnx.prepareStatement(req);
@@ -41,7 +41,8 @@ public class FilmService implements FilmInterface{
             ft.setString(5, f.getDuree());
             ft.setFloat(6, f.getPrix());
             ft.setString(7, f.getID_producteur());
-            ft.setString(8, f.getActeur());
+            ft.setString(8, f.getActeur()); 
+            ft.setString(9, f.getImage());
             ft.executeUpdate();
             System.out.println("Film ajouté avec success!!");
         } catch (SQLException ex) {
@@ -67,6 +68,7 @@ public class FilmService implements FilmInterface{
                 f.setPrix(rs.getFloat(7));
                 f.setID_producteur(rs.getString(8));
                 f.setActeur(rs.getString(9));
+                f.setImage(rs.getString(10));
                 //
                 Films.add(f);
             }
@@ -78,7 +80,7 @@ public class FilmService implements FilmInterface{
 
     @Override
     public void updateFilm(Film f) {
-        String request = "UPDATE film SET Titre = ? , DateRealisation = ? , Genre = ? , Resume = ? , Duree = ? , Prix = ? , ID_producteur = ? , Acteur = ? WHERE ID_film = ?";
+        String request = "UPDATE film SET Titre = ? , DateRealisation = ? , Genre = ? , Resume = ? , Duree = ? , Prix = ? , ID_producteur = ? , Acteur = ?, FilmImage = ? WHERE ID_film = ?";
         
         //UPDATE `film` SET`Titre`= ? ,`DateRealisation`= ?,`Genre`= ? ,`Resume`= ? ,`Duree`= ? ,`Prix`= ? ,`ID_producteur`= ? ,`Acteur`= ? WHERE `ID_film`= ?
         try {
@@ -92,7 +94,8 @@ public class FilmService implements FilmInterface{
             ps.setFloat(6, f.getPrix());
             ps.setString(7, f.getID_producteur());
             ps.setString(8, f.getActeur());
-            ps.setInt(9, f.getID_film());
+            ps.setString(9, f.getImage());
+            ps.setInt(10, f.getID_film());
             
              ps.executeUpdate();
             System.out.println("Film modifiée avec success!!!");
@@ -130,6 +133,7 @@ public class FilmService implements FilmInterface{
                 f.setPrix(rs.getFloat(7));
                 f.setID_producteur(rs.getString(8));
                 f.setActeur(rs.getString(9));
+                f.setImage(rs.getString(10));
                 
              
             }
@@ -161,7 +165,7 @@ public class FilmService implements FilmInterface{
                 f.setPrix(rs.getFloat(7));
                 f.setID_producteur(rs.getString(8));
                 f.setActeur(rs.getString(9));
-                
+                f.setImage(rs.getString(10));
              
             }
         } catch (SQLException ex) {
@@ -189,6 +193,7 @@ public class FilmService implements FilmInterface{
                 f.setPrix(rs.getFloat(7));
                 f.setID_producteur(rs.getString(8));
                 f.setActeur(rs.getString(9));
+                f.setImage(rs.getString(10));
                 Films.add(f);
              
             }
@@ -218,6 +223,7 @@ public class FilmService implements FilmInterface{
                 f.setPrix(rs.getFloat(7));
                 f.setID_producteur(rs.getString(8));
                 f.setActeur(rs.getString(9));
+                f.setImage(rs.getString(10));
                 
               Films.add(f);
             }
