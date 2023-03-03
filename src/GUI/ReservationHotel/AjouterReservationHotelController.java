@@ -38,6 +38,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javax.imageio.ImageIO;
+import myjcc.Myjcc;
+import util.FileUpload;
 import util.QRCodeUtil;
 import util.SMSUtil;
 
@@ -84,22 +86,48 @@ public class AjouterReservationHotelController implements Initializable {
         alert.showAndWait();
         return;
     }
+    // valider que la date de debut est avant la date de fin
+
      Hotel h=new Hotel();
      h=hs.filterByName(nomH.getText());
+    if (h == null) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText("L'hôtel n'existe pas!");
+        alert.showAndWait();
+        return;
+    }
      User u =new User();
      u=us.afficherUserbyID(Integer.parseInt(iduser.getText()));
+     if (u == null) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText(" utilisateur n'existe pas!");
+        alert.showAndWait();
+        return;
+    }
  
     LocalDate dd =date_debut.getValue();
     Date dateD = Date.valueOf(dd);
     LocalDate df =date_fin.getValue();
    Date dateF = Date.valueOf(df);
+       if(df.isBefore(dd)){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText("La date de fin doit être supérieure à la date de début!");
+        alert.showAndWait();
+        return;
+    }
+   
    // Obtenir la date système actuelle
     LocalDate localDate = LocalDate.now();
     // Convertir en java.sql.Date
     Date DateReservation = Date.valueOf(localDate.toString());
-    ReservationHotel reservation = new ReservationHotel(DateReservation, dateD, dateF,Float.parseFloat(tarifT_H.getText()), h, u);
-   rs.addReservationHotel(reservation);
-    /************Banner ******************/
+
+   /************Banner ******************/
     Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
     confirmation.setContentText("Reservation est effectuee avec succes");
     confirmation.show();
@@ -135,8 +163,7 @@ public class AjouterReservationHotelController implements Initializable {
                     } else {
                     }
                 }
-            }
-                 
+            }                
        System.out.println("Success...");        
         } catch (WriterException ex) {
             Logger.getLogger(AjouterReservationHotelController.class.getName()).log(Level.SEVERE, null, ex);
@@ -144,11 +171,22 @@ public class AjouterReservationHotelController implements Initializable {
         
         ImageView qrView = new ImageView();
         qrView.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
-
+/*---------------------ajout dans le serveur----------------*/
+   long millis = System.currentTimeMillis();
+            String newName=String.valueOf(u.getID_User())+millis+".png";
+        try {
+         
+            FileUpload.uploadFile("C:/Users/youssef/Desktop/temp.png", "QRimages\\"+newName);
+        } catch (Exception ex) {
+            Logger.getLogger(AjouterReservationHotelController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+/*------------------Ajouter reservation--------------------*/
+  ReservationHotel reservation =new ReservationHotel(DateReservation, dateD, dateF, Float.parseFloat(tarifT_H.getText()),"http://localhost/myjcc/QRimages/"+newName, h, u);
+  rs.addReservationHotel(reservation);
 /**********************************************************/
         String phoneNumber ="+21626360693"; // Remplacer par le numéro de téléphone du client
-    SMSUtil.sendSMS(reservationInfo, phoneNumber);
-    SMSUtil.sendQRCodeMMS(phoneNumber, reservationInfo, 250, 250);
+   // SMSUtil.sendSMS("Bonjour Youssef verifier votre email pour le code QR ", phoneNumber);
+    //SMSUtil.sendQRCodeMMS(phoneNumber, reservationInfo, 250, 250);
     /*******Vider les texteFiled********/
     tarifT_H.setText("");
     iduser.setText("");

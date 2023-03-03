@@ -31,16 +31,17 @@ public class ReservationHotelService implements ReservationHotelInterface {
    /* -----------ajouter une reservation d'hotel pour un invité --------*/
     @Override
     public void addReservationHotel(ReservationHotel r) {
-         String req = "INSERT INTO `reservation_hotel` (`dateReservation`, `date_debut`, `date_fin`, `tarifTotale`, `id_user`, `id_hotel`)"
-                + "VALUES (?,?,?,?,?,?)";
+         String req = "INSERT INTO `reservation_hotel` (`dateReservation`, `date_debut`, `date_fin`, `tarifTotale`, `QrPath`, `id_user`, `id_hotel`)"
+                + "VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setDate(1, r.getDateReservation());
             ps.setDate(2, r.getDate_debut());
             ps.setDate(3, r.getDate_fin());
             ps.setFloat(4, r.getTarifTotal());
-            ps.setInt(5, r.getUser().getID_User());
-            ps.setInt(6, r.getHotel().getId());
+            ps.setString(5, r.getQrpath());
+            ps.setInt(6, r.getUser().getID_User());
+            ps.setInt(7, r.getHotel().getId());
             ps.executeUpdate();
             System.out.println("RESERVATION EFFECTUEE!!!");
         } catch (SQLException ex) {
@@ -62,13 +63,14 @@ public class ReservationHotelService implements ReservationHotelInterface {
               r.setIdReservationH(rs.getInt(1));
               r.setDateReservation(rs.getDate(2));
               r.setDate_debut(rs.getDate(3));
-              r.setDate_fin(rs.getDate(4));
+              r.setDate_fin(rs.getDate(4));             
               r.setTarifTotal(rs.getFloat(5));
-              int UserlId = rs.getInt(6);
+              r.setQrpath(rs.getString(6));
+              int UserlId = rs.getInt(7);
              
               User user = us.afficherUserbyID(UserlId);
               r.setUser(user);
-              int hotelId = rs.getInt(7);
+              int hotelId = rs.getInt(8);
               
               Hotel hotel = hs.GetHotelById(hotelId);
               r.setHotel(hotel);
@@ -94,11 +96,12 @@ public class ReservationHotelService implements ReservationHotelInterface {
                 r.setDate_debut(rs.getDate(3));
                 r.setDate_fin(rs.getDate(4));
                 r.setTarifTotal(rs.getFloat(5));
-                int UserlId = rs.getInt(6);
+                r.setQrpath(rs.getString(6));
+                int UserlId = rs.getInt(7);
               System.out.println(UserlId);
               User user = us.afficherUserbyID(UserlId);
               r.setUser(user);
-              int hotelId = rs.getInt(7);
+              int hotelId = rs.getInt(8);
               System.out.println(hotelId);
               Hotel hotel = hs.GetHotelById(hotelId);
               r.setHotel(hotel);
@@ -154,12 +157,13 @@ public class ReservationHotelService implements ReservationHotelInterface {
                 r.setDate_debut(rs.getDate(3));
                 r.setDate_fin(rs.getDate(4));
                 r.setTarifTotal(rs.getFloat(5));
-                 int UserlId = rs.getInt(6);
+                r.setQrpath(rs.getString(6));
+                 int UserlId = rs.getInt(7);
                  
                 System.out.println(UserlId);
                 User user = us.afficherUserbyID(UserlId);
                 r.setUser(user);
-                int hotelId = rs.getInt(7);
+                int hotelId = rs.getInt(8);
                 System.out.println(hotelId);
                 Hotel hotel = hs.GetHotelById(hotelId);
                 r.setHotel(hotel);
@@ -185,11 +189,12 @@ public class ReservationHotelService implements ReservationHotelInterface {
               r.setDate_debut(rs.getDate(3));
               r.setDate_fin(rs.getDate(4));
                 r.setTarifTotal(rs.getFloat(5));
-                int UserlId = rs.getInt(6);
+               r.setQrpath(rs.getString(6));
+                int UserlId = rs.getInt(7);
                 System.out.println(UserlId);
                 User user = us.afficherUserbyID(UserlId);
                 r.setUser(user);
-                int hotelId = rs.getInt(7);
+                int hotelId = rs.getInt(8);
                 System.out.println(hotelId);
                 Hotel hotel = hs.GetHotelById(hotelId);
                 r.setHotel(hotel);

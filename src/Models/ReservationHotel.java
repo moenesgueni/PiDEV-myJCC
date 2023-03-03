@@ -17,10 +17,29 @@ public class ReservationHotel {
     private Date date_debut ;
     private Date date_fin ;
     private float tarifTotal ;
+    private String qrpath;
     private Hotel hotel;
     private User user;
 
     public ReservationHotel() {
+    }
+
+    public String getQrpath() {
+        return qrpath;
+    }
+
+    public void setQrpath(String qrpath) {
+        this.qrpath = qrpath;
+    }
+
+    public ReservationHotel(Date dateReservation, Date date_debut, Date date_fin, float tarifTotal, String qrpath, Hotel hotel, User user) {
+        this.dateReservation = dateReservation;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.tarifTotal = tarifTotal;
+        this.qrpath = qrpath;
+        this.hotel = hotel;
+        this.user = user;
     }
 
     public ReservationHotel(int idReservationH, Date dateReservation, Date date_debut, Date date_fin, float tarifTotal, Hotel hotel, User user) {

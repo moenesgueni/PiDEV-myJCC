@@ -62,16 +62,39 @@ public class AjouterLocationController implements Initializable {
     alert.showAndWait();
     return;
 }
-
      Vehicule v=new Vehicule();
      v=vs.GetVehiculeBymatricule(matricule.getText());
+     if (v == null) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText("Vehicule n'existe pas!");
+        alert.showAndWait();
+        return;
+    }
      User u =new User();
      u=us.afficherUserbyID(Integer.parseInt(iduser.getText()));
- 
+    if (u == null) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText("Utilisateur n'existe pas!");
+        alert.showAndWait();
+        return;
+    }
     LocalDate dd =date_debut.getValue();
     Date dateD = Date.valueOf(dd);
     LocalDate df =date_fin.getValue();
    Date dateF = Date.valueOf(df);
+    // valider que la date de debut est avant la date de fin
+    if(df.isBefore(dd)){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText("La date de fin doit être supérieure à la date de début!");
+        alert.showAndWait();
+        return;
+    }
    // Obtenir la date système actuelle
     LocalDate localDate = LocalDate.now();
     // Convertir en java.sql.Date

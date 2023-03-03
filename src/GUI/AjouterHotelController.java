@@ -58,13 +58,35 @@ public class AjouterHotelController implements Initializable {
     String nbr_chambres_str = nbr_chmbre.getText();
     String tel_str = telh.getText();
     String description = desch.getText();
-
+/*---------------Verification que tous les champs sont rempli-----------------*/
     if (nom.isEmpty() || adresse.isEmpty() || nbr_chambres_str.isEmpty() || tel_str.isEmpty() || description.isEmpty()) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText("Veuillez remplir tous les champs");
         alert.show();
         return;
     }
+/*-------------Controle de saisie sur le champ nombre de chambre positive et entier ------*/
+if (!nbr_chambres_str.matches("\\d+")) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setContentText("Veuillez saisir un nombre entier positif pour le nombre de chambres");
+    alert.show();
+    return;
+}
+int nbr_chambres = Integer.parseInt(nbr_chambres_str);
+if (nbr_chambres <= 0) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setContentText("Veuillez saisir un nombre entier positif pour le nombre de chambres");
+    alert.show();
+    return;
+}
+/*-------------Controle de saisie sur le champ telephone: chaine numerique de longueur 8 ------*/
+if (!tel_str.matches("\\d{8}")) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setContentText("Veuillez saisir un numero de telephone de 8 chiffres");
+    alert.show();
+    return;
+}
+
         Hotel h =new Hotel();
         HotelService hs = new HotelService();
         h.setLibelle(nomh.getText());

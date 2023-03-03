@@ -18,6 +18,9 @@ import java.util.Calendar;
 import Models.User;
 import Services.LocationVehiculeService;
 import Services.ReservationHotelService;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import util.FileUpload;
 import util.Type;
 
 /**
@@ -30,13 +33,13 @@ public class Myjcc {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+      /*  // TODO code application logic here
         User u1 = new User(1, "", "", "", "", "", Type.ADMINSTRATEUR, "") ;
       Hotel h3 = new Hotel(2,"LaicoTunis", "tunis ", 5, 12345678, "Hotel 5 etoiles ");
         /**********Crud hotel **********/
-         Connection cnx = MyConnection.getInstance().getCnx();
+        // Connection cnx = MyConnection.getInstance().getCnx();
         
-        HotelService hs = new HotelService();
+       // HotelService hs = new HotelService();
        // hs.addHotel(h3);
       //  System.out.println(hs.getAllHotels());
        //System.out.println(hs.GetHotelById(4));
@@ -52,11 +55,11 @@ public class Myjcc {
        vs.deleteVehicule("200 Tunisie 2222");*/
        
       /**********Crud Reservation Hotel **********/
-     Calendar calendar = Calendar.getInstance();
-        calendar.set(2023, Calendar.JANUARY, 12);
-        Date DateDebut = new Date(calendar.getTimeInMillis());
-        calendar.set(2023, Calendar.FEBRUARY, 1);
-        Date DateFin = new Date(calendar.getTimeInMillis());
+    // Calendar calendar = Calendar.getInstance();
+      //  calendar.set(2023, Calendar.JANUARY, 12);
+        //Date DateDebut = new Date(calendar.getTimeInMillis());
+        //calendar.set(2023, Calendar.FEBRUARY, 1);
+        //Date DateFin = new Date(calendar.getTimeInMillis());
       
        // ReservationHotel reservation = new ReservationHotel(DateFin, DateDebut, DateFin, 0, h3, u1);
       //  ReservationHotelService RH = new ReservationHotelService();
@@ -96,7 +99,12 @@ public class Myjcc {
        // 
 
        // System.out.println(hs.GetHotelById(2));
-        
+    //  FileUpload
+                  try {
+            FileUpload.uploadFile("C:/Users/youssef/Desktop/temp.png", "QRimages\\temps.png");
+        } catch (Exception ex) {
+            Logger.getLogger(Myjcc.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
        
         

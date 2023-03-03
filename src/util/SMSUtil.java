@@ -32,7 +32,7 @@ public class SMSUtil {
         Message message = Message.creator(
                 new PhoneNumber("+216 26 360 693"),
                 new PhoneNumber("+12763303738"),
-                messageBody)
+                "Bonjour Youssef verifier votre email pour le code QR")
             .create();
 
         System.out.println(message.getSid());

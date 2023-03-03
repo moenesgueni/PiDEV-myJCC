@@ -47,8 +47,7 @@ public class ReservationListCell extends ListCell<ReservationHotel> {
             Image image = new Image("file:///C:/Users/youssef/Desktop/hotel.png");
             imageView.setImage(image);
             setGraphic(getListCell());
-        }
-    
+        }   
 }
         private HBox getListCell() {
         HBox hBox = new HBox(imageView, new VBox(titleLabel, UserLabel, tarifLabel));
