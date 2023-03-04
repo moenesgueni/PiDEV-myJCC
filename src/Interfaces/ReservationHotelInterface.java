@@ -7,6 +7,7 @@ package Interfaces;
 
 import java.util.List;
 import Models.ReservationHotel;
+import Models.User;
 
 /**
  *
@@ -32,6 +33,8 @@ public interface ReservationHotelInterface {
      public ReservationHotel filterByName(String nom);
     //Filter by nom de l'hotel   
     public List<ReservationHotel> filterByHotel(String libelle);
+    //
+    public ReservationHotel filterByIdUser(int id);
 
 
 }

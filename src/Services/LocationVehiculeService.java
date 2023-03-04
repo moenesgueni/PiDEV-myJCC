@@ -31,16 +31,17 @@ public class LocationVehiculeService implements LocationInterface {
    /* -----------ajouter une location  de vehicule pour un invité --------*/
     @Override
     public void addLocationBehicule(Location l) {
-     String req = "INSERT INTO `location_vehicule` (`dateReservation`, `date_debut`, `date_fin`, `TarifTotal`, `id_User`, `matricule`)"
-            + "VALUES (?,?,?,?,?,?)";        
+     String req = "INSERT INTO `location_vehicule` (`dateReservation`, `date_debut`, `date_fin`, `TarifTotal`, `QrPath`, `id_User`, `matricule`)"
+            + "VALUES (?,?,?,?,?,?,?)";        
      try {
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setDate(1, l.getDateReservation());
             ps.setDate(2, l.getDate_debut());
             ps.setDate(3, l.getDate_fin());
             ps.setFloat(4, l.getTarifTotal());
-            ps.setInt(5, l.getUser().getID_User());
-            ps.setString(6, l.getVehicule().getMaricule());
+            ps.setString(5, l.getQrpath());
+            ps.setInt(6, l.getUser().getID_User());
+            ps.setString(7, l.getVehicule().getMaricule());
             ps.executeUpdate();
             System.out.println("Location EFFECTUEE!!!");
         } catch (SQLException ex) {
@@ -65,12 +66,12 @@ public class LocationVehiculeService implements LocationInterface {
               l.setDate_debut(rs.getDate(3));
               l.setDate_fin(rs.getDate(4));
               l.setTarifTotal(rs.getFloat(5));
-              
-               String matricule = rs.getString(6);
+              l.setQrpath(rs.getString(6));
+               String matricule = rs.getString(7);
                 System.out.println(matricule);
                 Vehicule vehicule = vs.GetVehiculeBymatricule(matricule);
                 l.setVehicule(vehicule);
-              int UserlId = rs.getInt(7);
+              int UserlId = rs.getInt(8);
                 System.out.println(UserlId);
                 User user = us.afficherUserbyID(UserlId);
                 l.setUser(user);
@@ -97,11 +98,12 @@ public class LocationVehiculeService implements LocationInterface {
                 l.setDate_debut(rs.getDate(3));
                 l.setDate_fin(rs.getDate(4));
                 l.setTarifTotal(rs.getFloat(5));
-                String matricule = rs.getString(6);
+                l.setQrpath(rs.getString(6));
+                String matricule = rs.getString(7);
                 System.out.println(matricule);
                 Vehicule vehicule = vs.GetVehiculeBymatricule(matricule);
                 l.setVehicule(vehicule);
-              int UserlId = rs.getInt(7);
+              int UserlId = rs.getInt(8);
                 System.out.println(UserlId);
                 User user = us.afficherUserbyID(UserlId);
                 l.setUser(user);
@@ -157,12 +159,12 @@ public class LocationVehiculeService implements LocationInterface {
                 l.setDate_debut(rs.getDate(3));
                 l.setDate_fin(rs.getDate(4));
                 l.setTarifTotal(rs.getFloat(5));
-                
-                String matricule = rs.getString(6);
+                l.setQrpath(rs.getString(6));
+                String matricule = rs.getString(7);
                 System.out.println(matricule);
                 Vehicule vehicule = vs.GetVehiculeBymatricule(matricule);
                 l.setVehicule(vehicule);
-              int UserlId = rs.getInt(7);
+              int UserlId = rs.getInt(8);
                 System.out.println(UserlId);
                 User user = us.afficherUserbyID(UserlId);
                 l.setUser(user);
@@ -186,11 +188,12 @@ public class LocationVehiculeService implements LocationInterface {
                 l.setDate_debut(rs.getDate(3));
                 l.setDate_fin(rs.getDate(4));
                 l.setTarifTotal(rs.getFloat(5));
-                String matricule2 = rs.getString(6);
+                l.setQrpath(rs.getString(6));
+                String matricule2 = rs.getString(7);
                 System.out.println(matricule2);
                 Vehicule vehicule = vs.GetVehiculeBymatricule(matricule2);
                 l.setVehicule(vehicule);
-              int UserlId = rs.getInt(7);
+              int UserlId = rs.getInt(8);
                 System.out.println(UserlId);
                 User user = us.afficherUserbyID(UserlId);
                 l.setUser(user);

@@ -83,8 +83,7 @@ public class ReservationHotelService implements ReservationHotelInterface {
     }
    /* -----------afficher  reservation BY ID  --------*/
     @Override
-    public ReservationHotel GetReservationHById(int Id) {
-                
+    public ReservationHotel GetReservationHById(int Id) {          
         ReservationHotel r = new ReservationHotel();
         String req = "SELECT * FROM reservation_hotel where `ID_ReservationH` =" + Id + ";";
         try {
@@ -204,6 +203,35 @@ public class ReservationHotelService implements ReservationHotelInterface {
            Logger.getLogger(HotelService.class.getName()).log(Level.SEVERE, null, ex);
        }            
     return Reservations ;
+    }
+
+    @Override
+    public ReservationHotel filterByIdUser(int id) {
+   ReservationHotel r = new ReservationHotel();
+        String req = "SELECT * FROM reservation_hotel where `id_user` =" + id + ";";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                r.setIdReservationH(rs.getInt(1));
+                r.setDateReservation(rs.getDate(2));
+                r.setDate_debut(rs.getDate(3));
+                r.setDate_fin(rs.getDate(4));
+                r.setTarifTotal(rs.getFloat(5));
+                r.setQrpath(rs.getString(6));
+                int UserlId = rs.getInt(7);
+              System.out.println(UserlId);
+              User user = us.afficherUserbyID(UserlId);
+              r.setUser(user);
+              int hotelId = rs.getInt(8);
+              System.out.println(hotelId);
+              Hotel hotel = hs.GetHotelById(hotelId);
+              r.setHotel(hotel);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HotelService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return r; 
     }
     
     

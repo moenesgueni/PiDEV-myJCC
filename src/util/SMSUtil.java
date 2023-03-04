@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class SMSUtil {
     public static final String ACCOUNT_SID = "AC18f0474fed3312dea0aabb4161679485";
-    public static final String AUTH_TOKEN = "ca7fbdaf1fde42d991dfc52688921ebf";
+    public static final String AUTH_TOKEN = "a01089ee80f6b4fa09a37b537d962fdb";
 
     public static void sendSMS(String toPhoneNumber, String messageBody) {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
@@ -32,7 +32,7 @@ public class SMSUtil {
         Message message = Message.creator(
                 new PhoneNumber("+216 26 360 693"),
                 new PhoneNumber("+12763303738"),
-                "Bonjour Youssef verifier votre email pour le code QR")
+                "Bonjour Youssef verifier votre email pour le code QR ")
             .create();
 
         System.out.println(message.getSid());

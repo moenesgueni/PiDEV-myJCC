@@ -28,8 +28,9 @@ public class UserService implements UserInterface {
 
     @Override
     public void ajouterUser(User p) {
-        String req = "INSERT INTO `user`(`Nom`, `Prenom`, `Sexe`, `Email` ,`MotDePasse`,`Role`,`PhotoB64`) VALUES ('"
-                +p.getNom()+"','"+p.getPrenom()+"','"+p.getSexe()+"','"+p.getEmail()+"','"+p.getMotDePasse()+"','"+p.getRole().toString()+"','"+p.getPhotoB64()+"')";
+    /*   while(TestUser.verifierNomPrenom(p.getNom())&&TestUser.verifierNomPrenom(p.getPrenom())&&TestUser.verifierAdresseEmail(p.getEmail())&&TestUser.verifierMotDePasse(p.getMotDePasse())){
+        String req = "INSERT INTO `user`(`Nom`, `Prenom`, `Genre`, `Email` ,`MotDePasse`,`Role`,`PhotoB64`) VALUES ('"
+                +p.getNom()+"','"+p.getPrenom()+"','"+p.getGenre()+"','"+p.getEmail()+"','"+p.getMotDePasse()+"','"+p.getRole().toString()+"','"+p.getPhotoB64()+"')";
         try {
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
@@ -37,17 +38,20 @@ public class UserService implements UserInterface {
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
+    break;    
+    }*/
     }
 
     @Override
     public void ajouterUser2(User p) {
-        String req = "INSERT INTO `user`(`Nom`, `Prenom`, `Sexe`, `Email` ,`MotDePasse`,`Role`,`PhotoB64`) VALUES (?,?,?,?,?,?,?)";
+       /* while(TestUser.verifierNomPrenom(p.getNom())&&TestUser.verifierNomPrenom(p.getPrenom())&&TestUser.verifierAdresseEmail(p.getEmail())&&TestUser.verifierMotDePasse(p.getMotDePasse())){
+        String req = "INSERT INTO `user`(`Nom`, `Prenom`, `Genre`, `Email` ,`MotDePasse`,`Role`,`PhotoB64`) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
 //          ps.setInt(1, p.getID_User());
             ps.setString(1, p.getNom());
             ps.setString(2, p.getPrenom());
-            ps.setString(3, p.getSexe());
+            ps.setString(3, p.getGenre());
             ps.setString(4, p.getEmail());
             ps.setString(5, p.getMotDePasse());
             ps.setString(6, p.getRole().toString());
@@ -57,7 +61,8 @@ public class UserService implements UserInterface {
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        break;
+        }*/
     }
     
     
@@ -74,7 +79,7 @@ public class UserService implements UserInterface {
                 p.setID_User(rs.getInt(1));
                 p.setNom(rs.getString("Nom"));
                 p.setPrenom(rs.getString("Prenom"));
-                p.setSexe(rs.getString("Sexe"));
+                p.setGenre(rs.getString("Genre"));
                 p.setEmail(rs.getString("Email"));
                 p.setMotDePasse(rs.getString("MotDePasse"));
                 p.setRole(Type.valueOf(rs.getString("Role")));
@@ -89,17 +94,26 @@ public class UserService implements UserInterface {
     }
 
     @Override
-   public void modifierUser(int id, String nom) {
-            try{
-             String req ="UPDATE `user` SET `Nom`= ? WHERE ID_User= ?";
+   public void modifierUser(Integer id,User p) {
+            
+             String req ="UPDATE `user` SET `Nom`= ?, `Prenom`=?, `Genre`=?, `Email`=? ,`MotDePasse`=?,`Role`=?,`PhotoB64`=? WHERE ID_User= ?";
+        try {
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(1, nom);
-            ps.setInt(2, id);
+//          ps.setInt(1, p.getID_User());
+            ps.setString(1, p.getNom());
+            ps.setString(2, p.getPrenom());
+            ps.setString(3, p.getGenre());
+            ps.setString(4, p.getEmail());
+            ps.setString(5, p.getMotDePasse());
+            ps.setString(6, p.getRole().toString());
+            ps.setString(7, p.getPhotoB64());
+            ps.setInt(8, id);
             ps.executeUpdate();
-
+            System.out.println("Personne modifié avec success via prepared Statement!!!");
         } catch (SQLException ex) {
             Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
         }
+
 
     };
 
@@ -129,7 +143,7 @@ public class UserService implements UserInterface {
                 p.setID_User(rs.getInt(1));
                 p.setNom(rs.getString("Nom"));
                 p.setPrenom(rs.getString("Prenom"));
-                p.setSexe(rs.getString("Sexe"));
+                p.setGenre(rs.getString("Genre"));
                 p.setEmail(rs.getString("Email"));
                 p.setMotDePasse(rs.getString("MotDePasse"));
                 p.setRole(Type.valueOf(rs.getString("Role")));
@@ -140,6 +154,7 @@ public class UserService implements UserInterface {
         }
         return p;
     }
+
     @Override
     public List<User> FiltrerParRole(Type role) {
         List<User> personnes = new ArrayList<>();
@@ -152,7 +167,7 @@ public class UserService implements UserInterface {
                 p.setID_User(rs.getInt(1));
                 p.setNom(rs.getString("Nom"));
                 p.setPrenom(rs.getString("Prenom"));
-                p.setSexe(rs.getString("Sexe"));
+                p.setGenre(rs.getString("Genre"));
                 p.setEmail(rs.getString("Email"));
                 p.setMotDePasse(rs.getString("MotDePasse"));
                 p.setRole(Type.valueOf(rs.getString("Role")));
@@ -165,7 +180,32 @@ public class UserService implements UserInterface {
         }
         return personnes;
     }
+    
 
 
+
+    @Override
+    public User SearchByMail(String s) {
+        User p = new User();
+        String request = "SELECT * FROM user WHERE Email ='"+s+"';";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            while(rs.next()){
+                p.setID_User(rs.getInt(1));
+                p.setNom(rs.getString("Nom"));
+                p.setPrenom(rs.getString("Prenom"));
+                p.setGenre(rs.getString("Genre"));
+                p.setEmail(rs.getString("Email"));
+                p.setMotDePasse(rs.getString("MotDePasse"));
+                p.setRole(Type.valueOf(rs.getString("Role")));
+                p.setPhotoB64(rs.getString("PhotoB64"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
+    }
+   
 
 }

@@ -4,52 +4,49 @@
  * and open the template in the editor.
  */
 package Models;
+import java.util.Objects;
 import util.Type;
 /**
  *
  * @author youssef
  */
 public class User {
-   private int ID_User;
+    private int ID_User;
     private String Nom;
     private String Prenom;
-    private String Sexe;
+    private String Genre;
     private String Email;
     private String MotDePasse;
     private Type Role;
-    private String Telephone;
-
-    public String getTelephone() {
-        return Telephone;
-    }
-
-    public void setTelephone(String Telephone) {
-        this.Telephone = Telephone;
-    }
     private String PhotoB64;
+    private int NumTel;
+    private String QRcode;
+
+
 
     public User() {
     }
 
-    public User(int ID_User, String Nom, String Prenom, String Sexe, String Email, String MotDePasse, Type Role, String PhotoB64) {
+    public User(int ID_User, String Nom, String Prenom, String Genre, String Email, String MotDePasse, Type Role, String PhotoB64) {
         this.ID_User = ID_User;
         this.Nom = Nom;
         this.Prenom = Prenom;
-        this.Sexe = Sexe;
+        this.Genre = Genre;
         this.Email = Email;
         this.MotDePasse = MotDePasse;
         this.Role = Role;
         this.PhotoB64 = PhotoB64;
     }
 
-    public User(String Nom, String Prenom, String Sexe, String Email, String MotDePasse,Type Role, String PhotoB64) {
+    public User(String Nom, String Prenom, String Genre, String Email, String MotDePasse,Type Role, String PhotoB64,int NumTel) {
         this.Nom = Nom;
         this.Prenom = Prenom;
-        this.Sexe = Sexe;
+        this.Genre = Genre;
         this.Email = Email;
         this.MotDePasse = MotDePasse;
         this.Role = Role;
         this.PhotoB64 = PhotoB64;
+        this.NumTel=NumTel;
     }
 
 
@@ -67,8 +64,8 @@ public class User {
         return Prenom;
     }
 
-    public String getSexe() {
-        return Sexe;
+    public String getGenre() {
+        return Genre;
     }
 
     public String getEmail() {
@@ -86,9 +83,26 @@ public class User {
     public String getPhotoB64() {
         return PhotoB64;
     }
+    
 
     public void setID_User(int ID_User) {
         this.ID_User = ID_User;
+    }
+
+    public void setNumTel(int NumTel) {
+        this.NumTel = NumTel;
+    }
+
+    public void setQRcode(String QRcode) {
+        this.QRcode = QRcode;
+    }
+
+    public int getNumTel() {
+        return NumTel;
+    }
+
+    public String getQRcode() {
+        return QRcode;
     }
 
     public void setNom(String Nom) {
@@ -99,8 +113,8 @@ public class User {
         this.Prenom = Prenom;
     }
 
-    public void setSexe(String Sexe) {
-        this.Sexe = Sexe;
+    public void setGenre(String Genre) {
+        this.Genre = Genre;
     }
 
     public void setEmail(String Email) {
@@ -121,8 +135,28 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{Nom=" + Nom + ", Prenom=" + Prenom + ", Sexe=" + Sexe + ", Email=" + Email + ", MotDePasse=" + MotDePasse + ", Role=" + Role + ", PhotoB64=" + PhotoB64 + '}';
-    }  
-   
-    
+        return "User{Nom=" + Nom + ", Prenom=" + Prenom + ", Genre=" + Genre + ", Email=" + Email + ", MotDePasse=" + MotDePasse + ", Role=" + Role + ", PhotoB64=" + PhotoB64 + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.MotDePasse);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        return true;
+    }
 }

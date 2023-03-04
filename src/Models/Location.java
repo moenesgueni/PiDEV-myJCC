@@ -17,10 +17,21 @@ public class Location {
     private Date date_debut ;
     private Date date_fin ;
     private float tarifTotal ;
+    private String qrpath;
     private Vehicule vehicule;
     private User user;
 
     public Location() {
+    }
+
+    public Location(Date dateReservation, Date date_debut, Date date_fin, float tarifTotal, String qrpath, Vehicule vehicule, User user) {
+        this.dateReservation = dateReservation;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.tarifTotal = tarifTotal;
+        this.qrpath = qrpath;
+        this.vehicule = vehicule;
+        this.user = user;
     }
 
     public Location(int idLocationV, Date dateReservation, Date date_debut, Date date_fin, float tarifTotal) {
@@ -55,7 +66,13 @@ public class Location {
     public String toString() {
         return "Location{" + "idLocationV=" + idLocationV + ", dateReservation=" + dateReservation + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", tarifTotal=" + tarifTotal + ", vehicule=" + vehicule + ", user=" + user + '}';
     }
+      public String getQrpath() {
+        return qrpath;
+    }
 
+    public void setQrpath(String qrpath) {
+        this.qrpath = qrpath;
+    }
     public int getIdLocationV() {
         return idLocationV;
     }

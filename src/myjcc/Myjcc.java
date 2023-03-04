@@ -20,6 +20,7 @@ import Services.LocationVehiculeService;
 import Services.ReservationHotelService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import util.EmailAPI;
 import util.FileUpload;
 import util.Type;
 
@@ -100,12 +101,13 @@ public class Myjcc {
 
        // System.out.println(hs.GetHotelById(2));
     //  FileUpload
-                  try {
+      /*            try {
             FileUpload.uploadFile("C:/Users/youssef/Desktop/temp.png", "QRimages\\temps.png");
         } catch (Exception ex) {
             Logger.getLogger(Myjcc.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }*/
+ EmailAPI e = new EmailAPI();
+      e.sendMail("youssefkchaou4@gmail.com","C:/Users/youssef/Desktop/temps.png","LocationVehicule");
        
         
     }
