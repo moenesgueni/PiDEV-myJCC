@@ -21,6 +21,7 @@
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/ModifierFXMLController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Models/User.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/FxmlLoader.java</file>
+            <file>file:/D:/ADMIN/ADMIN/src/Controllers/ModifierFXMLController1.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/GestionFXMLController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/admin/ADMIN.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/AjouterFXMLController.java</file>
@@ -32,7 +33,6 @@
             <file>file:/D:/ADMIN/ADMIN/src/admin/Gestion.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/gui/AjoutController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Utilities/UserSession.java</file>
-            <file>file:/D:/ADMIN/ADMIN/src/sample/AjoutController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Services/UserService.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/ForgotPassword1FXMLController.java</file>
         </group>

@@ -43,7 +43,7 @@ public class ADMIN {
         LOGS LM;
        // LM = new LOGS ("CCCCCCCCCCC");
         
-     //   f = new User("Gueni","Moenes","Homme","moenes.gueni@esprit.tn",PasswordHasher.hashPassword("azertyuiop123"),Type.ADMINSTRATEUR,"http://localhost/myjcc/profile/me.jpg",96498278);
+    //  f = new User("Gueni","Moenes","Homme","moenes.gueni@esprit.tn",PasswordHasher.hashPassword("azertyuiop123"),Type.ADMINSTRATEUR,"http://localhost/myjcc/profile/me.jpg",96498278);
        //p2 = new User("","Ali","Femme","asmaali@esprit.tn","azertyuiop123",Type.SPECTATEUR,"cjckcfk");
 /*if (!TestUser.verifierNomPrenom("Gueni")) {
     System.out.println("Le nom est invalide");
@@ -82,11 +82,7 @@ if (!TestUser.verifierAdresseEmail("moenes.gueni@esprit.tn")) {
         //System.out.println(DateLog);
         //Ls.FiltrerParDate(DateLog).forEach(System.out::println);
        // Ls.FiltrerParAction("CCCCCCCCCCC").forEach(System.out::println);
-  java.util.Date currentDate = new java.util.Date();
-      java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
-        LM= new LOGS(UserSession.getID_User(),sqlDate,"L'utilisateur");
-
-        Ls.AjouterLogs(LM);
+        //MailerAPI.sendMail("moenes.gueni.21@gmail.com", f.getEmail(), f.getMotDePasse());
      //   Ls.modifierLogs(UserSession.getID_User(), LM.getDate(),LM.getAction());      
 }  
 }    

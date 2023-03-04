@@ -16,6 +16,7 @@ import static javax.mail.Transport.send;
 import javax.mail.internet.*;
 
 
+
 /**
  *
  * @author moene
@@ -33,6 +34,7 @@ public class MailerAPI {
 
         // Configuration de la propriété système pour l'envoi d'un e-mail via le serveur SMTP d'Outlook
         Properties props = new Properties();
+
         props.put("mail.smtp.host", "smtp.office365.com");
         props.put("mail.smtp.port", "587");
         props.put("mail.smtp.starttls.enable", "true");
@@ -71,6 +73,7 @@ public class MailerAPI {
 
         // Configuration de la propriété système pour l'envoi d'un e-mail via le serveur SMTP d'Outlook
         Properties props = new Properties();
+
         props.put("mail.smtp.host", "smtp.office365.com");
         props.put("mail.smtp.port", "587");
         props.put("mail.smtp.starttls.enable", "true");
@@ -91,7 +94,7 @@ public class MailerAPI {
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
             message.setSubject("Bienvenue à MyJCC");
             message.setText("Bonjour, Bienvenue avec nous \n Votre Adresse est "+a+"\n Votre Mot De Passe est "+p);
-
+            
             // Envoi du message
             Transport.send(message);
 
