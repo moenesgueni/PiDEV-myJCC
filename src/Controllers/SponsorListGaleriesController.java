@@ -3,11 +3,17 @@ package Controllers;
 import Services.GalerieService;
 import Models.Galerie;
 import Models.User;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -15,18 +21,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Random;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class SponsorListGaleriesController implements Initializable {
 
     //Creation service galerie
     GalerieService gs = new GalerieService();
     private List<Galerie> listGaleires;
-    private static final Random random = new Random();
-    private ArrayList<Color> listCouleurs = new ArrayList<>();
 
     private int teteDeLecture = 0;
     @FXML
@@ -37,31 +39,16 @@ public class SponsorListGaleriesController implements Initializable {
     private void getGaleries() {
         //Read : Afficher toutes les galeries
         listGaleires = gs.afficherGaleries();
-        //get background color for each element
-        getRandomPastelColor();
-    }
-
-    //Methode qui retourne une couleur pastel pour le background des cartes
-    public void getRandomPastelColor() {
-        for (int i = 0; i < listGaleires.size(); i++) {
-            // Generate random RGB values in the range [128, 255] to produce pastel colors
-            int red = random.nextInt(128) + 128;
-            int green = random.nextInt(128) + 128;
-            int blue = random.nextInt(128) + 128;
-            Color c = new Color(red, green, blue);
-            listCouleurs.add(c);
-        }
     }
 
     private AnchorPane populerCard(int i) {
         AnchorPane p = new AnchorPane();
         p.setPrefSize(550, 270);
-
-        Color c = listCouleurs.get(i);
-        p.setStyle("-fx-background-color: rgb(" + c.getRed() + "," + c.getGreen() + "," + c.getBlue() + "); -fx-background-radius: 10px;");
+        Galerie g = listGaleires.get(i);
+        p.setStyle("-fx-background-color: " + g.getCouleurHtml() + "; -fx-background-radius: 10px;");
 
         //Label 1 : Titre de La Galerie
-        Label label1 = new Label(listGaleires.get(i).getNom());
+        Label label1 = new Label(g.getNom());
         label1.setFont(new Font(30));
         AnchorPane.setTopAnchor(label1, 10.0);
         AnchorPane.setLeftAnchor(label1, 10.0);
@@ -73,7 +60,7 @@ public class SponsorListGaleriesController implements Initializable {
         AnchorPane.setLeftAnchor(label2, 10.0);
 
         // TexArea : Description de la galerie de la bd
-        TextArea tar = new TextArea(listGaleires.get(i).getDescription());
+        TextArea tar = new TextArea(g.getDescription());
         tar.setEditable(false);
         tar.setPrefSize(325, 140); // set preferred size
         tar.setMaxSize(325, 140); // set preferred size
@@ -82,7 +69,7 @@ public class SponsorListGaleriesController implements Initializable {
         AnchorPane.setBottomAnchor(tar, 30.0);
 
         //Get Photographe objct
-        User u = listGaleires.get(i).getPhotographe();
+        User u = g.getPhotographe();
         //Photographe picture
         ImageView img = new ImageView(u.getPhotoB64());
         img.setFitHeight(150);
@@ -112,8 +99,22 @@ public class SponsorListGaleriesController implements Initializable {
         p.setOnMouseClicked(event -> {
             //SideBarFXMLController controller = new SideBarFXMLController();
             //controller.goToGalerie();
-            System.out.println(i);
-        });
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/GererPhotographiesFXML.fxml"));
+                Parent root = loader.load();
+                GererPhotographiesFXMLController gererPhotographiesFXMLController = loader.getController();
+                int idGalerie = g.getID_Galerie();
+                gererPhotographiesFXMLController.ModifyIdGalerie(idGalerie);
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        );
         return p;
     }
 

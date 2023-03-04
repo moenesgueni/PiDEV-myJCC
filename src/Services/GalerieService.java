@@ -26,9 +26,10 @@ public class GalerieService implements GalerieInterface {
         Galerie g = new Galerie();
         try {
             g.setID_Galerie(rs.getInt(1));
-            g.setNom(rs.getString(2));
-            g.setDescription(rs.getString(3));
-            g.setPhotographe(ps.afficherUserbyID(rs.getInt(4)));
+            g.setCouleurHtml(rs.getString(2));
+            g.setNom(rs.getString(3));
+            g.setDescription(rs.getString(4));
+            g.setPhotographe(ps.afficherUserbyID(rs.getInt(5)));
         } catch (SQLException ex) {
             Logger.getLogger(PhotographieService.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -38,12 +39,13 @@ public class GalerieService implements GalerieInterface {
     //Create
     @Override
     public void ajouterGalerie(Galerie g) {
-        String req = "INSERT INTO `galerie`(`Nom`, `Description`, `ID_Photographe`) VALUES (?,?,?)";
+        String req = "INSERT INTO `galerie`(`couleurHtml`, `Nom`, `Description`, `ID_Photographe`) VALUES (?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(1, g.getNom());
-            ps.setString(2, g.getDescription());
-            ps.setInt(3, g.getPhotographe().getID_User());
+            ps.setString(1, g.getCouleurHtml());
+            ps.setString(2, g.getNom());
+            ps.setString(3, g.getDescription());
+            ps.setInt(4, g.getPhotographe().getID_User());
             //
             ps.executeUpdate();
             System.out.println("Nouvelle Galerie Ajoute avec success via prepared Statement!!!");
@@ -91,14 +93,15 @@ public class GalerieService implements GalerieInterface {
     //Delete
     @Override
     public void modifierGalerie(Galerie g) {
-        String request = "UPDATE `galerie` SET `Nom`= ?,`Description`= ?,"
+        String request = "UPDATE `galerie` SET `couleurHtml`= ?, `Nom`= ?,`Description`= ?,"
                 + "`ID_Photographe`= ? WHERE `ID_Galerie`= ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(request);
-            ps.setString(1, g.getNom());
-            ps.setString(2, g.getDescription());
-            ps.setInt(3, g.getPhotographe().getID_User());
-            ps.setInt(4, g.getID_Galerie());
+            ps.setString(1, g.getCouleurHtml());
+            ps.setString(2, g.getNom());
+            ps.setString(3, g.getDescription());
+            ps.setInt(4, g.getPhotographe().getID_User());
+            ps.setInt(5, g.getID_Galerie());
             //
             ps.executeUpdate();
             System.out.println("Galerie modifié avec success via prepared Statement!!!");

@@ -95,7 +95,7 @@ public class PhotographePaletteController implements Initializable {
                     int blue = colors[i][2];
                     anchorPane.setStyle("-fx-background-color: rgb(" + red + "," + green + "," + blue + ")");
                     int rgb = (red << 16) | (green << 8) | blue;
-                    String htmlCode = "#" + Integer.toHexString(rgb).substring(2).toUpperCase();
+                    String htmlCode = "#" + Integer.toHexString(rgb).toUpperCase();
                     paletteBox.getChildren().add(create2labelsForPalette(anchorPane, "[" + red + "," + green + "," + blue + "]", htmlCode));
                 }
             } else {

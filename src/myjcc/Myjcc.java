@@ -21,13 +21,13 @@ import java.util.logging.Logger;
 public class Myjcc {
 
     public static void main(String[] args) {
-        /*FileUpload
+        /*FileUpload*/
                   try {
             FileUpload.uploadFile("C:/Users/Marwen/Desktop/mercedess.pdf", "contrats\\newMercedess.pdf");
         } catch (Exception ex) {
             Logger.getLogger(Myjcc.class.getName()).log(Level.SEVERE, null, ex);
         }
-         */
+         
         /*Get color palette
             try {
             //ColorPaletteCreator c = new ColorPaletteCreator("[44,43,44]");

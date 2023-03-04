@@ -1,8 +1,18 @@
 package Controllers;
 
+import Models.ContratSponsoring;
 import Models.Photographie;
+import Models.Galerie;
+import Models.User;
+import Services.ContratSponsorinService;
 import Services.GalerieService;
 import Services.PhotographieService;
+import Services.UserService;
+import Utils.EnumEtatContrat;
+import Utils.EnumTypeContrat;
+import Utils.FileUpload;
+import Utils.Type;
+import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,19 +31,38 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.function.UnaryOperator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javax.imageio.ImageIO;
 
 public class GererPhotographiesFXMLController implements Initializable {
 
     //var
     private int teteDeLecture = 0;
     private int imageModifieActuel = 0;
-    private final int idCurrentUserGalerie = 4;
-    Path LocalPathToImage;
+    private int idCurrentUserGalerie = 4; //idCurrentGalerie (Sponsor peut y accéder depuis liste galeries)
     File selectedFile;
-
+    int CurrentUserId = 1;//5
+    Type CurrentUserRole = Type.SPONSOR;//PHOTOGRAPHE
+    Image CurrentGrandImage;
+    
     //service Photographie
     //creation service Photographie & Galerie
     PhotographieService ps = new PhotographieService();
@@ -41,23 +70,31 @@ public class GererPhotographiesFXMLController implements Initializable {
     GalerieService gs = new GalerieService();
     //Filter : Afficher les Photographies d'un Photographe avec l'id de sa galerie
     List<Photographie> l;
+    @FXML
+    private Label messageErr;
 
     public void getPhotos(int id) {
         l = ps.afficherPhotographiesDunPhotographe(id);
     }
+    
+    //creation service user
+    UserService us = new UserService();
+
+    User pSponsor = us.afficherUserbyID(CurrentUserId);
+    User pPhotographe = gs.afficherGalerie(idCurrentUserGalerie).getPhotographe();
     //----------------------
 
     //afficher image
     @FXML
     private ImageView left, right;
     @FXML
-    private ImageView photo1, photo2, photo3, grandimage;
+    private ImageView photo1, photo2, photo3, grandimage, telechargerImage;
     @FXML
     private ImageView delete1, delete2, delete3;
     @FXML
     private ImageView update1, update2, update3;
     @FXML
-    private Label Nom1, Nom2, Nom3;
+    private Label Nom1, Nom2, Nom3, maGalerie;
     @FXML
     private TextArea description1, description2, description3;
     //modifier image
@@ -84,6 +121,36 @@ public class GererPhotographiesFXMLController implements Initializable {
     private TextField ajouter_nom;
     @FXML
     private TextArea ajouter_description;
+    //modifier galerie
+    @FXML
+    private AnchorPane galeriePane;
+    @FXML
+    private ImageView galerie_modifier_close;
+    @FXML
+    private TextField galerie_modifier_nom;
+    @FXML
+    private TextArea galerie_modifier_description;
+    @FXML
+    private ColorPicker galerie_modifier_couleur;
+    @FXML
+    private Button modifierMaGalerie, galerie_modifier_confirmer, galerie_modifier_annuler;
+    @FXML
+    private HBox galerieBackgroundColor;
+    //POroposer Contrat Sponsoring
+    @FXML
+    private Button proposerContrat, ajouterContrat, annulerContrat;
+    @FXML
+    private AnchorPane proposerContrat_pane;
+    @FXML
+    private ImageView proposerContratClose, contratPhotoUser;
+    @FXML
+    private DatePicker contratDateDebut, ContratDateFin;
+    @FXML
+    private ChoiceBox<EnumTypeContrat> typeContrat;
+    @FXML
+    private TextField salairecontrat;
+    @FXML
+    private Label contratNomPrenom, contratEmail;
 
     //black fade effect
     public void fadeIn() {
@@ -105,6 +172,9 @@ public class GererPhotographiesFXMLController implements Initializable {
             grandimage.setVisible(false);
             modifier_pane.setVisible(false);
             ajouter_pane.setVisible(false);
+            galeriePane.setVisible(false);
+            telechargerImage.setVisible(false);
+            proposerContrat_pane.setVisible(false);
         });
     }
     //-----------------
@@ -112,10 +182,12 @@ public class GererPhotographiesFXMLController implements Initializable {
     public void AgrandirImage(int t) {
         fadeIn();
         grandimage.setVisible(true);
-        Image newImage = new Image(l.get(teteDeLecture + t).getPhotographiePath());
-        grandimage.setImage(newImage);
+        telechargerImage.setVisible(true);
+        CurrentGrandImage = new Image(l.get(teteDeLecture + t).getPhotographiePath());
+        grandimage.setImage(CurrentGrandImage);
         blackpane.toFront();
         grandimage.toFront();
+        telechargerImage.toFront();
     }
 
     public void ModifierImage(int t) {
@@ -159,12 +231,60 @@ public class GererPhotographiesFXMLController implements Initializable {
     }
     //--------------
 
+    //
+    void ModifyIdGalerie(int idGalerie) {
+        idCurrentUserGalerie = idGalerie;
+        //rechargement des données
+        getPhotos(idCurrentUserGalerie);
+        populerHBox(l);
+        Galerie currentGalerie = gs.afficherGalerie(idCurrentUserGalerie);
+        maGalerie.setText(currentGalerie.getNom());
+        galerieBackgroundColor.setStyle("-fx-background-color:" + currentGalerie.getCouleurHtml() + "; -fx-background-radius: 10px;");
+    }
+        public static Date datePickerToSQLDate(DatePicker datePicker) {
+        LocalDate localDate = datePicker.getValue();
+        java.util.Date utilDate = java.sql.Date.valueOf(localDate);
+        return new java.sql.Date(utilDate.getTime());
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         //Initialisation du carousel
         getPhotos(idCurrentUserGalerie);
         populerHBox(l);
+        proposerContrat.setVisible(false);
+        proposerContrat_pane.setVisible(false);
+        Galerie currentGalerie = gs.afficherGalerie(idCurrentUserGalerie);
+        if (CurrentUserId != currentGalerie.getPhotographe().getID_User()) {
+            ajouterphoto.setVisible(false);
+            delete1.setVisible(false);
+            delete2.setVisible(false);
+            delete3.setVisible(false);
+            update1.setVisible(false);
+            update2.setVisible(false);
+            update3.setVisible(false);
+            modifierMaGalerie.setVisible(false);
+            if (CurrentUserRole == Type.SPONSOR) {
+                proposerContrat.setVisible(true);
+                messageErr.setVisible(false);
+                //populet les choicebox*************************
+                ObservableList<EnumTypeContrat> items = Arrays.stream(EnumTypeContrat.values()).collect(Collectors.toCollection(FXCollections::observableArrayList));
+                typeContrat.setItems(items);
+                //controle de saisie sur salaire textfield pour n'accepter que les floats
+                UnaryOperator<TextFormatter.Change> floatFilter = change -> {
+                    String newText = change.getControlNewText();
+                    if (newText.matches("^\\d*\\.?\\d*$") && !newText.startsWith(".")) {
+                        return change;
+                    }
+                    return null;
+                };
+                TextFormatter<String> textFormatter = new TextFormatter<>(floatFilter);
+                salairecontrat.setTextFormatter(textFormatter);
+            }
+        }
+        maGalerie.setText(currentGalerie.getNom());
+        galerieBackgroundColor.setStyle("-fx-background-color:" + currentGalerie.getCouleurHtml() + "; -fx-background-radius: 10px;");
         //-------------------------
 
         //Initialisation de l'effet fade
@@ -172,6 +292,8 @@ public class GererPhotographiesFXMLController implements Initializable {
         grandimage.setVisible(false);
         modifier_pane.setVisible(false);
         ajouter_pane.setVisible(false);
+        galeriePane.setVisible(false);
+        telechargerImage.setVisible(false);
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), blackpane);
         fadeTransition.setFromValue(1);
         fadeTransition.setToValue(0);
@@ -206,6 +328,30 @@ public class GererPhotographiesFXMLController implements Initializable {
         blackpane.setOnMouseClicked(event -> {
             fadeOut();
         });
+        //télécharger l'image
+        telechargerImage.setOnMouseClicked(event -> {
+            // Create a FileChooser object to allow the user to choose the destination path and filename
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save Image");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("PNG Images", "*.png"),
+                    new FileChooser.ExtensionFilter("JPEG Images", "*.jpg", "*.jpeg"));
+            File file = fileChooser.showSaveDialog(new Stage());
+
+            if (file != null) {
+                try {
+                    // Convert the Image object to a BufferedImage object
+                    BufferedImage bufferedImage = SwingFXUtils.fromFXImage(CurrentGrandImage, null);
+
+                    // Save the BufferedImage object to the chosen file using the ImageIO class
+                    ImageIO.write(bufferedImage, "png", file);
+
+                    System.out.println("Image saved to file: " + file.getAbsolutePath());
+                } catch (IOException e) {
+                    System.out.println("Error saving image: " + e.getMessage());
+                }
+            }
+        });
         //**************************************************************
 
         //Ajouter une image*********************************************
@@ -222,7 +368,7 @@ public class GererPhotographiesFXMLController implements Initializable {
                     new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
             selectedFile = fileChooser.showOpenDialog(new Stage());
             if (selectedFile != null) {
-                LocalPathToImage = Paths.get(selectedFile.toString());
+                System.out.println(selectedFile.toString());
                 Image image = new Image(selectedFile.toURI().toString());
                 ajouter_image_preview.setImage(image);
             }
@@ -237,9 +383,20 @@ public class GererPhotographiesFXMLController implements Initializable {
         });
         //ajouter l'image dans la bd
         ajouter_confirmer.setOnMouseClicked(event -> {
-            Photographie p = new Photographie(ajouter_nom.getText(), ajouter_description.getText(),
-                    "", gs.afficherGalerie(idCurrentUserGalerie));
-            ps.ajouterPhotographie(p);
+            //ajout de l'image dans le serveur
+            try {
+                long millis = System.currentTimeMillis();
+                String fileExtention = selectedFile.toString().substring(selectedFile.toString().lastIndexOf("."));
+                String newName = String.valueOf(idCurrentUserGalerie) + millis + fileExtention;
+                FileUpload.uploadFile(selectedFile.toString(), "photographies\\" + newName);
+
+                //ajout dans la table
+                Photographie p = new Photographie(ajouter_nom.getText(), ajouter_description.getText(),
+                        "http://localhost/myjcc/photographies/" + newName, currentGalerie);
+                ps.ajouterPhotographie(p);
+            } catch (Exception ex) {
+                Logger.getLogger(GererPhotographiesFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             getPhotos(idCurrentUserGalerie);
             populerHBox(l);
@@ -285,6 +442,76 @@ public class GererPhotographiesFXMLController implements Initializable {
             getPhotos(idCurrentUserGalerie);
             populerHBox(l);
             fadeOut();
+        });
+        //**************************************************************
+
+        //Modifier Galerie**********************************************
+        //ouverir la pane qui contient la galerie à modifier
+        modifierMaGalerie.setOnMouseClicked(event -> {
+            fadeIn();
+            galeriePane.setVisible(true);
+            galerie_modifier_nom.setText(currentGalerie.getNom());
+            galerie_modifier_description.setText(currentGalerie.getDescription());
+            galerie_modifier_couleur.setValue(Color.web(currentGalerie.getCouleurHtml()));
+            blackpane.toFront();
+            galeriePane.toFront();
+        });
+        //annuler la modification de la galerie
+        galerie_modifier_annuler.setOnMouseClicked(event -> {
+            fadeOut();
+        });
+        galerie_modifier_close.setOnMouseClicked(event -> {
+            fadeOut();
+        });
+        //Confirmer la modification de la galerie
+        galerie_modifier_confirmer.setOnMouseClicked(event -> {
+            currentGalerie.setNom(galerie_modifier_nom.getText());
+            currentGalerie.setDescription(galerie_modifier_description.getText());
+            String htmlColorCode = String.format("#%02X%02X%02X",
+                    (int) (galerie_modifier_couleur.getValue().getRed() * 255),
+                    (int) (galerie_modifier_couleur.getValue().getGreen() * 255),
+                    (int) (galerie_modifier_couleur.getValue().getBlue() * 255));
+            currentGalerie.setCouleurHtml(htmlColorCode);
+            //Enregistrement des changements dans la base
+            gs.modifierGalerie(currentGalerie);
+            //Actualiser Nom & Couleur Galerie
+            maGalerie.setText(currentGalerie.getNom());
+            galerieBackgroundColor.setStyle("-fx-background-color:" + currentGalerie.getCouleurHtml() + "; -fx-background-radius: 10px;");
+            fadeOut();
+        });
+        //**************************************************************
+
+        //Proposer Contrat Sponsoring***********************************
+        proposerContrat.setOnMouseClicked(event -> {
+            fadeIn();
+            proposerContrat_pane.setVisible(true);
+            contratNomPrenom.setText(currentGalerie.getPhotographe().getNom() + " " + currentGalerie.getPhotographe().getPrenom());
+            contratEmail.setText(currentGalerie.getPhotographe().getEmail());
+            Image newImage = new Image(currentGalerie.getPhotographe().getPhotoB64());
+            contratPhotoUser.setImage(newImage);
+            blackpane.toFront();
+            proposerContrat_pane.toFront();
+        });
+        //Annuler la proposition
+        proposerContratClose.setOnMouseClicked(event -> {
+            fadeOut();
+        });
+        annulerContrat.setOnMouseClicked(event -> {
+            fadeOut();
+        });
+        //proposer le contrat
+        ajouterContrat.setOnMouseClicked(event -> {
+            ContratSponsorinService css = new ContratSponsorinService();
+            if (contratDateDebut.getValue() != null && ContratDateFin.getValue() != null && typeContrat.getValue() != null && !salairecontrat.getText().equals("") 
+                    && ContratDateFin.getValue().compareTo(contratDateDebut.getValue()) > 0) {
+                ContratSponsoring cs = new ContratSponsoring(datePickerToSQLDate(contratDateDebut), datePickerToSQLDate(ContratDateFin),
+                        typeContrat.getValue(), EnumEtatContrat.Proposition, Float.parseFloat(salairecontrat.getText()), "", pSponsor, pPhotographe);
+                css.ajouterContratSponsorin(cs);
+                fadeOut();
+            } else {
+                messageErr.setVisible(true);
+            }
+            //controle de saisie sur date fin > date debut
         });
         //**************************************************************
     }

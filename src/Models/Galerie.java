@@ -4,6 +4,7 @@ public class Galerie {
 
     //var
     private int ID_Galerie;
+    private String couleurHtml;
     private String Nom;
     private String Description;
     private User Photographe;
@@ -12,26 +13,35 @@ public class Galerie {
     public Galerie() {
     }
 
-    public Galerie(String Nom, String Description, User Photographe) {
+    public Galerie(String couleurHtml, String Nom, String Description, User Photographe) {
+        this.couleurHtml = couleurHtml;
         this.Nom = Nom;
         this.Description = Description;
         this.Photographe = Photographe;
     }
 
-    public Galerie(int ID_Galerie, String Nom, String Description, User Photographe) {
+    public Galerie(int ID_Galerie, String couleurHtml, String Nom, String Description, User Photographe) {
         this.ID_Galerie = ID_Galerie;
+        this.couleurHtml = couleurHtml;
         this.Nom = Nom;
         this.Description = Description;
         this.Photographe = Photographe;
     }
 
-    //Getters & Setters
     public int getID_Galerie() {
         return ID_Galerie;
     }
 
     public void setID_Galerie(int ID_Galerie) {
         this.ID_Galerie = ID_Galerie;
+    }
+
+    public String getCouleurHtml() {
+        return couleurHtml;
+    }
+
+    public void setCouleurHtml(String couleurHtml) {
+        this.couleurHtml = couleurHtml;
     }
 
     public String getNom() {
@@ -58,10 +68,10 @@ public class Galerie {
         this.Photographe = Photographe;
     }
 
-    //toString
     @Override
     public String toString() {
-        return "Galerie{" + "ID_Galerie=" + ID_Galerie + ", Nom=" + Nom + ", Description=" + Description + "\n Photographe=" + Photographe + '}';
+        return "Galerie{" + "ID_Galerie=" + ID_Galerie + ", couleurHtml=" + couleurHtml + ", Nom=" + Nom + ", Description=" + Description + ", Photographe=" + Photographe + '}';
     }
 
+    
 }
