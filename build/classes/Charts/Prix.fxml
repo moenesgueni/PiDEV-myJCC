@@ -156,7 +156,7 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@../resources/Stylr.css">
                <children>
-                  <Label prefHeight="26.0" prefWidth="141.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Type 1" textFill="#ffd6dc">
+                  <Label fx:id="Type1" prefHeight="26.0" prefWidth="141.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Type 1" textFill="#ffd6dc">
                      <font>
                         <Font name="Bernard MT Condensed" size="20.0" />
                      </font>
@@ -181,7 +181,12 @@
                                     <Font name="Bernard MT Condensed" size="27.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="62.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                              <Label fx:id="firstFilm" layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="254.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="firtFilm" textFill="#f3abb5" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nbreV1" layoutX="119.0" layoutY="141.0" prefHeight="26.0" prefWidth="62.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="firtFilm" textFill="#f3abb5">
                                  <font>
                                     <Font name="Bernard MT Condensed" size="20.0" />
                                  </font>
@@ -204,7 +209,12 @@
                                     <Font name="Bernard MT Condensed" size="27.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="62.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                              <Label fx:id="sndFilm2" layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="247.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nbreV2" layoutX="42.0" layoutY="152.0" prefHeight="26.0" prefWidth="44.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
                                  <font>
                                     <Font name="Bernard MT Condensed" size="20.0" />
                                  </font>
@@ -227,7 +237,12 @@
                                     <Font name="Bernard MT Condensed" size="27.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="62.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                              <Label fx:id="thrdFilm4" layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="207.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nbreV3" layoutX="47.0" layoutY="152.0" prefHeight="26.0" prefWidth="37.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
                                  <font>
                                     <Font name="Bernard MT Condensed" size="20.0" />
                                  </font>

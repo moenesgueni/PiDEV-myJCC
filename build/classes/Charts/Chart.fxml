@@ -314,7 +314,7 @@
                         </Label>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label prefHeight="60.0" prefWidth="181.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="nbr votes" textFill="#ffd6dc">
+                              <Label fx:id="moreV0" prefHeight="60.0" prefWidth="181.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="nbr votes" textFill="#ffd6dc">
                                  <font>
                                     <Font name="Bernard MT Condensed" size="48.0" />
                                  </font>
@@ -325,7 +325,7 @@
                   </VBox>
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="230.0" prefWidth="326.0" styleClass="container" stylesheets="@../resources/Stylr.css">
                      <children>
-                        <Label prefHeight="36.0" prefWidth="152.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Type 2" textFill="#ffd6dc">
+                        <Label fx:id="type2" prefHeight="36.0" prefWidth="152.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Type 2" textFill="#ffd6dc">
                            <font>
                               <Font name="Bernard MT Condensed" size="20.0" />
                            </font>
@@ -338,7 +338,7 @@
                         </Label>
                         <VBox alignment="CENTER" prefHeight="184.0" prefWidth="39.0">
                            <children>
-                              <Label prefHeight="60.0" prefWidth="181.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="nbr votes" textFill="#ffd6dc">
+                              <Label fx:id="moreV1" prefHeight="60.0" prefWidth="181.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="nbr votes" textFill="#ffd6dc">
                                  <font>
                                     <Font name="Bernard MT Condensed" size="48.0" />
                                  </font>
@@ -349,7 +349,7 @@
                   </VBox>
                   <VBox layoutX="905.0" layoutY="10.0" prefHeight="230.0" prefWidth="330.0" styleClass="container" stylesheets="@../resources/Stylr.css">
                      <children>
-                        <Label prefHeight="36.0" prefWidth="152.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Type 3" textFill="#ffd6dc">
+                        <Label fx:id="type3" prefHeight="36.0" prefWidth="152.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Type 3" textFill="#ffd6dc">
                            <font>
                               <Font name="Bernard MT Condensed" size="20.0" />
                            </font>
@@ -362,7 +362,7 @@
                         </Label>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label prefHeight="60.0" prefWidth="181.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="nbr votes" textFill="#ffd6dc">
+                              <Label fx:id="moreV2" prefHeight="60.0" prefWidth="181.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="nbr votes" textFill="#ffd6dc">
                                  <font>
                                     <Font name="Bernard MT Condensed" size="48.0" />
                                  </font>

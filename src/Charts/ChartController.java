@@ -6,11 +6,13 @@
 package Charts;
 
 import Models.Vote;
+import Services.FilmService;
 import Services.VoteService;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +23,8 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.util.Pair;
+
 
 /**
  * FXML Controller class
@@ -29,13 +33,27 @@ import javafx.stage.Stage;
  */
 public class ChartController implements Initializable {
 
+    VoteService vs = new VoteService();
+    FilmService fs = new FilmService();
+    ArrayList<String> genre = fs.getAllGenres();
+    
     @FXML
     private LineChart<?, ?> lineChart;
     @FXML
     private PieChart pieChart;
     @FXML
     private Label typeFilm;
-
+List<Pair<String, Integer>> countVoteFilmByType = vs.countVoteFilmByType(genre);
+    @FXML
+    private Label type2;
+    @FXML
+    private Label type3;
+    @FXML
+    private Label moreV0;
+    @FXML
+    private Label moreV1;
+    @FXML
+    private Label moreV2;
     /**
      * Initializes the controller class.
      */
@@ -43,16 +61,37 @@ public class ChartController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         iniLineChart();
         iniPieChart();
+        String titreFilm;
+        int v = 0 ;
+        String x = "";
+
+        //System.out.println(vs.countVoteFilmByType(genre).get(0).getKey());
+        int j = 0;
+        while (j < genre.size()) {
+            if (j == 0) {
+                titreFilm = vs.countVoteFilmByType(genre).get(j).getKey();
+                typeFilm.setText(titreFilm);
+                v = vs.countVoteFilmByType(genre).get(j).getValue();
+                x = Integer.toString(v);
+                moreV0.setText(x); ;
+            } else if (j == 1) {
+                titreFilm = vs.countVoteFilmByType(genre).get(j).getKey();
+                type2.setText(titreFilm);
+                v = vs.countVoteFilmByType(genre).get(j).getValue();
+                x = Integer.toString(v);
+                moreV1.setText(x); ;
+            } else {
+                titreFilm = vs.countVoteFilmByType(genre).get(j).getKey();
+                type3.setText(titreFilm);
+                v = vs.countVoteFilmByType(genre).get(j).getValue();
+                x = Integer.toString(v);
+                moreV2.setText(x); 
+            }
+            j++;
+        }
     } 
     
-    public void display(String titreFilm) throws IOException {
-            
-       
-            System.out.println(titreFilm);
-            typeFilm.setText(titreFilm);
-            
-        
-    }
+    
     
     private void iniLineChart(){
         //hedhi kifech nconverti mn Date ll String

@@ -14,7 +14,9 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.util.Pair;
@@ -597,24 +599,110 @@ public class VoteService implements VoteInterface {
     ArrayList<String> genre = fs.getAllGenres();
     
     public List<Pair<String, Integer>> countVoteFilmByType(ArrayList<String> genres) {
+        List<Pair<String, Integer>> resultList = new ArrayList<>();
+        String request = "SELECT f.genre, SUM(v.Vote_Film) as total_votes "
+                + "FROM vote v "
+                + "JOIN film f ON v.ID_Film = f.ID_Film "
+                + "WHERE f.genre = ? "
+                + "GROUP BY f.genre";
+        try {
+            PreparedStatement st = cnx.prepareStatement(request);
+            for (String genre : genres) {
+                st.setString(1, genre);
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    String filmGenre = rs.getString("genre");
+                    int count = rs.getInt("total_votes");
+                    resultList.add(new Pair<>(filmGenre, count));
+                }
+                rs.close();
+            }
+            Collections.sort(resultList, new Comparator<Pair<String, Integer>>() {
+                @Override
+                public int compare(Pair<String, Integer> p1, Pair<String, Integer> p2) {
+                    return p2.getValue().compareTo(p1.getValue());
+                }
+            });
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                PreparedStatement st = cnx.prepareStatement(request);
+                if (st != null) {
+                    st.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return resultList;
+    }
+        
+    
+    public List<Pair<String, String>> getMostVotedFilmByGenre(ArrayList<String> genres) {
+    List<Pair<String, String>> resultList = new ArrayList<>();
+    String request = "SELECT f.genre, f.titre, SUM(v.Vote_Film) as total_votes "
+            + "FROM film f "
+            + "JOIN vote v ON v.ID_Film = f.ID_Film "
+            + "GROUP BY f.genre, f.ID_Film "
+            + "HAVING total_votes = "
+            + "(SELECT SUM(v2.Vote_Film) "
+            + "FROM vote v2 "
+            + "WHERE v2.ID_Film = f.ID_Film "
+            + "GROUP BY v2.ID_Film "
+            + "ORDER BY SUM(v2.Vote_Film) DESC "
+            + "LIMIT 1)";
+    try {
+        PreparedStatement st = cnx.prepareStatement(request);
+        ResultSet rs = st.executeQuery();
+        while (rs.next()) {
+            String filmGenre = rs.getString("genre");
+            String filmTitle = rs.getString("titre");
+            resultList.add(new Pair<>(filmGenre, filmTitle));
+        }
+        rs.close();
+    } catch (SQLException ex) {
+        Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+        try {
+            PreparedStatement st = cnx.prepareStatement(request);
+            if (st != null) {
+                st.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    return resultList;
+}
+    
+    public List<Pair<String, Integer>> getMostVotedFilmByGenre2(ArrayList<String> genres) {
     List<Pair<String, Integer>> resultList = new ArrayList<>();
-    String request = "SELECT f.genre, SUM(v.Vote_Film) as total_votes "
-            + "FROM vote v "
-            + "JOIN film f ON v.ID_Film = f.ID_Film "
-            + "WHERE f.genre = ? "
-            + "GROUP BY f.genre";
+    String request = "SELECT f.titre, SUM(v.Vote_Film) as total_votes " +
+            "FROM film f " +
+            "JOIN vote v ON v.ID_Film = f.ID_Film " +
+            "WHERE f.genre = ? " +
+            "GROUP BY f.ID_Film " +
+            "HAVING total_votes = " +
+                "(SELECT SUM(v2.Vote_Film) " +
+                "FROM vote v2 " +
+                "WHERE v2.ID_Film = f.ID_Film " +
+                "GROUP BY v2.ID_Film " +
+                "ORDER BY SUM(v2.Vote_Film) DESC " +
+                "LIMIT 1)";
     try {
         PreparedStatement st = cnx.prepareStatement(request);
         for (String genre : genres) {
             st.setString(1, genre);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                String filmGenre = rs.getString("genre");
-                int count = rs.getInt("total_votes");
-                resultList.add(new Pair<>(filmGenre, count));
+                String filmTitle = rs.getString("titre");
+                int totalVotes = rs.getInt("total_votes");
+                resultList.add(new Pair<>(filmTitle, totalVotes));
             }
             rs.close();
         }
+        // Sort the result list in descending order by the second element of each pair (total votes)
         Collections.sort(resultList, new Comparator<Pair<String, Integer>>() {
             @Override
             public int compare(Pair<String, Integer> p1, Pair<String, Integer> p2) {
@@ -635,19 +723,8 @@ public class VoteService implements VoteInterface {
     }
     return resultList;
 }
-        /*try {
-            
-            PreparedStatement st = cnx.prepareStatement(request);
-            st.setString(1, genre);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                String filmGenre = rs.getString("genre");
-                int totalVotes = rs.getInt("total_votes");
-                resultList.add(new Pair<>(filmGenre, totalVotes));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+    
+    
 
         
     

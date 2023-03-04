@@ -60,8 +60,10 @@ public class Myjcc {
         //System.out.println(liste.get(2));
         //ArrayList<Integer> liste = vs.countVoteFilmByType("Action");
         ArrayList<String> genre = fs.getAllGenres();
-        System.out.println(vs.countVoteFilmByType(genre));
-        System.out.println(fs.getAllGenres());
+        //System.out.println(vs.countVoteFilmByType(genre).get(0).getKey());
+        //System.out.println(fs.getAllGenres());
+        //System.out.println(vs.getMostVotedFilmByGenre(genre));
+        System.out.println(vs.getMostVotedFilmByGenre(genre).get(4).getKey());
                 
         //vs.afficherVotesDate();
         
