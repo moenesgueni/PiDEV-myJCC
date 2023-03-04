@@ -198,9 +198,7 @@ public class SideBarFXMLController implements Initializable {
     private void SetHotelPage(MouseEvent event) {
     }
 
-    @FXML
-    private void VehiculePage(MouseEvent event) {
-    }
+
 
     @FXML
     private void LocationPage(ActionEvent event) {

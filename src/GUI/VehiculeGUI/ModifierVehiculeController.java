@@ -10,6 +10,7 @@ import Models.Vehicule;
 import Services.VehiculeService;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,6 +33,8 @@ public class ModifierVehiculeController implements Initializable {
     @FXML
     private TextField couleurV;
     private Vehicule v = new Vehicule();
+             Preferences userP = Preferences.userNodeForPackage(ModifierVehiculeController.class);
+                String Id = userP.get("selectedVehiculeMat", "..") ;
 
     /**
      * Initializes the controller class.

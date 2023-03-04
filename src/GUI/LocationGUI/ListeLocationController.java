@@ -41,7 +41,7 @@ import javafx.stage.Stage;
 public class ListeLocationController implements Initializable {
 
     @FXML
-    private ListView<String> listL;
+    private ListView<Location> listL;
 Preferences prefs = Preferences.userNodeForPackage(ListeLocationController.class);
     /**
      * Initializes the controller class.
@@ -50,20 +50,20 @@ Preferences prefs = Preferences.userNodeForPackage(ListeLocationController.class
     public void initialize(URL url, ResourceBundle rb) {
      //TODO
         LocationVehiculeService ls = new LocationVehiculeService();
-    List<Location> locations = ls.getAllLocationVehicule();
-    // Créer une liste d'éléments de ListView qui contiennent les propriétés des instances de la classe Hotel
-    ObservableList<String> items = FXCollections.observableArrayList();
-    for (Location location : locations) {
-        
-        String item =location.getDateReservation()+ " - " + location.getDate_debut()+ " - " + location.getDate_fin()+ " - " + location.getTarifTotal()+ " - " + location.getVehicule().getMaricule()+ " - " + location.getUser().getID_User();
-        items.add(item);
-    }
+     
+    listL.setCellFactory(param -> new LocationListCell());
+    LocationVehiculeService locationservice = new LocationVehiculeService();
+    List<Location> locations = locationservice.getAllLocationVehicule();
+    ObservableList<Location> items = FXCollections.observableArrayList(locations);
+    listL.setItems(items);
+
+
     // Ajouter les éléments de la liste à la ListView
     listL.setItems(items);
-       // 2. Créez une ArrayList de maps pour stocker les attributs de chaque hôtel
+    // 2. Créez une ArrayList de maps pour stocker les attributs de chaque hôtel
     listL.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
     // Récupérer l'index de l'élément sélectionné
-    int selectedIndex = newValue.intValue();   
+    int selectedIndex = newValue.intValue();    
     // Récupérer l'objet Location correspondant à cet index
     Location selectedVehicule = locations.get(selectedIndex);
         // Récupérer l'ID de la reservation
@@ -76,14 +76,14 @@ Preferences prefs = Preferences.userNodeForPackage(ListeLocationController.class
 
     @FXML
     private void modifiervehicule(MouseEvent event) {
-        String selectedLocation = listL.getSelectionModel().getSelectedItem();
+    Location selectedLocation = listL.getSelectionModel().getSelectedItem();
     Location l1 = new Location();
     LocationVehiculeService ls = new LocationVehiculeService();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierLocation.fxml"));
             Parent root = loader.load();
             ModifierLocationController modifierLocationController = loader.getController();
-            l1=ListeLocationController.fromString(selectedLocation);
+            l1=selectedLocation;
             modifierLocationController.ModifyData(l1);
             Scene scene = new Scene(root);
             Stage stage = new Stage();

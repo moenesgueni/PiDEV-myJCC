@@ -243,7 +243,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
-            <BorderPane fx:id="workPlace" layoutX="4.0" layoutY="-1.0" prefHeight="698.0" prefWidth="1224.0" />
+            <BorderPane fx:id="workPlace" layoutX="4.0" layoutY="-1.0" prefHeight="710.0" prefWidth="1224.0" />
          </children>
       </AnchorPane>
     </children>

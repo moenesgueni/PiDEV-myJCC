@@ -10,6 +10,7 @@ import GUI.ModifierHotelController;
 import Models.Hotel;
 import Models.Vehicule;
 import Services.HotelService;
+import Services.LocationVehiculeService;
 import Services.VehiculeService;
 import java.io.IOException;
 import java.net.URL;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,7 +41,8 @@ public class ListeVehiculeController implements Initializable {
 
 
     @FXML
-    private ListView<String> listeV;
+    private ListView<Vehicule> listeV;
+    Preferences prefs = Preferences.userNodeForPackage(ListeHotelController.class);
     /**
      * Initializes the controller class.
      */
@@ -47,22 +50,21 @@ public class ListeVehiculeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
          VehiculeService vs = new VehiculeService();
-        List<Vehicule> vehicules = vs.getAllVehicules();
-    // Créer une liste d'éléments de ListView qui contiennent les propriétés des instances de la classe Hotel
-    ObservableList<String> items = FXCollections.observableArrayList();
-    for (Vehicule vehicule : vehicules) {
-        
-        String item =vehicule.getMaricule()+ " - " + vehicule.getType()+ " - " + vehicule.getMarque()+ " - " + vehicule.getCouleur();
-        items.add(item);
-    }
+    
+    listeV.setCellFactory(param -> new VehiculeListCell());
+        VehiculeService viheculeservice = new VehiculeService();
+    List<Vehicule> vehicules = viheculeservice.getAllVehicules();
+    ObservableList<Vehicule> items = FXCollections.observableArrayList(vehicules);
+    listeV.setItems(items);
     // Ajouter les éléments de la liste à la ListView
     listeV.setItems(items);
-       // 2. Créez une ArrayList de maps pour stocker les attributs de chaque hôtel
+    // 2. Créez une ArrayList de maps pour stocker les attributs de chaque hôtel
     listeV.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
     // Récupérer l'index de l'élément sélectionné
     int selectedIndex = newValue.intValue();   
-    // Récupérer l'objet Vehicule correspondant à cet index
+    // Récupérer l'objet Hotel correspondant à cet index
     Vehicule selectedVehicule = vehicules.get(selectedIndex);   
+
  
 });
     }
@@ -81,14 +83,14 @@ public static Vehicule fromString(String vehiculeString) {
     @FXML
     private void modifierVehicule(MouseEvent event) {
         
-    String selectedVehicule = listeV.getSelectionModel().getSelectedItem();
+    Vehicule selectedVehicule = listeV.getSelectionModel().getSelectedItem();
     Vehicule v1 = new Vehicule();
     VehiculeService vs = new VehiculeService();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierVehicule.fxml"));
             Parent root = loader.load();
             ModifierVehiculeController modifierVehiculeController = loader.getController();
-            v1=ListeVehiculeController.fromString(selectedVehicule);
+            v1=selectedVehicule;
             modifierVehiculeController.ModifyData(v1);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -102,7 +104,7 @@ public static Vehicule fromString(String vehiculeString) {
     @FXML
     private void ajouterV(ActionEvent event) {
     try {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("AjouterVehicule.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/AjouterVehicule.fxml"));
     Parent root = loader.load();
     Scene scene = new Scene(root);
     Stage stage = new Stage();

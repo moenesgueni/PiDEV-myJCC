@@ -91,7 +91,7 @@ public class AjouterReservationHotelController implements Initializable {
             alert.showAndWait();
             return;
         }
-if(Float.parseFloat(tarifT_H.getText())  <0){
+if(Float.parseFloat(tarifT_H.getText())<0){
        // Alert user to fill in all fields
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");

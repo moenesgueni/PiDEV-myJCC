@@ -121,11 +121,6 @@ public static Hotel fromString(String hotelString) {
         
     }
 
-    @FXML
-    private void actualiser(ActionEvent event) {
-
-        
-    }
 
 
 

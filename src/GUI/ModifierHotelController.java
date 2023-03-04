@@ -47,7 +47,7 @@ public class ModifierHotelController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-             System.out.println(Id);
+            
     }    
 
     @FXML
