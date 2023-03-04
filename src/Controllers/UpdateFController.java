@@ -8,8 +8,12 @@ package Controllers;
 import Interfaces.FilmInterface;
 import Models.Film;
 import Services.FilmService;
+import Utils.FileUpload;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,6 +22,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -49,7 +57,10 @@ public class UpdateFController implements Initializable {
     private TextField IDF;
     private Film selectedFilm;
     @FXML
-    private TextField image;
+    private Button image;
+    @FXML
+    private ImageView imageview;
+    File selectedFile;
     
     /**
      * Initializes the controller class.
@@ -57,8 +68,20 @@ public class UpdateFController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-      
-    }    
+         // choisir une image
+        image.setOnMouseClicked(event -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Ouvrir votre image");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+            selectedFile = fileChooser.showOpenDialog(new Stage());
+            if (selectedFile != null) {
+                System.out.println(selectedFile.toString());
+                Image image = new Image(selectedFile.toURI().toString());
+                imageview.setImage(image);
+            }
+        });
+        }  
      public void initData(Film f) {
         selectedFilm = f;
         TitreTF.setText(f.getTitre());
@@ -69,7 +92,7 @@ public class UpdateFController implements Initializable {
         PrixTF.setText(Float.toString(f.getPrix()));
         ProducteurTF.setText(f.getID_producteur());
         ActeurTF.setText(f.getActeur());
-        image.setText(f.getImage());
+       
     }
     
 
@@ -83,8 +106,19 @@ public class UpdateFController implements Initializable {
     alert.show();
     return;
 }
-         Film f = new Film(selectedFilm.getID_film(),TitreTF.getText(),DateRTF.getText(),GenreTF.getText(),ResumeTF.getText(),DureeTF.getText(),Float.parseFloat(PrixTF.getText()),ProducteurTF.getText(),ActeurTF.getText(),image.getText());
-      
+        
+         Film f = new Film(selectedFilm.getID_film(),TitreTF.getText(),DateRTF.getText(),GenreTF.getText(),ResumeTF.getText(),DureeTF.getText(),Float.parseFloat(PrixTF.getText()),ProducteurTF.getText(),ActeurTF.getText(),"films\\null.png");
+      try {
+                long millis = System.currentTimeMillis();
+                String fileExtention = selectedFile.toString().substring(selectedFile.toString().lastIndexOf("."));
+                String newName = millis + fileExtention;
+                FileUpload.uploadFile(selectedFile.toString(), "films\\" + newName);
+
+                f.setImage( "http://localhost/myjcc/films/" + newName);
+            } catch (Exception ex) {
+                f.setImage("http://localhost/myjcc/films/null.png");
+                Logger.getLogger(AjouterfilmController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         FilmInterface fs = new FilmService();
         
       fs.updateFilm(f);

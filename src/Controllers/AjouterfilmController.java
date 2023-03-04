@@ -8,6 +8,7 @@ package Controllers;
 import Interfaces.FilmInterface;
 import Models.Film;
 import Services.FilmService;
+import Utils.FileUpload;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -19,6 +20,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 /**
  * FXML Controller class
@@ -26,10 +34,7 @@ import javafx.scene.control.TextField;
  * @author dhia
  */
 public class AjouterfilmController implements Initializable {
-    
-    
 
-    
     @FXML
     private TextField TitreTF;
     @FXML
@@ -49,43 +54,55 @@ public class AjouterfilmController implements Initializable {
     @FXML
     private Button bajouterf;
     @FXML
-    private TextField image;
+    private Button image;
+    @FXML
+    private ImageView imagePreview;
     
-  
-   
-    
-      @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-       
+    File selectedFile;
 
-}
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // choisir une image
+        image.setOnMouseClicked(event -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Ouvrir votre image");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+            selectedFile = fileChooser.showOpenDialog(new Stage());
+            if (selectedFile != null) {
+                System.out.println(selectedFile.toString());
+                Image image = new Image(selectedFile.toURI().toString());
+                imagePreview.setImage(image);
+            }
+
+        });
+
+    }
 
     @FXML
     private void AjouterF(ActionEvent event) {
         Film f = new Film();
         FilmInterface fs = new FilmService();
-        
-        
+
         List<Film> films = fs.afficherFilm();
-    String titre = TitreTF.getText();
-    for (Film film : films) {
-        if (film.getTitre().equals(titre)) {
+        String titre = TitreTF.getText();
+        for (Film film : films) {
+            if (film.getTitre().equals(titre)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Le titre du film doit être unique");
+                alert.show();
+                return;
+            }
+        }
+        if (TitreTF.getText().isEmpty() || DateRTF.getText().isEmpty() || GenreTF.getText().isEmpty()
+                || ResumeTF.getText().isEmpty() || DureeTF.getText().isEmpty() || PrixTF.getText().isEmpty()
+                || ProducteurTF.getText().isEmpty() || ActeurTF.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Le titre du film doit être unique");
+            alert.setContentText("Veuillez remplir tous les champs obligatoires.");
             alert.show();
             return;
         }
-    }
-    if (TitreTF.getText().isEmpty() || DateRTF.getText().isEmpty() || GenreTF.getText().isEmpty()
-    || ResumeTF.getText().isEmpty() || DureeTF.getText().isEmpty() || PrixTF.getText().isEmpty()
-    || ProducteurTF.getText().isEmpty() || ActeurTF.getText().isEmpty()) {
-    Alert alert = new Alert(Alert.AlertType.ERROR);
-    alert.setContentText("Veuillez remplir tous les champs obligatoires.");
-    alert.show();
-    return;
-}
-        
+
         f.setTitre(TitreTF.getText());
         f.setDateRealisation(DateRTF.getText());
         f.setGenre(GenreTF.getText());
@@ -94,13 +111,27 @@ public class AjouterfilmController implements Initializable {
         f.setPrix(Float.parseFloat(PrixTF.getText()));
         f.setID_producteur(ProducteurTF.getText());
         f.setActeur(ActeurTF.getText());
-        f.setImage(image.getText());
-        fs.ajouterFilm(f);
+        //ajouter l'image au serveur
+        try {
+                long millis = System.currentTimeMillis();
+                String fileExtention = selectedFile.toString().substring(selectedFile.toString().lastIndexOf("."));
+                String newName = millis + fileExtention;
+                FileUpload.uploadFile(selectedFile.toString(), "films\\" + newName);
+
+                f.setImage( "http://localhost/myjcc/films/" + newName);
+            } catch (Exception ex) {
+                f.setImage("erreur lors de l'ajout");
+                Logger.getLogger(AjouterfilmController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        //get new chemai pour l'ajouter à la base
         
+        fs.ajouterFilm(f);
+
         Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
         confirmation.setContentText("Film " + TitreTF.getText() + " est ajouté avec succes");
         confirmation.show();
-        
+
         TitreTF.setText("");
         DateRTF.setText("");
         GenreTF.setText("");
@@ -110,9 +141,7 @@ public class AjouterfilmController implements Initializable {
         ProducteurTF.setText("");
         ActeurTF.setText("");
         image.setText("");
-        
+
     }
 
-
-   
 }

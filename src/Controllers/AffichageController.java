@@ -157,4 +157,3 @@ public class AffichageController implements Initializable {
         }
     }
 }
-
