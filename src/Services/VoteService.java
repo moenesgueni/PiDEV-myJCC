@@ -8,12 +8,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.util.Pair;
+import sun.security.util.Length;
 
 /**
  *
@@ -33,7 +38,7 @@ public class VoteService implements VoteInterface {
         Calendar calendar = Calendar.getInstance();
         Date today = (Date) calendar.getTime(); ///////// condition de date pour terminer le vote
 
-        String req = "INSERT INTO `vote`(`Valeur`,`ID_User` , `ID_Film` ,`Commentaire`, `Date_Vote`) VALUES (?,?,?,?,?)";
+        String req = "INSERT INTO `vote`(`Valeur`,`ID_User` , `ID_Film` ,`Commentaire`, `Date_Vote` , `Vote_Film`) VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             //ps.setInt(1, v.getID_Vote());
@@ -42,6 +47,7 @@ public class VoteService implements VoteInterface {
             ps.setInt(3, v.getFilm().getID_film());
             ps.setString(4, v.getCommentaire());
             ps.setDate(5, v.getDate_Vote());
+            ps.setInt(1, v.getVote_Film());
             ps.executeUpdate();
             System.out.println("Vote ajouté avec success via prepared Statement!!!");
         } catch (SQLException ex) {
@@ -66,6 +72,7 @@ public class VoteService implements VoteInterface {
                 v.setFilm(fs.GetFilmById(rs.getInt(3)));
                 v.setCommentaire(rs.getString(4));
                 v.setDate_Vote(rs.getDate(5));
+                v.setVote_Film(rs.getInt(6));
                 //
             }
         } catch (SQLException ex) {
@@ -90,7 +97,8 @@ public class VoteService implements VoteInterface {
                 v.setUser(us.afficherUserbyID(rs.getInt(2)));
                 v.setFilm(fs.GetFilmById(rs.getInt(3)));
                 v.setCommentaire(rs.getString(4));
-                v.setDate_Vote(rs.getDate(4));
+                v.setDate_Vote(rs.getDate(5));
+                v.setVote_Film(rs.getInt(6));
                 //
                 votes.add(v);
             }
@@ -100,6 +108,7 @@ public class VoteService implements VoteInterface {
         return votes;
 
     }
+    
 
     //affichage par user
     @Override
@@ -115,7 +124,8 @@ public class VoteService implements VoteInterface {
                 v.setUser(us.afficherUserbyID(rs.getInt(2)));
                 v.setFilm(fs.GetFilmById(rs.getInt(3)));
                 v.setCommentaire(rs.getString(4));
-                v.setDate_Vote(rs.getDate(4));
+                v.setDate_Vote(rs.getDate(5));
+                v.setVote_Film(rs.getInt(6));
 
                 votes.add(v);
 
@@ -140,7 +150,8 @@ public class VoteService implements VoteInterface {
                 v.setUser(us.afficherUserbyID(rs.getInt(2)));
                 v.setFilm(fs.GetFilmById(rs.getInt(3)));
                 v.setCommentaire(rs.getString(4));
-                v.setDate_Vote(rs.getDate(4));
+                v.setDate_Vote(rs.getDate(5));
+                v.setVote_Film(rs.getInt(6));
 
                 votes.add(v);
 
@@ -220,13 +231,13 @@ public class VoteService implements VoteInterface {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(request);
             while (rs.next()) {
-                System.out.println(rs.getInt("ID_Vote"));
+                //System.out.println(rs.getInt("ID_Vote"));
                 v.setValeur(rs.getInt("Valeur"));
                 v.setUser(us.afficherUserbyID(rs.getInt("ID_User")));
                 v.setFilm(fs.GetFilmById(rs.getInt("ID_Film")));
                 v.setCommentaire(rs.getString("Commentaire"));
                 v.setDate_Vote(rs.getDate("Date_Vote"));
-
+                v.setVote_Film(rs.getInt("Vote_Film"));
                 votes.add(v);
                 //rs.next();
                 //System.out.println(rs.getInt("ID_Vote"));
@@ -267,8 +278,288 @@ public class VoteService implements VoteInterface {
         }
     }
 
-    public int countVote(int idF) {
-        String request = "select sum(Valeur) from vote where ID_Film = " + idF + ";";
+    
+    
+    
+    
+    
+    public int afficherVotesDate() {
+        //List<Vote> votes = new ArrayList<>();
+        String dateString = "";
+        String datee = "";
+        int result = 0;
+        String request = "SELECT * FROM vote";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); // specify your desired date format
+
+            while (rs.next()) {
+                Date date = rs.getDate("Date_Vote"); // get the date field from the current row
+                dateString = dateFormat.format(date); // format the date using SimpleDateFormat
+                // System.out.println(dateString);
+                if (dateString.equals("01/01/2023")) {
+                    result = countVote(date);
+                    //System.out.println(countVote(date));
+                    //System.out.println(datee);
+                }/*else if (dateString.equals("01/02/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/03/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/04/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/05/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/06/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/07/2023")){
+                    result = countVote(date);
+                }*/
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+
+    }
+    public int afficherVotesDateMardi() {
+        //List<Vote> votes = new ArrayList<>();
+        String dateString = "";
+        String datee = "";
+        int result = 0;
+        String request = "SELECT * FROM vote";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); // specify your desired date format
+
+            while (rs.next()) {
+                Date date = rs.getDate("Date_Vote"); // get the date field from the current row
+                dateString = dateFormat.format(date); // format the date using SimpleDateFormat
+                // System.out.println(dateString);
+                if (dateString.equals("01/02/2023")) {
+                    result = countVote(date);
+                    //System.out.println(countVote(date));
+                    //System.out.println(datee);
+                }/*else if (dateString.equals("01/02/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/03/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/04/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/05/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/06/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/07/2023")){
+                    result = countVote(date);
+                }*/
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+
+    }
+    public int afficherVotesDateMercredi() {
+        //List<Vote> votes = new ArrayList<>();
+        String dateString = "";
+        String datee = "";
+        int result = 0;
+        String request = "SELECT * FROM vote";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); // specify your desired date format
+
+            while (rs.next()) {
+                Date date = rs.getDate("Date_Vote"); // get the date field from the current row
+                dateString = dateFormat.format(date); // format the date using SimpleDateFormat
+                // System.out.println(dateString);
+                if (dateString.equals("01/03/2023")) {
+                    result = countVote(date);
+                    //System.out.println(countVote(date));
+                    //System.out.println(datee);
+                }/*else if (dateString.equals("01/02/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/03/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/04/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/05/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/06/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/07/2023")){
+                    result = countVote(date);
+                }*/
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+
+    }
+    public int afficherVotesDateJeudi() {
+        //List<Vote> votes = new ArrayList<>();
+        String dateString = "";
+        String datee = "";
+        int result = 0;
+        String request = "SELECT * FROM vote";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); // specify your desired date format
+
+            while (rs.next()) {
+                Date date = rs.getDate("Date_Vote"); // get the date field from the current row
+                dateString = dateFormat.format(date); // format the date using SimpleDateFormat
+                // System.out.println(dateString);
+                if (dateString.equals("01/04/2023")) {
+                    result = countVote(date);
+                    //System.out.println(countVote(date));
+                    //System.out.println(datee);
+                }/*else if (dateString.equals("01/02/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/03/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/04/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/05/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/06/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/07/2023")){
+                    result = countVote(date);
+                }*/
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+
+    }
+    public int afficherVotesDateVendredi() {
+        //List<Vote> votes = new ArrayList<>();
+        String dateString = "";
+        String datee = "";
+        int result = 0;
+        String request = "SELECT * FROM vote";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); // specify your desired date format
+
+            while (rs.next()) {
+                Date date = rs.getDate("Date_Vote"); // get the date field from the current row
+                dateString = dateFormat.format(date); // format the date using SimpleDateFormat
+                // System.out.println(dateString);
+                if (dateString.equals("01/05/2023")) {
+                    result = countVote(date);
+                    //System.out.println(countVote(date));
+                    //System.out.println(datee);
+                }/*else if (dateString.equals("01/02/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/03/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/04/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/05/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/06/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/07/2023")){
+                    result = countVote(date);
+                }*/
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+
+    }
+    public int afficherVotesDateSamedi() {
+        //List<Vote> votes = new ArrayList<>();
+        String dateString = "";
+        String datee = "";
+        int result = 0;
+        String request = "SELECT * FROM vote";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); // specify your desired date format
+
+            while (rs.next()) {
+                Date date = rs.getDate("Date_Vote"); // get the date field from the current row
+                dateString = dateFormat.format(date); // format the date using SimpleDateFormat
+                // System.out.println(dateString);
+                if (dateString.equals("01/06/2023")) {
+                    result = countVote(date);
+                    //System.out.println(countVote(date));
+                    //System.out.println(datee);
+                }/*else if (dateString.equals("01/02/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/03/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/04/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/05/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/06/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/07/2023")){
+                    result = countVote(date);
+                }*/
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+
+    }
+    public int afficherVotesDateDimanche() {
+        //List<Vote> votes = new ArrayList<>();
+        String dateString = "";
+        String datee = "";
+        int result = 0;
+        String request = "SELECT * FROM vote";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); // specify your desired date format
+
+            while (rs.next()) {
+                Date date = rs.getDate("Date_Vote"); // get the date field from the current row
+                dateString = dateFormat.format(date); // format the date using SimpleDateFormat
+                // System.out.println(dateString);
+                if (dateString.equals("01/07/2023")) {
+                    result = countVote(date);
+                    //System.out.println(countVote(date));
+                    //System.out.println(datee);
+                }/*else if (dateString.equals("01/02/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/03/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/04/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/05/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/06/2023")){
+                    result = countVote(date);
+                }else if (dateString.equals("01/07/2023")){
+                    result = countVote(date);
+                }*/
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+
+    }
+     //System.out.println(countVote(date));
+                    //System.out.println(datee);
+    public int countVote(Date idF) {
+        String request = "select sum(Valeur) from vote where Date_Vote = ' " + idF + " ' ;";
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(request);
@@ -281,4 +572,83 @@ public class VoteService implements VoteInterface {
         }
         return 0;
     }
+    
+    public ArrayList<Integer> countStars(){
+        ArrayList<Integer> liste = new ArrayList<Integer>();
+        String request = "select count(Valeur) from vote where Valeur =  ";
+        String a ;
+        for(int i=1;i<6;i++){
+        a = request + i + ";";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(a);
+            while (rs.next()) {
+                int c = rs.getInt("count(Valeur)");
+                liste.add(liste.size(),c);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        return liste;
+         
+    }
+    ArrayList<String> genre = fs.getAllGenres();
+    
+    public List<Pair<String, Integer>> countVoteFilmByType(ArrayList<String> genres) {
+    List<Pair<String, Integer>> resultList = new ArrayList<>();
+    String request = "SELECT f.genre, SUM(v.Vote_Film) as total_votes "
+            + "FROM vote v "
+            + "JOIN film f ON v.ID_Film = f.ID_Film "
+            + "WHERE f.genre = ? "
+            + "GROUP BY f.genre";
+    try {
+        PreparedStatement st = cnx.prepareStatement(request);
+        for (String genre : genres) {
+            st.setString(1, genre);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                String filmGenre = rs.getString("genre");
+                int count = rs.getInt("total_votes");
+                resultList.add(new Pair<>(filmGenre, count));
+            }
+            rs.close();
+        }
+        Collections.sort(resultList, new Comparator<Pair<String, Integer>>() {
+            @Override
+            public int compare(Pair<String, Integer> p1, Pair<String, Integer> p2) {
+                return p2.getValue().compareTo(p1.getValue());
+            }
+        });
+    } catch (SQLException ex) {
+        Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+        try {
+            PreparedStatement st = cnx.prepareStatement(request);
+            if (st != null) {
+                st.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    return resultList;
+}
+        /*try {
+            
+            PreparedStatement st = cnx.prepareStatement(request);
+            st.setString(1, genre);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                String filmGenre = rs.getString("genre");
+                int totalVotes = rs.getInt("total_votes");
+                resultList.add(new Pair<>(filmGenre, totalVotes));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+
+        
+    
 }

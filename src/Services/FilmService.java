@@ -240,5 +240,65 @@ public class FilmService implements FilmInterface {
         }
         return t;
     }
+    
+    public List<Film> RechercherFilm(String object) {
+        List<Film> list = new ArrayList<>();
+        String req = " SELECT * FROM film WHERE (Titre LIKE '%"+object+"%' OR Genre LIKE '%" + object + "%'OR Prix LIKE '%" + object + "%'OR Acteur LIKE '%" + object + "%')"; //kn nzidou now de producteur
+        try {  
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                Film f = new Film();
+                f.setID_film(rs.getInt(1));
+                f.setTitre(rs.getString(2));
+                f.setDateRealisation(rs.getString(3));
+                f.setGenre(rs.getString(4));
+                f.setResume(rs.getString(5));
+                f.setDuree(rs.getString(6));
+                f.setPrix(rs.getFloat(7));
+                f.setID_producteur(rs.getString(8));
+                f.setActeur(rs.getString(9));
 
+                list.add(f);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
+    public List<Integer> GetIdFilmByGenre(String Genre) {
+        List<Integer> IDFilms = new ArrayList<>();
+        String request = "SELECT * FROM Film WHERE `Genre` ='" + Genre + "';";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            while (rs.next()) {
+                int c;
+                c = rs.getInt("ID_Film");
+                IDFilms.add(c);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FilmService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return IDFilms;
+
+    }
+
+    public ArrayList<String> getAllGenres() {
+    ArrayList<String> genres = new ArrayList<>();
+    String request = "SELECT DISTINCT Genre FROM film";
+    try {
+        Statement st = cnx.createStatement();
+        ResultSet rs = st.executeQuery(request);
+        while (rs.next()) {
+            String genre = rs.getString("Genre");
+            genres.add(genre);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return genres;
+}
 }

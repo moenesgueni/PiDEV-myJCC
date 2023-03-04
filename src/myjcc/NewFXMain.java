@@ -29,60 +29,20 @@ import javafx.scene.layout.StackPane;
  */
 public class NewFXMain extends Application {
 
-    //String css = this.getClass().getResource("myjcc/Styles.css").toExternalForm();
-    Button button;
-    //variables pour le menu déroulant
-    double x, y = 0;
 
     @Override
     public void start(Stage stage) {
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("../GUI/AjoutVote.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../Charts/Chart.fxml"));
             Scene scene = new Scene(root);
-            scene.getStylesheets().add("myjcc/Styles.css");
+            //scene.getStylesheets().add("myjcc/Styles.css");
             stage.setScene(scene);
             stage.show();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        /*try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/ListeVote.fxml"));
-        Parent root = loader.load();
-        SideBarFXMLController controller = loader.getController();
-        controller.setPrimaryStage(primaryStage);
-        Scene scene = new Scene(root);
-        //for sidebar
-        root.setOnMousePressed(event -> {
-        x = event.getSceneX();
-        y = event.getSceneY();
-        });
-        root.setOnMouseDragged(event -> {
-        primaryStage.setX(event.getScreenX() - x);
-        primaryStage.setY(event.getScreenY() - y);
-        });
-        //-----------
-        //for full screen
-        primaryStage.setMaximized(true);
-        primaryStage.setFullScreen(true);
-        scene.setOnKeyPressed(event -> {
-        if (event.getCode() == KeyCode.F11) {
-        if (primaryStage.isFullScreen()) {
-        primaryStage.setFullScreen(false);
-        } else {
-        primaryStage.setFullScreen(true);
-        }
-        }
-        });
-        //--------------
-        primaryStage.setTitle("MyJCC");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        } catch (IOException ex) {
-        Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
     }
 
     private void closeWindow(Stage stage) {

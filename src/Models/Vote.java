@@ -8,22 +8,34 @@ import java.sql.Date;
  */
 public class Vote {
 
+    private int valeur;
     private Film film;
     private User user;
-    private int valeur;
     private String commentaire;
     private Date Date_Vote;
+    private int Vote_Film;
 
     public Vote() {
     }
 
-    public Vote(int valeur , Film film, User user, String commentaire, Date Date_Vote) {
+    public Vote(int valeur, Film film, User user, String commentaire, Date Date_Vote, int Vote_Film) {
         this.film = film;
         this.user = user;
         this.valeur = valeur;
         this.commentaire = commentaire;
         this.Date_Vote = Date_Vote;
+        this.Vote_Film = Vote_Film;
     }
+
+    public Vote(int valeur, Film film, User user, String commentaire, Date Date_Vote) {
+        this.valeur = valeur;
+        this.film = film;
+        this.user = user;
+        this.commentaire = commentaire;
+        this.Date_Vote = Date_Vote;
+    }
+    
+    
 
     public String getCommentaire() {
         return commentaire;
@@ -65,9 +77,17 @@ public class Vote {
         this.Date_Vote = Date_Vote;
     }
 
+    public int getVote_Film() {
+        return Vote_Film;
+    }
+
+    public void setVote_Film(int Vote_Film) {
+        this.Vote_Film = Vote_Film;
+    }
+
     @Override
     public String toString() {
-        return "Vote{" + "film=" + film + ", user=" + user + ", valeur=" + valeur + ", commentaire=" + commentaire + ", Date_Vote=" + Date_Vote + '}';
+        return "Vote{" + "film=" + film + ", user=" + user + ", valeur=" + valeur + ", commentaire=" + commentaire + ", Date_Vote=" + Date_Vote + ", Vote_Film=" + Vote_Film + '}';
     }
 
 }
