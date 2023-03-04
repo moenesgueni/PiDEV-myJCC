@@ -31,14 +31,14 @@ import java.sql.Date;
     public void AjouterLogs(LOGS L) {
         long millis=System.currentTimeMillis();  
         java.sql.Date date=new java.sql.Date(millis);
-        String req = "INSERT INTO `logs`(`Date`, `Action`) VALUES (?,?)";
+        String req = "INSERT INTO `logs`(`ID_User`,`Date`, `Action`) VALUES (?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
 
            // ps.setInt(1, L.getID_Logs());
-            //ps.setInt(1,L.getID_User());
-            ps.setDate(1,date);
-            ps.setString(2,L.getAction());
+            ps.setInt(1,L.getID_User());
+            ps.setDate(2,date);
+            ps.setString(3,L.getAction());
             ps.executeUpdate();
             System.out.println("Log ajouté avec success via prepared Statement!!!");
         } catch (SQLException ex) {

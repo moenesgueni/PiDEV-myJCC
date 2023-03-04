@@ -47,5 +47,6 @@
       <Label fx:id="labelprenom" layoutX="860.0" layoutY="260.0" prefHeight="18.0" prefWidth="150.0" textFill="#ff0000" />
       <Label fx:id="labelmail" layoutX="860.0" layoutY="338.0" prefHeight="18.0" prefWidth="174.0" textFill="RED" />
       <Label fx:id="labelpass" layoutX="860.0" layoutY="387.0" prefHeight="18.0" prefWidth="150.0" textFill="RED" />
+      <Button fx:id="R" layoutX="1085.0" layoutY="81.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
    </children>
 </AnchorPane>

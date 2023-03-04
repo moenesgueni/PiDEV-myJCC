@@ -5,14 +5,19 @@
  */
 package Controllers;
 
+import Models.LOGS;
 import Models.User;
+import Services.LogsService;
 import Services.UserService;
 import Utilities.TestUser;
 import Utilities.Type;
+import Utilities.UserSession;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -23,7 +28,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -76,6 +85,8 @@ public class AjouterFXMLController implements Initializable {
     private Label labelmail;
     @FXML
     private Label labelpass;
+    @FXML
+    private Button R;
 
     /**
      * Initializes the controller class.
@@ -94,7 +105,9 @@ public class AjouterFXMLController implements Initializable {
     }    
 
          User f = new User();
+         LOGS L= new LOGS();
         UserService fs = new UserService();
+        LogsService Ls = new LogsService();
 
 
 
@@ -135,9 +148,11 @@ public class AjouterFXMLController implements Initializable {
                 }else{
                     labelmail.setText("");
                 }
-        
+        Date currentDate = new Date();
+      java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
         fs.ajouterUser2(f);
-        
+        L= new LOGS(f.getID_User(),sqlDate,"L'utilisateur"+f.getPrenom()+"a ajouté par "+UserSession.getRole().toString()+" "+UserSession.getPrenom());
+        Ls.AjouterLogs(L);
         Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
         confirmation.setContentText("User " + NomU.getText() + " est ajouté avec succes");
         confirmation.show();
@@ -168,6 +183,16 @@ public class AjouterFXMLController implements Initializable {
    else if(femme.isSelected()){
        f.setGenre("Femme");
    }
+    }
+
+    @FXML
+    private void retour(ActionEvent event) throws IOException {
+            Parent root = FXMLLoader.load(getClass().getResource("../gui/SideBarFXML.fxml"));            
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
     }
 
     

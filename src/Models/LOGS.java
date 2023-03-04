@@ -20,7 +20,7 @@ public class LOGS {
     public LOGS() {
     }
 
-  /*  public LOGS(int ID_Logs, int ID_User, Date Date, String Action) {
+    public LOGS(int ID_Logs, int ID_User, Date Date, String Action) {
         this.ID_Logs = ID_Logs;
         this.ID_User = ID_User;
         this.Date = Date;
@@ -39,7 +39,7 @@ public class LOGS {
         this.Date = Date;
         this.Action = Action;
     }
-*/    
+   
     
     public LOGS(String Action) {
         this.Action = Action;

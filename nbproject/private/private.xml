@@ -5,13 +5,16 @@
         <group>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/LogsFXMLController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Services/LogsService.java</file>
+            <file>file:/D:/ADMIN/ADMIN/src/gui/ItemController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Utilities/PasswordHasher.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Utilities/TestUser.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/admin/NewFXMain.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/AjoutSpectateurFXMLController.java</file>
+            <file>file:/D:/ADMIN/ADMIN/src/Controllers/Modifier4UserFXMLController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Interfaces/LogsInterface.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/API/MailerAPI.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/SideBarFXMLController.java</file>
+            <file>file:/D:/ADMIN/ADMIN/src/gui/PlusController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Models/LOGS.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Utilities/LocalCallbackHandler.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Utilities/Type.java</file>
@@ -25,8 +28,11 @@
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/SupprimerFXMLController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/LoginFXMLController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/ForgotPassword2FXMLController.java</file>
+            <file>file:/D:/ADMIN/ADMIN/src/Utilities/UserSession1.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/admin/Gestion.java</file>
+            <file>file:/D:/ADMIN/ADMIN/src/gui/AjoutController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Utilities/UserSession.java</file>
+            <file>file:/D:/ADMIN/ADMIN/src/sample/AjoutController.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Services/UserService.java</file>
             <file>file:/D:/ADMIN/ADMIN/src/Controllers/ForgotPassword1FXMLController.java</file>
         </group>

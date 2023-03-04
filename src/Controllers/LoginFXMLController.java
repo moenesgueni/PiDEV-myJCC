@@ -57,6 +57,8 @@ public class LoginFXMLController implements Initializable {
     private Label PassInvalide;
     @FXML
     private Button CC;
+    @FXML
+    private Label MailInvalide;
     /**
      * Initializes the controller class.
      */
@@ -71,8 +73,8 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private void Connexion(ActionEvent event) throws IOException {
         f=fs.SearchByMail(Email.getText());
-        if(f==null){
-        PassInvalide.setText("Email n'existe pas"); 
+        if(f.getEmail()==null){
+        MailInvalide.setText("Email n'existe pas"); 
         }
         else if(f.getEmail()!=null){
         if(PasswordHasher.checkPassword(Password.getText(),f.getMotDePasse())){
@@ -80,7 +82,7 @@ public class LoginFXMLController implements Initializable {
             switch(f.getRole()) {
             case ADMINSTRATEUR:
             System.out.println("ADMIN ACTIF");
-            UserSession.getInstance(f.getNom(),f.getPrenom(),f.getGenre(),f.getEmail(),f.getMotDePasse(),f.getRole(),f.getPhotoB64(),f.getNumTel());
+            UserSession.getInstance(f.getID_User(),f.getNom(),f.getPrenom(),f.getGenre(),f.getEmail(),f.getMotDePasse(),f.getRole(),f.getPhotoB64(),f.getNumTel());
             Parent root = FXMLLoader.load(getClass().getResource("../gui/SideBarFXML.fxml"));            
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -111,7 +113,7 @@ public class LoginFXMLController implements Initializable {
     // code block
               break;
             }
-                   UserSession.getInstance(f.getNom(),f.getPrenom(),f.getGenre(),f.getEmail(),f.getMotDePasse(),f.getRole(),f.getPhotoB64(),f.getNumTel());
+                   UserSession.getInstance(f.getID_User(),f.getNom(),f.getPrenom(),f.getGenre(),f.getEmail(),f.getMotDePasse(),f.getRole(),f.getPhotoB64(),f.getNumTel());
         }
         }else{
         PassInvalide.setText("Mot de passe éronné");   

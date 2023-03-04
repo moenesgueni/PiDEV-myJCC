@@ -44,5 +44,6 @@
       </RadioButton>
       <RadioButton fx:id="femme" layoutX="616.0" layoutY="293.0" mnemonicParsing="false" onAction="#getsexe" text="Femme" toggleGroup="$sexe" />
       <Button fx:id="Modif" layoutX="481.0" layoutY="498.0" mnemonicParsing="false" onAction="#ModifierU" text="Modifier" />
+      <Button fx:id="R" layoutX="971.0" layoutY="109.0" mnemonicParsing="false" onAction="#Retour" text="Retour" />
    </children>
 </AnchorPane>

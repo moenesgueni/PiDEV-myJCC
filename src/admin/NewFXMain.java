@@ -22,7 +22,8 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
+import gui.AjoutController;
+import gui.ItemController;
 public class NewFXMain extends Application {
     double x, y = 0;
 

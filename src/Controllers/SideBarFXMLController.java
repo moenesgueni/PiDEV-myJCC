@@ -112,6 +112,7 @@ public class SideBarFXMLController implements Initializable {
             System.out.println("go to home");
 
         });
+
         //log Out
         logout.setOnMouseClicked(event -> {
             try {
@@ -126,10 +127,10 @@ public class SideBarFXMLController implements Initializable {
                 Logger.getLogger(SideBarFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-
         //set user data
         //creation service user
         UserService ps = new UserService();
+        
         User u = ps.SearchByMail(UserSession.getEmail());
         if (!u.getPhotoB64().equals("")) {
             changeImage(u.getPhotoB64());
@@ -190,7 +191,7 @@ public class SideBarFXMLController implements Initializable {
             workPlace.setCenter(view);
         });
         FxmlLoader fl = new FxmlLoader();
-        Pane view = fl.getPage("../gui/AjouterFXML");
+        Pane view = fl.getPage("../gui/Ajout");
         workPlace.setCenter(view);
     }
 

@@ -10,6 +10,7 @@ import Services.UserService;
 import Utilities.PasswordHasher;
 import Utilities.Type;
 import Utilities.UserSession;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.stream.Stream;
@@ -17,7 +18,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -57,6 +62,8 @@ public class ModifierFXMLController implements Initializable {
     @FXML
     private Button Modif;
     private Stage primaryStage;
+    @FXML
+    private Button R;
 
     /**
      * Initializes the controller class.
@@ -140,6 +147,15 @@ public class ModifierFXMLController implements Initializable {
         comb.setValue("");
         Photo.setText("");  
 
+    }
+
+    @FXML
+    private void Retour(ActionEvent event) throws IOException {
+                    Parent root = FXMLLoader.load(getClass().getResource("../gui/SideBarFXML.fxml"));            
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
     }
     
 }
