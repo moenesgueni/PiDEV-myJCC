@@ -110,7 +110,6 @@ public class VoteService implements VoteInterface {
         return votes;
 
     }
-    
 
     //affichage par user
     @Override
@@ -280,11 +279,6 @@ public class VoteService implements VoteInterface {
         }
     }
 
-    
-    
-    
-    
-    
     public int afficherVotesDate() {
         //List<Vote> votes = new ArrayList<>();
         String dateString = "";
@@ -324,6 +318,7 @@ public class VoteService implements VoteInterface {
         return result;
 
     }
+
     public int afficherVotesDateMardi() {
         //List<Vote> votes = new ArrayList<>();
         String dateString = "";
@@ -363,6 +358,7 @@ public class VoteService implements VoteInterface {
         return result;
 
     }
+
     public int afficherVotesDateMercredi() {
         //List<Vote> votes = new ArrayList<>();
         String dateString = "";
@@ -402,6 +398,7 @@ public class VoteService implements VoteInterface {
         return result;
 
     }
+
     public int afficherVotesDateJeudi() {
         //List<Vote> votes = new ArrayList<>();
         String dateString = "";
@@ -441,6 +438,7 @@ public class VoteService implements VoteInterface {
         return result;
 
     }
+
     public int afficherVotesDateVendredi() {
         //List<Vote> votes = new ArrayList<>();
         String dateString = "";
@@ -480,6 +478,7 @@ public class VoteService implements VoteInterface {
         return result;
 
     }
+
     public int afficherVotesDateSamedi() {
         //List<Vote> votes = new ArrayList<>();
         String dateString = "";
@@ -519,6 +518,7 @@ public class VoteService implements VoteInterface {
         return result;
 
     }
+
     public int afficherVotesDateDimanche() {
         //List<Vote> votes = new ArrayList<>();
         String dateString = "";
@@ -558,8 +558,9 @@ public class VoteService implements VoteInterface {
         return result;
 
     }
-     //System.out.println(countVote(date));
-                    //System.out.println(datee);
+    //System.out.println(countVote(date));
+    //System.out.println(datee);
+
     public int countVote(Date idF) {
         String request = "select sum(Valeur) from vote where Date_Vote = ' " + idF + " ' ;";
         try {
@@ -574,30 +575,30 @@ public class VoteService implements VoteInterface {
         }
         return 0;
     }
-    
-    public ArrayList<Integer> countStars(){
+
+    public ArrayList<Integer> countStars() {
         ArrayList<Integer> liste = new ArrayList<Integer>();
         String request = "select count(Valeur) from vote where Valeur =  ";
-        String a ;
-        for(int i=1;i<6;i++){
-        a = request + i + ";";
-        try {
-            Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery(a);
-            while (rs.next()) {
-                int c = rs.getInt("count(Valeur)");
-                liste.add(liste.size(),c);
-                
+        String a;
+        for (int i = 1; i < 6; i++) {
+            a = request + i + ";";
+            try {
+                Statement st = cnx.createStatement();
+                ResultSet rs = st.executeQuery(a);
+                while (rs.next()) {
+                    int c = rs.getInt("count(Valeur)");
+                    liste.add(liste.size(), c);
+
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
-        }
         }
         return liste;
-         
+
     }
     ArrayList<String> genre = fs.getAllGenres();
-    
+
     public List<Pair<String, Integer>> countVoteFilmByType(ArrayList<String> genres) {
         List<Pair<String, Integer>> resultList = new ArrayList<>();
         String request = "SELECT f.genre, SUM(v.Vote_Film) as total_votes "
@@ -637,95 +638,90 @@ public class VoteService implements VoteInterface {
         }
         return resultList;
     }
-        
-    
+
     public List<Pair<String, String>> getMostVotedFilmByGenre(ArrayList<String> genres) {
-    List<Pair<String, String>> resultList = new ArrayList<>();
-    String request = "SELECT f.genre, f.titre, SUM(v.Vote_Film) as total_votes "
-            + "FROM film f "
-            + "JOIN vote v ON v.ID_Film = f.ID_Film "
-            + "GROUP BY f.genre, f.ID_Film "
-            + "HAVING total_votes = "
-            + "(SELECT SUM(v2.Vote_Film) "
-            + "FROM vote v2 "
-            + "WHERE v2.ID_Film = f.ID_Film "
-            + "GROUP BY v2.ID_Film "
-            + "ORDER BY SUM(v2.Vote_Film) DESC "
-            + "LIMIT 1)";
-    try {
-        PreparedStatement st = cnx.prepareStatement(request);
-        ResultSet rs = st.executeQuery();
-        while (rs.next()) {
-            String filmGenre = rs.getString("genre");
-            String filmTitle = rs.getString("titre");
-            resultList.add(new Pair<>(filmGenre, filmTitle));
-        }
-        rs.close();
-    } catch (SQLException ex) {
-        Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
-    } finally {
+        List<Pair<String, String>> resultList = new ArrayList<>();
+        String request = "SELECT f.genre, f.titre, SUM(v.Vote_Film) as total_votes "
+                + "FROM film f "
+                + "JOIN vote v ON v.ID_Film = f.ID_Film "
+                + "GROUP BY f.genre, f.ID_Film "
+                + "HAVING total_votes = "
+                + "(SELECT SUM(v2.Vote_Film) "
+                + "FROM vote v2 "
+                + "WHERE v2.ID_Film = f.ID_Film "
+                + "GROUP BY v2.ID_Film "
+                + "ORDER BY SUM(v2.Vote_Film) DESC "
+                + "LIMIT 1)";
         try {
             PreparedStatement st = cnx.prepareStatement(request);
-            if (st != null) {
-                st.close();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    return resultList;
-}
-    
-    public List<Pair<String, Integer>> getMostVotedFilmByGenre2(ArrayList<String> genres) {
-    List<Pair<String, Integer>> resultList = new ArrayList<>();
-    String request = "SELECT f.titre, SUM(v.Vote_Film) as total_votes " +
-            "FROM film f " +
-            "JOIN vote v ON v.ID_Film = f.ID_Film " +
-            "WHERE f.genre = ? " +
-            "GROUP BY f.ID_Film " +
-            "HAVING total_votes = " +
-                "(SELECT SUM(v2.Vote_Film) " +
-                "FROM vote v2 " +
-                "WHERE v2.ID_Film = f.ID_Film " +
-                "GROUP BY v2.ID_Film " +
-                "ORDER BY SUM(v2.Vote_Film) DESC " +
-                "LIMIT 1)";
-    try {
-        PreparedStatement st = cnx.prepareStatement(request);
-        for (String genre : genres) {
-            st.setString(1, genre);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
+                String filmGenre = rs.getString("genre");
                 String filmTitle = rs.getString("titre");
-                int totalVotes = rs.getInt("total_votes");
-                resultList.add(new Pair<>(filmTitle, totalVotes));
+                resultList.add(new Pair<>(filmGenre, filmTitle));
             }
             rs.close();
-        }
-        // Sort the result list in descending order by the second element of each pair (total votes)
-        Collections.sort(resultList, new Comparator<Pair<String, Integer>>() {
-            @Override
-            public int compare(Pair<String, Integer> p1, Pair<String, Integer> p2) {
-                return p2.getValue().compareTo(p1.getValue());
-            }
-        });
-    } catch (SQLException ex) {
-        Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
-    } finally {
-        try {
-            PreparedStatement st = cnx.prepareStatement(request);
-            if (st != null) {
-                st.close();
-            }
         } catch (SQLException ex) {
             Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                PreparedStatement st = cnx.prepareStatement(request);
+                if (st != null) {
+                    st.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        return resultList;
     }
-    return resultList;
-}
-    
-    
 
-        
-    
+    public List<Pair<String, Integer>> getMostVotedFilmByGenre2(ArrayList<String> genres) {
+        List<Pair<String, Integer>> resultList = new ArrayList<>();
+        String request = "SELECT f.titre, SUM(v.Vote_Film) as total_votes "
+                + "FROM film f "
+                + "JOIN vote v ON v.ID_Film = f.ID_Film "
+                + "WHERE f.genre = ? "
+                + "GROUP BY f.ID_Film "
+                + "HAVING total_votes = "
+                + "(SELECT SUM(v2.Vote_Film) "
+                + "FROM vote v2 "
+                + "WHERE v2.ID_Film = f.ID_Film "
+                + "GROUP BY v2.ID_Film "
+                + "ORDER BY SUM(v2.Vote_Film) DESC "
+                + "LIMIT 1)";
+        try {
+            PreparedStatement st = cnx.prepareStatement(request);
+            for (String genre : genres) {
+                st.setString(1, genre);
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    String filmTitle = rs.getString("titre");
+                    int totalVotes = rs.getInt("total_votes");
+                    resultList.add(new Pair<>(filmTitle, totalVotes));
+                }
+                rs.close();
+            }
+            // Sort the result list in descending order by the second element of each pair (total votes)
+            Collections.sort(resultList, new Comparator<Pair<String, Integer>>() {
+                @Override
+                public int compare(Pair<String, Integer> p1, Pair<String, Integer> p2) {
+                    return p2.getValue().compareTo(p1.getValue());
+                }
+            });
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                PreparedStatement st = cnx.prepareStatement(request);
+                if (st != null) {
+                    st.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return resultList;
+    }
+
 }

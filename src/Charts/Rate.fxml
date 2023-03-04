@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.Rating?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" styleClass="gradiant-background" stylesheets="@../resources/Stylr.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Charts.RateController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1315.0" styleClass="gradiant-background" stylesheets="@../resources/Stylr.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Charts.RateController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="200.0" spacing="20.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" BorderPane.alignment="CENTER">
          <children>
@@ -201,6 +201,9 @@
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
+                           <padding>
+                              <Insets left="200.0" right="200.0" />
+                           </padding>
                         </TextArea>
                         <Button mnemonicParsing="false" onAction="#SubmitBttn" text="AjouterVote" />
                      </children>
