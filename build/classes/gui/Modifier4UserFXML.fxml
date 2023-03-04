@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="Controllers.Modifier4UserFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Modifier4UserFXMLController">
 
 
    <children>
@@ -43,6 +43,7 @@
       </RadioButton>
       <RadioButton fx:id="femme" layoutX="616.0" layoutY="293.0" mnemonicParsing="false" onAction="#getsexe" text="Femme" toggleGroup="$sexe" />
       <Button fx:id="Modif" layoutX="481.0" layoutY="498.0" mnemonicParsing="false" onAction="#ModifierU" text="Modifier" />
+      <Button fx:id="R" layoutX="1067.0" layoutY="84.0" mnemonicParsing="false" onAction="#Retour" text="Retour" />
    </children>
 
 </AnchorPane>

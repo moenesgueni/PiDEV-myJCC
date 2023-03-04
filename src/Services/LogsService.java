@@ -8,6 +8,7 @@ package Services;
 import Interfaces.LogsInterface;
 import Models.LOGS;
 import Utilities.MaConnexion;
+import Utilities.UserSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,8 +36,8 @@ import java.sql.Date;
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
 
-           // ps.setInt(1, L.getID_Logs());
-            ps.setInt(1,L.getID_User());
+           ps.setInt(1,L.getID_User());
+           
             ps.setDate(2,date);
             ps.setString(3,L.getAction());
             ps.executeUpdate();
@@ -54,7 +55,7 @@ import java.sql.Date;
             ResultSet rs = st.executeQuery(request);
             while(rs.next()){
                 LOGS L = new LOGS();
-                L.setID_User(rs.getInt(1));
+               // L.setID_User(rs.getInt(1));
                 L.setID_Logs(rs.getInt(2));
                 L.setDate(rs.getDate("Date"));
                 L.setAction(rs.getString("Action"));
@@ -76,7 +77,7 @@ import java.sql.Date;
             ResultSet rs = st.executeQuery(request);
             while(rs.next()){
                 LOGS L = new LOGS();
-                L.setID_User(rs.getInt(1));
+               // L.setID_User(rs.getInt(1));
                 L.setID_Logs(rs.getInt(2));
                 L.setDate(rs.getDate("Date"));
                 L.setAction(rs.getString("Action"));
@@ -100,7 +101,7 @@ import java.sql.Date;
             ResultSet rs = st.executeQuery(request);
             while(rs.next()){
                 LOGS L = new LOGS();
-                L.setID_User(rs.getInt(1));
+                //L.setID_User(rs.getInt(Use));
                 L.setID_Logs(rs.getInt(2));
                 L.setDate(rs.getDate("Date"));
                 L.setAction(rs.getString("Action"));
@@ -134,7 +135,7 @@ import java.sql.Date;
             ResultSet rs = st.executeQuery(request);
             while(rs.next()){
                 LOGS L = new LOGS();
-                L.setID_User(rs.getInt(1));
+               // L.setID_User(rs.getInt(1));
                 L.setID_Logs(rs.getInt(2));
                 L.setDate(rs.getDate("Date"));
                 L.setAction(rs.getString("Action"));
@@ -147,5 +148,23 @@ import java.sql.Date;
         }
         return logs;     }
 
+     @Override
+   public void modifierLogs(int id,java.sql.Date k,String S) {
+            
+             String req ="UPDATE `logs` SET `ID_User`= ? WHERE Date= ? AND Action= ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+          ps.setInt(1, UserSession.getID_User());
+            ps.setDate(2,k);
+            ps.setString(3,S);
+            
+            ps.executeUpdate();
+            System.out.println("log modifié avec success via prepared Statement!!!");
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    };
     
 }

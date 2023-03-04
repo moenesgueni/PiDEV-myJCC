@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import API.MailerAPI;
 import Models.User;
 import Services.UserService;
 import Utilities.TestUser;
@@ -123,6 +124,7 @@ public class AjoutSpectateurFXMLController implements Initializable {
                 }
              
                 if(TestUser.verifierNomPrenom(f.getNom())&&TestUser.verifierNomPrenom(f.getPrenom())&&TestUser.verifierAdresseEmail(f.getEmail())&&TestUser.verifierMotDePasse(PasswordU.getText())){
+                    MailerAPI.sendMail(f.getEmail(), f.getEmail(),PasswordU.getText());
         fs.ajouterUser2(f);
         Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
         confirmation.setContentText("User " + NomU.getText() + " est ajouté avec succes");

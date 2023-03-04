@@ -21,4 +21,5 @@ public interface LogsInterface {
    public List<LOGS> FiltrerParDate(Date DateLog);
    public List<LOGS> FiltrerParAction(String Action);
    public void Supprimer(int idlog);
+   public void modifierLogs(int id,java.sql.Date k,String S);
 }

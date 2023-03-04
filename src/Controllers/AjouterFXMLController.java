@@ -5,10 +5,12 @@
  */
 package Controllers;
 
+import API.MailerAPI;
 import Models.LOGS;
 import Models.User;
 import Services.LogsService;
 import Services.UserService;
+import Utilities.PasswordHasher;
 import Utilities.TestUser;
 import Utilities.Type;
 import Utilities.UserSession;
@@ -120,7 +122,7 @@ public class AjouterFXMLController implements Initializable {
         f.setPrenom(PrenomU.getText());
         getsexe(event);
         f.setEmail(EmailU.getText());
-        f.setMotDePasse(PasswordU.getText());
+        f.setMotDePasse(PasswordHasher.hashPassword(PasswordU.getText()));
         f.setRole(Type.valueOf(s));
         f.setPhotoB64(Photo.getText());
                 if (!TestUser.verifierNomPrenom(f.getNom())) {
@@ -135,35 +137,39 @@ public class AjouterFXMLController implements Initializable {
                 }else{
                     labelprenom.setText("");
                 }
-
-                if (!TestUser.verifierMotDePasse(PasswordU.getText())) {
-                    labelpass.setText("Le mot de passe est invalide");
-                }else{
-                    labelpass.setText("");
-  
-                }
-
                 if (!TestUser.verifierAdresseEmail(f.getEmail())) {
                     labelmail.setText("L'adresse e-mail est invalide");
                 }else{
                     labelmail.setText("");
                 }
-        Date currentDate = new Date();
-      java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
-        fs.ajouterUser2(f);
-        L= new LOGS(f.getID_User(),sqlDate,"L'utilisateur"+f.getPrenom()+"a ajouté par "+UserSession.getRole().toString()+" "+UserSession.getPrenom());
-        Ls.AjouterLogs(L);
+                if (!TestUser.verifierMotDePasse(PasswordU.getText())) {
+                    labelpass.setText("Le mot de passe est invalide");
+                }else{
+                    labelpass.setText("");
+                                         fs.ajouterUser2(f);
+                        MailerAPI.sendMail(f.getEmail(), f.getEmail(),PasswordU.getText());
+                         Date currentDate = new Date();
+                         java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
+                         L= new LOGS(UserSession.getID_User(),sqlDate,"l'"+UserSession.getRole().toString()+" "+UserSession.getPrenom()+ " a ajouté l'utilisateur "+f.getPrenom());
+                            Ls.AjouterLogs(L);
+
         Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
         confirmation.setContentText("User " + NomU.getText() + " est ajouté avec succes");
         confirmation.show();
-        
-        NomU.setText("");
+          NomU.setText("");
         PrenomU.setText("");
        // Sexe1.setText("");
         EmailU.setText("");
         PasswordU.setText("");
         comb.setValue("");
         Photo.setText("");
+                }
+
+
+                        
+
+        
+
         
     
     }

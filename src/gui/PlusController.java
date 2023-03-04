@@ -6,6 +6,8 @@
 package gui;
 
 import Models.User;
+import Services.UserService;
+import Utilities.Type;
 import Utilities.UserSession;
 import Utilities.UserSession1;
 import java.io.IOException;
@@ -54,6 +56,10 @@ public class PlusController implements Initializable {
     private Label Genre;
     @FXML
     private Label Photo;
+    @FXML
+    private Button mod;
+    @FXML
+    private Button sup;
 
     /**
      * Initializes the controller class.
@@ -85,6 +91,29 @@ public class PlusController implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+    }
+
+    @FXML
+    private void Mdifier(ActionEvent event) throws IOException {
+        if(UserSession.getRole().equals(Type.ADMINSTRATEUR)){
+            Parent root = FXMLLoader.load(getClass().getResource("../gui/ModifierFXML_1.fxml"));            
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();    }
+    }
+
+    @FXML
+    private void Supprimer(ActionEvent event) throws IOException {
+        if(UserSession.getID_User()!=UserSession1.getID_User()){
+            UserService us= new UserService();
+            us.supprimerUser(UserSession1.getID_User());
+            Parent root = FXMLLoader.load(getClass().getResource("../gui/SideBarFXML.fxml"));            
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
     
 }

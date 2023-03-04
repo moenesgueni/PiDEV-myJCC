@@ -40,7 +40,7 @@ import javafx.stage.Stage;
  *
  * @author moene
  */
-public class Modifier4UserFXMLController implements Initializable {
+public class ModifierFXMLController1 implements Initializable {
 
     @FXML
     private Button Selection;
@@ -53,6 +53,8 @@ public class Modifier4UserFXMLController implements Initializable {
     @FXML
     private TextField PasswordU;
     @FXML
+    private ComboBox comb;
+    @FXML
     private TextField Photo;
     @FXML
     private RadioButton homme;
@@ -62,34 +64,39 @@ public class Modifier4UserFXMLController implements Initializable {
     private RadioButton femme;
     @FXML
     private Button Modif;
-    private Stage primaryStage;
     @FXML
     private Button R;
 
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }   
-                User f = new User();
+                    User f = new User();
                 LOGS L=new LOGS();
                 LogsService Ls = new LogsService();
         UserService fs = new UserService();
+    private Stage primaryStage;
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+                String[] U = Stream.of(Type.values()).map(Type::name).toArray(String[]::new);
+        ObservableList<String> list = FXCollections.observableArrayList(U[0],U[1],U[2],U[3],U[4],U[5],U[6],U[7]);
+        comb.setItems(list);
+    }    
 
     @FXML
     private void Selectionner(ActionEvent event) {
-         String x =UserSession1.getEmail();
+          String x =UserSession1.getEmail();
                 //String s="";
                // s=(String) f.getRole().name();
                 //f.setRole(Type.valueOf(s));
-                //comb.setValue(f.getRole());
+
        // Integer x = Integer.valueOf(IDfield.getText());
         f=fs.SearchByMail(x);
-
+                        comb.setValue(f.getRole());
+              //  comb.setItems(f.getRole());
         NomU.setText(f.getNom());
         PrenomU.setText(f.getPrenom());
         if(f.getGenre().equals("Homme")){
@@ -104,6 +111,10 @@ public class Modifier4UserFXMLController implements Initializable {
         Photo.setText(f.getPhotoB64());
     }
 
+    @FXML
+    private void select(ActionEvent event) {
+                   String s = comb.getSelectionModel().getSelectedItem().toString();
+    }
 
     @FXML
     private void getsexe(ActionEvent event) {
@@ -117,15 +128,18 @@ public class Modifier4UserFXMLController implements Initializable {
 
     @FXML
     private void ModifierU(ActionEvent event) {
-
+         String s="";
         String u =UserSession1.getEmail();
         f=fs.SearchByMail(u);
         int x=f.getID_User();
+//        Integer x = Integer.valueOf(IDfield.getText());
+        s=(String) comb.getValue();
         f.setNom(NomU.getText());
         f.setPrenom(PrenomU.getText());
         getsexe(event);
         f.setEmail(EmailU.getText());
         f.setMotDePasse(PasswordHasher.hashPassword(PasswordU.getText()));
+        f.setRole(Type.valueOf(s));
         f.setPhotoB64(Photo.getText());
         fs.modifierUser(x,f);
          Date currentDate = new Date();
@@ -141,9 +155,8 @@ public class Modifier4UserFXMLController implements Initializable {
        // Sexe1.setText("");
         EmailU.setText("");
         PasswordU.setText("");
-
+        comb.setValue("");
         Photo.setText("");  
-
     }
 
     @FXML

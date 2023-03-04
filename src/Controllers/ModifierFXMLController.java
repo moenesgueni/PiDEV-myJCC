@@ -5,13 +5,16 @@
  */
 package Controllers;
 
+import Models.LOGS;
 import Models.User;
+import Services.LogsService;
 import Services.UserService;
 import Utilities.PasswordHasher;
 import Utilities.Type;
 import Utilities.UserSession;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.stream.Stream;
 import javafx.collections.FXCollections;
@@ -76,6 +79,8 @@ public class ModifierFXMLController implements Initializable {
         comb.setItems(list);
     }   
                 User f = new User();
+                LOGS L=new LOGS();
+                LogsService Ls = new LogsService();
         UserService fs = new UserService();
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -86,16 +91,17 @@ public class ModifierFXMLController implements Initializable {
                 //String s="";
                // s=(String) f.getRole().name();
                 //f.setRole(Type.valueOf(s));
-                comb.setValue(f.getRole());
+
        // Integer x = Integer.valueOf(IDfield.getText());
         f=fs.SearchByMail(x);
+        comb.setValue(f.getRole());
         NomU.setText(f.getNom());
         PrenomU.setText(f.getPrenom());
         if(f.getGenre().equals("Homme")){
-            homme.isSelected();
+            homme.setSelected(true);
         }
         if(f.getGenre().equals("Femme")){
-            femme.isSelected();
+            femme.setSelected(true);
         }
         EmailU.setText(f.getEmail());
         PasswordU.setText(f.getMotDePasse());
@@ -134,7 +140,10 @@ public class ModifierFXMLController implements Initializable {
         f.setRole(Type.valueOf(s));
         f.setPhotoB64(Photo.getText());
         fs.modifierUser(x,f);
-        
+         Date currentDate = new Date();
+                         java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
+                         L= new LOGS(UserSession.getID_User(),sqlDate,"l'"+UserSession.getRole().toString()+" "+UserSession.getPrenom()+ " a ajouté l'utilisateur "+f.getPrenom());
+                            Ls.AjouterLogs(L);
         Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
         confirmation.setContentText("User " + NomU.getText() + " est modifié avec succes");
         confirmation.show();

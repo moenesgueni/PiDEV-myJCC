@@ -16,9 +16,10 @@ public class UserSession1 {
     private static UserSession1 instance;
     private static String Nom,Prenom,Genre,Email,MotDePasse,PhotoBD64;
     private static Type Role;
-    private static int NumTel;
-    public UserSession1(String Nom,String Prenom,String Genre,String Email,String MotDePasse,Type Role,String PhotoBD64,int NumTel) {
-    this.Nom=Nom;
+    private static int NumTel,ID_User;
+    public UserSession1(int ID_User,String Nom,String Prenom,String Genre,String Email,String MotDePasse,Type Role,String PhotoBD64,int NumTel) {
+    this.ID_User=ID_User;
+        this.Nom=Nom;
     this.Prenom=Prenom;
     this.Genre =Genre;
     this.Email=Email;
@@ -28,9 +29,9 @@ public class UserSession1 {
     this.NumTel=NumTel;
     }
 
-    public static synchronized UserSession1 getInstance(String Nom,String Prenom,String Genre,String Email,String MotDePasse,Type Role,String PhotoBD64,int NumTel) {
+    public static synchronized UserSession1 getInstance(int ID_User,String Nom,String Prenom,String Genre,String Email,String MotDePasse,Type Role,String PhotoBD64,int NumTel) {
         if (instance == null) {
-            instance = new UserSession1(Nom,Prenom,Genre,Email,MotDePasse,Role,PhotoBD64,NumTel);
+            instance = new UserSession1(ID_User,Nom,Prenom,Genre,Email,MotDePasse,Role,PhotoBD64,NumTel);
         }
         return instance;
     }
@@ -115,7 +116,13 @@ public class UserSession1 {
         UserSession1.NumTel= NumTel;
     }
 
-    
+    public static int getID_User() {
+        return ID_User;
+    }
+
+    public static void setID_USer(int ID_User) {
+        UserSession1.ID_User= ID_User;
+    }    
 
     
     

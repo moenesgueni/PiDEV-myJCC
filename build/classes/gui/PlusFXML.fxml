@@ -46,6 +46,8 @@
             <Font name="Cambria" size="24.0" />
          </font>
       </Label>
+      <Button fx:id="mod" layoutX="63.0" layoutY="728.0" mnemonicParsing="false" onAction="#Mdifier" text="Modifier" />
+      <Button fx:id="sup" layoutX="378.0" layoutY="730.0" mnemonicParsing="false" onAction="#Supprimer" text="Supprimer" />
    </children>
    <styleClass>
       <String fx:value="fruit-item" />

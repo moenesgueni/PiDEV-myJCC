@@ -75,7 +75,7 @@ public class ItemController implements Initializable {
 
     @FXML
     private void Plus(ActionEvent event) throws IOException {
-                UserSession1 K =new UserSession1(u.getNom(),u.getPrenom(),u.getGenre(),u.getEmail(),u.getMotDePasse(),u.getRole(), u.getPhotoB64(), 0);
+                UserSession1 K =new UserSession1(u.getID_User(),u.getNom(),u.getPrenom(),u.getGenre(),u.getEmail(),u.getMotDePasse(),u.getRole(), u.getPhotoB64(), 0);
        // UserSession.getInstance(u.getNom(),u.getPrenom(),u.getGenre(),u.getEmail(),u.getMotDePasse(),u.getRole(), u.getPhotoB64(), 0);
      System.out.println(UserSession1.getEmail());
             Parent root = FXMLLoader.load(getClass().getResource("../gui/PlusFXML.fxml"));            
