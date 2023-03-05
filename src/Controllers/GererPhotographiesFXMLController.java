@@ -44,6 +44,9 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.DatePicker;
@@ -51,6 +54,7 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javax.imageio.ImageIO;
+import javafx.scene.image.WritablePixelFormat;
 
 public class GererPhotographiesFXMLController implements Initializable {
 
@@ -62,7 +66,7 @@ public class GererPhotographiesFXMLController implements Initializable {
     int CurrentUserId = 1;//5
     Type CurrentUserRole = Type.SPONSOR;//PHOTOGRAPHE
     Image CurrentGrandImage;
-    
+
     //service Photographie
     //creation service Photographie & Galerie
     PhotographieService ps = new PhotographieService();
@@ -70,13 +74,11 @@ public class GererPhotographiesFXMLController implements Initializable {
     GalerieService gs = new GalerieService();
     //Filter : Afficher les Photographies d'un Photographe avec l'id de sa galerie
     List<Photographie> l;
-    @FXML
-    private Label messageErr;
 
     public void getPhotos(int id) {
         l = ps.afficherPhotographiesDunPhotographe(id);
     }
-    
+
     //creation service user
     UserService us = new UserService();
 
@@ -151,6 +153,14 @@ public class GererPhotographiesFXMLController implements Initializable {
     private TextField salairecontrat;
     @FXML
     private Label contratNomPrenom, contratEmail;
+    @FXML
+    private Label messageErr, signatureObligatoire;
+    //Signature
+    @FXML
+    private Canvas canvasSignature;
+    private GraphicsContext gc;
+    private double prevX, prevY;
+    private boolean hasUsedCanvas;
 
     //black fade effect
     public void fadeIn() {
@@ -241,10 +251,21 @@ public class GererPhotographiesFXMLController implements Initializable {
         maGalerie.setText(currentGalerie.getNom());
         galerieBackgroundColor.setStyle("-fx-background-color:" + currentGalerie.getCouleurHtml() + "; -fx-background-radius: 10px;");
     }
-        public static Date datePickerToSQLDate(DatePicker datePicker) {
+
+    public static Date datePickerToSQLDate(DatePicker datePicker) {
         LocalDate localDate = datePicker.getValue();
         java.util.Date utilDate = java.sql.Date.valueOf(localDate);
         return new java.sql.Date(utilDate.getTime());
+    }
+
+    public void saveSignature() {
+        try {
+            Image snapshot = canvasSignature.snapshot(new SnapshotParameters(), null);
+            File outputFile = new File("C:\\Users\\Marwen\\Desktop\\signature.png");
+            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", outputFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -268,6 +289,7 @@ public class GererPhotographiesFXMLController implements Initializable {
             if (CurrentUserRole == Type.SPONSOR) {
                 proposerContrat.setVisible(true);
                 messageErr.setVisible(false);
+                signatureObligatoire.setVisible(false);
                 //populet les choicebox*************************
                 ObservableList<EnumTypeContrat> items = Arrays.stream(EnumTypeContrat.values()).collect(Collectors.toCollection(FXCollections::observableArrayList));
                 typeContrat.setItems(items);
@@ -281,6 +303,25 @@ public class GererPhotographiesFXMLController implements Initializable {
                 };
                 TextFormatter<String> textFormatter = new TextFormatter<>(floatFilter);
                 salairecontrat.setTextFormatter(textFormatter);
+                //Canvas for Signature
+                gc = canvasSignature.getGraphicsContext2D();
+                gc.setFill(Color.WHITE);
+                gc.fillRect(0, 0, canvasSignature.getWidth(), canvasSignature.getHeight());
+                gc.setStroke(Color.BLACK);
+                gc.setLineWidth(2.0);
+                hasUsedCanvas = false;
+                canvasSignature.setOnMousePressed(event -> {
+                    prevX = event.getX();
+                    prevY = event.getY();
+                    hasUsedCanvas = true;
+                });
+
+                canvasSignature.setOnMouseDragged(event -> {
+                    gc.strokeLine(prevX, prevY, event.getX(), event.getY());
+                    prevX = event.getX();
+                    prevY = event.getY();
+                    hasUsedCanvas = true;
+                });
             }
         }
         maGalerie.setText(currentGalerie.getNom());
@@ -368,7 +409,6 @@ public class GererPhotographiesFXMLController implements Initializable {
                     new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
             selectedFile = fileChooser.showOpenDialog(new Stage());
             if (selectedFile != null) {
-                System.out.println(selectedFile.toString());
                 Image image = new Image(selectedFile.toURI().toString());
                 ajouter_image_preview.setImage(image);
             }
@@ -502,16 +542,21 @@ public class GererPhotographiesFXMLController implements Initializable {
         //proposer le contrat
         ajouterContrat.setOnMouseClicked(event -> {
             ContratSponsorinService css = new ContratSponsorinService();
-            if (contratDateDebut.getValue() != null && ContratDateFin.getValue() != null && typeContrat.getValue() != null && !salairecontrat.getText().equals("") 
-                    && ContratDateFin.getValue().compareTo(contratDateDebut.getValue()) > 0) {
-                ContratSponsoring cs = new ContratSponsoring(datePickerToSQLDate(contratDateDebut), datePickerToSQLDate(ContratDateFin),
-                        typeContrat.getValue(), EnumEtatContrat.Proposition, Float.parseFloat(salairecontrat.getText()), "", pSponsor, pPhotographe);
-                css.ajouterContratSponsorin(cs);
-                fadeOut();
+            if (!hasUsedCanvas) {
+                signatureObligatoire.setVisible(true);
             } else {
-                messageErr.setVisible(true);
+                signatureObligatoire.setVisible(false);
+                if (contratDateDebut.getValue() != null && ContratDateFin.getValue() != null && typeContrat.getValue() != null && !salairecontrat.getText().equals("")
+                        && ContratDateFin.getValue().compareTo(contratDateDebut.getValue()) > 0) {
+                    saveSignature();
+                    ContratSponsoring cs = new ContratSponsoring(datePickerToSQLDate(contratDateDebut), datePickerToSQLDate(ContratDateFin),
+                            typeContrat.getValue(), EnumEtatContrat.Proposition, Float.parseFloat(salairecontrat.getText()), "", pSponsor, "", pPhotographe, "");
+                    css.ajouterContratSponsorin(cs);
+                    fadeOut();
+                } else {
+                    messageErr.setVisible(true);
+                }
             }
-            //controle de saisie sur date fin > date debut
         });
         //**************************************************************
     }

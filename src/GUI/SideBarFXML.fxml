@@ -229,7 +229,7 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#handleAjouterContrat" prefHeight="50.0" prefWidth="255.0" text="Ajouter Un Contrat">
+                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#handleAjouterContrat" prefHeight="50.0" prefWidth="255.0" text="Mes Contrats">
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>

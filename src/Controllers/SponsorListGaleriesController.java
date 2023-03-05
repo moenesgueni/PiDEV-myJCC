@@ -15,11 +15,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -30,11 +30,9 @@ public class SponsorListGaleriesController implements Initializable {
     GalerieService gs = new GalerieService();
     private List<Galerie> listGaleires;
 
-    private int teteDeLecture = 0;
+    private GridPane ListGrid = new GridPane();
     @FXML
-    private VBox vbox;
-    @FXML
-    private ImageView left, rigth;
+    private ScrollPane scrollPane;
 
     private void getGaleries() {
         //Read : Afficher toutes les galeries
@@ -43,7 +41,7 @@ public class SponsorListGaleriesController implements Initializable {
 
     private AnchorPane populerCard(int i) {
         AnchorPane p = new AnchorPane();
-        p.setPrefSize(550, 270);
+        p.setPrefSize(535, 270);
         Galerie g = listGaleires.get(i);
         p.setStyle("-fx-background-color: " + g.getCouleurHtml() + "; -fx-background-radius: 10px;");
 
@@ -96,18 +94,15 @@ public class SponsorListGaleriesController implements Initializable {
         AnchorPane.setRightAnchor(label5, 25.0);
 
         p.getChildren().addAll(label1, label2, tar, img, label3, label4, label5);
+        //Si click sur une élément (une galerie) on ouvre la galerie en pop up
         p.setOnMouseClicked(event -> {
-            //SideBarFXMLController controller = new SideBarFXMLController();
-            //controller.goToGalerie();
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/GererPhotographiesFXML.fxml"));
                 Parent root = loader.load();
                 GererPhotographiesFXMLController gererPhotographiesFXMLController = loader.getController();
-                int idGalerie = g.getID_Galerie();
-                gererPhotographiesFXMLController.ModifyIdGalerie(idGalerie);
+                gererPhotographiesFXMLController.ModifyIdGalerie(g.getID_Galerie());
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
-                stage.setScene(scene);
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException e) {
@@ -118,30 +113,13 @@ public class SponsorListGaleriesController implements Initializable {
         return p;
     }
 
-    private HBox populerLigne(int tetDLec, int pas, int plusLigne) {
-        HBox h = new HBox();
-        h.setSpacing(20);
-        if (pas == 1) {
-            for (int i = tetDLec + plusLigne; i < tetDLec + 3 + plusLigne; i++) {
-                h.getChildren().add(populerCard(i));
-            }
-        } else if (pas == -1) {
-            for (int i = tetDLec + 3 + plusLigne; i > tetDLec + plusLigne; i--) {
-                h.getChildren().add(populerCard(i));
-            }
+    private void populerGridPane() {
+        for (int i = 0; i < listGaleires.size(); i++) {
+            ListGrid.add(populerCard(i), i % 3, i / 3);
         }
-
-        return h;
-    }
-
-    private void populerVBox() {
-        vbox.setSpacing(20);
-        //Ligne 1
-        vbox.getChildren().add(populerLigne(teteDeLecture, 1, 0));
-        //Ligne 2
-        vbox.getChildren().add(populerLigne(teteDeLecture, -1, 2));
-        //Ligne 3
-        vbox.getChildren().add(populerLigne(teteDeLecture, 1, 6));
+        ListGrid.setHgap(25);
+        ListGrid.setVgap(25);
+        scrollPane.setContent(ListGrid);
     }
 
     @Override
@@ -150,23 +128,9 @@ public class SponsorListGaleriesController implements Initializable {
         getGaleries();
 
         //Créer les lignes de Galeries dans la VBox
-        populerVBox();
+        populerGridPane();
         //*****************************************
 
-        rigth.setOnMouseClicked(event -> {
-            if (teteDeLecture < listGaleires.size() - 9) {
-                vbox.getChildren().clear();
-                teteDeLecture += 1;
-                populerVBox();
-            }
-        });
-        left.setOnMouseClicked(event -> {
-            if (teteDeLecture > 0) {
-                vbox.getChildren().clear();
-                teteDeLecture -= 1;
-                populerVBox();
-            }
-        });
     }
 
 }

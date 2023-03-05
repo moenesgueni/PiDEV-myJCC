@@ -144,10 +144,10 @@ public class SideBarFXMLController implements Initializable {
             Pane view = fl.getPage("GererPhotographiesFXML");
             workPlace.setCenter(view);
         });
-        //ajouter un contrat
+        //Afficher mes contrats
         iconAjouerContrat.setOnMouseClicked(event -> {
             FxmlLoader fl = new FxmlLoader();
-            Pane view = fl.getPage("AjouterContratFXML");
+            Pane view = fl.getPage("ContratsAfficher");
             workPlace.setCenter(view);
         });
         //Palette de couleurs
@@ -181,10 +181,11 @@ public class SideBarFXMLController implements Initializable {
         unTranslate();
     }
 
+    //Afficher mes contrats
     @FXML
     private void handleAjouterContrat(ActionEvent event) {
         FxmlLoader fl = new FxmlLoader();
-        Pane view = fl.getPage("AjouterContratFXML");
+        Pane view = fl.getPage("ContratsAfficher");
         workPlace.setCenter(view);
         unTranslate();
     }

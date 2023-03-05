@@ -129,6 +129,7 @@ public class AjouterContratFXMLController implements Initializable {
 
         //Ajouter un contrat****************************
         confirmerajoutcontrat.setOnMouseClicked(event -> {
+            /*
             if (datedebut.getValue() != null && datefin.getValue() != null && typecontrat.getValue() != null && !salaire.getText().equals("")) {
                 ContratSponsoring cs = new ContratSponsoring(datePickerToSQLDate(datedebut), datePickerToSQLDate(datefin),
                         typecontrat.getValue(), EnumEtatContrat.Proposition, Float.parseFloat(salaire.getText()), "", pSponsor, pPhotographe);
@@ -137,6 +138,7 @@ public class AjouterContratFXMLController implements Initializable {
             } else {
                 messageErr.setVisible(true);
             }
+*/
         });
         //**********************************************
 
