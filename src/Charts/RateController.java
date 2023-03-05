@@ -26,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -47,6 +48,16 @@ public class RateController implements Initializable {
     private Rating FiveStars;
     @FXML
     private TextArea AvisField;
+    @FXML
+    private HBox consFilm;
+    @FXML
+    private HBox consSalles;
+    @FXML
+    private HBox consInvites;
+    @FXML
+    private HBox constPrix;
+    @FXML
+    private HBox constVotes;
 
     /**
      * Initializes the controller class.
@@ -55,13 +66,84 @@ public class RateController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println(xx1);
         lala.setText(xx1);
+        
+        constVotes.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Prix.fxml"));
+                Parent root = loader.load();
+
+                RateController rateController = loader.getController();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        consFilm.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Prix.fxml"));
+                Parent root = loader.load();
+
+                PrixController prixController = loader.getController();// change
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        consSalles.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Rate.fxml"));
+                Parent root = loader.load();
+
+                PrixController prixController = loader.getController();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        constPrix.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Prix.fxml"));
+                Parent root = loader.load();
+
+                PrixController prixController = loader.getController();// change
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        consInvites.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Prix.fxml"));
+                Parent root = loader.load();
+
+                PrixController prixController = loader.getController();// change
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @FXML
     private void SubmitBttn(ActionEvent event) throws IOException {
         String avis = AvisField.getText();
         Film film3 = new Film(11);
-        Parent root = FXMLLoader.load(getClass().getResource("AjouterVote.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../GUI_Vote/AjouterVote.fxml"));// change
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);

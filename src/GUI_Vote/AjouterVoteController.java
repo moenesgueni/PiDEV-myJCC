@@ -5,6 +5,8 @@
  */
 package GUI_Vote;
 
+import Charts.AlreadyVotedController;
+import Charts.RateController;
 import Models.Vote;
 import Services.FilmService;
 import Services.VoteService;
@@ -48,10 +50,10 @@ public class AjouterVoteController implements Initializable {
 
             //nheb nzid condition idha l film deja voté ykharrejli alert si non yhezni ll FiveStars.fxml
             FiveStarsController.xx1 = titreFilm;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("FiveStars.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/AlreadyVoted.fxml"));
             root = loader.load();
 
-            FiveStarsController fiveStarsController = loader.getController();
+            AlreadyVotedController alreadyVotedController = loader.getController();
             //fiveStarsController.display(titreFilm);
 
             //Parent root = FXMLLoader.load(getClass().getResource("FiveStars.fxml"));
@@ -59,7 +61,25 @@ public class AjouterVoteController implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-        } else {
+        }else if (!fs.existFilm(test)){
+            titreFilm = Titre.getText();
+
+            //nheb nzid condition idha l film deja voté ykharrejli alert si non yhezni ll FiveStars.fxml
+            FiveStarsController.xx1 = titreFilm;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Rate.fxml"));
+            root = loader.load();
+
+            RateController rateController = loader.getController();
+            //fiveStarsController.display(titreFilm);
+
+            //Parent root = FXMLLoader.load(getClass().getResource("FiveStars.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        
+        else {
             erreur = Titre.getText();
             /*Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
             confirmation.setContentText("Le film " + erreur + " n'existe pas");

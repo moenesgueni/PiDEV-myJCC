@@ -34,7 +34,7 @@ public class NewFXMain extends Application {
     public void start(Stage stage) {
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("../Charts/Prix.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../Charts/Rate.fxml"));
             Scene scene = new Scene(root);
             //scene.getStylesheets().add("myjcc/Styles.css");
             stage.setScene(scene);

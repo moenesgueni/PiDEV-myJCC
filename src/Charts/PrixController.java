@@ -7,14 +7,21 @@ package Charts;
 
 import Services.FilmService;
 import Services.VoteService;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Pair;
 
 /**
@@ -71,6 +78,16 @@ public class PrixController implements Initializable {
     private Label thrdFilm311;
     @FXML
     private Label nbreV311;
+    @FXML
+    private HBox consFilm;
+    @FXML
+    private HBox consSalles;
+    @FXML
+    private HBox consInvites;
+    @FXML
+    private HBox constPrix;
+    @FXML
+    private HBox constVotes;
 
     /**
      * Initializes the controller class.
@@ -83,6 +100,79 @@ public class PrixController implements Initializable {
         String y;
 
         int j = 0;
+        
+        constVotes.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Rate.fxml"));
+                Parent root = loader.load();
+
+                RateController rateController = loader.getController();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        consFilm.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Prix.fxml"));
+                Parent root = loader.load();
+
+                PrixController prixController = loader.getController();// change
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        consSalles.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Prix.fxml"));
+                Parent root = loader.load();
+
+                PrixController prixController = loader.getController();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        constPrix.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Prix.fxml"));
+                Parent root = loader.load();
+
+                PrixController prixController = loader.getController();// change
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        consInvites.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Prix.fxml"));
+                Parent root = loader.load();
+
+                PrixController prixController = loader.getController();// change
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        
+        
         x = vs.getMostVotedFilmByGenre(genre).get(0).getKey();
         Type1.setText(x);
 
@@ -161,6 +251,7 @@ public class PrixController implements Initializable {
             }
             j++;
         }
+        
     }
 
 }

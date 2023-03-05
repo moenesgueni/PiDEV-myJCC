@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane fx:id="retour" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1315.0" styleClass="gradiant-background" stylesheets="@../resources/Stylr.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Charts.AlreadyVotedController">
+   <center>
+      <Label text="Déja Voté" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Bodoni MT Condensed Bold Italic" size="96.0" />
+         </font>
+      </Label>
+   </center>
+</BorderPane>

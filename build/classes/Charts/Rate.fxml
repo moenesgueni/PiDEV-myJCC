@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.Rating?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" styleClass="gradiant-background" stylesheets="@../resources/Stylr.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Charts.RateController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1315.0" styleClass="gradiant-background" stylesheets="@../resources/Stylr.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Charts.RateController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="200.0" spacing="20.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" BorderPane.alignment="CENTER">
          <children>
@@ -77,70 +77,70 @@
             </Pane>
             <VBox prefHeight="632.0" prefWidth="270.0" spacing="20.0" styleClass="shadow" stylesheets="@../resources/Stylr.css">
                <children>
-                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="10.0" stylesheets="@../resources/Stylr.css">
+                  <HBox fx:id="consFilm" alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="http://localhost/myjcc/logos/photo.png" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="26.0" prefWidth="141.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Votre Champ" textFill="#ffd6dc">
+                        <Label prefHeight="26.0" prefWidth="180.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Consulter Les Fims" textFill="#ffd6dc">
                            <font>
                               <Font name="Bernard MT Condensed" size="20.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="200.0" spacing="10.0">
+                  <HBox fx:id="consSalles" alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="http://localhost/myjcc/logos/photo.png" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="26.0" prefWidth="141.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Votre Champ" textFill="#ffd6dc">
+                        <Label prefHeight="26.0" prefWidth="180.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Consulter Les Salles" textFill="#ffd6dc">
                            <font>
                               <Font name="Bernard MT Condensed" size="20.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="70.0" prefHeight="60.0" prefWidth="200.0" spacing="10.0">
+                  <HBox fx:id="consInvites" alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="http://localhost/myjcc/logos/photo.png" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="26.0" prefWidth="141.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Votre Champ" textFill="#ffd6dc">
+                        <Label prefHeight="26.0" prefWidth="180.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Consulter Les Invités" textFill="#ffd6dc">
                            <font>
                               <Font name="Bernard MT Condensed" size="20.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="130.0" prefHeight="60.0" prefWidth="200.0" spacing="10.0">
+                  <HBox fx:id="constPrix" alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="http://localhost/myjcc/logos/photo.png" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="26.0" prefWidth="141.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Votre Champ" textFill="#ffd6dc">
+                        <Label prefHeight="26.0" prefWidth="180.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Consulter Les Prix" textFill="#ffd6dc">
                            <font>
                               <Font name="Bernard MT Condensed" size="20.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="190.0" prefHeight="60.0" prefWidth="200.0" spacing="10.0">
+                  <HBox fx:id="constVotes" alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="http://localhost/myjcc/logos/photo.png" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="26.0" prefWidth="141.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Votre Champ" textFill="#ffd6dc">
+                        <Label prefHeight="26.0" prefWidth="180.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Consulter Les Votes" textFill="#ffd6dc">
                            <font>
                               <Font name="Bernard MT Condensed" size="20.0" />
                            </font>
@@ -201,8 +201,11 @@
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
+                           <padding>
+                              <Insets left="200.0" right="200.0" />
+                           </padding>
                         </TextArea>
-                        <Button mnemonicParsing="false" onAction="#SubmitBttn" text="AjouterVote" />
+                        <Button id="sale" mnemonicParsing="false" onAction="#SubmitBttn" stylesheets="@../resources/Stylr.css" text="AjouterVote" />
                      </children>
                      <styleClass>
                         <String fx:value="container" />

@@ -17,11 +17,16 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
@@ -54,6 +59,16 @@ List<Pair<String, Integer>> countVoteFilmByType = vs.countVoteFilmByType(genre);
     private Label moreV1;
     @FXML
     private Label moreV2;
+    @FXML
+    private HBox constPrix;
+    @FXML
+    private HBox constVotes;
+    @FXML
+    private HBox consFilm;
+    @FXML
+    private HBox consSalles;
+    @FXML
+    private HBox consInvites;
     /**
      * Initializes the controller class.
      */
@@ -89,6 +104,76 @@ List<Pair<String, Integer>> countVoteFilmByType = vs.countVoteFilmByType(genre);
             }
             j++;
         }
+        constVotes.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Rate.fxml"));
+                Parent root = loader.load();
+
+                RateController rateController = loader.getController();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        consFilm.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Prix.fxml"));
+                Parent root = loader.load();
+
+                PrixController prixController = loader.getController();// change
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        consSalles.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Prix.fxml"));
+                Parent root = loader.load();
+
+                PrixController prixController = loader.getController();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        constPrix.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Prix.fxml"));
+                Parent root = loader.load();
+
+                PrixController prixController = loader.getController();// change
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        consInvites.setOnMouseClicked(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Charts/Prix.fxml"));
+                Parent root = loader.load();
+
+                PrixController prixController = loader.getController();// change
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     } 
     
     
