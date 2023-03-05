@@ -33,8 +33,13 @@ public class ReservationHotelService implements ReservationHotelInterface {
     public void addReservationHotel(ReservationHotel r) {
          String req = "INSERT INTO `reservation_hotel` (`dateReservation`, `date_debut`, `date_fin`, `tarifTotale`, `QrPath`, `id_user`, `id_hotel`)"
                 + "VALUES (?,?,?,?,?,?,?)";
+         
+         String req2="UPDATE hotel SET `nbre_chambres` = ?"
+                 +" WHERE ID_Hotel ="+r.getHotel().getId();
+         
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
+            PreparedStatement ps2 = cnx.prepareStatement(req2);
             ps.setDate(1, r.getDateReservation());
             ps.setDate(2, r.getDate_debut());
             ps.setDate(3, r.getDate_fin());
@@ -43,6 +48,8 @@ public class ReservationHotelService implements ReservationHotelInterface {
             ps.setInt(6, r.getUser().getID_User());
             ps.setInt(7, r.getHotel().getId());
             ps.executeUpdate();
+            ps2.setInt(1,r.getHotel().getNbre_chambres()-1);
+            ps2.executeUpdate();
             System.out.println("RESERVATION EFFECTUEE!!!");
         } catch (SQLException ex) {
             Logger.getLogger(HotelService.class.getName()).log(Level.SEVERE, null, ex);

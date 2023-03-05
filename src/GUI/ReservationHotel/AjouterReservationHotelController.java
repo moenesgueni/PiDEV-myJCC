@@ -80,6 +80,7 @@ public class AjouterReservationHotelController implements Initializable {
 
     @FXML
     private void ajouterReservation(ActionEvent event) throws IOException, WriterException {
+ /*---------------------------Les champs non vides--------------------------*/
         if (nomH.getText().isEmpty() || iduser.getText().isEmpty()
                 || date_debut.getValue() == null || date_fin.getValue() == null
                 || tarifT_H.getText().isEmpty()) {
@@ -91,6 +92,7 @@ public class AjouterReservationHotelController implements Initializable {
             alert.showAndWait();
             return;
         }
+/*---------------Tarif positive-----------------------*/
 if(Float.parseFloat(tarifT_H.getText())<0){
        // Alert user to fill in all fields
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -100,9 +102,7 @@ if(Float.parseFloat(tarifT_H.getText())<0){
             alert.showAndWait();
             return;
 }
-
-       
-
+/*-------------------Hotel existant---------------*/
         Hotel h = new Hotel();
         h = hs.filterByName(nomH.getText());
         if (h.getLibelle()==null) {
@@ -113,6 +113,7 @@ if(Float.parseFloat(tarifT_H.getText())<0){
             alert.showAndWait();
             return;
         }
+/*-------------------User existant---------------*/
         User u = new User();
         u = us.afficherUserbyID(Integer.parseInt(iduser.getText()));
         if (u.getNom()==null) {
@@ -128,14 +129,24 @@ if(Float.parseFloat(tarifT_H.getText())<0){
         Date dateD = Date.valueOf(dd);
         LocalDate df = date_fin.getValue();
         Date dateF = Date.valueOf(df);
-        if (df.isBefore(dd)) {
+        LocalDate currentDate = LocalDate.now();
+        if (df.isBefore(dd)||dd.isBefore(currentDate)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
-            alert.setContentText("La date de fin doit être supérieure à la date de début!");
+            alert.setContentText("Date de Reservation invalide !");
             alert.showAndWait();
             return;
         }
+/*-------------------Verification disponibilité de chambres dans l'hotel----------------------*/
+    if(h.getNbre_chambres()== 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Hotel complet. \n Changer d'Hotel SVP");
+            alert.showAndWait();
+            return;
+    }
 
         // Obtenir la date système actuelle
         LocalDate localDate = LocalDate.now();
@@ -220,7 +231,7 @@ if(Float.parseFloat(tarifT_H.getText())<0){
         //  SMSUtil.sendQRCodeMMS(phoneNumber, reservationInfo, 250, 250);
 /*------------------------Envoyer QR code dans un email--------------------*/
         EmailAPI e = new EmailAPI();
-        e.sendMail("youssefkchaou4@gmail.com",emplacement,"ReservationHotel");
+     //   e.sendMail("youssefkchaou4@gmail.com",emplacement,"ReservationHotel");
 
         /**
          * **********Banner *****************

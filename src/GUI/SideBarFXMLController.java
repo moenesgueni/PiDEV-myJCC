@@ -194,9 +194,6 @@ public class SideBarFXMLController implements Initializable {
         unTranslate();       
     }
 
-    @FXML
-    private void SetHotelPage(MouseEvent event) {
-    }
 
 
 

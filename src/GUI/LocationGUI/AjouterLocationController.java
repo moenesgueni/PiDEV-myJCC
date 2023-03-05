@@ -113,12 +113,13 @@ public class AjouterLocationController implements Initializable {
     Date dateD = Date.valueOf(dd);
     LocalDate df =date_fin.getValue();
    Date dateF = Date.valueOf(df);
+   LocalDate currentDate = LocalDate.now();
     // valider que la date de debut est avant la date de fin
-    if(df.isBefore(dd)){
+    if(df.isBefore(dd)||dd.isBefore(currentDate)){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erreur");
         alert.setHeaderText(null);
-        alert.setContentText("La date de fin doit être supérieure à la date de début!");
+        alert.setContentText("Date de location invalide !");
         alert.showAndWait();
         return;
     }
