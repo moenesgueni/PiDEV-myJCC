@@ -47,6 +47,8 @@ public class AffichageController implements Initializable {
     @FXML
     private Button redsupf;
     private Film selectedFilm;
+    @FXML
+    private Button reddetfilm;
    
     /**
      * Initializes the controller class.
@@ -156,4 +158,28 @@ public class AffichageController implements Initializable {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    private void RedirectDetails(ActionEvent event) {
+         if (selectedFilm == null) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Aucun Film sélectionné");
+        alert.setContentText("Veuillez sélectionner un film à modifier.");
+        alert.showAndWait();
+        return;
+    }
+        try{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Filmdet.fxml"));
+        Parent root = loader.load();
+        FilmdetController controller = loader.getController();
+        controller.initData(selectedFilm);
+        Scene scene = new Scene(root);
+        Stage newStage = new Stage();
+        newStage.setScene(scene);
+        newStage.showAndWait();
+    }catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
 }

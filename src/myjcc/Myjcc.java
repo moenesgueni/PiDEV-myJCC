@@ -124,17 +124,18 @@ public class Myjcc {
           //System.out.println(ps.GetPlanningByID(1));
           
            //getplanningbyfilm
-          //ps.GetPlanningByFilm(3).forEach(System.out::println);
+          ps.GetPlanningByFilm(23).forEach(System.out::println);
           
           //getplanningbydate
           //ps.GetPlanningByDate(date).forEach(System.out::println);
-          
+          /*
            try {
             FileUpload.uploadFile("C:/Users/dhia/Desktop/valverde.jpg", "films\\valverde.jpg");
             //"C:/Users/Marwen/Desktop/mercedess.pdf"
         } catch (Exception ex) {
             Logger.getLogger(Myjcc.class.getName()).log(Level.SEVERE, null, ex);
         }
+*/
         
         
     }

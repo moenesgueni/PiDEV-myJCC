@@ -92,12 +92,15 @@ public class UpdateFController implements Initializable {
         PrixTF.setText(Float.toString(f.getPrix()));
         ProducteurTF.setText(f.getID_producteur());
         ActeurTF.setText(f.getActeur());
+        Image image1 = new Image (f.getImage());
+        imageview.setImage(image1);
        
     }
     
 
     @FXML
     private void ModifierF(ActionEvent event) {
+        Image image1 = new Image (selectedFilm.getImage());
         if (TitreTF.getText().isEmpty() || DateRTF.getText().isEmpty() || GenreTF.getText().isEmpty()
     || ResumeTF.getText().isEmpty() || DureeTF.getText().isEmpty() || PrixTF.getText().isEmpty()
     || ProducteurTF.getText().isEmpty() || ActeurTF.getText().isEmpty()) {
@@ -107,7 +110,7 @@ public class UpdateFController implements Initializable {
     return;
 }
         
-         Film f = new Film(selectedFilm.getID_film(),TitreTF.getText(),DateRTF.getText(),GenreTF.getText(),ResumeTF.getText(),DureeTF.getText(),Float.parseFloat(PrixTF.getText()),ProducteurTF.getText(),ActeurTF.getText(),"films\\null.png");
+         Film f = new Film(selectedFilm.getID_film(),TitreTF.getText(),DateRTF.getText(),GenreTF.getText(),ResumeTF.getText(),DureeTF.getText(),Float.parseFloat(PrixTF.getText()),ProducteurTF.getText(),ActeurTF.getText(),selectedFilm.getImage());
       try {
                 long millis = System.currentTimeMillis();
                 String fileExtention = selectedFile.toString().substring(selectedFile.toString().lastIndexOf("."));

@@ -31,5 +31,6 @@ public interface UserInterface {
     public User afficherUserbyID(int id);
     
     public List<User> FiltrerParRole(Type role);
+    public User SearchByMail(String MAIL);
   
 }
