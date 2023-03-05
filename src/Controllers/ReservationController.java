@@ -56,6 +56,7 @@ public class ReservationController implements Initializable {
     @FXML
     private Button Confirmer;
     private PlanningFilmSalle selectedplan;
+    User u = new User(1,"DHIA","ghammam","homme","dhiaghammam@esprit.tn","admin",Type.ADMINSTRATEUR,"abd")   ;
   
 
     /**
@@ -63,11 +64,9 @@ public class ReservationController implements Initializable {
      */
     
     public void initData(PlanningFilmSalle f) {
-        User CurrentUser = new User();
+        
         selectedplan = f;
-        nomU.setText(CurrentUser.getNom());
-        prenomU.setText(CurrentUser.getPrenom());
-        cinU.setText(CurrentUser.getEmail());
+       
         titre.setText(f.getFilm().getTitre());
         LocalDate date = f.getDatediffusion().toLocalDate();
         dated.setText(String.valueOf(date));
@@ -84,6 +83,9 @@ public class ReservationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+         nomU.setText(u.getNom());
+        prenomU.setText(u.getPrenom());
+        cinU.setText(u.getEmail());
     }    
 
     @FXML
@@ -95,7 +97,7 @@ public class ReservationController implements Initializable {
          //String mail = cinU.getText();
         // User u = us.SearchByMail(mail);
          PlanningFilmSalle plan = selectedplan;
-         User u = new User(1,"DHIA","ghammam","homme","dhiaghammam@esprit.tn","admin",Type.ADMINSTRATEUR,"abd")   ;
+         
          Reservation res = new Reservation(plan,u);
          
          Alert alert = new Alert(AlertType.ERROR);
