@@ -64,6 +64,7 @@ public class Myjcc {
         //System.out.println(fs.getAllGenres());
         //System.out.println(vs.getMostVotedFilmByGenre(genre));
         System.out.println(vs.getMostVotedFilmByGenre(genre).get(8).getKey());
+        //vs.updateVoteForUser(1, 21);
                 
         //vs.afficherVotesDate();
         

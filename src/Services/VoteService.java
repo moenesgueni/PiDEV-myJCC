@@ -40,7 +40,7 @@ public class VoteService implements VoteInterface {
         Calendar calendar = Calendar.getInstance();
         Date today = (Date) calendar.getTime(); ///////// condition de date pour terminer le vote
 
-        String req = "INSERT INTO `vote`(`Valeur`,`ID_User` , `ID_Film` ,`Commentaire`, `Date_Vote` , `Vote_Film`) VALUES (?,?,?,?,?,?)";
+        String req = "INSERT INTO `vote`(`Valeur`,`ID_User` , `ID_Film` ,`Commentaire`, `Date_Vote` ) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
             //ps.setInt(1, v.getID_Vote());
@@ -49,7 +49,7 @@ public class VoteService implements VoteInterface {
             ps.setInt(3, v.getFilm().getID_film());
             ps.setString(4, v.getCommentaire());
             ps.setDate(5, v.getDate_Vote());
-            ps.setInt(1, v.getVote_Film());
+            //ps.setInt(6, v.getVote_Film());
             ps.executeUpdate();
             System.out.println("Vote ajouté avec success via prepared Statement!!!");
         } catch (SQLException ex) {
@@ -58,6 +58,33 @@ public class VoteService implements VoteInterface {
         }
 
     }
+    /////////////////////////////////////////////////////upDate
+    
+    public void updateVoteForUser(int userId, int newVoteValue) {
+        
+        try {
+            // SQL query to update the vote for the given user
+            String req = "UPDATE vote SET Vote_Film = ? WHERE ID_User = ?";
+
+            // Create prepared statement and set parameters
+            try (PreparedStatement st = cnx.prepareStatement(req)) {
+                st.setInt(1, newVoteValue);
+                st.setInt(2, userId);
+
+                // Execute update and get number of rows affected
+                int rowsUpdated = st.executeUpdate();
+
+                if (rowsUpdated > 0) {
+                    System.out.println("Vote updated successfully.");
+                } else {
+                    System.out.println("No vote found for user " + userId + ".");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error updating vote: " + e.getMessage());
+        }
+    }
+
 
     /////////////////////////////////////////////////////getbyid
     @Override
