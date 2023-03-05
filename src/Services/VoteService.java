@@ -34,7 +34,7 @@ public class VoteService implements VoteInterface {
     FilmService fs = new FilmService();
     UserService us = new UserService();
 
-    //ajout vote
+    //ajout rate
     @Override
     public void ajouterVote(Vote v) {
         Calendar calendar = Calendar.getInstance();
@@ -49,7 +49,7 @@ public class VoteService implements VoteInterface {
             ps.setInt(3, v.getFilm().getID_film());
             ps.setString(4, v.getCommentaire());
             ps.setDate(5, v.getDate_Vote());
-            //ps.setInt(6, v.getVote_Film());
+            //ps.setInt(6, 0);
             ps.executeUpdate();
             System.out.println("Vote ajouté avec success via prepared Statement!!!");
         } catch (SQLException ex) {
@@ -58,15 +58,112 @@ public class VoteService implements VoteInterface {
         }
 
     }
-    /////////////////////////////////////////////////////upDate
+    /////////////////////////////////////////////////////update
     
-    public void updateVoteForUser(int userId, int newVoteValue) {
+    public void updateVoteForUser(int userId, int newValeur) {
+        
+        try {
+            // SQL query to update the vote for the given user
+            String req = "UPDATE vote SET Valeur = ? WHERE ID_User = ?";
+
+            // Create prepared statement and set parameters
+            try (PreparedStatement st = cnx.prepareStatement(req)) {
+                st.setInt(1, newValeur);
+                st.setInt(2, userId);
+
+                // Execute update and get number of rows affected
+                int rowsUpdated = st.executeUpdate();
+
+                if (rowsUpdated > 0) {
+                    System.out.println("Vote updated successfully.");
+                } else {
+                    System.out.println("No vote found for user " + userId + ".");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error updating vote: " + e.getMessage());
+        }
+    }
+    
+    ////////////////////////////////////////////// Ajout vote
+    public void ajouterVote1(Vote v) {
+        Calendar calendar = Calendar.getInstance();
+        Date today = (Date) calendar.getTime(); ///////// condition de date pour terminer le vote
+
+        // Check if the user has already voted for a film
+        String query = "SELECT * FROM vote WHERE ID_User = ? AND ID_Film <> ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(query);
+            ps.setInt(1, v.getUser().getID_User());
+            ps.setInt(2, v.getFilm().getID_film());
+            ResultSet result = ps.executeQuery();
+            if (result.next()) {
+                // The user has already voted for a different film, so subtract -1 from the previous film's vote count
+                int previousFilmId = result.getInt("ID_Film");
+                query = "UPDATE vote SET Vote_Film = Vote_Film - 1 WHERE ID_User = ? AND ID_Film = ?";
+                ps = cnx.prepareStatement(query);
+                ps.setInt(1, v.getUser().getID_User());
+                ps.setInt(2, previousFilmId);
+                ps.executeUpdate();
+                
+                int x = 0;
+                // Delete the previous vote from the "vote" table
+                query = "DELETE FROM vote WHERE ID_User = ? AND ID_Film = ?";
+                ps = cnx.prepareStatement(query);
+                ps.setInt(1, v.getUser().getID_User());
+                ps.setInt(2, previousFilmId);
+                ps.executeUpdate();
+            }
+        } catch (SQLException ex) {
+            //System.out.println("Error while checking for previous votes.");
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+        }
+
+        // Add +1 to the new film's vote count
+        query = "UPDATE vote SET Vote_Film = Vote_Film + 1 WHERE ID_film = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(query);
+            ps.setInt(1, v.getFilm().getID_film());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            //System.out.println("Error while updating film's vote count.");
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+        }
+
+        // Add the new vote to the "vote" table
+        query = "INSERT INTO vote (Valeur , ID_User, ID_Film, Commentaire,Date_Vote, Vote_Film) VALUES (?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(query);
+            ps.setInt(1, 0);
+            ps.setInt(2, v.getUser().getID_User());
+            ps.setInt(3, v.getFilm().getID_film());
+            ps.setString(4, v.getCommentaire());
+            ps.setDate(5, v.getDate_Vote());
+            ps.setInt(6, v.getVote_Film());
+            ps.executeUpdate();
+            /*
+            ps.setInt(1, v.getValeur());
+            ps.setInt(2, v.getUser().getID_User());
+            ps.setInt(3, v.getFilm().getID_film());
+            ps.setString(4, v.getCommentaire());
+            ps.setDate(5, v.getDate_Vote());
+            */
+            System.out.println("Vote ajouté avec succès via prepared Statement!!!");
+        } catch (SQLException ex) {
+            //System.out.println("Error while adding the new vote to the database.");
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+        }
+    }
+    /////////////////////////////////////////////////////update1
+    
+    public void updateVoteForUser1(int userId, int newVoteValue) {
         
         try {
             // SQL query to update the vote for the given user
             String req = "UPDATE vote SET Vote_Film = ? WHERE ID_User = ?";
-
-            // Create prepared statement and set parameters
             try (PreparedStatement st = cnx.prepareStatement(req)) {
                 st.setInt(1, newVoteValue);
                 st.setInt(2, userId);
@@ -280,6 +377,7 @@ public class VoteService implements VoteInterface {
         return votes;
     }
 
+    //////////////////////////////////////////////// pour rating
     public boolean canVote(int idu, int idf) {
         String request = "SELECT * FROM user u ,film f,vote v where v.ID_Film=f.ID_film and v.ID_User=u.ID_User and v.ID_User = " + idu + " and v.ID_Film = " + idf + ";";
         boolean a = true;
@@ -306,6 +404,34 @@ public class VoteService implements VoteInterface {
         }
     }
 
+    //////////////////////////////////////////////// pour vote
+    public boolean canVote1(int idu, int idf) {
+        String request = "SELECT * FROM user u ,film f,vote v where v.ID_Film=f.ID_film and v.ID_User=u.ID_User and v.ID_User = " + idu + " and v.ID_Film = " + idf + ";";
+        boolean a = true;
+
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            while (rs.next()) {
+                a = false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VoteService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return a;
+    }
+
+    public void voteee1(Vote v) {
+        if (canVote(v.getUser().getID_User(), v.getFilm().getID_film())) {
+            ajouterVote1(v);
+
+        } else {
+            System.out.println("vous avez deja voté ce film");
+
+        }
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////
     public int afficherVotesDate() {
         //List<Vote> votes = new ArrayList<>();
         String dateString = "";

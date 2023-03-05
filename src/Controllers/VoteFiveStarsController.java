@@ -126,7 +126,7 @@ public class VoteFiveStarsController implements Initializable {
         double b = FiveStars.getRating();
         
         
-        Vote votee = new Vote((int)b,film3,user3,avis,Date_Vote);
+        Vote votee = new Vote((int)b,user3,film3,avis,Date_Vote);
         
         vs.voteee(votee);
         

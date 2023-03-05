@@ -161,7 +161,7 @@ System.out.println(nameFilm);
         nameFilm = filmName;
         //System.out.println(nameFilm);
         
-        Vote vote = new Vote(5,film,user,"hi world",getCurrentDate());
+        Vote vote = new Vote(5,user,film,"hi world",getCurrentDate());
         //TODO insert vote into DB
         //new VoteService().ajouterVote(vote);
     }

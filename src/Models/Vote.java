@@ -18,21 +18,27 @@ public class Vote {
     public Vote() {
     }
 
-    public Vote(int valeur, Film film, User user, String commentaire, Date Date_Vote, int Vote_Film) {
+    public Vote(User user, Film film,  String commentaire, Date Date_Vote) {
         this.film = film;
         this.user = user;
+        this.commentaire = commentaire;
+        this.Date_Vote = Date_Vote;
+    }
+
+    public Vote(int valeur,  User user,Film film, String commentaire, Date Date_Vote) {
         this.valeur = valeur;
+        this.film = film;
+        this.user = user;
+        this.commentaire = commentaire;
+        this.Date_Vote = Date_Vote;
+    }
+
+    public Vote( User user,Film film, String commentaire, Date Date_Vote, int Vote_Film) {
+        this.film = film;
+        this.user = user;
         this.commentaire = commentaire;
         this.Date_Vote = Date_Vote;
         this.Vote_Film = Vote_Film;
-    }
-
-    public Vote(int valeur, Film film, User user, String commentaire, Date Date_Vote) {
-        this.valeur = valeur;
-        this.film = film;
-        this.user = user;
-        this.commentaire = commentaire;
-        this.Date_Vote = Date_Vote;
     }
     
     

@@ -22,12 +22,12 @@
             <Pane maxHeight="-Infinity" prefHeight="1.0" prefWidth="200.0" styleClass="line-color" stylesheets="@../resources/Stylr.css" HBox.hgrow="ALWAYS" />
             <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="http://localhost/myjcc//logos/settings1.png" />
+                  <Image url="http://localhost/myjcc/logos/settings1.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="500.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="http://localhost/myjcc//logos/prix_etoile.png" />
+                  <Image url="http://localhost/myjcc/logos/prix_etoile.png" />
                </image>
             </ImageView>
          </children>

@@ -52,7 +52,13 @@ public class Myjcc {
         FilmService fs = new FilmService();
         UserService us = new UserService();
         
-        
+        User user1 = new User(2, "wael", "ben rejeb", "Male", "wael.benrejeb@esprit.tn", "azertyuiop123", Type.ADMINSTRATEUR, "cjckcfk");
+        User user2 = new User(2, "Moenes", "Gueni", "Male", "moenes.gueni@esprit.tn", "azertyuiop123", Type.ADMINSTRATEUR, "cjckcfk");
+        Film film1 = new Film(3, "The Conjuring", "2014", "horror", "Don't be alone", "2:03", (float) 50.00, "Frank Darabont", "Morgan Freeman");
+        Film film2 = new Film(12, "The Shawshank Redemption 4", "1994", "action", "the best of all time", "2:03", (float) 50.00, "Frank Darabont", "Morgan Freeman");
+        Vote vote1 = new Vote();
+        Vote vote2 = new Vote( 4,  user1,film2,"hi world", Date_Vote);
+        Vote vote3 = new Vote( 1,  user2,film2,"hi world", Date_Vote);
         
         //System.out.println(vs.afficherVotesDate());
         ArrayList<Integer> liste = vs.countStars();
@@ -63,8 +69,12 @@ public class Myjcc {
         //System.out.println(vs.countVoteFilmByType(genre).get(0).getKey());
         //System.out.println(fs.getAllGenres());
         //System.out.println(vs.getMostVotedFilmByGenre(genre));
-        System.out.println(vs.getMostVotedFilmByGenre(genre).get(8).getKey());
+        //System.out.println(vs.getMostVotedFilmByGenre(genre).get(8).getKey());
         //vs.updateVoteForUser(1, 21);
+        Vote v = new Vote(user2, film2,"hi world", Date_Vote);
+        vs.ajouterVote1(v);
+        //vs.updateVoteForUser(1, 4);
+        //vs.updateVoteForUser1(1, 85);
                 
         //vs.afficherVotesDate();
         
@@ -90,13 +100,7 @@ public class Myjcc {
         //vs.suppressionVoteFilm(3);
         
         
-        User user1 = new User(2, "wael", "ben rejeb", "Male", "wael.benrejeb@esprit.tn", "azertyuiop123", Type.ADMINSTRATEUR, "cjckcfk");
-        User user2 = new User(1, "Moenes", "Gueni", "Male", "moenes.gueni@esprit.tn", "azertyuiop123", Type.ADMINSTRATEUR, "cjckcfk");
-        Film film1 = new Film(3, "The Conjuring", "2014", "horror", "Don't be alone", "2:03", (float) 50.00, "Frank Darabont", "Morgan Freeman");
-        Film film2 = new Film(4, "The Shawshank Redemption 4", "1994", "action", "the best of all time", "2:03", (float) 50.00, "Frank Darabont", "Morgan Freeman");
-        Vote vote1 = new Vote();
-        Vote vote2 = new Vote( 4, film2, user1,"hi world", Date_Vote,80);
-        Vote vote3 = new Vote( 1, film2, user2,"hi world", Date_Vote,90);
+        
         
         
         //fs.ajouterFilm(film1);

@@ -73,7 +73,7 @@ public class FiveStarsController implements Initializable {
         /*Vote vote1 = new Vote( (int)b, film1, user1,avis, Date_Vote);
         Vote vote2 = new Vote( (int)b, film2, user1,avis, Date_Vote);
         Vote vote3 = new Vote( (int)b, film2, user2,avis, Date_Vote);*/
-        Vote votee = new Vote((int)b,film3,user3,avis,Date_Vote);
+        Vote votee = new Vote((int)b,user3,film3,avis,Date_Vote);
         
         vs.voteee(votee);
         
