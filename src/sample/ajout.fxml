@@ -26,14 +26,9 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="49.0" prefWidth="128.0" text="Fruits" textFill="#878787">
+                        <Label prefHeight="49.0" prefWidth="128.0" text="MyJCC" textFill="#878787">
                            <font>
                               <Font name="Cambria Bold" size="40.0" />
-                           </font>
-                        </Label>
-                        <Label text="Market" textFill="#878787">
-                           <font>
-                              <Font name="Cambria" size="40.0" />
                            </font>
                         </Label>
                      </children>
@@ -58,7 +53,7 @@
                         <String fx:value="shadow" />
                      </styleClass>
                   </HBox>
-                  <Pane prefHeight="565.0" prefWidth="435.0" VBox.vgrow="ALWAYS">
+                  <Pane fx:id="ChosenFruitCard" prefHeight="565.0" prefWidth="435.0" VBox.vgrow="ALWAYS">
                      <children>
                         <HBox alignment="CENTER" layoutX="53.0" layoutY="38.0" prefHeight="65.0" prefWidth="251.0" stylesheets="@../css/style1.css">
                            <children>
@@ -173,46 +168,9 @@
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Pane prefHeight="84.0" prefWidth="96.0" />
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="380.0" styleClass="free-delivery-card" stylesheets="@../css/style1.css">
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="214.0">
-                                 <children>
-                                    <Label prefHeight="29.0" prefWidth="190.0" text="Free delivery" textFill="#878787">
-                                       <font>
-                                          <Font name="Cambria Bold" size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <Label prefHeight="16.0" prefWidth="190.0" text="over $20 order" textFill="#878787">
-                                       <font>
-                                          <Font name="Cambria" size="15.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </VBox>
-                              <ImageView fitHeight="49.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/ic_delivery.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
                         <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="336.0" styleClass="shopping-online-card" stylesheets="@../css/style1.css">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="100.0" prefWidth="203.0">
-                                 <children>
-                                    <Label prefHeight="29.0" prefWidth="190.0" text="Shopping online" textFill="#878787">
-                                       <font>
-                                          <Font name="Cambria Bold" size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <Label prefHeight="20.0" prefWidth="207.0" text="get your shopping in same day" textFill="#878787">
-                                       <font>
-                                          <Font name="Cambria" size="15.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </VBox>
                               <ImageView fitHeight="49.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../img/ic_stopwatch.png" />

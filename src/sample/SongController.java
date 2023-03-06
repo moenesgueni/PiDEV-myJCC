@@ -11,8 +11,6 @@ import Models.Evenement;
  * Created by Mahmoud Hamwi on 02-Feb-21.
  */
 public class SongController {
-    @FXML
-    private ImageView img;
 
     @FXML
     private Label songName;

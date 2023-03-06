@@ -6,6 +6,7 @@
 package sample;
 
 import GUI.myListener;
+import Models.Blog;
 import Models.Evenement;
 import Services.EventService;
 import java.io.IOException;
@@ -27,6 +28,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
@@ -39,28 +41,57 @@ public class AjoutController implements Initializable {
 
     @FXML
     private TextField tfnom_event;
+    
     @FXML
     private TextField tfdescription;
+    
     @FXML
     private TextField tflieu;
+    
     @FXML
     private DatePicker tfdate_et_heure;
+    
     @FXML
     private TextField tftype_event;
+    
     @FXML
     private Button insert_button;
+    
     @FXML
     private ScrollPane scroll;
+    
     @FXML
     private GridPane grid;
     private Stage primaryStage;
-    Evenement song;
+    
     private myListener myListener;
+    
     private List<Evenement> fruits = new ArrayList<>();
     EventService gs = new EventService();
     public String rech = "";
+    
     @FXML
     private TextField recherche;
+    @FXML
+    private Pane ChosenFruitCard;
+
+    private List<Evenement> getData() {
+        List<Evenement> fruits = new ArrayList<>();
+
+        fruits = gs.AfficherEvents();
+
+        return fruits;
+    }
+/*
+    private void setChosenFruit(Evenement fruit) {
+
+        tfnom_event.setText(fruit.getNom_event());
+        tfdate_et_heure.setValue(fruit.getDate_et_heure().toLocalDate());
+        tflieu.setText(fruit.getLieu());
+        tftype_event.setText(fruit.getType_event());
+        tfdescription.setText(fruit.getDescription());
+
+    }
 
     /**
      * Initializes the controller class.
@@ -69,12 +100,27 @@ public class AjoutController implements Initializable {
         this.primaryStage = primaryStage;
     }
 
-   @Override
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
-    setdata();
-    
+        setdata();
+        fruits.addAll(getData());
+        if (fruits.size() > 0) {
+            setChosenFruit(fruits.get(0));
+            
+            myListener = new myListener() 
+            {
+
+                @Override
+                    public void onClickListener(Evenement u) {
+                    setChosenFruit(u);
+                }
+
+                
+            };
+        }
     }
-       /* fruits.addAll(getData());
+
+    /* fruits.addAll(getData());
         if (fruits.size() > 0) {
             setChosenFruit(fruits.get(0));
        
@@ -90,8 +136,8 @@ public class AjoutController implements Initializable {
                 }
             };
         }*/
-          public void setdata() {
-               fruits =gs. RechercherEvent(rech);
+    public void setdata() {
+        fruits = gs.RechercherEvent(rech);
 
         int column = 0;
         int row = 1;
@@ -102,7 +148,7 @@ public class AjoutController implements Initializable {
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 ItemController itemController = fxmlLoader.getController();
-                itemController.setData(fruits.get(i),myListener);
+                itemController.setData(fruits.get(i), myListener);
 
                 if (column == 3) {
                     column = 0;
@@ -126,8 +172,8 @@ public class AjoutController implements Initializable {
             e.printStackTrace();
         }
     }
-    
-/*
+
+    /*
     private List<Evenement> getRecentlyPlayed() {
         List<Evenement> fruits = new ArrayList<>();
 
@@ -135,7 +181,7 @@ public class AjoutController implements Initializable {
 
         return fruits;
     }
-*/
+     */
     @FXML
     private void insert_button(ActionEvent event) {
 
@@ -155,8 +201,8 @@ public class AjoutController implements Initializable {
 
         os.AjouterEvent(t);
         System.out.println("Done!");
-        fruits =gs.AfficherEvents();
-         int column = 0;
+        fruits = gs.AfficherEvents();
+        int column = 0;
         int row = 1;
         try {
             for (int i = 0; i < fruits.size(); i++) {
@@ -165,7 +211,7 @@ public class AjoutController implements Initializable {
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 ItemController itemController = fxmlLoader.getController();
-                itemController.setData(fruits.get(i),myListener);
+                itemController.setData(fruits.get(i), myListener);
 
                 if (column == 3) {
                     column = 0;
@@ -189,7 +235,21 @@ public class AjoutController implements Initializable {
             e.printStackTrace();
         }
     }
- @FXML
+    
+    
+     private void setChosenFruit(Evenement fruit) {
+
+        tfnom_event.setText(fruit.getNom_event());
+        tfdate_et_heure.setValue(fruit.getDate_et_heure().toLocalDate());
+        tflieu.setText(fruit.getLieu());
+        tftype_event.setText(fruit.getType_event());
+        tfdescription.setText(fruit.getDescription());
+
+    }
+    
+    
+
+    @FXML
     public void onclicksearch() {
         if (recherche.getText().isEmpty()) {
             rech = "";
@@ -198,14 +258,6 @@ public class AjoutController implements Initializable {
         }
         setdata();
     }
-    private void setChosenFruit(Evenement fruit) {
+
     
-  
-        tfnom_event.setText(fruit.getNom_event());
-        tfdate_et_heure.setValue(fruit.getDate_et_heure().toLocalDate());
-        tflieu.setText(fruit.getLieu());
-        tftype_event.setText(fruit.getType_event());
-        tfdescription.setText(fruit.getDescription());
-       
-    }
 }

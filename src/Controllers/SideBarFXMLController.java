@@ -132,7 +132,7 @@ public class SideBarFXMLController implements Initializable {
                 Evenement evenement = listview.getSelectionModel().getSelectedItem();
                 // Mettre à jour les champs de texte avec les valeurs de l'événement
                 tfnom_event.setText(evenement.getNom_event());
-                tfdate_et_heure.setValue(evenement.getDate_et_heure().toLocalDate());
+               // tfdate_et_heure.setValevenement.getDate_et_heure().toLocalDate());
                 tflieu.setText(evenement.getLieu());
                 tftype_event.setText(evenement.getType_event());
                 tfdescription.setText(evenement.getDescription());

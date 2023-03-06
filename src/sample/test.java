@@ -27,7 +27,7 @@ public class test extends Application {
          
        Parent root;
          try {
-           root = FXMLLoader.load(getClass().getResource("ajout.fxml"));
+           root = FXMLLoader.load(getClass().getResource("userBlog.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setTitle("Hello World!");
             primaryStage.setScene(scene);
