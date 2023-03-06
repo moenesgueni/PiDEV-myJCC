@@ -1,20 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="910.0" prefWidth="1770.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ContratsAfficherController">
    <children>
       <AnchorPane fx:id="blackpane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <ScrollPane fx:id="scrollPDF" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0" />
       <Label text="Mes Contrats :" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="25.0">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
       <ListView fx:id="listAffichage" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="150.0" />
+      <AnchorPane fx:id="modifierPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <Label fx:id="contratTitreEtat" text="Contrat Sponsoring" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="dateDebut" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="290.0" />
+            <DatePicker fx:id="dateFin" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="360.0" />
+            <Label text="Date Debut :" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="260.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Date Fin :" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="330.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Type du Contrat :" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="400.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Salaire :" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="470.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="salaire" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="500.0" />
+            <Label fx:id="messageERR" text="Veuillez Remplire tout les champs !!!" textFill="#ff0c0c" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="530.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnVoirPdf" mnemonicParsing="false" text="Voir Le Contrat" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="100.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="accepterContrat" mnemonicParsing="false" text="Accepter le contrat" textFill="#52a40a" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="170.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label text="Signature" AnchorPane.leftAnchor="460.0" AnchorPane.topAnchor="100.0">
+               <font>
+                  <Font name="Segoe Script" size="24.0" />
+               </font>
+            </Label>
+            <AnchorPane prefHeight="208.0" prefWidth="290.0" style="-fx-background-color: lightgray;" AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="150.0" />
+            <Canvas fx:id="canvasSignature" height="200.0" width="282.0" AnchorPane.leftAnchor="384.0" AnchorPane.topAnchor="154.0" />
+            <Label fx:id="signatureObligatoire" text="La Signature est obligatoire" textFill="#e10808" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="360.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="closeBtn" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="http://localhost/myjcc/logos/close.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="refuserContrat" mnemonicParsing="false" text="Refuser le contrat" textFill="#dd320f" AnchorPane.leftAnchor="185.0" AnchorPane.topAnchor="170.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="contraProposition" mnemonicParsing="false" text="Contre Proposition" textFill="#ff9000" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="600.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="otherUserImage" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0" />
+            <Label fx:id="otherUserNomPren" text="labbbbb user" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="420.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="otherUserEmail" text="labbbb@b user" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="450.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="typContratText" text="Label" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="430.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="typeContrat" prefWidth="150.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="430.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

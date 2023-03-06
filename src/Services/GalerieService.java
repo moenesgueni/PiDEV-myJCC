@@ -17,7 +17,7 @@ public class GalerieService implements GalerieInterface {
 
     //Connection a la db
     Connection cnx = MaConnection.getInstance().getCnx();
-    
+
     //creation service user
     UserService ps = new UserService();
 
@@ -78,6 +78,23 @@ public class GalerieService implements GalerieInterface {
     public Galerie afficherGalerie(int id) {
         Galerie g = new Galerie();
         String request = "SELECT * FROM `galerie` WHERE `ID_Galerie` =" + id;
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            while (rs.next()) {
+                g = addGalerie(rs);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ContratSponsorinService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return g;
+    }
+
+    //GetById : Afficher une Galerie d'un photographe
+    @Override
+    public Galerie afficherGalerieDuPhotographe(int id) {
+        Galerie g = new Galerie();
+        String request = "SELECT * FROM `galerie` WHERE `ID_Photographe` =" + id;
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(request);

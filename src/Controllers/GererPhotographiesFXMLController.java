@@ -58,10 +58,12 @@ import javafx.scene.image.WritablePixelFormat;
 
 public class GererPhotographiesFXMLController implements Initializable {
 
+    //Creation service galerie
+    GalerieService gs = new GalerieService();
     //var
     private int teteDeLecture = 0;
     private int imageModifieActuel = 0;
-    private int idCurrentUserGalerie = 4; //idCurrentGalerie (Sponsor peut y accéder depuis liste galeries)
+    private int idCurrentUserGalerie = gs.afficherGalerieDuPhotographe(5).getID_Galerie();
     File selectedFile;
     int CurrentUserId = 1;//5
     Type CurrentUserRole = Type.SPONSOR;//PHOTOGRAPHE
@@ -70,8 +72,7 @@ public class GererPhotographiesFXMLController implements Initializable {
     //service Photographie
     //creation service Photographie & Galerie
     PhotographieService ps = new PhotographieService();
-    //Creation service galerie
-    GalerieService gs = new GalerieService();
+
     //Filter : Afficher les Photographies d'un Photographe avec l'id de sa galerie
     List<Photographie> l;
 

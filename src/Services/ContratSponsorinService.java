@@ -83,20 +83,38 @@ public class ContratSponsorinService implements SponsoringInterface {
         footer.setAlignment(Element.ALIGN_CENTER);
         document.add(footer);
         //Signatures***********
-                // Create table2
+        // Create table2
         PdfPTable table2 = new PdfPTable(2);
         Paragraph LeSponsor = new Paragraph("Signature du Sponsor");
         table2.addCell(LeSponsor);
         Paragraph LePhotographe = new Paragraph("Signature du Photographe");
         table2.addCell(LePhotographe);
-        
-        Image SignatureSponsor = Image.getInstance("C:\\Users\\Marwen\\Desktop\\signature.png");
-        imageSponsor.scaleToFit(200, 200);
-        table2.addCell(SignatureSponsor);
-        Image SignaturePhotographe = Image.getInstance("http://localhost/myjcc/contrats/signatures/Defaultsignature.png");
-        imagePhotographe.scaleToFit(200, 200);
-        table2.addCell(SignaturePhotographe);
-        
+
+        //selon etat****************************
+        if (c.getEtat() == EnumEtatContrat.Proposition) {
+            Image SignatureSponsor = Image.getInstance("C:\\Users\\Marwen\\Desktop\\signature.png");
+            imageSponsor.scaleToFit(200, 200);
+            table2.addCell(SignatureSponsor);
+            Image SignaturePhotographe = Image.getInstance("http://localhost/myjcc/contrats/signatures/Defaultsignature.png");
+            imagePhotographe.scaleToFit(200, 200);
+            table2.addCell(SignaturePhotographe);
+        } else if (c.getEtat() == EnumEtatContrat.Expire) {
+            Image SignatureSponsor = Image.getInstance(c.getSignatureSponsor());
+            imageSponsor.scaleToFit(200, 200);
+            table2.addCell(SignatureSponsor);
+            Image SignaturePhotographe = Image.getInstance(c.getSignaturePhotographe());
+            imagePhotographe.scaleToFit(200, 200);
+            table2.addCell(SignaturePhotographe);
+        } else {
+            Image SignatureSponsor = Image.getInstance(c.getSignatureSponsor());
+            imageSponsor.scaleToFit(200, 200);
+            table2.addCell(SignatureSponsor);
+            Image SignaturePhotographe = Image.getInstance("C:\\Users\\Marwen\\Desktop\\signature.png");
+            imagePhotographe.scaleToFit(200, 200);
+            table2.addCell(SignaturePhotographe);
+        }
+        //**************************************
+
         table2.setSpacingBefore(30f);
         table2.setSpacingAfter(30f);
 
@@ -138,10 +156,10 @@ public class ContratSponsorinService implements SponsoringInterface {
             //ajout contratpdf dans le serveur
             FileUpload.uploadFile("C:\\Users\\Marwen\\Desktop\\" + contartPdfName, "contrats\\" + contartPdfName);
             //ajout signature Sponsor dans le serveur
-            FileUpload.uploadFile("C:\\Users\\Marwen\\Desktop\\signature.png", "contrats\\signatures\\" +contartPdfName+"Sponsor.png");
+            FileUpload.uploadFile("C:\\Users\\Marwen\\Desktop\\signature.png", "contrats\\signatures\\" + contartPdfName + "Sponsor.png");
             //ajout du contrat dans la bd
-            String contractName = "http://localhost/myjcc/contrats/"+contartPdfName;
-            String sponsorSignature = "http://localhost/myjcc/contrats/signatures/"+contartPdfName+"Sponsor.png";
+            String contractName = "http://localhost/myjcc/contrats/" + contartPdfName;
+            String sponsorSignature = "http://localhost/myjcc/contrats/signatures/" + contartPdfName + "Sponsor.png";
             PreparedStatement ps = cnx.prepareStatement(req);
             ps.setDate(1, c.getDateDebut());
             ps.setDate(2, c.getDateFin());
@@ -244,6 +262,19 @@ public class ContratSponsorinService implements SponsoringInterface {
                 + ", SalaireDt = ?, TermesPDF = ?, ID_Sponsor = ?, SignatureSponsor = ?"
                 + ", ID_Photographe = ?, SignaturePhotographe = ? WHERE ID_Contrat = ?";
         try {
+            //creation contrat pdf
+            String contartPdfName = c.getTermesPDF().substring(c.getTermesPDF().lastIndexOf("/") + 1);
+            createPdf("C:\\Users\\Marwen\\Desktop\\" + contartPdfName, c);
+            //ajout contratpdf dans le serveur
+            FileUpload.uploadFile("C:\\Users\\Marwen\\Desktop\\" + contartPdfName, "contrats\\" + contartPdfName);
+            //ajout signature Photographe dans le serveur
+            if (c.getEtat() == EnumEtatContrat.EnCours || c.getEtat() == EnumEtatContrat.ContreProposition) {
+                FileUpload.uploadFile("C:\\Users\\Marwen\\Desktop\\signature.png", "contrats\\signatures\\" + contartPdfName + "Photographe.png");
+            }
+            //ajout du contrat dans la bd
+            String contractName = "http://localhost/myjcc/contrats/" + contartPdfName;
+            String sponsorSignature = "http://localhost/myjcc/contrats/signatures/" + contartPdfName + "Sponsor.png";
+            String photographeSignature = "http://localhost/myjcc/contrats/signatures/" + contartPdfName + "Photographe.png";
             PreparedStatement ps = cnx.prepareStatement(request);
             ps.setDate(1, c.getDateDebut());
             ps.setDate(2, c.getDateFin());
@@ -254,12 +285,14 @@ public class ContratSponsorinService implements SponsoringInterface {
             ps.setInt(7, c.getSponsor().getID_User());
             ps.setString(8, c.getSignatureSponsor());
             ps.setInt(9, c.getPhotoraphe().getID_User());
-            ps.setString(10, "");
+            ps.setString(10, photographeSignature);
             ps.setInt(11, c.getID_Contrat());
             //
             ps.executeUpdate();
             System.out.println("Contrat modifié avec success via prepared Statement!!!");
         } catch (SQLException ex) {
+            Logger.getLogger(ContratSponsorinService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(ContratSponsorinService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

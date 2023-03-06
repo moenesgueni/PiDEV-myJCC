@@ -11,6 +11,9 @@ public interface GalerieInterface {
     //GetById : Afficher une Galerie
     public Galerie afficherGalerie(int id);
     
+    //GetById : Afficher une Galerie d'un photographe
+    public Galerie afficherGalerieDuPhotographe(int id);
+    
     //Update
     public void modifierGalerie(Galerie g);
     

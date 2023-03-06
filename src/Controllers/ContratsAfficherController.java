@@ -11,9 +11,12 @@ import Models.ContratSponsoring;
 import Models.User;
 import Utils.Type;
 import Utils.EnumEtatContrat;
+import Utils.EnumTypeContrat;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Arrays;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
@@ -23,35 +26,72 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.rendering.PDFRenderer;
-import org.apache.pdfbox.rendering.ImageType;
 import java.awt.image.BufferedImage;
+import java.io.FileOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.function.UnaryOperator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
+import javafx.collections.ObservableList;
 import javax.imageio.ImageIO;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.util.Duration;
+import java.util.stream.Collectors;
+import javafx.collections.FXCollections;
+import javafx.scene.control.TextFormatter;
+import java.sql.Date;
+import java.time.LocalDate;
+import javafx.scene.SnapshotParameters;
 
 public class ContratsAfficherController implements Initializable {
 
     //var
-    int currentUserId = 5;
-    Type roleCurrentUser = Type.PHOTOGRAPHE;
+    int currentUserId = 1;//5
+    Type roleCurrentUser = Type.SPONSOR;//PHOTOGRAPHE
     //Creation service Contrats & get mes contracts
     ContratSponsorinService cs = new ContratSponsorinService();
     private List<ContratSponsoring> listContrats;
+    ContratSponsoring contratEnCours = new ContratSponsoring();
 
     @FXML
     private ListView<AnchorPane> listAffichage;
     @FXML
-    private ScrollPane scrollPDF;
+    private AnchorPane blackpane, modifierPane;
     @FXML
-    private AnchorPane blackpane;
+    private Label contratTitreEtat;
+    @FXML
+    private DatePicker dateDebut, dateFin;
+    @FXML
+    private ChoiceBox<EnumTypeContrat> typeContrat;
+    @FXML
+    private TextField salaire;
+    @FXML
+    private Label messageERR, signatureObligatoire;
+    @FXML
+    private Button btnVoirPdf, accepterContrat, refuserContrat, contraProposition;
+    @FXML
+    private Canvas canvasSignature;
+    private GraphicsContext gc;
+    private double prevX, prevY;
+    private boolean hasUsedCanvas;
+    @FXML
+    private ImageView closeBtn;
+    @FXML
+    private ImageView otherUserImage;
+    @FXML
+    private Label otherUserNomPren, otherUserEmail;
+    @FXML
+    private Label typContratText;
 
     private void getContrats() {
         if (roleCurrentUser == Type.PHOTOGRAPHE) {
@@ -59,9 +99,19 @@ public class ContratsAfficherController implements Initializable {
         } else {
             listContrats = cs.afficherContratsDeSponsor(currentUserId);
         }
+        //filtrer les contrats selon l'Etat
+        List<ContratSponsoring> filteredContrats = new ArrayList<>();
+        for (EnumEtatContrat etat : EnumEtatContrat.values()) {
+            for (ContratSponsoring contrat : listContrats) {
+                if (contrat.getEtat() == etat) {
+                    filteredContrats.add(contrat);
+                }
+            }
+        }
+        listContrats = filteredContrats;
     }
-
     //retourne une couleur html selon l'Etat du contrat
+
     private String getBackgroundColor(EnumEtatContrat e) {
         switch (e) {
             case Proposition:
@@ -88,9 +138,9 @@ public class ContratsAfficherController implements Initializable {
     //black fade effect
     public void fadeIn() {
         blackpane.setVisible(true);
-        scrollPDF.setVisible(true);
+        modifierPane.setVisible(true);
         blackpane.toFront();
-        scrollPDF.toFront();
+        modifierPane.toFront();
         FadeTransition fadeTransition1 = new FadeTransition(Duration.seconds(0.5), blackpane);
         fadeTransition1.setFromValue(0);
         fadeTransition1.setToValue(0.3);
@@ -105,28 +155,70 @@ public class ContratsAfficherController implements Initializable {
 
         fadeTransition1.setOnFinished(event1 -> {
             blackpane.setVisible(false);
-            scrollPDF.setVisible(false);
+            modifierPane.setVisible(false);
+            //Réactiver les btn
+            accepterContrat.setVisible(true);
+            refuserContrat.setVisible(true);
+            contraProposition.setVisible(true);
+            dateDebut.setEditable(true);
+            dateFin.setEditable(true);
+            typeContrat.setVisible(true);
+            salaire.setEditable(true);
         });
     }
 
-    public void seePDF(String path) throws IOException {
-        //PDDocument document = PDDocument.load(new File(c.getTermesPDF()));
-        PDDocument document = PDDocument.load(new File("C:\\Users\\Marwen\\Desktop\\demandeDeStage.pdf"));
-        PDFRenderer renderer = new PDFRenderer(document);
+    public void seePDF(String path) throws IOException, URISyntaxException {
+        Desktop.getDesktop().browse(new URI(path));
+    }
 
-        BufferedImage image = renderer.renderImageWithDPI(0, 300);
+    private void populerContratEdit(ContratSponsoring c) {
+        contratEnCours = c;
+        //partie other user du contrat droite
+        User u = getTheOtherUser(c);
+        otherUserImage.setImage(new Image(u.getPhotoB64()));
+        otherUserNomPren.setText(u.getNom() + " " + u.getPrenom());
+        otherUserEmail.setText(u.getEmail());
 
-        Canvas pdfDisplayCanvas = new Canvas();
-        pdfDisplayCanvas.setWidth(image.getWidth());
-        pdfDisplayCanvas.setHeight(image.getHeight());
+        //partie gauche
+        contratTitreEtat.setText("Contrat Sponsoring " + c.getEtat());
+        dateDebut.setValue(c.getDateDebut().toLocalDate());
+        dateFin.setValue(c.getDateFin().toLocalDate());
+        typContratText.setText(c.getType().toString());
+        typeContrat.setValue(c.getType());
+        salaire.setText(Float.toString(c.getSalaireDt()));
+    }
 
-        GraphicsContext gc = pdfDisplayCanvas.getGraphicsContext2D();
-        gc.drawImage(SwingFXUtils.toFXImage(image, null), 0, 0);
-
-        document.close();
-        fadeIn();
-        scrollPDF.setContent(pdfDisplayCanvas);
-
+    private void desactiverLesBtnSelonRole(ContratSponsoring c) {
+        //Désactiver les boutons selon l'etat du contrat et le role
+        if (c.getEtat() == EnumEtatContrat.Proposition) {
+            if (roleCurrentUser == Type.SPONSOR) {
+                accepterContrat.setVisible(false);
+                refuserContrat.setVisible(false);
+                contraProposition.setVisible(false);
+                dateDebut.setEditable(false);
+                dateFin.setEditable(false);
+                typeContrat.setVisible(false);
+                salaire.setEditable(false);
+            }
+        } else if (c.getEtat() == EnumEtatContrat.ContreProposition) {
+            contraProposition.setVisible(false);
+            dateDebut.setEditable(false);
+            dateFin.setEditable(false);
+            typeContrat.setVisible(false);
+            salaire.setEditable(false);
+            if (roleCurrentUser == Type.PHOTOGRAPHE) {
+                accepterContrat.setVisible(false);
+                refuserContrat.setVisible(false);
+            }
+        } else {
+            accepterContrat.setVisible(false);
+            refuserContrat.setVisible(false);
+            contraProposition.setVisible(false);
+            dateDebut.setEditable(false);
+            dateFin.setEditable(false);
+            typeContrat.setVisible(false);
+            salaire.setEditable(false);
+        }
     }
 
     private AnchorPane populerCard(int i) throws IOException {
@@ -199,6 +291,8 @@ public class ContratsAfficherController implements Initializable {
                 seePDF(c.getTermesPDF());
             } catch (IOException ex) {
                 Logger.getLogger(ContratsAfficherController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (URISyntaxException ex) {
+                Logger.getLogger(ContratsAfficherController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
 
@@ -207,7 +301,9 @@ public class ContratsAfficherController implements Initializable {
         p.getChildren().addAll(label1, label2, label3, label4, label5, img, label6, label7, bPDF);
         //Si click sur une élément (une galerie) on ouvre la galerie en pop up
         p.setOnMouseClicked(event -> {
-            //detailsPane
+            fadeIn();
+            populerContratEdit(c);
+            desactiverLesBtnSelonRole(c);
         }
         );
         return p;
@@ -219,10 +315,7 @@ public class ContratsAfficherController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        scrollPDF.setVisible(false);
-        blackpane.setVisible(false);
+    private void reloadData() {
         try {
             // get mes contrats
             getContrats();
@@ -231,8 +324,124 @@ public class ContratsAfficherController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(ContratsAfficherController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public static Date datePickerToSQLDate(DatePicker datePicker) {
+        LocalDate localDate = datePicker.getValue();
+        java.util.Date utilDate = java.sql.Date.valueOf(localDate);
+        return new java.sql.Date(utilDate.getTime());
+    }
+
+    public void saveSignature() {
+        try {
+            Image snapshot = canvasSignature.snapshot(new SnapshotParameters(), null);
+            File outputFile = new File("C:\\Users\\Marwen\\Desktop\\signature.png");
+            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", outputFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        blackpane.setVisible(false);
+        modifierPane.setVisible(false);
+        messageERR.setVisible(false);
+        signatureObligatoire.setVisible(false);
+        //Canvas for Signature
+        gc = canvasSignature.getGraphicsContext2D();
+        gc.setFill(Color.WHITE);
+        gc.fillRect(0, 0, canvasSignature.getWidth(), canvasSignature.getHeight());
+        gc.setStroke(Color.BLACK);
+        gc.setLineWidth(2.0);
+        hasUsedCanvas = false;
+        canvasSignature.setOnMousePressed(event -> {
+            prevX = event.getX();
+            prevY = event.getY();
+            hasUsedCanvas = true;
+        });
+
+        canvasSignature.setOnMouseDragged(event -> {
+            gc.strokeLine(prevX, prevY, event.getX(), event.getY());
+            prevX = event.getX();
+            prevY = event.getY();
+            hasUsedCanvas = true;
+        });
+        //populet les choicebox*************************
+        ObservableList<EnumTypeContrat> items = Arrays.stream(EnumTypeContrat.values()).collect(Collectors.toCollection(FXCollections::observableArrayList));
+        typeContrat.setItems(items);
+        //**********************************************
+        //controled de saisie sur salaire textfield pour n'accepter que les floats
+        UnaryOperator<TextFormatter.Change> floatFilter = change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("^\\d*\\.?\\d*$") && !newText.startsWith(".")) {
+                return change;
+            }
+            return null;
+        };
+        TextFormatter<String> textFormatter = new TextFormatter<>(floatFilter);
+        salaire.setTextFormatter(textFormatter);
+
+        //************************************************************************
+        //get the contracts & les affichers
+        reloadData();
+
+        //Close Contrat Update
         blackpane.setOnMouseClicked(event -> {
             fadeOut();
+        });
+        closeBtn.setOnMouseClicked(event -> {
+            fadeOut();
+        });
+        //voir contrat
+        btnVoirPdf.setOnMouseClicked(event -> {
+            try {
+                seePDF(contratEnCours.getTermesPDF());
+            } catch (IOException ex) {
+                Logger.getLogger(ContratsAfficherController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (URISyntaxException ex) {
+                Logger.getLogger(ContratsAfficherController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        //refuser : delete contrat
+        refuserContrat.setOnMouseClicked(event -> {
+            cs.supprimerContratSponsoring(contratEnCours.getID_Contrat());
+            reloadData();
+            fadeOut();
+        });
+        accepterContrat.setOnMouseClicked(event -> {
+            if (!hasUsedCanvas && roleCurrentUser == Type.PHOTOGRAPHE) {
+                signatureObligatoire.setVisible(true);
+            } else {
+                if (roleCurrentUser == Type.PHOTOGRAPHE) {
+                    saveSignature();
+                }
+                contratEnCours.setEtat(EnumEtatContrat.EnCours);
+                cs.modifierContratSponsoring(contratEnCours);
+                reloadData();
+                fadeOut();
+            }
+        });
+        contraProposition.setOnMouseClicked(event -> {
+            if (!hasUsedCanvas) {
+                signatureObligatoire.setVisible(true);
+            } else {
+                saveSignature();
+                signatureObligatoire.setVisible(false);
+                if (dateDebut.getValue() != null && dateFin.getValue() != null && typeContrat.getValue() != null && !salaire.getText().equals("")) {
+                    contratEnCours.setDateDebut(datePickerToSQLDate(dateDebut));
+                    contratEnCours.setDateFin(datePickerToSQLDate(dateFin));
+                    contratEnCours.setType(typeContrat.getValue());
+                    contratEnCours.setSalaireDt(Float.parseFloat(salaire.getText()));
+                    contratEnCours.setEtat(EnumEtatContrat.ContreProposition);
+                    cs.modifierContratSponsoring(contratEnCours);
+                    reloadData();
+                    fadeOut();
+                    messageERR.setVisible(false);
+                } else {
+                    messageERR.setVisible(true);
+                }
+            }
         });
     }
 
