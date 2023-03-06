@@ -30,6 +30,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import myjcc.NewFXMain;
+import javafx.scene.control.ListCell;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -39,7 +41,7 @@ import myjcc.NewFXMain;
 public class AffichageController implements Initializable {
 
     @FXML
-    private ListView<String> ListF;
+    private ListView<Film> ListF;
     @FXML
     private Button redmodifF;
     @FXML
@@ -49,27 +51,33 @@ public class AffichageController implements Initializable {
     private Film selectedFilm;
     @FXML
     private Button reddetfilm;
-   
+        Preferences prefs = Preferences.userNodeForPackage(AffichageController.class);
     /**
      * Initializes the controller class.
      */
     @Override
    public void initialize(URL url, ResourceBundle rb) {
     FilmService fs = new FilmService();
+    if (ListF != null) {
+        ListF.setCellFactory(param -> new FilmListCell());
+    }
     List<Film> films = fs.afficherFilm();
-    
-    ObservableList<String> items = FXCollections.observableArrayList();
-    for (Film film : films) {
-        String item = film.getTitre() + " - " + film.getDateRealisation() + " - " + film.getGenre() + " - " + film.getResume() + " - " + film.getDuree() + " - " + film.getPrix() + " - " + film.getID_producteur() + " - " + film.getActeur() + " - " + film.getImage();
-        items.add(item);
-    }    
-    ListF.setItems(items);
+ObservableList<Film> items = FXCollections.observableArrayList(films);
+/*
+for (Film film : films) {
+    String item = film.getTitre() + " \n\n " + film.getDateRealisation() + " \n\n " + film.getGenre();
+    items.add(item);
+}
+*/
+ListF.setItems(items);
+
     ListF.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
         if (newValue != null) {
             selectedFilm = films.get(ListF.getSelectionModel().getSelectedIndex());
         }
     });
 }
+
 
     
 
@@ -97,14 +105,16 @@ public class AffichageController implements Initializable {
         
         // Update the ListView with the latest data
        FilmService fs = new FilmService();
-        List<Film> films = fs.afficherFilm();
-        
-        ObservableList<String> items = FXCollections.observableArrayList();
-    for (Film film : films) {
-         String item = film.getTitre() + " - " + film.getDateRealisation() + " - " + film.getGenre() + " - " + film.getResume() + " - " + film.getDuree() + " - " + film.getPrix() + " - " + film.getID_producteur() + " - " + film.getActeur() + " - " + film.getImage();
-        items.add(item);
-    }    
-    ListF.setItems(items);
+       List<Film> films = fs.afficherFilm();
+ObservableList<Film> items = FXCollections.observableArrayList(films);
+/*
+for (Film film : films) {
+    String item = film.getTitre() + " \n\n " + film.getDateRealisation() + " \n\n " + film.getGenre();
+    items.add(item);
+}
+*/
+ListF.setItems(items);
+ //   ListF.setItems(items);
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -121,14 +131,16 @@ public class AffichageController implements Initializable {
         
         // Update the ListView with the latest data
        FilmService fs = new FilmService();
-        List<Film> films = fs.afficherFilm();
-        
-        ObservableList<String> items = FXCollections.observableArrayList();
-    for (Film film : films) {
-         String item = film.getTitre() + " - " + film.getDateRealisation() + " - " + film.getGenre() + " - " + film.getResume() + " - " + film.getDuree() + " - " + film.getPrix() + " - " + film.getID_producteur() + " - " + film.getActeur() + " - " + film.getImage();
-        items.add(item);
-    }    
-    ListF.setItems(items);
+       List<Film> films = fs.afficherFilm();
+ObservableList<Film> items = FXCollections.observableArrayList(films);
+/*
+for (Film film : films) {
+    String item = film.getTitre() + " \n\n " + film.getDateRealisation() + " \n\n " + film.getGenre();
+    items.add(item);
+}
+*/
+ListF.setItems(items);
+   // ListF.setItems(items);
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -146,14 +158,16 @@ public class AffichageController implements Initializable {
         
         // Update the ListView with the latest data
        FilmService fs = new FilmService();
-        List<Film> films = fs.afficherFilm();
-        
-        ObservableList<String> items = FXCollections.observableArrayList();
-    for (Film film : films) {
-        String item = film.getTitre() + " - " + film.getDateRealisation() + " - " + film.getGenre() + " - " + film.getResume() + " - " + film.getDuree() + " - " + film.getPrix() + " - " + film.getID_producteur() + " - " + film.getActeur() + " - " + film.getImage();
-        items.add(item);
-    }    
-    ListF.setItems(items);
+       List<Film> films = fs.afficherFilm();
+ObservableList<Film> items = FXCollections.observableArrayList(films);
+/*
+for (Film film : films) {
+    String item = film.getTitre() + " \n\n " + film.getDateRealisation() + " \n\n " + film.getGenre();
+    items.add(item);
+}
+*/
+ListF.setItems(items);
+    //ListF.setItems(items);
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }

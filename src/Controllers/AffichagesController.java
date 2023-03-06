@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,7 +38,7 @@ import myjcc.NewFXMain;
 public class AffichagesController implements Initializable {
 
     @FXML
-    private ListView<String> ListS;
+    private ListView<Salle> ListS;
     @FXML
     private Button redmodifs;
     @FXML
@@ -47,6 +48,7 @@ public class AffichagesController implements Initializable {
     @FXML
     private Button MapB;
     private Salle selectedSalle;
+    Preferences prefs = Preferences.userNodeForPackage(AffichagesController.class);
 
     /**
      * Initializes the controller class.
@@ -55,14 +57,13 @@ public class AffichagesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         SalleService ss = new SalleService();
-        
+        if (ListS != null) {
+        ListS.setCellFactory(param -> new SalleListCell());
+    }
         List<Salle> salles = ss.afficherSalle();
         
-          ObservableList<String> items = FXCollections.observableArrayList();
-    for (Salle salle : salles) {
-        String item = salle.getNomSalle() + " - " + salle.getAdresse() + " - " + salle.getCapacite() + " - " + salle.getNumTel_salle() + " - " + salle.getEmail_Salle() + " - " + salle.getTemps_Ouverture() + " - " + salle.getTemps_Fermuture() + " - " + salle.getAvis();
-        items.add(item);
-    }    
+          ObservableList<Salle> items = FXCollections.observableArrayList(salles);
+        
     ListS.setItems(items);
     ListS.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
     selectedSalle = salles.get(ListS.getSelectionModel().getSelectedIndex());
@@ -95,12 +96,9 @@ private void RedModifS(ActionEvent event) {
         // Update the ListView with the latest data
         SalleService ss = new SalleService();
         List<Salle> salles = ss.afficherSalle();
-        ObservableList<String> items = FXCollections.observableArrayList();
-        for (Salle salle : salles) {
-            String item = salle.getNomSalle() + " - " + salle.getAdresse() + " - " + salle.getCapacite() + " - " + salle.getNumTel_salle() + " - " + salle.getEmail_Salle() + " - " + salle.getTemps_Ouverture() + " - " + salle.getTemps_Fermuture() + " - " + salle.getAvis();
-            items.add(item);
-        }    
-        ListS.setItems(items);
+        ObservableList<Salle> items = FXCollections.observableArrayList(salles);
+        
+    ListS.setItems(items);
         
     } catch (IOException ex) {
         Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
@@ -119,12 +117,9 @@ private void RedModifS(ActionEvent event) {
         newStage.showAndWait(); // Wait for the updates window to close
         SalleService ss = new SalleService();
         List<Salle> salles = ss.afficherSalle();
-        ObservableList<String> items = FXCollections.observableArrayList();
-        for (Salle salle : salles) {
-            String item = salle.getNomSalle() + " - " + salle.getAdresse() + " - " + salle.getCapacite() + " - " + salle.getNumTel_salle() + " - " + salle.getEmail_Salle() + " - " + salle.getTemps_Ouverture() + " - " + salle.getTemps_Fermuture() + " - " + salle.getAvis();
-            items.add(item);
-        }    
-        ListS.setItems(items);
+        ObservableList<Salle> items = FXCollections.observableArrayList(salles);
+        
+    ListS.setItems(items);
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }   
@@ -142,12 +137,9 @@ private void RedModifS(ActionEvent event) {
         newStage.showAndWait(); // Wait for the updates window to close
         SalleService ss = new SalleService();
         List<Salle> salles = ss.afficherSalle();
-        ObservableList<String> items = FXCollections.observableArrayList();
-        for (Salle salle : salles) {
-            String item = salle.getNomSalle() + " - " + salle.getAdresse() + " - " + salle.getCapacite() + " - " + salle.getNumTel_salle() + " - " + salle.getEmail_Salle() + " - " + salle.getTemps_Ouverture() + " - " + salle.getTemps_Fermuture() + " - " + salle.getAvis();
-            items.add(item);
-        }    
-        ListS.setItems(items);
+        ObservableList<Salle> items = FXCollections.observableArrayList(salles);
+        
+    ListS.setItems(items);
         } catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }

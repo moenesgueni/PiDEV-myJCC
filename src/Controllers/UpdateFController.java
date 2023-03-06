@@ -109,19 +109,24 @@ public class UpdateFController implements Initializable {
     alert.show();
     return;
 }
-        
-         Film f = new Film(selectedFilm.getID_film(),TitreTF.getText(),DateRTF.getText(),GenreTF.getText(),ResumeTF.getText(),DureeTF.getText(),Float.parseFloat(PrixTF.getText()),ProducteurTF.getText(),ActeurTF.getText(),selectedFilm.getImage());
-      try {
+        /*
+        Film f1 = new Film();
+        try {
                 long millis = System.currentTimeMillis();
                 String fileExtention = selectedFile.toString().substring(selectedFile.toString().lastIndexOf("."));
                 String newName = millis + fileExtention;
                 FileUpload.uploadFile(selectedFile.toString(), "films\\" + newName);
 
-                f.setImage( "http://localhost/myjcc/films/" + newName);
+                f1.setImage( selectedFilm.getImage());
             } catch (Exception ex) {
-                f.setImage("http://localhost/myjcc/films/null.png");
+                f1.setImage("http://localhost/myjcc/films/null.png");
                 Logger.getLogger(AjouterfilmController.class.getName()).log(Level.SEVERE, null, ex);
             }
+*/
+       
+         Film f = new Film(selectedFilm.getID_film(),TitreTF.getText(),DateRTF.getText(),GenreTF.getText(),ResumeTF.getText(),DureeTF.getText(),Float.parseFloat(PrixTF.getText()),ProducteurTF.getText(),ActeurTF.getText(),selectedFilm.getImage());
+         
+      
         FilmInterface fs = new FilmService();
         
       fs.updateFilm(f);

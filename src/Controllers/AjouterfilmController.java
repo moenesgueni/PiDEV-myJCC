@@ -120,7 +120,7 @@ public class AjouterfilmController implements Initializable {
 
                 f.setImage( "http://localhost/myjcc/films/" + newName);
             } catch (Exception ex) {
-                f.setImage("erreur lors de l'ajout");
+                f.setImage("http://localhost/myjcc/films/null.png");
                 Logger.getLogger(AjouterfilmController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
