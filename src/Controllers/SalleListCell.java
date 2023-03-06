@@ -62,7 +62,7 @@ imageView.setFitHeight(150);
             adresse.setText(salle.getAdresse());
             numtel.setText(salle.getNumTel_salle());
             
-            Image image = new Image("file:///C:/Users/dhia/Desktop/cinema.png");
+            Image image = new Image("http://localhost/myjcc/films/cinema.png");
             imageView.setImage(image);
             setGraphic(getListCell());
         }

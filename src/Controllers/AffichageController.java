@@ -52,9 +52,12 @@ public class AffichageController implements Initializable {
     @FXML
     private Button reddetfilm;
         Preferences prefs = Preferences.userNodeForPackage(AffichageController.class);
+    @FXML
+    private ListView<Film> TopFilms;
     /**
      * Initializes the controller class.
      */
+        
     @Override
    public void initialize(URL url, ResourceBundle rb) {
     FilmService fs = new FilmService();
@@ -76,6 +79,10 @@ ListF.setItems(items);
             selectedFilm = films.get(ListF.getSelectionModel().getSelectedIndex());
         }
     });
+    ReservationController controller = new ReservationController();
+    List<Film> topFilms = controller.getTopFilms();
+        ObservableList<Film> items1 = FXCollections.observableArrayList(topFilms);
+        TopFilms.setItems(items1);
 }
 
 

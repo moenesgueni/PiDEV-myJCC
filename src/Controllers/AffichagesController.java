@@ -49,6 +49,8 @@ public class AffichagesController implements Initializable {
     private Button MapB;
     private Salle selectedSalle;
     Preferences prefs = Preferences.userNodeForPackage(AffichagesController.class);
+    @FXML
+    private Button REDdetsalle;
 
     /**
      * Initializes the controller class.
@@ -154,6 +156,30 @@ private void RedModifS(ActionEvent event) {
           newStage.setScene(scene);
           newStage.show();
         } catch (IOException ex) {
+            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void reddetailsalle(ActionEvent event) {
+        if (selectedSalle == null) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Aucune salle sélectionnée");
+        alert.setContentText("Veuillez sélectionner une salle.");
+        alert.showAndWait();
+        return;
+    }
+        try{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../GUI/Salledet.fxml"));
+        Parent root = loader.load();
+        SalledetController controller = loader.getController();
+        controller.initSalleData(selectedSalle);
+        Scene scene = new Scene(root);
+        Stage newStage = new Stage();
+        newStage.setScene(scene);
+        newStage.showAndWait();
+    }catch (IOException ex) {
             Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

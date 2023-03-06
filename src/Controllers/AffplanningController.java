@@ -87,7 +87,7 @@ public class AffplanningController implements Initializable {
     }    
     ListP.setItems(items);
         } catch (IOException ex) {
-            Logger.getLogger(NewFXMain.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AffplanningController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

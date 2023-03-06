@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Models.Film;
 import Models.PlanningFilmSalle;
 import Models.Reservation;
 import Models.User;
@@ -14,8 +15,12 @@ import Services.UserService;
 import Utils.Type;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -130,6 +135,26 @@ public class ReservationController implements Initializable {
          
          
     }
+    public List<Film> getTopFilms() {
+    ReservationService rs = new ReservationService();
+    List<Reservation> reservations = rs.afficherReservation();
+    
+    Map<Film, Integer> nbReservations = new HashMap<>();
+    
+    // Compter le nombre de réservations pour chaque film
+    for (Reservation res : reservations) {
+        Film film = res.getPlanning().getFilm();
+        nbReservations.put(film, nbReservations.getOrDefault(film, 0) + 1);
+    }
+    
+    // Trier les films en fonction du nombre de réservations
+    List<Film> topFilms = nbReservations.entrySet().stream()
+            .sorted(Map.Entry.<Film, Integer>comparingByValue().reversed())
+            .map(Map.Entry::getKey)
+            .collect(Collectors.toList());
+    
+    return topFilms;
+}
 
     
 }
