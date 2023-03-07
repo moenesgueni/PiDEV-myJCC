@@ -3,11 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Models/Reservation.java</file>
-            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Services/FilmService.java</file>
-            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Models/PlanningFilmSalle.java</file>
-            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Models/Film.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/AjoutplaController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/AffplanningController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/SuppplanningController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/FilmdetController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/ReservationController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/updateController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/AjouterfilmController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/SupprimersController.java</file>
             <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/AffichageController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/SalleListCell.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/SideBarFXMLController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/AffichagesController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/SupprimerfController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/AjoutersalleController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/SalledetController.java</file>
+            <file>file:/C:/Users/dhia/Downloads/myjcc/myjcc/src/Controllers/FilmListCell.java</file>
         </group>
     </open-files>
 </project-private>

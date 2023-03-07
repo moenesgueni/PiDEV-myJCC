@@ -62,8 +62,14 @@ imageView.setFitHeight(150);
             daterealisation.setText(film.getDateRealisation());
             Genre.setText(film.getGenre());
             
-            Image image = new Image(film.getImage());
-            imageView.setImage(image);
+            if (film.getImage() == null) {
+               Image image = new Image("http://localhost/myjcc/films/null.png");
+    imageView.setImage(image);
+    imageView.setImage(null); // Set to null or a default image
+} else {
+    Image image = new Image(film.getImage());
+    imageView.setImage(image);
+}
             setGraphic(getListCell());
         }
 

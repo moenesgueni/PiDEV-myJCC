@@ -7,14 +7,19 @@ package Controllers;
 
 import Interfaces.FilmInterface;
 import Models.Film;
+import Models.Reservation;
 import Services.FilmService;
+import Services.ReservationService;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -60,30 +65,29 @@ public class AffichageController implements Initializable {
         
     @Override
    public void initialize(URL url, ResourceBundle rb) {
+    // Display the list of films
     FilmService fs = new FilmService();
+    List<Film> films = fs.afficherFilm();
+    ObservableList<Film> items = FXCollections.observableArrayList(films);
+    ListF.setItems(items);
     if (ListF != null) {
         ListF.setCellFactory(param -> new FilmListCell());
     }
-    List<Film> films = fs.afficherFilm();
-ObservableList<Film> items = FXCollections.observableArrayList(films);
-/*
-for (Film film : films) {
-    String item = film.getTitre() + " \n\n " + film.getDateRealisation() + " \n\n " + film.getGenre();
-    items.add(item);
-}
-*/
-ListF.setItems(items);
-
     ListF.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
         if (newValue != null) {
             selectedFilm = films.get(ListF.getSelectionModel().getSelectedIndex());
         }
     });
-    ReservationController controller = new ReservationController();
-    List<Film> topFilms = controller.getTopFilms();
-        ObservableList<Film> items1 = FXCollections.observableArrayList(topFilms);
-        TopFilms.setItems(items1);
-}
+
+    // Display the top films
+        List<Film> topFilms = fs.getTopFilms();
+        ObservableList<Film> topItems = FXCollections.observableArrayList(topFilms);
+        TopFilms.setItems(topItems);
+        if (TopFilms != null) {
+            TopFilms.setCellFactory(param -> new FilmListCell());
+        }
+    }
+
 
 
     

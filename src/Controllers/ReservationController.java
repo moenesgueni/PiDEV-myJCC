@@ -15,11 +15,16 @@ import Services.UserService;
 import Utils.Type;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.stream.Collectors;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -135,26 +140,61 @@ public class ReservationController implements Initializable {
          
          
     }
+    /*
     public List<Film> getTopFilms() {
     ReservationService rs = new ReservationService();
     List<Reservation> reservations = rs.afficherReservation();
-    
+
     Map<Film, Integer> nbReservations = new HashMap<>();
-    
-    // Compter le nombre de réservations pour chaque film
+
+    // Sum up the number of reservations for each film
     for (Reservation res : reservations) {
         Film film = res.getPlanning().getFilm();
-        nbReservations.put(film, nbReservations.getOrDefault(film, 0) + 1);
+        int count = nbReservations.getOrDefault(film, 0);
+        nbReservations.put(film, count + 1);
     }
-    
-    // Trier les films en fonction du nombre de réservations
+
+    // Sort the films based on the total number of reservations
     List<Film> topFilms = nbReservations.entrySet().stream()
             .sorted(Map.Entry.<Film, Integer>comparingByValue().reversed())
             .map(Map.Entry::getKey)
             .collect(Collectors.toList());
-    
+
     return topFilms;
 }
 
+
+// A custom class that encapsulates a film and the number of reservations for that film
+class FilmWithReservations implements Comparable<FilmWithReservations> {
+    private final Film film;
+    private final int numReservations;
+
+    public FilmWithReservations(Film film, int numReservations) {
+        this.film = film;
+        this.numReservations = numReservations;
+    }
+
+    public Film getFilm() {
+        return film;
+    }
+
+    public int getNumReservations() {
+        return numReservations;
+    }
+
+    @Override
+    public int compareTo(FilmWithReservations other) {
+        return Integer.compare(numReservations, other.numReservations);
+    }
+}
+*/
+
+
+
+
+
+
+    
+    
     
 }

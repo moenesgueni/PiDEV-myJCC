@@ -234,6 +234,39 @@ public class FilmService implements FilmInterface{
     
     
     }
-
+public List<Film> getTopFilms() {
+        List<Film> topFilms = new ArrayList<>();
+        
+        try (Statement stmt = cnx.createStatement()) {
+            
+            String sql = "SELECT film.Titre " +
+                         "FROM film " +
+                         "JOIN planningfilmsalle ON film.ID_film = planningfilmsalle.ID_film " +
+                         "JOIN reservation ON planningfilmsalle.ID_Planning = reservation.id_plan " +
+                         "GROUP BY film.Titre " +
+                         "ORDER BY COUNT(reservation.id_res) DESC " +
+                         "LIMIT 5";
+            
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            while (rs.next()) {
+                String title = rs.getString("Titre");
+                
+                Film film = new Film();
+                film.setTitre(title);
+                
+                topFilms.add(film);
+            }
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return topFilms;
+    }
     
 }
+    
+
+    
+
