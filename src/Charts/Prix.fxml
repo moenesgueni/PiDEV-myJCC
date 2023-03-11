@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1315.0" styleClass="gradiant-background" stylesheets="@../resources/Stylr.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Charts.PrixController">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="200.0" spacing="20.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="54.0" prefWidth="290.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="MyJCC" textFill="WHITE">
+               <font>
+                  <Font name="Baskerville Old Face" size="28.0" />
+               </font>
+            </Label>
+            <Pane maxHeight="-Infinity" prefHeight="1.0" prefWidth="200.0" styleClass="line-color" stylesheets="@../resources/Stylr.css" HBox.hgrow="ALWAYS" />
+            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="http://localhost/myjcc/logos/settings1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="500.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="http://localhost/myjcc/logos/prix_etoile.png" />
+               </image>
+            </ImageView>
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="40.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@../resources/Stylr.css">
+               <children>
+                  <Label fx:id="Type1" prefHeight="26.0" prefWidth="141.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Type 1" textFill="#ffd6dc">
+                     <font>
+                        <Font name="Bernard MT Condensed" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="11.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="180.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="280.0" spacing="10.0" styleClass="shadow" stylesheets="@../resources/Stylr.css">
+                           <children>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="http://localhost/myjcc/profile/—Pngtree—star%20gold%20trophy%20png_5140785.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets left="11.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label prefHeight="34.0" prefWidth="35.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="OR" textFill="#ffd6dc">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="firstFilm" layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="254.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="firtFilm" textFill="#f3abb5" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nbreV1" layoutX="119.0" layoutY="141.0" prefHeight="26.0" prefWidth="62.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="firtFilm" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Pane maxHeight="-Infinity" prefHeight="150.0" prefWidth="1.0" styleClass="line-color" stylesheets="@../resources/Stylr.css" />
+                        <VBox alignment="CENTER" layoutX="362.0" layoutY="10.0" prefHeight="200.0" prefWidth="280.0" spacing="10.0" styleClass="shadow" stylesheets="@../resources/Stylr.css">
+                           <children>
+                              <ImageView fitHeight="90.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="http://localhost/myjcc/profile/pngwing.com.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets left="11.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label prefHeight="34.0" prefWidth="82.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="ARGENT" textFill="#ffd6dc">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="sndFilm2" layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="247.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nbreV2" layoutX="42.0" layoutY="152.0" prefHeight="26.0" prefWidth="44.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Pane layoutX="507.0" layoutY="25.0" maxHeight="-Infinity" prefHeight="150.0" prefWidth="1.0" styleClass="line-color" stylesheets="@../resources/Stylr.css" />
+                        <VBox alignment="CENTER" layoutX="513.0" layoutY="10.0" prefHeight="200.0" prefWidth="280.0" spacing="10.0" styleClass="shadow" stylesheets="@../resources/Stylr.css">
+                           <children>
+                              <ImageView fitHeight="90.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="http://localhost/myjcc/profile/toppng.com-bronze-cup-trophy-488x600.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets left="11.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label prefHeight="34.0" prefWidth="81.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="BRONZE" textFill="#ffd6dc">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="thrdFilm3" layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="207.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nbreV3" layoutX="47.0" layoutY="152.0" prefHeight="26.0" prefWidth="37.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="container" />
+               </styleClass>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" stylesheets="@../resources/Stylr.css">
+               <children>
+                  <Label fx:id="Type11" prefHeight="26.0" prefWidth="141.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Type 1" textFill="#ffd6dc">
+                     <font>
+                        <Font name="Bernard MT Condensed" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="11.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="180.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="280.0" spacing="10.0" styleClass="shadow" stylesheets="@../resources/Stylr.css">
+                           <children>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="http://localhost/myjcc/profile/—Pngtree—star%20gold%20trophy%20png_5140785.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets left="11.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label prefHeight="34.0" prefWidth="35.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="OR" textFill="#ffd6dc">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="firstFilm1" layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="254.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="firtFilm" textFill="#f3abb5" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nbreV11" layoutX="119.0" layoutY="141.0" prefHeight="26.0" prefWidth="62.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="firtFilm" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Pane maxHeight="-Infinity" prefHeight="150.0" prefWidth="1.0" styleClass="line-color" stylesheets="@../resources/Stylr.css" />
+                        <VBox alignment="CENTER" layoutX="362.0" layoutY="10.0" prefHeight="200.0" prefWidth="280.0" spacing="10.0" styleClass="shadow" stylesheets="@../resources/Stylr.css">
+                           <children>
+                              <ImageView fitHeight="90.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="http://localhost/myjcc/profile/pngwing.com.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets left="11.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label prefHeight="34.0" prefWidth="82.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="ARGENT" textFill="#ffd6dc">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="sndFilm21" layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="247.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nbreV21" layoutX="42.0" layoutY="152.0" prefHeight="26.0" prefWidth="44.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Pane layoutX="507.0" layoutY="25.0" maxHeight="-Infinity" prefHeight="150.0" prefWidth="1.0" styleClass="line-color" stylesheets="@../resources/Stylr.css" />
+                        <VBox alignment="CENTER" layoutX="513.0" layoutY="10.0" prefHeight="200.0" prefWidth="280.0" spacing="10.0" styleClass="shadow" stylesheets="@../resources/Stylr.css">
+                           <children>
+                              <ImageView fitHeight="90.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="http://localhost/myjcc/profile/toppng.com-bronze-cup-trophy-488x600.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets left="11.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label prefHeight="34.0" prefWidth="81.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="BRONZE" textFill="#ffd6dc">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="thrdFilm31" layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="207.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nbreV31" layoutX="47.0" layoutY="152.0" prefHeight="26.0" prefWidth="37.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="container" />
+               </styleClass>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="272.0" prefHeight="200.0" prefWidth="100.0" stylesheets="@../resources/Stylr.css">
+               <children>
+                  <Label fx:id="Type111" prefHeight="26.0" prefWidth="141.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Type 1" textFill="#ffd6dc">
+                     <font>
+                        <Font name="Bernard MT Condensed" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="11.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="180.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="280.0" spacing="10.0" styleClass="shadow" stylesheets="@../resources/Stylr.css">
+                           <children>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="http://localhost/myjcc/profile/—Pngtree—star%20gold%20trophy%20png_5140785.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets left="11.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label prefHeight="34.0" prefWidth="35.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="OR" textFill="#ffd6dc">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="firstFilm11" layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="254.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="firtFilm" textFill="#f3abb5" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nbreV111" layoutX="119.0" layoutY="141.0" prefHeight="26.0" prefWidth="62.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="firtFilm" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Pane maxHeight="-Infinity" prefHeight="150.0" prefWidth="1.0" styleClass="line-color" stylesheets="@../resources/Stylr.css" />
+                        <VBox alignment="CENTER" layoutX="362.0" layoutY="10.0" prefHeight="200.0" prefWidth="280.0" spacing="10.0" styleClass="shadow" stylesheets="@../resources/Stylr.css">
+                           <children>
+                              <ImageView fitHeight="90.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="http://localhost/myjcc/profile/pngwing.com.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets left="11.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label prefHeight="34.0" prefWidth="82.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="ARGENT" textFill="#ffd6dc">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="sndFilm211" layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="247.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nbreV211" layoutX="42.0" layoutY="152.0" prefHeight="26.0" prefWidth="44.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Pane layoutX="507.0" layoutY="25.0" maxHeight="-Infinity" prefHeight="150.0" prefWidth="1.0" styleClass="line-color" stylesheets="@../resources/Stylr.css" />
+                        <VBox alignment="CENTER" layoutX="513.0" layoutY="10.0" prefHeight="200.0" prefWidth="280.0" spacing="10.0" styleClass="shadow" stylesheets="@../resources/Stylr.css">
+                           <children>
+                              <ImageView fitHeight="90.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="http://localhost/myjcc/profile/toppng.com-bronze-cup-trophy-488x600.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets left="11.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label prefHeight="34.0" prefWidth="81.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="BRONZE" textFill="#ffd6dc">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="thrdFilm311" layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="207.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nbreV311" layoutX="47.0" layoutY="152.0" prefHeight="26.0" prefWidth="37.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="titre" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="container" />
+               </styleClass>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

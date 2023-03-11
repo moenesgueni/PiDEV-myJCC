@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SalledetController">
+   <children>
+      <Label fx:id="nms" layoutX="34.0" layoutY="14.0" text="Label">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="adr" layoutX="295.0" layoutY="167.0" text="Label" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="150.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="cap" layoutX="295.0" layoutY="221.0" text="Label" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="200.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="tel" layoutX="295.0" layoutY="283.0" text="Label" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="250.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="mail" layoutX="295.0" layoutY="341.0" text="Label" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="300.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="tmpsouv" layoutX="295.0" layoutY="390.0" text="Label" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="350.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="318.0" />
+      <Label layoutX="20.0" layoutY="167.0" text="Adresse:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="150.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="221.0" text="Capacité:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="200.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="17.0" layoutY="283.0" text="Numéro de télephone:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="250.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="341.0" text="Email: " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="300.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="390.0" text="Temps d'ouverture:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="350.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="454.0" text="Temps de fermuture:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="400.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="516.0" text="Avis:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="450.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="tmpsfer" layoutX="305.0" layoutY="400.0" text="Label" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="400.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="aviss" layoutX="295.0" layoutY="450.0" text="Label" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="450.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

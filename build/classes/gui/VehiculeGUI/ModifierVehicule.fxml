@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="476.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VehiculeGUI.ModifierVehiculeController">
+   <children>
+      <Label layoutX="83.0" layoutY="71.0" text="Matricule" />
+      <Label layoutX="83.0" layoutY="125.0" text="Type" />
+      <Label layoutX="83.0" layoutY="184.0" text="Marque" />
+      <Label layoutX="83.0" layoutY="246.0" text="Couleur" />
+      <TextField fx:id="matricule" layoutX="166.0" layoutY="67.0" />
+      <TextField fx:id="typeV" layoutX="166.0" layoutY="121.0" />
+      <TextField fx:id="marqueV" layoutX="166.0" layoutY="180.0" />
+      <TextField fx:id="couleurV" layoutX="166.0" layoutY="242.0" />
+      <Button layoutX="271.0" layoutY="335.0" mnemonicParsing="false" onAction="#ModiferVehicule" text="Modifier" />
+      <Button layoutX="114.0" layoutY="335.0" mnemonicParsing="false" onAction="#SupprimerVehicule" text="Supprimer" />
+      <Label layoutX="140.0" layoutY="24.0" prefHeight="25.0" prefWidth="191.0" text="Modification d'une Vehicule">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

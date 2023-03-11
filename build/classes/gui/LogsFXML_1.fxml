@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Logs_1FXMLController">
+   <children>
+      <ImageView fitHeight="710.0" fitWidth="1770.0" layoutY="-21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="http://localhost/myjcc/background/8728.jpg" />
+         </image>
+      </ImageView>
+      <ListView fx:id="list" layoutX="91.0" layoutY="48.0" prefHeight="378.0" prefWidth="794.0" />
+      <Button fx:id="R" layoutX="911.0" layoutY="36.0" mnemonicParsing="false" onAction="#Retour" text="Retour" />
+   </children>
+</AnchorPane>

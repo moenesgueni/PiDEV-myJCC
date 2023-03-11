@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Leaflet Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" crossorigin=""/>
+    <style>
+        #map { height: 100vh; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" crossorigin=""></script>
+    <script>
+        var map = L.map('map').setView([36.8065, 10.1815], 13);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+ var cinemaLocations = [    {name: "Cinéma Le Palace", location: [36.798014, 10.183385]},
+    {name: "CinéMadart", location: [36.814792, 10.173087]},
+    {name: "CinéJamila", location: [36.798607, 10.173522]},
+    {name: "Cinévog", location: [36.802515, 10.182327]},
+    {name: "Le Colisée", location: [36.799008, 10.188083]},
+    {name: "Cinéma Alhambra", location: [36.795174, 10.173503]},
+    {name: "Cinéma Mondial", location: [36.799288, 10.170807]},
+    {name: "Cinéma Le Rio", location: [36.787521, 10.178514]},
+    {name: "Cinéma Zephyr", location: [36.804529, 10.170541]},
+    {name: "Cinéma Alhambra El Menzah 6", location: [36.862718, 10.181865]},
+    {name: "Cinéma Le Palace Tunis City", location: [36.828486, 10.159057]},
+    {name: "Cinéma Le Paris", location: [36.809068, 10.181909]},
+    {name: "Cinéma l'Olympia", location: [36.808596, 10.181908]},
+    {name: "Cinéma ABC", location: [36.805248, 10.177512]},
+    {name: "Cinéma Amilcar", location: [36.800687, 10.186134]},
+    {name: "Cinéma Alhambra Tunis", location: [36.805632, 10.170812]},
+    {name: "Cinéma Ibn Khaldoun", location: [36.799738, 10.181925]},
+    {name: "Cinéma Le Rio Berges du Lac", location: [36.841222, 10.286264]},
+    {name: "Cinéma Africart", location: [36.811821, 10.178394]},
+    {name: "Cinéma l'Agora Marsa", location: [36.883851, 10.329617]},
+    {name: "Cinéma Régent", location: [36.793837, 10.184639]}
+];
+
+// Loop through the cinemaLocations array and add markers to the map
+cinemaLocations.forEach(function(cinema) {
+    var marker = L.marker(cinema.location, {title: cinema.name, draggable: false}).addTo(map);
+    marker.bindPopup(cinema.name);
+});
+
+    </script>
+</body>
+</html>

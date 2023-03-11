@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1315.0" styleClass="gradiant-background" stylesheets="@../resources/Stylr.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Charts.ChartController">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="200.0" spacing="20.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="54.0" prefWidth="290.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="MyJCC" textFill="WHITE">
+               <font>
+                  <Font name="Baskerville Old Face" size="28.0" />
+               </font>
+            </Label>
+            <Pane maxHeight="-Infinity" prefHeight="1.0" prefWidth="200.0" styleClass="line-color" stylesheets="@../resources/Stylr.css" HBox.hgrow="ALWAYS" />
+            <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="http://localhost/myjcc/logos/settings1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="500.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="http://localhost/myjcc/logos/prix_etoile.png" />
+               </image>
+            </ImageView>
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="20.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <VBox prefHeight="63.0" prefWidth="1600.0" stylesheets="@../resources/Stylr.css">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="141.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Ben Rejeb Wael" textFill="#ffd6dc">
+                     <font>
+                        <Font name="Bernard MT Condensed" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="11.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="180.0" prefWidth="200.0" spacing="60.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="165.0" prefWidth="280.0" spacing="10.0" styleClass="shadow" stylesheets="@../resources/Stylr.css">
+                           <children>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="http://localhost/myjcc/logos/actor.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets left="11.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label prefHeight="34.0" prefWidth="102.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="INSTA ACC" textFill="#ffd6dc">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="62.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="FOLLOW" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Pane maxHeight="-Infinity" prefHeight="150.0" prefWidth="1.0" styleClass="line-color" stylesheets="@../resources/Stylr.css" />
+                        <VBox alignment="CENTER" layoutX="362.0" layoutY="10.0" prefHeight="200.0" prefWidth="280.0" spacing="10.0" styleClass="shadow" stylesheets="@../resources/Stylr.css">
+                           <children>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="http://localhost/myjcc/logos/actor.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets left="11.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label prefHeight="34.0" prefWidth="89.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="FACE ACC" textFill="#ffd6dc">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="62.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="FOLLOW" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Pane layoutX="507.0" layoutY="25.0" maxHeight="-Infinity" prefHeight="150.0" prefWidth="1.0" styleClass="line-color" stylesheets="@../resources/Stylr.css" />
+                        <VBox alignment="CENTER" layoutX="513.0" layoutY="10.0" prefHeight="143.0" prefWidth="280.0" spacing="10.0" styleClass="shadow" stylesheets="@../resources/Stylr.css">
+                           <children>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="http://localhost/myjcc/logos/actor.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets left="11.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label prefHeight="34.0" prefWidth="135.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="YOUTUBE ACC" textFill="#ffd6dc">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="27.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="80.0" layoutY="129.0" prefHeight="26.0" prefWidth="62.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="FOLLOW" textFill="#f3abb5">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="container" />
+               </styleClass>
+            </VBox>
+            <HBox prefHeight="229.0" prefWidth="995.0" spacing="20.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox prefHeight="315.0" prefWidth="879.0" stylesheets="@../resources/Stylr.css">
+                     <children>
+                        <Label prefHeight="36.0" prefWidth="142.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Rates" textFill="#ffd6dc">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </Label>
+                        <LineChart fx:id="lineChart" legendVisible="false">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </children>
+                     <styleClass>
+                        <String fx:value="container" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="315.0" prefWidth="856.0" stylesheets="@../resources/Stylr.css">
+                     <children>
+                        <Label prefHeight="36.0" prefWidth="142.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Stars" textFill="#ffd6dc">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </Label>
+                        <PieChart fx:id="pieChart" legendVisible="false" prefHeight="279.0" prefWidth="785.0" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="container" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="266.0" prefHeight="230.0" prefWidth="995.0" spacing="20.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="container" stylesheets="@../resources/Stylr.css" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="typeFilm" prefHeight="36.0" prefWidth="152.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Type 1" textFill="#ffd6dc">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="moreV0" prefHeight="60.0" prefWidth="181.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="nbr votes" textFill="#ffd6dc">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="48.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="230.0" prefWidth="326.0" styleClass="container" stylesheets="@../resources/Stylr.css">
+                     <children>
+                        <Label fx:id="type2" prefHeight="36.0" prefWidth="152.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Type 2" textFill="#ffd6dc">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <VBox alignment="CENTER" prefHeight="184.0" prefWidth="39.0">
+                           <children>
+                              <Label fx:id="moreV1" prefHeight="60.0" prefWidth="181.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="nbr votes" textFill="#ffd6dc">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="48.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="905.0" layoutY="10.0" prefHeight="230.0" prefWidth="330.0" styleClass="container" stylesheets="@../resources/Stylr.css">
+                     <children>
+                        <Label fx:id="type3" prefHeight="36.0" prefWidth="152.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="Type 3" textFill="#ffd6dc">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label fx:id="moreV2" prefHeight="60.0" prefWidth="181.0" styleClass="shadow" stylesheets="@../resources/Stylr.css" text="nbr votes" textFill="#ffd6dc">
+                                 <font>
+                                    <Font name="Bernard MT Condensed" size="48.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
