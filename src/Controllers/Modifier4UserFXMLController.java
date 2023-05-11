@@ -9,14 +9,18 @@ import Models.LOGS;
 import Models.User;
 import Services.LogsService;
 import Services.UserService;
+import Utilities.FileUpload;
 import Utilities.PasswordHasher;
 import Utilities.Type;
 import Utilities.UserSession;
 import Utilities.UserSession1;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,6 +37,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -52,7 +59,6 @@ public class Modifier4UserFXMLController implements Initializable {
     private TextField EmailU;
     @FXML
     private TextField PasswordU;
-    @FXML
     private TextField Photo;
     @FXML
     private RadioButton homme;
@@ -65,6 +71,11 @@ public class Modifier4UserFXMLController implements Initializable {
     private Stage primaryStage;
     @FXML
     private Button R;
+    @FXML
+    private Button choisirImage;
+    @FXML
+    private ImageView imagePreview;
+    File selectedFile;
 
     /**
      * Initializes the controller class.
@@ -78,6 +89,21 @@ public class Modifier4UserFXMLController implements Initializable {
         UserService fs = new UserService();
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        
+        
+          //choisir votre image
+        choisirImage.setOnMouseClicked(event -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Ouvrir votre image");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+            selectedFile = fileChooser.showOpenDialog(new Stage());
+            if (selectedFile != null) {
+                Image image = new Image(selectedFile.toURI().toString());
+                imagePreview.setImage(image);
+            }
+
+        });
     }
 
     @FXML
@@ -101,7 +127,6 @@ public class Modifier4UserFXMLController implements Initializable {
         EmailU.setText(f.getEmail());
         PasswordU.setText(f.getMotDePasse());
         f.getRole();
-        Photo.setText(f.getPhotoB64());
     }
 
 
@@ -117,7 +142,12 @@ public class Modifier4UserFXMLController implements Initializable {
 
     @FXML
     private void ModifierU(ActionEvent event) {
-
+        try {
+            long millis = System.currentTimeMillis();
+            String fileExtention = selectedFile.toString().substring(selectedFile.toString().lastIndexOf("."));
+            String newName = millis + fileExtention;
+            FileUpload.uploadFile(selectedFile.toString(), "profile\\" + newName);
+            if(PasswordHasher.hashPassword(PasswordU.getText()).equals(f.getMotDePasse())){
         String u =UserSession1.getEmail();
         f=fs.SearchByMail(u);
         int x=f.getID_User();
@@ -125,8 +155,8 @@ public class Modifier4UserFXMLController implements Initializable {
         f.setPrenom(PrenomU.getText());
         getsexe(event);
         f.setEmail(EmailU.getText());
-        f.setMotDePasse(PasswordHasher.hashPassword(PasswordU.getText()));
-        f.setPhotoB64(Photo.getText());
+        f.setMotDePasse(f.getMotDePasse());
+        f.setPhotoB64("http://localhost/myjcc/profile/" + newName);
         fs.modifierUser(x,f);
          Date currentDate = new Date();
                          java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
@@ -135,6 +165,9 @@ public class Modifier4UserFXMLController implements Initializable {
         Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
         confirmation.setContentText("User " + NomU.getText() + " est modifié avec succes");
         confirmation.show();
+            }  } catch (Exception ex) {
+            Logger.getLogger(GererPhotographiesFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         NomU.setText("");
         PrenomU.setText("");
@@ -142,7 +175,6 @@ public class Modifier4UserFXMLController implements Initializable {
         EmailU.setText("");
         PasswordU.setText("");
 
-        Photo.setText("");  
 
     }
 

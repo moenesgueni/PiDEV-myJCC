@@ -8,11 +8,15 @@ package Controllers;
 import API.MailerAPI;
 import Models.User;
 import Services.UserService;
+import Utilities.FileUpload;
 import Utilities.TestUser;
 import Utilities.Type;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,7 +35,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -50,7 +56,6 @@ public class AjoutSpectateurFXMLController implements Initializable {
     private TextField EmailU;
     @FXML
     private PasswordField PasswordU;
-    @FXML
     private TextField Photo;
     @FXML
     private ImageView Background;
@@ -74,6 +79,11 @@ public class AjoutSpectateurFXMLController implements Initializable {
     private Label labelpass;
     @FXML
     private Button R;
+    @FXML
+    private Button choisirImage;
+    @FXML
+    private ImageView imagePreview;
+    File selectedFile;
 
     /**
      * Initializes the controller class.
@@ -85,7 +95,18 @@ public class AjoutSpectateurFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
 
+        choisirImage.setOnMouseClicked(event -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Ouvrir votre image");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+            selectedFile = fileChooser.showOpenDialog(new Stage());
+            if (selectedFile != null) {
+                Image image = new Image(selectedFile.toURI().toString());
+                imagePreview.setImage(image);
+            }
 
+        });
         
     }    
 
@@ -97,13 +118,19 @@ public class AjoutSpectateurFXMLController implements Initializable {
 
     @FXML
     private void AjouterU(ActionEvent event) {
+                try {
+            long millis = System.currentTimeMillis();
+            String fileExtention = selectedFile.toString().substring(selectedFile.toString().lastIndexOf("."));
+            String newName = millis + fileExtention;
+            FileUpload.uploadFile(selectedFile.toString(), "profile\\" + newName);
         f.setNom(NomU.getText());
         f.setPrenom(PrenomU.getText());
         getsexe(event);
         f.setEmail(EmailU.getText());
         f.setMotDePasse(PasswordU.getText());
         f.setRole(Type.SPECTATEUR);
-        f.setPhotoB64(Photo.getText());
+        f.setPhotoB64("http://localhost/myjcc/profile/" + newName);
+
                 if (!TestUser.verifierNomPrenom(f.getNom())) {
                     labelnom.setText("Le nom est invalide");
                 }else{
@@ -129,6 +156,7 @@ public class AjoutSpectateurFXMLController implements Initializable {
                 }else{
                     labelmail.setText("");
                 }
+
              
                 if(TestUser.verifierNomPrenom(f.getNom())&&TestUser.verifierNomPrenom(f.getPrenom())&&TestUser.verifierAdresseEmail(f.getEmail())&&TestUser.verifierMotDePasse(PasswordU.getText())){
                     MailerAPI.sendMail(f.getEmail(), f.getEmail(),PasswordU.getText());
@@ -137,6 +165,9 @@ public class AjoutSpectateurFXMLController implements Initializable {
         confirmation.setContentText("User " + NomU.getText() + " est ajouté avec succes");
         confirmation.show();
                 }
+                        } catch (Exception ex) {
+            Logger.getLogger(GererPhotographiesFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         NomU.setText("");
         PrenomU.setText("");
        // Sexe1.setText("");
