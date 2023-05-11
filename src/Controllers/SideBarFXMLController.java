@@ -378,7 +378,7 @@ public class SideBarFXMLController implements Initializable {
                 //add the buttons
                 VBOXButtons.getChildren().addAll(buttonGererLesHotels, buttonGererLesVehicules, buttonGererReservationsHotels,
                         buttonGererLocationVehicules, buttonConsulterFilm, buttonConsulterSalle, buttonConsulterPlanning, 
-                        buttonVoirPrix, buttonVoirCharts, buttonConsulterEvenementA, buttonConsulterEvenementS, buttonConsulterBlogA, buttonConsulterBlogS);
+                        buttonVoirPrix, buttonVoirCharts, buttonConsulterEvenementA, buttonConsulterBlogA);
 
                 FxmlLoader fl = new FxmlLoader();
                 view = fl.getPage("Ajout");

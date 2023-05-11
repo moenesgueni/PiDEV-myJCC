@@ -9,7 +9,7 @@ import Interfaces.FilmInterface;
 import Models.Film;
 import Models.PlanningFilmSalle;
 import Models.Salle;
-import Utils.NotificationUtil;
+import Utilities.NotificationUtil;
 import Services.FilmService;
 import Services.PlanningService;
 import Services.SalleService;

@@ -7,7 +7,7 @@ package Controllers;
 
 import Models.PlanningFilmSalle;
 import Services.PlanningService;
-import Utils.NotificationUtil;
+import Utilities.NotificationUtil;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
